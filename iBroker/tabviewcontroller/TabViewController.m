@@ -14,7 +14,7 @@
 @implementation TabViewController {
 @private
     NSMutableDictionary *initialRatings;
-    NSDictionary *currentRatings;
+    NSMutableDictionary *currentRatings;
     NSMutableDictionary *currentSaldo;
     NSMutableDictionary *saldoUrls;
     
@@ -36,70 +36,69 @@
         NSError *jsonError;
         
         id allkeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
-        if (!jsonError) {
-            currentRatings = allkeys[@"EUR"];
-            
-            NSMutableDictionary *tempRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
-            
-            // InitialRatings wurden nicht gespeichert?
-            if (tempRatings == NULL) {
+        if (jsonError) {            
 
 #if DEBUG
-                NSLog(@"DEBUG: Initiale Kurse werden aktualisiert...");
+            NSLog(@"DEBUG: jsonError => %@", jsonError);
 #endif
-
-                [defaults setObject:currentRatings forKey:@"initialRatings"];
-                [defaults synchronize];
-            } else {
-            
-                BOOL modified = false;
-                for (id key in currentRatings) {
-                    if (![tempRatings valueForKey:key]) {
-
-#if DEBUG
-                        NSLog(@"DEBUG: Initialer Kurs für '%@' wird aktualisiert...", key);
-#endif
-                        [tempRatings setObject:currentRatings[key] forKey:key];
-                        modified = true;
-                    }
-                }
-            
-                if (modified) {
-                    [defaults setObject:tempRatings forKey:@"initialRatings"];
-                    [defaults synchronize];
-                }
-                
-            }
+         
+            // Fehlermeldung wird angezeigt
+            [Helper messageText:[jsonError description] info:[jsonError debugDescription]];
+            return;
         }
+        
+        self->currentRatings = [allkeys[@"EUR"] mutableCopy];
+        
+        NSMutableDictionary *tempRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
+        
+        // InitialRatings wurden nicht gespeichert?
+        if (tempRatings == NULL) {
+            
+#if DEBUG
+            NSLog(@"DEBUG: Initiale Kurse werden aktualisiert...");
+#endif
+            
+            [defaults setObject:currentRatings forKey:@"initialRatings"];
+            [defaults synchronize];
+        } else {
+            
+            BOOL modified = false;
+            for (id key in currentRatings) {
+                if (![tempRatings valueForKey:key]) {
+                    
+#if DEBUG
+                    NSLog(@"DEBUG: Initialer Kurs für '%@' wird aktualisiert...", key);
+#endif
+                    [tempRatings setObject:currentRatings[key] forKey:key];
+                    modified = true;
+                }
+            }
+            
+            if (modified) {
+                [defaults setObject:tempRatings forKey:@"initialRatings"];
+                [defaults synchronize];                
+            }
+            
+        }
+        
     }] resume];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.tabView.delegate = self;
     
-    TemplateViewController *controller = (TemplateViewController*)self.tabViewItems.firstObject.viewController;
-    controller.dismissButton.title = @"Dashboard";
-    
-    // Setze die Textfelder auf dem Dashboard auf editierbar...
-    [controller.currencyUnits setEditable:true];
-    [controller.cryptoUnits setEditable:true];
-    
-    // Setzte die Textfelder auf dem Dashboard auf nicht selektierbar
-    [controller.currencyUnits setSelectable:false];
-    [controller.cryptoUnits setSelectable:false];
-    
     defaults = [NSUserDefaults standardUserDefaults];
+    [self currentRatings];
     
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
     
     if (currentSaldo == NULL) {
         currentSaldo = [@{
-            @"BTC": @0.0000,
-            @"ETH": @0.2386,
-            @"XMR": @0.4656,
-            @"DOGE":@5053.4737
+            @"BTC": @0.00414846,
+            @"ETH": @0.23868595,
+            @"XMR": @0.18477072,
+            @"DOGE":@5053.47368421,
         } mutableCopy];
         
         [defaults setObject:currentSaldo forKey:@"currentSaldo"];
@@ -110,7 +109,7 @@
     if (saldoUrls == NULL) {
         saldoUrls = [ @{
             @"Dashboard": @"https://www.poloniex.com/exchange#btc_xmr",
-            @"Bitcoin": @"https://blockchain.info/de/address/1DC11D43ZFKEhprgjmyJAqrPVRYFpy9QJA",
+            @"Bitcoin": @"https://blockchain.info/de/address/31nHZc8qdNG48YgyKqzxi9Y1NUX16XHexi",
             @"Ethereum": @"https://etherscan.io/address/0xaa18EB5d55Eaf8b9BA5488a96f57f77Dc127BE26",
             @"Monero": @"https://moneroblocks.info",
             @"Dogecoin": @"http://dogechain.info/address/DTVbJzNLVvARmDPnK9cqcxutbd1mEDyUQ1",
@@ -118,21 +117,75 @@
         
         [defaults setObject:saldoUrls forKey:@"saldoUrls"];
     }
-
-    // Einfach mal aktualisieren, sollte nicht schaden
-    [defaults synchronize];
     
+    // TODO: Wie löse ich am Besten mein Synchronisationsproblem?
+    TemplateViewController *controller = (TemplateViewController*)self.tabViewItems.firstObject.viewController;
+    controller.dismissButton.title = @"Dashboard";
     [controller homeURL:saldoUrls[@"Dashboard"]];
-    
-    controller.currencyUnit.stringValue = @"ETH";
-    controller.currencyUnits.doubleValue = [currentSaldo[@"ETH"] doubleValue];
-    
-    controller.cryptoUnit.stringValue = @"XMR";
-    controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"XMR"] doubleValue];
-    
     controller.rateLabel.stringValue = [NSString stringWithFormat:@"iBroker %@", NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"]];
     
-    [self currentRatings];
+    // Einfach mal aktualisieren, sollte nicht schaden
+    [defaults synchronize];
+}
+
+- (double) calculate:(NSString*) currency ratings:(NSDictionary*)ratings{
+    double btc = [currentSaldo[@"BTC"] doubleValue] / [ratings[@"BTC"] doubleValue];
+    double eth = [currentSaldo[@"ETH"] doubleValue] / [ratings[@"ETH"] doubleValue];
+    double xmr = [currentSaldo[@"XMR"] doubleValue] / [ratings[@"XMR"] doubleValue];
+    double doge = [currentSaldo[@"DOGE"] doubleValue] / [ratings[@"DOGE"] doubleValue];
+    
+    double sum = btc + eth + xmr + doge;
+    
+    if ([currency isEqualToString:@"EUR"]) {
+        return sum;
+    }
+    
+    return sum * [currentRatings[@"USD"] doubleValue];
+}
+
+- (void) updateOverview:(TemplateViewController*)controller {
+    
+    controller.cryptoUnit.stringValue = @"USD";
+    controller.cryptoUnits.stringValue = [Helper double2German:[self calculate:@"USD" ratings:currentRatings ] min:2 max:2];
+    
+    controller.currencyUnits.stringValue = [Helper double2German:[self calculate:@"EUR" ratings:currentRatings] min:2 max:2];
+    controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 EUR = %@ USD", [Helper double2German:[currentRatings[@"USD"] doubleValue] min:2 max:2]];
+}
+
+- (void) updateTemplateView:(TemplateViewController*) controller label:(NSString*)label {
+
+    initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
+    
+    NSDictionary *tabs = @{
+        @"Dashboard": [NSArray arrayWithObjects:@"USD", [NSNumber numberWithDouble:1], nil],
+        @"Bitcoin":   [NSArray arrayWithObjects:@"BTC", [NSNumber numberWithDouble:1000], nil],
+        @"Ethereum":  [NSArray arrayWithObjects:@"ETH", [NSNumber numberWithDouble:10], nil],
+        @"Monero":    [NSArray arrayWithObjects:@"XMR", [NSNumber numberWithDouble:10], nil],
+        @"Dogecoin":  [NSArray arrayWithObjects:@"DOGE", [NSNumber numberWithDouble:1/100.0], nil],
+    };
+    
+    NSString *unit = tabs[label][0];
+    double units = [(NSNumber*) tabs[label][1] doubleValue];
+    
+    // Standards
+    [controller homeURL:self->saldoUrls[label]];
+    controller.currencyUnit.stringValue = @"EUR";
+    
+    if ([label isEqualToString:@"Dashboard"]) {
+        [self updateOverview:controller];
+        
+        return;
+    }
+    
+    double percent = 100.0f * ([currentRatings[unit] doubleValue] / [initialRatings[unit] doubleValue]) - 100.0f;
+    controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
+    
+    controller.cryptoUnit.stringValue = [unit substringToIndex:3];
+    controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[unit] doubleValue];
+    controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[unit] doubleValue];
+    
+    double rate = units * [currentRatings[unit] doubleValue];
+    controller.rateLabel.stringValue = [NSString stringWithFormat:@"%g EUR = %@ %@", units, [Helper double2German:rate min:4 max:8], unit];
 }
 
 - (void) tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
@@ -141,76 +194,14 @@
     NSString *label = tabViewItem.label;
     
     TemplateViewController *controller = (TemplateViewController*)tabViewItem.viewController;
+
+    // aktualisiere headLine und dismissButton
     controller.dismissButton.title = label;
+    [controller.headlineLabel setStringValue:label];
     
-    initialRatings = [defaults objectForKey:@"initialRatings"];
     [self currentRatings];
+    [self updateTemplateView:controller label:label];
     
-    // Standards
-    [controller homeURL:self->saldoUrls[label]];
-    controller.currencyUnit.stringValue = @"EUR";
-    
-    double percent, rate;
-    
-    if ([label isEqual: @"Dashboard"]) {
-        
-        controller.currencyUnit.stringValue = @"ETH";
-        controller.currencyUnits.doubleValue = [currentSaldo[@"ETH"] doubleValue];
-
-        controller.cryptoUnit.stringValue = @"XMR";
-        controller.cryptoUnits.doubleValue = [currentSaldo[@"XMR"] doubleValue];
-        
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 EUR = %@ USD", [Helper double2German: [currentRatings[@"USD"] doubleValue] min:2 max:2]];
-
-    } else if ([label isEqual: @"Bitcoin"]) {
-        
-        percent = 100.0f * ([currentRatings[@"BTC"] doubleValue] / [initialRatings[@"BTC"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
-        
-        controller.cryptoUnit.stringValue = @"BTC";
-        controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"BTC"] doubleValue];
-        controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"BTC"] doubleValue];
-
-        rate = 1000 * [currentRatings[@"BTC"] doubleValue];
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1000 EUR = %@ BTC", [Helper double2German:rate min:8 max:12]];
-        
-    } else if ([label isEqual: @"Ethereum"]) {
-        
-        percent = 100.0f * ([currentRatings[@"ETH"] doubleValue] / [initialRatings[@"ETH"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
-        
-        controller.cryptoUnit.stringValue = @"ETH";
-        controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"ETH"] doubleValue];
-        controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"ETH"] doubleValue];
-        
-        rate = 10 * [currentRatings[@"ETH"] doubleValue];
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"10 EUR = %@ ETH", [Helper double2German:rate min:8 max:12]];
-        
-    } else if ([label isEqual: @"Monero"]) {
-        
-        percent = 100.0f * ([currentRatings[@"XMR"] doubleValue] / [initialRatings[@"XMR"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
-        
-        controller.cryptoUnit.stringValue = @"XMR";
-        controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"XMR"] doubleValue];
-        controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"XMR"] doubleValue];
-        
-        rate = 10 * [currentRatings[@"XMR"] doubleValue];
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"10 EUR = %@ XMR", [Helper double2German:rate min:8 max:12]];
-        
-    } else if ([label isEqual: @"Dogecoin"]) {
-        
-        percent = 100.0f * ([currentRatings[@"DOGE"] doubleValue] / [initialRatings[@"DOGE"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
-
-        controller.cryptoUnit.stringValue = @"DOG";
-        controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"DOGE"] doubleValue];
-        controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"DOGE"] doubleValue];
-        
-        rate = 0.01 * [currentRatings[@"DOGE"] doubleValue];
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 CENT = %@ DOGE", [Helper double2German:rate min:8 max:12]];
-        
-    }
 }
 
 @end

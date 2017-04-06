@@ -9,4 +9,8 @@
 #import <Cocoa/Cocoa.h>
 
 @interface TabViewController : NSTabViewController<NSTabViewDelegate>
+
+// Berechne die Summe im Wallet
+- (double) calculate:(NSString*)currency ratings:(NSDictionary*)ratings;
+
 @end

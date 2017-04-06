@@ -7,6 +7,7 @@
 //
 
 #import "TemplateViewController.h"
+#import "Helper.h"
 
 @implementation TemplateViewController {
 @private
@@ -17,24 +18,16 @@
 }
 
 - (void)viewWillAppear {
-
+    
     // Währungsformat mit 4 Nachkommastellen
     NSNumberFormatter *currencyFormatter = [self.currencyUnits formatter];
-
-    if (![[self.dismissButton title] isEqual:@"Dashboard"]) {
-        // Währungsformat mit 2 Nachkommastellen für EUR
-        [currencyFormatter setMinimumFractionDigits:2];
-        [currencyFormatter setMaximumFractionDigits:2];
-    } else {
-        // Währungsformat mit 4 Nachkommastellen für alle anderen
-        [currencyFormatter setMinimumFractionDigits:8];
-        [currencyFormatter setMaximumFractionDigits:12];
-    }
-
+    [currencyFormatter setMinimumFractionDigits:2];
+    [currencyFormatter setMaximumFractionDigits:4];
+    
     // Crypto-Währungsformat mit 8-12 Nachkommastellen
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
     [cryptoFormatter setMinimumFractionDigits:8];
-    [cryptoFormatter setMaximumFractionDigits:12];
+    [cryptoFormatter setMaximumFractionDigits:8];
     
 }
 
@@ -50,7 +43,7 @@
     applications = [[defaults objectForKey:@"applications"] mutableCopy];
     
     if (applications == NULL) {
-    
+        
         applications = [ @{
             @"Bitcoin": @"/Applications/mSIGNA.App",
             @"Ethereum": @"/Applications/Ethereum Wallet.App",
@@ -74,7 +67,6 @@
     }
     
     [defaults synchronize];
-    
 }
 
 - (void)homeURL:(NSString*)url {
@@ -136,59 +128,28 @@
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: traders[@"trader2"]]];
 }
 
-- (NSModalResponse)messageText:(NSString*) message info:(NSString*) info {
-    
-    NSAlert *msg = [[NSAlert alloc] init];
-    
-    [msg setAlertStyle:NSInformationalAlertStyle];
-    [msg addButtonWithTitle:@"Aktualisieren"];
-    [msg addButtonWithTitle:@"Verwerfen"];
-    
-    msg.messageText = message;
-    msg.informativeText = info;
-    
-    return [msg runModal];
-    
-}
-
-- (IBAction)multiActionClicked:(id)sender {
-
-    NSString *pageTitle = [self.dismissButton title];
+- (void) updateRatings:(NSString*)key {
     
     NSMutableDictionary *initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
     
+    NSDictionary *tabs = @{
+        @"Dashboard": [NSArray arrayWithObjects:@"ALL", @"alle Kurse", nil],
+        @"Bitcoin":   [NSArray arrayWithObjects:@"BTC", @"den Bitcoin Kurs", nil],
+        @"Ethereum":  [NSArray arrayWithObjects:@"ETH", @"den Ethereum Kurs", nil],
+        @"Monero":    [NSArray arrayWithObjects:@"XMR", @"den Monero Kurs", nil],
+        @"Dogecoin":  [NSArray arrayWithObjects:@"DOGE", @"den Dogecoin Kurs", nil],
+    };
+    
+    NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabs[key][1]];
+    NSString *info = @"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!";
+    
     BOOL modified = false;
-    if ([pageTitle isEqualToString:@"Dashboard"]) {
-        if ([self messageText:@"Möchten Sie alle Kurse aktualisieren?" info:@"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!"] == NSAlertFirstButtonReturn) {
+    if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
+        if ([tabs[key][0] isEqualToString:@"ALL"]) {
             initialRatings = nil;
             modified = true;
-        }
-    }
-    
-    if ([pageTitle isEqualToString:@"Bitcoin"]) {
-        if ([self messageText:@"Möchten Sie den Bitcoin-Kurs aktualisieren?" info:@"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Kurs!"] == NSAlertFirstButtonReturn) {
-            [initialRatings removeObjectForKey:@"BTC"];
-            modified = true;
-        }
-    }
-    
-    if ([pageTitle isEqualToString:@"Ethereum"]) {
-        if ([self messageText:@"Möchten Sie den Ethereum-Kurs aktualisieren?" info:@"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Kurs!"] == NSAlertFirstButtonReturn) {
-            [initialRatings removeObjectForKey:@"ETH"];
-            modified = true;
-        }
-    }
-    
-    if ([pageTitle isEqualToString:@"Monero"]) {
-        if ([self messageText:@"Möchten Sie den Monero-Kurs aktualisieren?" info:@"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Kurs!"] == NSAlertFirstButtonReturn) {
-            [initialRatings removeObjectForKey:@"XMR"];
-            modified = true;
-        }
-    }
-    
-    if ([pageTitle isEqualToString:@"Dogecoin"]) {
-        if ([self messageText:@"Möchten Sie den Dogecoin-Kurs aktualisieren?" info:@"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Kurs!"] == NSAlertFirstButtonReturn) {
-            [initialRatings removeObjectForKey:@"DOGE"];
+        } else {
+            [initialRatings removeObjectForKey:tabs[key][0]];
             modified = true;
         }
     }
@@ -197,6 +158,14 @@
         [defaults setObject:initialRatings forKey:@"initialRatings"];
         [defaults synchronize];
     }
+    
+}
+
+- (IBAction)multiActionClicked:(id)sender {
+    
+    NSString *pageTitle = [self.dismissButton title];
+    [self updateRatings:pageTitle];
+    
 }
 
 @end

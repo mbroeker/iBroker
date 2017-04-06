@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
 @interface Helper : NSObject
 + (NSString*) double2German:(double) value min:(int) min max:(int) max;
 + (NSString*) double2GermanPercent:(double) value fractions:(int) fractions;
++ (NSModalResponse)messageText:(NSString*) message info:(NSString*) info;
 @end
