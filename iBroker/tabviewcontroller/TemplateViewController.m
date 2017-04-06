@@ -17,16 +17,25 @@
 }
 
 - (void)viewWillAppear {
+
     // Währungsformat mit 4 Nachkommastellen
     NSNumberFormatter *currencyFormatter = [self.currencyUnits formatter];
-    
-    [currencyFormatter setMinimumFractionDigits:4];
-    [currencyFormatter setMaximumFractionDigits:4];
 
-    // Crypto-Währungsformat mit 4-8 Nachkommastellen
+    if (![[self.dismissButton title] isEqual:@"Dashboard"]) {
+        // Währungsformat mit 2 Nachkommastellen für EUR
+        [currencyFormatter setMinimumFractionDigits:2];
+        [currencyFormatter setMaximumFractionDigits:2];
+    } else {
+        // Währungsformat mit 4 Nachkommastellen für alle anderen
+        [currencyFormatter setMinimumFractionDigits:8];
+        [currencyFormatter setMaximumFractionDigits:12];
+    }
+
+    // Crypto-Währungsformat mit 8-12 Nachkommastellen
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
-    [cryptoFormatter setMinimumSignificantDigits:4];
-    [cryptoFormatter setMaximumSignificantDigits:8];
+    [cryptoFormatter setMinimumFractionDigits:8];
+    [cryptoFormatter setMaximumFractionDigits:12];
+    
 }
 
 - (void)viewDidLoad {

@@ -9,6 +9,8 @@
 #import "TabViewController.h"
 #import "TemplateViewController.h"
 
+#import "Helper.h"
+
 @implementation TabViewController {
 @private
     NSMutableDictionary *initialRatings;
@@ -84,6 +86,10 @@
     [controller.currencyUnits setEditable:true];
     [controller.cryptoUnits setEditable:true];
     
+    // Setzte die Textfelder auf dem Dashboard auf nicht selektierbar
+    [controller.currencyUnits setSelectable:false];
+    [controller.cryptoUnits setSelectable:false];
+    
     defaults = [NSUserDefaults standardUserDefaults];
     
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
@@ -91,7 +97,7 @@
     if (currentSaldo == NULL) {
         currentSaldo = [@{
             @"BTC": @0.0000,
-            @"ETH": @0.2400,
+            @"ETH": @0.2386,
             @"XMR": @0.4656,
             @"DOGE":@5053.4737
         } mutableCopy];
@@ -119,7 +125,7 @@
     [controller homeURL:saldoUrls[@"Dashboard"]];
     
     controller.currencyUnit.stringValue = @"ETH";
-    controller.currencyUnits.doubleValue = [(NSNumber*)currentSaldo[@"ETH"] doubleValue];
+    controller.currencyUnits.doubleValue = [currentSaldo[@"ETH"] doubleValue];
     
     controller.cryptoUnit.stringValue = @"XMR";
     controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"XMR"] doubleValue];
@@ -144,61 +150,65 @@
     [controller homeURL:self->saldoUrls[label]];
     controller.currencyUnit.stringValue = @"EUR";
     
-    double percent;
+    double percent, rate;
     
     if ([label isEqual: @"Dashboard"]) {
-
+        
         controller.currencyUnit.stringValue = @"ETH";
         controller.currencyUnits.doubleValue = [currentSaldo[@"ETH"] doubleValue];
-        
+
         controller.cryptoUnit.stringValue = @"XMR";
         controller.cryptoUnits.doubleValue = [currentSaldo[@"XMR"] doubleValue];
         
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 EUR = %@ USD", currentRatings[@"USD"]];
+        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 EUR = %@ USD", [Helper double2German: [currentRatings[@"USD"] doubleValue] min:2 max:2]];
 
     } else if ([label isEqual: @"Bitcoin"]) {
         
         percent = 100.0f * ([currentRatings[@"BTC"] doubleValue] / [initialRatings[@"BTC"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [NSString stringWithFormat:@"%+.2f%%", percent];
+        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
         
         controller.cryptoUnit.stringValue = @"BTC";
         controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"BTC"] doubleValue];
         controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"BTC"] doubleValue];
-        
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1000 EUR = %.4f BTC", 1000 * [currentRatings[@"BTC"] doubleValue]];
+
+        rate = 1000 * [currentRatings[@"BTC"] doubleValue];
+        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1000 EUR = %@ BTC", [Helper double2German:rate min:8 max:12]];
         
     } else if ([label isEqual: @"Ethereum"]) {
         
         percent = 100.0f * ([currentRatings[@"ETH"] doubleValue] / [initialRatings[@"ETH"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [NSString stringWithFormat:@"%+.2f%%", percent];
+        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
         
         controller.cryptoUnit.stringValue = @"ETH";
         controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"ETH"] doubleValue];
         controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"ETH"] doubleValue];
         
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"10 EUR = %.4f ETH", 10 * [currentRatings[@"ETH"] doubleValue]];
+        rate = 10 * [currentRatings[@"ETH"] doubleValue];
+        controller.rateLabel.stringValue = [NSString stringWithFormat:@"10 EUR = %@ ETH", [Helper double2German:rate min:8 max:12]];
         
     } else if ([label isEqual: @"Monero"]) {
         
         percent = 100.0f * ([currentRatings[@"XMR"] doubleValue] / [initialRatings[@"XMR"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [NSString stringWithFormat:@"%+.2f%%", percent];
+        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
         
         controller.cryptoUnit.stringValue = @"XMR";
         controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"XMR"] doubleValue];
         controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"XMR"] doubleValue];
         
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"10 EUR = %.4f XMR", 10 * [currentRatings[@"XMR"] doubleValue]];
+        rate = 10 * [currentRatings[@"XMR"] doubleValue];
+        controller.rateLabel.stringValue = [NSString stringWithFormat:@"10 EUR = %@ XMR", [Helper double2German:rate min:8 max:12]];
         
     } else if ([label isEqual: @"Dogecoin"]) {
         
         percent = 100.0f * ([currentRatings[@"DOGE"] doubleValue] / [initialRatings[@"DOGE"] doubleValue]) - 100.0f;
-        controller.percentLabel.stringValue = [NSString stringWithFormat:@"%+.2f%%", percent];
+        controller.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
 
         controller.cryptoUnit.stringValue = @"DOG";
         controller.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[@"DOGE"] doubleValue];
         controller.currencyUnits.doubleValue = controller.cryptoUnits.doubleValue / [currentRatings[@"DOGE"] doubleValue];
         
-        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 CENT = %.4f DOGE", 0.01 * [currentRatings[@"DOGE"] doubleValue]];
+        rate = 0.01 * [currentRatings[@"DOGE"] doubleValue];
+        controller.rateLabel.stringValue = [NSString stringWithFormat:@"1 CENT = %@ DOGE", [Helper double2German:rate min:8 max:12]];
         
     }
 }
