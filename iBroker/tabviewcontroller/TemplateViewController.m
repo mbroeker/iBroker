@@ -15,12 +15,14 @@
     
     // Synchronisierte Einstellungen und Eigenschaften
     NSMutableDictionary *initialRatings;
-    NSMutableDictionary *currentRatings;
     NSMutableDictionary *currentSaldo;
-    NSMutableDictionary *saldoUrls;
+
+    // Normale Eigenschaften
+    NSDictionary *currentRatings;
+    NSDictionary *saldoUrls;
     
-    NSMutableDictionary *applications;
-    NSMutableDictionary *traders;
+    NSDictionary *applications;
+    NSDictionary *traders;
     
     // Bilder und URLs
     NSDictionary *images;    
@@ -31,11 +33,15 @@
  * Lösche alle Schlüssel
  */
 - (void) resetDefaults {
+    defaults = [NSUserDefaults standardUserDefaults];
+    
     [defaults removeObjectForKey:@"applications"];
     [defaults removeObjectForKey:@"traders"];
     [defaults removeObjectForKey:@"saldoUrls"];
     [defaults removeObjectForKey:@"currentSaldo"];
     [defaults removeObjectForKey:@"initialRatings"];
+    
+    [self initializeWithDefaults];
 }
 
 /**
@@ -56,32 +62,34 @@
     applications = [[defaults objectForKey:@"applications"] mutableCopy];
     
     if (applications == NULL) {
-        applications = [ @{
+        applications = @{
             @"Bitcoin": @"/Applications/mSIGNA.App",
             @"Ethereum": @"/Applications/Ethereum Wallet.App",
             @"Monero":  @"/Applications/monero-wallet-gui.App",
             @"Dogecoin": @"/Applications/MultiDoge.App",
-        } mutableCopy];
+        };
         
         [defaults setObject:applications forKey:@"applications"];
+        [defaults synchronize];
     }
     
-    traders = [[defaults objectForKey:@"traders"] mutableCopy];
+    traders = [defaults objectForKey:@"traders"];
     
     if (traders == NULL) {
-        traders = [ @{
+        traders = @{
             @"homepage": @"https://www.4customers.de",
             @"trader1": @"https://www.shapeshift.io",
             @"trader2": @"https://www.blocktrades.us",
-        } mutableCopy];
+        };
         
         [defaults setObject:traders forKey:@"traders"];
+        [defaults synchronize];
     }
     
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
     
     if (currentSaldo == NULL) {
-        currentSaldo = [@{
+        currentSaldo = [ @{
             @"BTC": @0.00414846,
             @"ETH": @0.23868595,
             @"XMR": @0.18477072,
@@ -89,23 +97,23 @@
         } mutableCopy];
         
         [defaults setObject:currentSaldo forKey:@"currentSaldo"];
+        [defaults synchronize];
     }
     
-    saldoUrls = [[defaults objectForKey:@"saldoUrls"] mutableCopy];
+    saldoUrls = [defaults objectForKey:@"saldoUrls"];
     
     if (saldoUrls == NULL) {
-        saldoUrls = [ @{
+        saldoUrls = @{
             @"Dashboard": @"https://www.poloniex.com/exchange#btc_xmr",
             @"Bitcoin": @"https://blockchain.info/de/address/31nHZc8qdNG48YgyKqzxi9Y1NUX16XHexi",
             @"Ethereum": @"https://etherscan.io/address/0xaa18EB5d55Eaf8b9BA5488a96f57f77Dc127BE26",
             @"Monero": @"https://moneroblocks.info",
             @"Dogecoin": @"http://dogechain.info/address/DTVbJzNLVvARmDPnK9cqcxutbd1mEDyUQ1",
-        } mutableCopy];
+        };
         
         [defaults setObject:saldoUrls forKey:@"saldoUrls"];
+        [defaults synchronize];
     }
-    
-    [defaults synchronize];
 }
 
 /**
@@ -121,6 +129,12 @@
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
     [cryptoFormatter setMinimumFractionDigits:8];
     [cryptoFormatter setMaximumFractionDigits:8];
+
+    // Ratings aktualisieren
+    [self currentRatings];
+
+    [_cryptoUnits setTarget:self];
+    [_cryptoUnits setAction:@selector(cryptoAction:)];
 }
 
 /**
@@ -128,42 +142,47 @@
  */
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    [self initializeWithDefaults];
-    
-    // Ratings aktualisieren
-    [self currentRatings];
 
     // Startseite aufrufen
     [self initialOverview];
+}
+
+- (void) firstStart {
+    // Initialisieren der Anwendung und der Datenstrukturen
+    [self initializeWithDefaults];
+
+    if (initialRatings == NULL) {
+        initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
+
+        if (initialRatings == NULL) {
+            initialRatings = [ @{
+                    @"USD": @1.0,
+                    @"BTC": @1.0,
+                    @"ETH": @1.0,
+                    @"XMR": @1.0,
+                    @"DOGE":@1.0,
+            } mutableCopy];
+        }
+    }
+
+    if (currentRatings == NULL) {
+        currentRatings =[initialRatings mutableCopy];
+    }
+
+    [defaults synchronize];
 }
 
 /**
  * Übersicht mit Fakewerten beim ersten und initialen Start...
  */
 - (void)initialOverview {
-    if (initialRatings == NULL) {
-        initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
-        
-        if (initialRatings == NULL) {
-            initialRatings = [ @{
-                @"USD": @1.0,
-                @"BTC": @0.0008928,
-                @"ETH": @0.0200000,
-                @"XMR": @0.0050000,
-                @"DOGE":@4000.0000,
-            } mutableCopy];
-        }
-    }
-
-    if (currentRatings == NULL) {
-        currentRatings = initialRatings;
-    }
-    
     NSString *tab = @"Dashboard";
-    
+
+    // Erst-Start-Überprüfung
+    [self firstStart];
+
     // Setze die Standard-Homepage für den HomeButton
-    self->homeURL = saldoUrls[tab];
+    homeURL = saldoUrls[tab];
     self.dismissButton.title = tab;
 
     self.percentLabel.stringValue = @"Bestand";
@@ -277,19 +296,20 @@
         };
         
         currentSaldo[tabs[tabTitle]] = [[NSNumber alloc] initWithDouble:self.cryptoUnits.doubleValue];
-        self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue;
+        self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[tabs[tabTitle]] doubleValue];
+
         [defaults setObject:currentSaldo forKey:@"currentSaldo"];
         [defaults synchronize];
     }
 }
 
 // Datenkapselung: Getter in Objective-C
-- (NSMutableDictionary*) applications {
+- (NSDictionary*) applications {
     return applications;
 }
 
 // Datenkapselung: Getter in Objective-C
-- (NSMutableDictionary*) traders {
+- (NSDictionary*) traders {
     return traders;
 }
 
@@ -331,30 +351,25 @@
  */
 - (void) updateRatings:(NSString*)key {    
     NSDictionary *tabs = @{
-        @"Dashboard": [NSArray arrayWithObjects:@"ALL", @"alle Kurse", nil],
-        @"Bitcoin":   [NSArray arrayWithObjects:@"BTC", @"den Bitcoin Kurs", nil],
-        @"Ethereum":  [NSArray arrayWithObjects:@"ETH", @"den Ethereum Kurs", nil],
-        @"Monero":    [NSArray arrayWithObjects:@"XMR", @"den Monero Kurs", nil],
-        @"Dogecoin":  [NSArray arrayWithObjects:@"DOGE", @"den Dogecoin Kurs", nil],
+        @"Dashboard": @[@"ALL", @"alle Kurse"],
+        @"Bitcoin": @[@"BTC", @"den Bitcoin Kurs"],
+        @"Ethereum": @[@"ETH", @"den Ethereum Kurs"],
+        @"Monero": @[@"XMR", @"den Monero Kurs"],
+        @"Dogecoin": @[@"DOGE", @"den Dogecoin Kurs"],
     };
     
     NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabs[key][1]];
     NSString *info = @"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!";
-    
-    BOOL modified = false;
+
     if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
         if ([tabs[key][0] isEqualToString:@"ALL"]) {
-            initialRatings = nil;
-            modified = true;
+            [defaults setObject:currentRatings forKey:@"initialRatings"];
+            [defaults synchronize];
         } else {
-            [initialRatings removeObjectForKey:tabs[key][0]];
-            modified = true;
+            [initialRatings setObject:currentRatings[tabs[key][0]] forKey:tabs[key][0]];
+            [defaults setObject:currentRatings forKey:@"initialRatings"];
+            [defaults synchronize];
         }
-    }
-    
-    if (modified) {
-        [defaults setObject:initialRatings forKey:@"initialRatings"];
-        [defaults synchronize];
     }
 }
 
@@ -377,49 +392,26 @@
         
         id allkeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
         if (jsonError) {
-            
-#if DEBUG
-            NSLog(@"DEBUG: jsonError => %@", jsonError);
-#endif
-            
             // Fehlermeldung wird angezeigt
             [Helper messageText:[jsonError description] info:[jsonError debugDescription]];
             return;
         }
         
         currentRatings = [allkeys[@"EUR"] mutableCopy];
-        
-        NSMutableDictionary *tempRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
-        
-        // InitialRatings wurden nicht gespeichert?
-        if (tempRatings == NULL) {
-            
-#if DEBUG
-            NSLog(@"DEBUG: Initiale Kurse werden aktualisiert...");
-#endif
-            
+        initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
+
+        if (initialRatings == NULL) {
             [defaults setObject:currentRatings forKey:@"initialRatings"];
-            [defaults synchronize];
-        } else {
-            
-            BOOL modified = false;
-            for (id key in currentRatings) {
-                if (![tempRatings valueForKey:key]) {
-                    
-#if DEBUG
-                    NSLog(@"DEBUG: Initialer Kurs für '%@' wird aktualisiert...", key);
+            initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
+
+#ifdef DEBUG
+            NSLog(@"Initial Ratings: %@", initialRatings);
 #endif
-                    [tempRatings setObject:currentRatings[key] forKey:key];
-                    modified = true;
-                }
-            }
-            
-            if (modified) {
-                [defaults setObject:tempRatings forKey:@"initialRatings"];
-                [defaults synchronize];
-            }
+
         }
-        
+
+        [defaults synchronize];
+
     }] resume];
 }
 
@@ -442,11 +434,11 @@
  */
 - (void)updateTemplateView:(NSString*)label {
     NSDictionary *tabs = @{
-        @"Dashboard": [NSArray arrayWithObjects:@"USD", [NSNumber numberWithDouble:1], nil],
-        @"Bitcoin":   [NSArray arrayWithObjects:@"BTC", [NSNumber numberWithDouble:1000], nil],
-        @"Ethereum":  [NSArray arrayWithObjects:@"ETH", [NSNumber numberWithDouble:10], nil],
-        @"Monero":    [NSArray arrayWithObjects:@"XMR", [NSNumber numberWithDouble:10], nil],
-        @"Dogecoin":  [NSArray arrayWithObjects:@"DOGE", [NSNumber numberWithDouble:1/100.0], nil],
+        @"Dashboard": @[@"USD", @1.0],
+        @"Bitcoin": @[@"BTC", @1000.0],
+        @"Ethereum": @[@"ETH", @10.0],
+        @"Monero": @[@"XMR", @10.0],
+        @"Dogecoin": @[@"DOGE", @(1 / 100.0)],
     };
 
     // Aktualisieren des Dismissbuttons und der headLine;
@@ -468,9 +460,15 @@
     // Aktiviere die Eingabe für die Crypto-Einheiten
     self.cryptoUnits.editable = true;
     
+    
     [self.cryptoButton setImage:self.images[unit]];
     
     double percent = 100.0f * ([currentRatings[unit] doubleValue] / [initialRatings[unit] doubleValue]) - 100.0f;
+
+#ifdef DEBUG
+    NSLog(@"Percent %.4f = 100.0 * (%.8f / %.8f) - 100.0 ", percent, [currentRatings[unit] doubleValue], [initialRatings[unit] doubleValue]);
+#endif
+
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
     
     self.cryptoUnits.doubleValue = [(NSNumber*)currentSaldo[unit] doubleValue];

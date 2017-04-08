@@ -49,8 +49,8 @@
 - (IBAction)cryptoAction:(id)sender;
 
 // Getter für die privaten Variablen
-- (NSMutableDictionary*) applications;
-- (NSMutableDictionary*) traders;
+- (NSDictionary*) applications;
+- (NSDictionary*) traders;
 - (NSDictionary*) images;
 
 // Getter und Setter
