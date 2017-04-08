@@ -126,11 +126,12 @@
         <scene sceneID="umM-jZ-y7i">
             <objects>
                 <customObject id="MSo-IC-iHI" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <tabViewController selectedTabViewItemIndex="0" id="a8c-k7-XWD" customClass="TabViewController" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" id="a8c-k7-XWD" customClass="TabViewController" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Dashboard" id="35g-m1-hvR"/>
                         <tabViewItem label="Bitcoin" id="ops-d6-6mK"/>
                         <tabViewItem label="Ethereum" id="Iy3-lG-c43"/>
+                        <tabViewItem label="Litecoin" id="CsD-Nb-58b"/>
                         <tabViewItem label="Monero" id="u2t-8g-r97"/>
                         <tabViewItem label="Dogecoin" id="crd-Yr-PwP"/>
                     </tabViewItems>
@@ -148,6 +149,7 @@
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="uWH-We-CUG"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="4Tg-dJ-Z1W"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="ua6-wj-ynl"/>
+                        <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="Q4a-ed-z8V"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="R7R-fX-zuh"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="B00-nu-fZu"/>
                     </connections>

@@ -61,7 +61,7 @@
 - (double)calculate:(NSString*)currency ratings:(NSDictionary*)ratings;
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
-- (void)currentRatings;
+- (void)updateRatings;
 - (void) updateRatings:(NSString*)key;
 
 // Methoden zum Aktualisieren der Ansichten
