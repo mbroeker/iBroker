@@ -121,8 +121,8 @@
     if (currentSaldo == NULL) {
         currentSaldo = [@{
             @"BTC": @0.00414846,
-            @"ETH": @0.23868595,
-            @"LTC": @0.00000000,
+            @"ETH": @0.11986671,
+            @"LTC": @0.48250217,
             @"XMR": @0.18477072,
             @"DOGE": @5053.47368421,
         } mutableCopy];
@@ -137,7 +137,7 @@
             @"Dashboard": @"https://www.poloniex.com/exchange#btc_xmr",
             @"Bitcoin": @"https://blockchain.info/de/address/31nHZc8qdNG48YgyKqzxi9Y1NUX16XHexi",
             @"Ethereum": @"https://etherscan.io/address/0xaa18EB5d55Eaf8b9BA5488a96f57f77Dc127BE26",
-            @"Litecoin": @"https://ltc.blockr.io",
+            @"Litecoin": @"https://chainz.cryptoid.info/ltc/address.dws?LMnHSGGr7FEi97gCgG5dB8418G91TSanMP.htm",
             @"Monero": @"https://moneroblocks.info",
             @"Dogecoin": @"http://dogechain.info/address/DTVbJzNLVvARmDPnK9cqcxutbd1mEDyUQ1",
         } mutableCopy];

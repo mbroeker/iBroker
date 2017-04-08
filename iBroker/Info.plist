@@ -32,5 +32,10 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+    
+    <key>CFBundleHelpBookFolder</key>
+    <string>iBroker.help</string>
+    <key>CFBundleHelpBookName</key>
+    <string>de.4customers.iBroker.help</string>    
 </dict>
 </plist>

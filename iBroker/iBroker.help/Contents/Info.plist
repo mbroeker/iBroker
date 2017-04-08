@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>de_DE</string>
+	<key>CFBundleIdentifier</key>
+	<string>de.4customers.iBroker.help</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>iBroker</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleSignature</key>
+	<string>hbwr</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>HPDBookAccessPath</key>
+	<string>index.html</string>
+	<key>HPDBookIconPath</key>
+	<string>iBroker.png</string>
+	<key>HPDBookIndexPath</key>
+	<string>search.helpindex</string>
+	<key>HPDBookKBProduct</key>
+	<string>Escobar Edition</string>
+	<key>HPDBookKBURL</key>
+	<string>https://www.4customers.de/iBroker/</string>
+	<key>HPDBookRemoteURL</key>
+	<string>https://www.4customers.de/iBroker/help/</string>
+	<key>HPDBookTitle</key>
+	<string>iBroker Help</string>
+	<key>HPDBookType</key>
+	<string>3</string>
+</dict>
+</plist>
