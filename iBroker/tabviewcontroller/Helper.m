@@ -13,7 +13,7 @@
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
-    [formatter setNumberStyle:NSNumberFormatterCurrencyAccountingStyle];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setMinimumFractionDigits:min];
     [formatter setMaximumFractionDigits:max];
         
@@ -24,7 +24,7 @@
 
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
-    [formatter setNumberStyle:NSNumberFormatterCurrencyAccountingStyle];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setMinimumFractionDigits:2];
     [formatter setMaximumFractionDigits:fractions];
     

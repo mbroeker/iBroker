@@ -5,12 +5,12 @@
 	<key>BuildVersion</key>
 	<string>6</string>
 	<key>CFBundleShortVersionString</key>
-	<string>210.48</string>
+	<string>0.1</string>
 	<key>CFBundleVersion</key>
-	<string>210.48</string>
+	<string>0.1</string>
 	<key>ProjectName</key>
-	<string>MailHelp</string>
+	<string>iBrokerHelp</string>
 	<key>SourceVersion</key>
-	<string>210048000000000</string>
+	<string>1</string>
 </dict>
 </plist>

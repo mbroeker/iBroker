@@ -37,11 +37,17 @@
 - (double)calculate:(NSString *)currency {
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
 
-    double btc = [currentSaldo[@"BTC"] doubleValue] / [currentRatings[@"BTC"] doubleValue];
-    double eth = [currentSaldo[@"ETH"] doubleValue] / [currentRatings[@"ETH"] doubleValue];
-    double ltc = [currentSaldo[@"LTC"] doubleValue] / [currentRatings[@"LTC"] doubleValue];
-    double xmr = [currentSaldo[@"XMR"] doubleValue] / [currentRatings[@"XMR"] doubleValue];
-    double doge = [currentSaldo[@"DOGE"] doubleValue] / [currentRatings[@"DOGE"] doubleValue];
+    return [self calculateWithRatings:currentRatings currency:currency];
+}
+
+- (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency {
+    currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
+
+    double btc = [currentSaldo[@"BTC"] doubleValue] / [ratings[@"BTC"] doubleValue];
+    double eth = [currentSaldo[@"ETH"] doubleValue] / [ratings[@"ETH"] doubleValue];
+    double ltc = [currentSaldo[@"LTC"] doubleValue] / [ratings[@"LTC"] doubleValue];
+    double xmr = [currentSaldo[@"XMR"] doubleValue] / [ratings[@"XMR"] doubleValue];
+    double doge = [currentSaldo[@"DOGE"] doubleValue] / [ratings[@"DOGE"] doubleValue];
 
     double sum = btc + eth + ltc + xmr + doge;
 
@@ -49,7 +55,7 @@
         return sum;
     }
 
-    return sum * [currentRatings[@"USD"] doubleValue];
+    return sum * [ratings[@"USD"] doubleValue];
 }
 
 /**
@@ -72,7 +78,7 @@
 
     if (applications == NULL) {
         applications = [@{
-            @"Bitcoin": @"/Applications/mSIGNA.App",
+            @"Bitcoin": @"/Applications/Electrum.App",
             @"Ethereum": @"/Applications/Ethereum Wallet.App",
             @"Litecoin": @"/Applications/Electrum-LTC.App",
             @"Monero": @"/Applications/monero-wallet-gui.App",
@@ -128,12 +134,12 @@
  * Setzen der Formatierungsregeln für die Eingabefelder
  */
 - (void)viewWillAppear {
-    // Währungsformat mit 4 Nachkommastellen
+    // Währungsformat mit 2 Nachkommastellen
     NSNumberFormatter *currencyFormatter = [self.currencyUnits formatter];
-    [currencyFormatter setMinimumFractionDigits:4];
-    [currencyFormatter setMaximumFractionDigits:4];
+    [currencyFormatter setMinimumFractionDigits:2];
+    [currencyFormatter setMaximumFractionDigits:2];
 
-    // Crypto-Währungsformat mit 8-12 Nachkommastellen
+    // Crypto-Währungsformat mit 4-8 Nachkommastellen
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
     [cryptoFormatter setMinimumFractionDigits:4];
     [cryptoFormatter setMaximumFractionDigits:8];
@@ -182,12 +188,18 @@
     }
 }
 
-// Warte und nutze irgendwann mal nen Semaphore
+/**
+ * synchronisierter Block, der garantiert, dass es nur ein Update gibt
+ */
 - (void) waitForUpdateRatings {
-    [self updateRatings];
 
+    @synchronized (self) {
+        [self updateRatings];
+    }
+    
+    // uR blockiert, das Warten nicht!
     while (!hasFinished) {
-        [self safeSleep:0.25];
+        [self safeSleep:0.1];
     }
 }
 
@@ -231,27 +243,29 @@
     }] resume];
 }
 
-// Warte maximal 10 * timeout Sekunden und gebe dann auf...
+// Warte maximal n * timeout Sekunden und gebe dann auf...
 - (void)safeSleep:(double)timeout {
-    static long int max = 0;
+    const int MAX_RETRIES = 250;
+    
+    static long int loops = 0;
 
-    if (++max < 10) {
+    if (++loops < MAX_RETRIES) {
         [NSThread sleepForTimeInterval:timeout];
     } else {
-        if ([Helper messageText:@"Die Netzwerkverbindung ist fürchterlich" info:@"Das mache ich nicht mit..."] == NSAlertFirstButtonReturn) {
+        if ([Helper messageText:@"Bitte warten" info:@"Netzwerkauslastung ist derzeit sehr hoch."] == NSAlertFirstButtonReturn) {
             [NSApp terminate:self];
         }
 
         hasFinished = true;
     }
-
+    
     if (hasFinished) {
-        max = 0;
+        loops = 0;
     }
 }
 
 /**
- * Übersicht mit Fakewerten beim ersten und initialen Start...
+ * Übersicht mit Semaphore
  */
 - (void)initialOverview {
     // Ratings aktualisieren
@@ -261,6 +275,19 @@
     self.rateLabel.stringValue = [NSString stringWithFormat:@"iBroker Version %@", NSBundle.mainBundle.infoDictionary[@"CFBundleShortVersionString"]];
 }
 
+- (int)sumUp:(int) a b:(int)b {
+    return a+b;
+}
+
+// Spielwiese für neue Sprachfeatures
+- (void)test {
+    int (^summe)(int a, int b) = ^(int a, int b) {
+        return a + b;
+    };
+    
+    NSLog(@"Summe ist %d", summe(4, 5));
+}
+
 /**
  * Übersicht mit richtigen Live-Werten
  */
@@ -268,47 +295,50 @@
     self.dismissButton.title = @"Dashboard";
     
     double total = [self calculate:@"EUR"];
+    double initial = [self calculateWithRatings:initialRatings currency:@"EUR"];
+    double percent = (total / initial * 100.0) - 100.0;
 
-    NSLog(@"Übersicht");
-    double percent = 0;
+    double prices = 0;
     for (id unit in [[currentSaldo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
-        double initialPrice = [initialRatings[unit] doubleValue];
-        double currentPrice = [currentRatings[unit] doubleValue];
+        double initialPrice = 1.0 / [initialRatings[unit] doubleValue];
+        double currentPrice = 1.0 / [currentRatings[unit] doubleValue];
 
         double amount = [currentSaldo[unit] doubleValue] / [currentRatings[unit] doubleValue];
-        double share = (amount / total);
-        double deficit = amount - ((initialPrice / currentPrice) * amount);
-        double p = deficit * share * 100.0f;
+        double share = (amount / total) * 100.0;
+        double price = ((currentPrice / initialPrice) * amount) - amount;
 
-        NSLog(@"%@: (%@ EUR / %@ EUR) => (s: %@, p: %@)",
-            unit,
-            [Helper double2German:amount min:4 max:4],
-            [Helper double2German:total min:4 max:4],
-            [Helper double2GermanPercent:share * 100.0f fractions:4],
-            [Helper double2GermanPercent:p fractions:4]
+        NSLog(@"%4s: %10s | %10s | %8s | %8s | %8s",
+            [unit UTF8String],
+            [[Helper double2German:initialPrice min:2 max:4] UTF8String],
+            [[Helper double2German:currentPrice min:2 max:4] UTF8String],
+            [[Helper double2GermanPercent:share fractions:2] UTF8String],
+            [[Helper double2German:amount min:4 max:2] UTF8String],
+            [[Helper double2German:price min:2 max:2] UTF8String]
         );
-        percent += p;
+        prices += price;
     }
-
-    NSLog(@"   ");
-    NSLog(@"ALL: (%@ EUR / %@ EUR) => (s:%@, p: %@)",
-        [Helper double2German:total min:4 max:4],
-        [Helper double2German:total min:4 max:4],
-        [Helper double2GermanPercent:100.0f fractions:4],
-        [Helper double2GermanPercent:percent fractions:4]);
     
-    percent < 0 ? NSLog(@"---") : NSLog(@"+++");
+    NSLog(@" ALL: %10s | %10s | %8s | %8s | %8s",
+        [[Helper double2German:initial min:2 max:4] UTF8String],
+        [[Helper double2German:total min:2 max:4] UTF8String],
+        [[Helper double2GermanPercent:percent fractions:2] UTF8String],
+        [[Helper double2German:total min:2 max:2] UTF8String],
+        [[Helper double2German:prices min:2 max:2] UTF8String]
+    );
 
-    if (percent < 0) {
+    if (percent < 0.0) {
+        NSLog(@"---");
         [self.percentLabel setTextColor:[NSColor redColor]];
+    } else {
+        NSLog(@"+++");
     }
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
 
     [self.currencyButton setImage:images[@"EUR"]];
-    self.currencyUnits.stringValue = [Helper double2German:[self calculate:@"EUR"] min:4 max:8];
+    self.currencyUnits.doubleValue = [self calculate:@"EUR"];
 
     [self.cryptoButton setImage:images[@"USD"]];
-    self.cryptoUnits.stringValue = [Helper double2German:[self calculate:@"USD"] min:4 max:8];
+    self.cryptoUnits.doubleValue = [self calculate:@"USD"];
 
     self.rateLabel.stringValue = [NSString stringWithFormat:@"1 EUR = %@ USD", [Helper double2German:[currentRatings[@"USD"] doubleValue] min:2 max:2]];
 }
@@ -352,15 +382,18 @@
 
     [self.cryptoButton setImage:self.images[unit]];
 
-    double percent = 100.0f * ([currentRatings[unit] doubleValue] / [initialRatings[unit] doubleValue]) - 100.0f;
+    double initialPrice = 1.0 / [initialRatings[unit] doubleValue];
+    double currentPrice = 1.0 / [currentRatings[unit] doubleValue];
 
-    if (percent < 0) {
+    double percent = 100.0 * (currentPrice / initialPrice) - 100.0;
+
+    if (percent < 0.0) {
         [self.percentLabel setTextColor:[NSColor redColor]];
     }
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
 
-    self.cryptoUnits.doubleValue = [(NSNumber *) currentSaldo[unit] doubleValue];
+    self.cryptoUnits.doubleValue = [currentSaldo[unit] doubleValue];
     self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[unit] doubleValue];
 
     double rate = units / [currentRatings[unit] doubleValue];
@@ -453,7 +486,31 @@
  * noch frei
  */
 - (IBAction)currencyAction:(id)sender {
-    NSLog(@"BTC: %@ ETH: %@ LTC: %@ XMR: %@ DOGE: %@", currentSaldo[@"BTC"], currentSaldo[@"ETH"], currentSaldo[@"LTC"], currentSaldo[@"XMR"], currentRatings[@"DOGE"]);
+    NSLog(@"BTC: %@ ETH: %@ XMR: %@ LTC: %@ DOGE: %@",
+        [Helper double2German:[initialRatings[@"BTC"] doubleValue] min:4 max:8],
+        [Helper double2German:[initialRatings[@"ETH"] doubleValue] min:4 max:8],
+        [Helper double2German:[initialRatings[@"XMR"] doubleValue] min:4 max:8],
+        [Helper double2German:[initialRatings[@"LTC"] doubleValue] min:4 max:8],
+        [Helper double2German:[initialRatings[@"DOGE"] doubleValue] min:4 max:8]
+    );
+    
+    NSLog(@"BTC: %@ ETH: %@ XMR: %@ LTC: %@ DOGE: %@",
+        [Helper double2German:[currentRatings[@"BTC"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentRatings[@"ETH"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentRatings[@"XMR"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentRatings[@"LTC"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentRatings[@"DOGE"] doubleValue] min:4 max:8]
+    );
+    
+    NSLog(@"---");
+    
+    NSLog(@"BTC: %@ ETH: %@ XMR: %@ LTC: %@ DOGE: %@",
+        [Helper double2German:[currentSaldo[@"BTC"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentSaldo[@"ETH"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentSaldo[@"XMR"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentSaldo[@"LTC"] doubleValue] min:4 max:8],
+        [Helper double2German:[currentSaldo[@"DOGE"] doubleValue] min:4 max:8]
+    );
 
     if ([Helper messageText:@"Anwendungs-Reset" info:@"Möchten Sie auf die Standard-Einstellungen zurück setzen und beenden?"] == NSAlertFirstButtonReturn) {
         [self resetDefaults];
@@ -461,17 +518,16 @@
         if ([NSUserName() isEqualToString:@"mbroeker"]) {
             NSLog(@"Setzte meinen Kontostand zurück...");
             currentSaldo = [@{
-                @"BTC": @0.00414846,
+                @"BTC": @0.00034846,
                 @"ETH": @0.11986671,
-                @"LTC": @0.48250217,
-                @"XMR": @0.18477072,
+                @"XMR": @0.07404131,
+                @"LTC": @1.03376546,
                 @"DOGE": @5053.47368421,
             } mutableCopy];
 
             [defaults setObject:currentSaldo forKey:@"currentSaldo"];
+            [defaults synchronize];
         }
-
-        [NSApp terminate:self];
     }
 }
 
