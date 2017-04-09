@@ -44,7 +44,7 @@
     NSAlert *msg = [[NSAlert alloc] init];
     
     [msg setAlertStyle:NSInformationalAlertStyle];
-    [msg addButtonWithTitle:@"Aktualisieren"];
+    [msg addButtonWithTitle:@"Anwenden"];
     [msg addButtonWithTitle:@"Verwerfen"];
     
     msg.messageText = message;

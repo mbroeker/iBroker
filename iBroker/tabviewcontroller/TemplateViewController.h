@@ -58,7 +58,7 @@
 - (NSString*) homeURL;
 
 // Berechne die Summe im Wallet
-- (double)calculate:(NSString*)currency ratings:(NSDictionary*)ratings;
+- (double)calculate:(NSString*)currency;
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
 - (void)updateRatings;
