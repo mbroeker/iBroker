@@ -86,7 +86,7 @@
 
     if (traders == NULL) {
         traders = [@{
-            @"homepage": @"https://www.4customers.de",
+            @"homepage": @"https://www.4customers.de/ibroker/",
             @"trader1": @"https://www.shapeshift.io",
             @"trader2": @"https://www.blocktrades.us",
         } mutableCopy];
@@ -112,7 +112,7 @@
 
     if (saldoUrls == NULL) {
         saldoUrls = [@{
-            @"Dashboard": @"https://www.poloniex.com/exchange#btc_xmr",
+            @"Dashboard": @"https://coinmarketcap.com/currencies/#EUR",
             @"Bitcoin": @"https://blockchain.info/de/address/31nHZc8qdNG48YgyKqzxi9Y1NUX16XHexi",
             @"Ethereum": @"https://etherscan.io/address/0xaa18EB5d55Eaf8b9BA5488a96f57f77Dc127BE26",
             @"Litecoin": @"https://chainz.cryptoid.info/ltc/address.dws?LMnHSGGr7FEi97gCgG5dB8418G91TSanMP.htm",
@@ -268,6 +268,7 @@
 
     double total = [self calculate:@"EUR"];
 
+    NSLog(@"Übersicht");
     double percent = 0;
     for (id unit in [[currentSaldo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
         double initialPrice = [initialRatings[unit] doubleValue];
@@ -278,7 +279,7 @@
         double deficit = amount - ((initialPrice / currentPrice) * amount);
         double p = deficit * share * 100.0f;
 
-        NSLog(@"Amount: %@: (%@ / %@) => (s: %@, p: %@)",
+        NSLog(@"%@: (%@ EUR / %@ EUR) => (s: %@, p: %@)",
             unit,
             [Helper double2German:amount min:4 max:4],
             [Helper double2German:total min:4 max:4],
@@ -288,7 +289,13 @@
         percent += p;
     }
 
-    NSLog(@"Gewinn: ALL => %@", [Helper double2GermanPercent:percent fractions:4]);
+    NSLog(@"   ");
+    NSLog(@"ALL: (%@ EUR / %@ EUR) => (s:%@, p: %@)",
+        [Helper double2German:total min:4 max:4],
+        [Helper double2German:total min:4 max:4],
+        [Helper double2GermanPercent:100.0f fractions:4],
+        [Helper double2GermanPercent:percent fractions:4]);
+    
     percent < 0 ? NSLog(@"---") : NSLog(@"+++");
 
     if (percent < 0) {
@@ -314,12 +321,12 @@
     [self waitForUpdateRatings];
 
     NSDictionary *tabs = @{
-        @"Dashboard": @[@"USD", @1.0],
-        @"Bitcoin": @[@"BTC", @1000.0],
-        @"Ethereum": @[@"ETH", @10.0],
-        @"Litecoin": @[@"LTC", @10.0],
-        @"Monero": @[@"XMR", @10.0],
-        @"Dogecoin": @[@"DOGE", @(1 / 100.0)],
+        @"Dashboard": @[@"USD", @1],
+        @"Bitcoin": @[@"BTC", @1],
+        @"Ethereum": @[@"ETH", @1],
+        @"Litecoin": @[@"LTC", @1],
+        @"Monero": @[@"XMR", @1],
+        @"Dogecoin": @[@"DOGE", @(10000)],
     };
 
     // Aktualisieren des Dismissbuttons und der headLine;
@@ -355,8 +362,8 @@
     self.cryptoUnits.doubleValue = [(NSNumber *) currentSaldo[unit] doubleValue];
     self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[unit] doubleValue];
 
-    double rate = units * [currentRatings[unit] doubleValue];
-    self.rateLabel.stringValue = [NSString stringWithFormat:@"%g EUR = %@ %@", units, [Helper double2German:rate min:4 max:8], unit];
+    double rate = units / [currentRatings[unit] doubleValue];
+    self.rateLabel.stringValue = [NSString stringWithFormat:@"%@ %@ = %@ EUR", [Helper double2German:units min:0 max:0], unit, [Helper double2German:rate min:2 max:4]];
 }
 
 /**
