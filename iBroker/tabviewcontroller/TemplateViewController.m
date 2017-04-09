@@ -265,7 +265,8 @@
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
-
+    self.dismissButton.title = @"Dashboard";
+    
     double total = [self calculate:@"EUR"];
 
     NSLog(@"Übersicht");
