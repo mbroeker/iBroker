@@ -11,8 +11,6 @@
 
 @implementation TemplateViewController {
 @private
-    NSUserDefaults *defaults;
-
     // Synchronisierte Einstellungen und Eigenschaften
     NSMutableDictionary *initialRatings;
     NSMutableDictionary *currentSaldo;
@@ -35,12 +33,14 @@
  * Berechne den Gesamtwert der Geldbörsen in Euro oder Dollar...
  */
 - (double)calculate:(NSString *)currency {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
 
     return [self calculateWithRatings:currentRatings currency:currency];
 }
 
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
 
     double btc = [currentSaldo[@"BTC"] doubleValue] / [ratings[@"BTC"] doubleValue];
@@ -62,7 +62,7 @@
  * Initialisiere alle Datenstrukturen
  */
 - (void)initializeWithDefaults {
-    defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     images = [@{
         @"EUR": [NSImage imageNamed:@"EUR"],
@@ -128,6 +128,8 @@
 
         [defaults setObject:saldoUrls forKey:@"saldoUrls"];
     }
+    
+    [defaults synchronize];
 }
 
 /**
@@ -178,6 +180,8 @@
     NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabs[key][1]];
     NSString *info = @"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!";
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
     if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
         if ([tabs[key][0] isEqualToString:@"ALL"]) {
             [defaults setObject:currentRatings forKey:@"initialRatings"];
@@ -232,18 +236,60 @@
             return;
         }
 
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
         currentRatings = [allkeys[@"EUR"] mutableCopy];
         initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
 
+        // DOGE RATINGS faken
+        currentRatings[@"DOGE"] = [NSString stringWithFormat:@"%.8f", [self updateDoge]];
+
         if (initialRatings == NULL) {
             [defaults setObject:currentRatings forKey:@"initialRatings"];
-            [defaults synchronize];
             initialRatings = [currentRatings mutableCopy];
         }
 
+        [defaults synchronize];
         hasFinished = true;
 
     }] resume];
+}
+
+- (double) updateDoge {
+    NSString *jsonURL = @"https://api.cryptonator.com/api/ticker/doge-eur";
+
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:jsonURL]];
+    [request setHTTPMethod:@"GET"];
+
+    // Warte auf das Synchronisieren ohne Semaphore
+    __block BOOL dogeHasFinished = false;
+    __block double dogePrice = 0;
+
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
+    [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+
+        NSData *jsonData = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
+        NSError *jsonError;
+
+        id allkeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
+        if (jsonError) {
+            // Fehlermeldung wird angezeigt
+            [Helper messageText:[jsonError description] info:[jsonError debugDescription]];
+            return;
+        }
+        
+        dogePrice = 1 / [allkeys[@"ticker"][@"price"] doubleValue];
+        dogeHasFinished = TRUE;
+
+    }] resume];
+    
+    while (!dogeHasFinished) {
+        [self safeSleep:0.1];
+    }
+    
+    return dogePrice;
 }
 
 // Warte maximal n * timeout Sekunden und gebe dann auf...
@@ -333,6 +379,7 @@
         NSLog(@"---");
         [self.percentLabel setTextColor:[NSColor redColor]];
     } else {
+        [self.percentLabel setTextColor:[NSColor whiteColor]];
         NSLog(@"+++");
     }
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
@@ -445,7 +492,7 @@
     self.currency2Field.stringValue = [Helper double2German: [currentPriceInUnits[@"ETH"] doubleValue] min:4 max:4];
     self.currency3Field.stringValue = [Helper double2German: [currentPriceInUnits[@"XMR"] doubleValue] min:4 max:4];
     self.currency4Field.stringValue = [Helper double2German: [currentPriceInUnits[@"LTC"] doubleValue] min:4 max:4];
-    self.currency5Field.stringValue = [Helper double2German: [currentPriceInUnits[@"DOGE"] doubleValue] min:4 max:4];
+    self.currency5Field.stringValue = [Helper double2German: [currentPriceInUnits[@"DOGE"] doubleValue] / 10000 min:4 max:4];
     
     // Beachte: Es sind Kehrwerte ...
     if ([currentRatings[@"BTC"] doubleValue] > [initialRatings[@"BTC"] doubleValue]) {
@@ -488,7 +535,7 @@
     NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
     NSColor *highestColor = [NSColor greenColor];
     
-    if ([highestKey doubleValue] > 20) highestColor = [NSColor blueColor];
+    if ([highest doubleValue] > 10.0) highestColor = [NSColor blueColor];
     
     if ([highestKey isEqualToString:@"BTC"]) [self.currency1Field setBackgroundColor:highestColor];
     if ([highestKey isEqualToString:@"ETH"]) [self.currency2Field setBackgroundColor:highestColor];
@@ -500,7 +547,7 @@
     NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
     NSColor *lowestColor = [NSColor redColor];
 
-    if (20.0 < [lowestKey doubleValue]) lowestColor = [NSColor magentaColor];
+    if ([lowest doubleValue] < -10.0) lowestColor = [NSColor magentaColor];
     
     if ([lowestKey isEqualToString:@"BTC"]) [self.currency1Field setBackgroundColor:lowestColor];
     if ([lowestKey isEqualToString:@"ETH"]) [self.currency2Field setBackgroundColor:lowestColor];
@@ -514,6 +561,8 @@
  */
 - (void)resetDefaults {
     NSLog(@"resetDefaults");
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults removeObjectForKey:@"applications"];
     [defaults removeObjectForKey:@"traders"];
@@ -630,12 +679,13 @@
             NSLog(@"Setzte meinen Kontostand zurück...");
             currentSaldo = [@{
                 @"BTC": @0.00034846,
-                @"ETH": @0.11986671,
-                @"XMR": @0.07404131,
-                @"LTC": @1.03376546,
-                @"DOGE": @5053.47368421,
+                @"ETH": @0.00000000,
+                @"XMR": @0.00000000,
+                @"LTC": @0.00000000,
+                @"DOGE": @35919.11904761,
             } mutableCopy];
 
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:currentSaldo forKey:@"currentSaldo"];
             [defaults synchronize];
         }
@@ -669,6 +719,7 @@
         currentSaldo[tabs[tabTitle]] = [[NSNumber alloc] initWithDouble:self.cryptoUnits.doubleValue];
         self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[tabs[tabTitle]] doubleValue];
 
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:currentSaldo forKey:@"currentSaldo"];
         [defaults synchronize];
     }
