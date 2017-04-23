@@ -35,6 +35,19 @@
 // Definition des unteren Labels
 @property (weak) IBOutlet NSTextField *rateLabel;
 
+// Definition der Exchange Rate Labels und Felder
+@property (strong) IBOutlet NSTextField *currency1Label;
+@property (strong) IBOutlet NSTextField *currency2Label;
+@property (strong) IBOutlet NSTextField *currency3Label;
+@property (strong) IBOutlet NSTextField *currency4Label;
+@property (strong) IBOutlet NSTextField *currency5Label;
+
+@property (strong) IBOutlet NSTextField *currency1Field;
+@property (strong) IBOutlet NSTextField *currency2Field;
+@property (strong) IBOutlet NSTextField *currency3Field;
+@property (strong) IBOutlet NSTextField *currency4Field;
+@property (strong) IBOutlet NSTextField *currency5Field;
+
 // Definition der Button-Actions
 - (IBAction)homepageActionClicked:(id)sender;
 - (IBAction)dismissActionClicked:(id)sender;

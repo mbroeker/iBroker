@@ -143,7 +143,7 @@
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
     [cryptoFormatter setMinimumFractionDigits:4];
     [cryptoFormatter setMaximumFractionDigits:8];
-
+    
     [_cryptoUnits setTarget:self];
     [_cryptoUnits setAction:@selector(cryptoAction:)];
 }
@@ -185,6 +185,8 @@
             initialRatings[tabs[key][0]] = currentRatings[tabs[key][0]];
             [defaults setObject:currentRatings forKey:@"initialRatings"];
         }
+        
+        [defaults synchronize];
     }
 }
 
@@ -235,6 +237,7 @@
 
         if (initialRatings == NULL) {
             [defaults setObject:currentRatings forKey:@"initialRatings"];
+            [defaults synchronize];
             initialRatings = [currentRatings mutableCopy];
         }
 
@@ -341,6 +344,33 @@
     self.cryptoUnits.doubleValue = [self calculate:@"USD"];
 
     self.rateLabel.stringValue = [NSString stringWithFormat:@"1 EUR = %@ USD", [Helper double2German:[currentRatings[@"USD"] doubleValue] min:2 max:2]];
+
+    self.currency1Field.stringValue = [Helper double2German:1 / [currentRatings[@"BTC"] doubleValue] min:2 max:4];
+    self.currency2Field.stringValue = [Helper double2German:1 / [currentRatings[@"ETH"] doubleValue] min:2 max:4];
+    self.currency3Field.stringValue = [Helper double2German:1 / [currentRatings[@"XMR"] doubleValue] min:2 max:4];
+    self.currency4Field.stringValue = [Helper double2German:1 / [currentRatings[@"LTC"] doubleValue] min:2 max:4];
+    self.currency5Field.stringValue = [Helper double2German:10000 / [currentRatings[@"DOGE"] doubleValue] min:2 max:4];
+
+    // Beachte: Es sind Kehrwerte ...
+    if ([currentRatings[@"BTC"] doubleValue] > [initialRatings[@"BTC"] doubleValue]) {
+        [self.currency1Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([currentRatings[@"ETH"] doubleValue] > [initialRatings[@"ETH"] doubleValue]) {
+        [self.currency2Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([currentRatings[@"XMR"] doubleValue] > [initialRatings[@"XMR"] doubleValue]) {
+        [self.currency3Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([currentRatings[@"LTC"] doubleValue] > [initialRatings[@"LTC"] doubleValue]) {
+        [self.currency4Field setBackgroundColor:[NSColor yellowColor]];
+    }
+
+    if ([currentRatings[@"DOGE"] doubleValue] > [initialRatings[@"DOGE"] doubleValue]) {
+        [self.currency5Field setBackgroundColor:[NSColor yellowColor]];
+    }
 }
 
 /**
@@ -398,6 +428,85 @@
 
     double rate = units / [currentRatings[unit] doubleValue];
     self.rateLabel.stringValue = [NSString stringWithFormat:@"%@ %@ = %@ EUR", [Helper double2German:units min:0 max:0], unit, [Helper double2German:rate min:2 max:4]];
+    
+    double cUnit = [currentRatings[unit] doubleValue];
+    
+    if ([unit isEqualToString:@"DOGE"]) cUnit /= 10000;
+    
+    NSDictionary *currentPriceInUnits = @{
+        @"BTC": [NSNumber numberWithDouble:[currentRatings[@"BTC"] doubleValue] / cUnit],
+        @"ETH": [NSNumber numberWithDouble:[currentRatings[@"ETH"] doubleValue] / cUnit],
+        @"XMR": [NSNumber numberWithDouble:[currentRatings[@"XMR"] doubleValue] / cUnit],
+        @"LTC": [NSNumber numberWithDouble:[currentRatings[@"LTC"] doubleValue] / cUnit],
+        @"DOGE": [NSNumber numberWithDouble:[currentRatings[@"DOGE"] doubleValue] / cUnit],
+    };
+    
+    self.currency1Field.stringValue = [Helper double2German: [currentPriceInUnits[@"BTC"] doubleValue] min:4 max:4];
+    self.currency2Field.stringValue = [Helper double2German: [currentPriceInUnits[@"ETH"] doubleValue] min:4 max:4];
+    self.currency3Field.stringValue = [Helper double2German: [currentPriceInUnits[@"XMR"] doubleValue] min:4 max:4];
+    self.currency4Field.stringValue = [Helper double2German: [currentPriceInUnits[@"LTC"] doubleValue] min:4 max:4];
+    self.currency5Field.stringValue = [Helper double2German: [currentPriceInUnits[@"DOGE"] doubleValue] min:4 max:4];
+    
+    // Beachte: Es sind Kehrwerte ...
+    if ([currentRatings[@"BTC"] doubleValue] > [initialRatings[@"BTC"] doubleValue]) {
+        [self.currency1Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([currentRatings[@"ETH"] doubleValue] > [initialRatings[@"ETH"] doubleValue]) {
+        [self.currency2Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([currentRatings[@"XMR"] doubleValue] > [initialRatings[@"XMR"] doubleValue]) {
+        [self.currency3Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([currentRatings[@"LTC"] doubleValue] > [initialRatings[@"LTC"] doubleValue]) {
+        [self.currency4Field setBackgroundColor:[NSColor yellowColor]];
+    }
+
+    if ([currentRatings[@"DOGE"] doubleValue] > [initialRatings[@"DOGE"] doubleValue]) {
+        [self.currency5Field setBackgroundColor:[NSColor yellowColor]];
+    }
+    
+    if ([unit isEqualToString:@"BTC"]) self.currency1Field.stringValue = @" --- ";
+    if ([unit isEqualToString:@"ETH"]) self.currency2Field.stringValue = @" --- ";
+    if ([unit isEqualToString:@"XMR"]) self.currency3Field.stringValue = @" --- ";
+    if ([unit isEqualToString:@"LTC"]) self.currency4Field.stringValue = @" --- ";
+    if ([unit isEqualToString:@"DOGE"]) self.currency5Field.stringValue = @" --- ";
+    
+    NSMutableDictionary *currencyUnits = [[NSMutableDictionary alloc] init];
+    for (id currencyUnit in currentRatings) {
+        double initialPrice = 1.0 / [initialRatings[currencyUnit] doubleValue];
+        double currentPrice = 1.0 / [currentRatings[currencyUnit] doubleValue];
+    
+        double cPercent = 100.0 * (currentPrice / initialPrice) - 100.0;
+        
+        [currencyUnits setObject:[NSNumber numberWithDouble:cPercent] forKey:currencyUnit];
+    }
+    
+    NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
+    NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
+    NSColor *highestColor = [NSColor greenColor];
+    
+    if ([highestKey doubleValue] > 20) highestColor = [NSColor blueColor];
+    
+    if ([highestKey isEqualToString:@"BTC"]) [self.currency1Field setBackgroundColor:highestColor];
+    if ([highestKey isEqualToString:@"ETH"]) [self.currency2Field setBackgroundColor:highestColor];
+    if ([highestKey isEqualToString:@"XMR"]) [self.currency3Field setBackgroundColor:highestColor];
+    if ([highestKey isEqualToString:@"LTC"]) [self.currency4Field setBackgroundColor:highestColor];
+    if ([highestKey isEqualToString:@"DOGE"]) [self.currency5Field setBackgroundColor:highestColor];
+    
+    NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
+    NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
+    NSColor *lowestColor = [NSColor redColor];
+
+    if (20.0 < [lowestKey doubleValue]) lowestColor = [NSColor magentaColor];
+    
+    if ([lowestKey isEqualToString:@"BTC"]) [self.currency1Field setBackgroundColor:lowestColor];
+    if ([lowestKey isEqualToString:@"ETH"]) [self.currency2Field setBackgroundColor:lowestColor];
+    if ([lowestKey isEqualToString:@"XMR"]) [self.currency3Field setBackgroundColor:lowestColor];
+    if ([lowestKey isEqualToString:@"LTC"]) [self.currency4Field setBackgroundColor:lowestColor];
+    if ([lowestKey isEqualToString:@"DOGE"]) [self.currency5Field setBackgroundColor:lowestColor];
 }
 
 /**
@@ -411,6 +520,8 @@
     [defaults removeObjectForKey:@"saldoUrls"];
     [defaults removeObjectForKey:@"currentSaldo"];
     [defaults removeObjectForKey:@"initialRatings"];
+    
+    [defaults synchronize];
 }
 
 /**
@@ -559,6 +670,7 @@
         self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[tabs[tabTitle]] doubleValue];
 
         [defaults setObject:currentSaldo forKey:@"currentSaldo"];
+        [defaults synchronize];
     }
 }
 
