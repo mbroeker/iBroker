@@ -33,7 +33,9 @@
 @property (weak) IBOutlet NSTextField *cryptoUnits;
 
 // Definition des unteren Labels
-@property (weak) IBOutlet NSTextField *rateLabel;
+@property (strong) IBOutlet NSTextField *rateInputLabel;
+@property (strong) IBOutlet NSTextField *rateInputCurrencyLabel;
+@property (weak) IBOutlet NSTextField *rateOutputLabel;
 
 // Definition der Exchange Rate Labels und Felder
 @property (strong) IBOutlet NSTextField *currency1Label;
@@ -48,18 +50,23 @@
 @property (strong) IBOutlet NSTextField *currency4Field;
 @property (strong) IBOutlet NSTextField *currency5Field;
 
-// Definition der Button-Actions
-- (IBAction)homepageActionClicked:(id)sender;
-- (IBAction)dismissActionClicked:(id)sender;
+@property (strong) IBOutlet NSPopUpButton *exchangeSelection;
 
-- (IBAction)homeActionClicked:(id)sender;
-- (IBAction)leftActionClicked:(id)sender;
-- (IBAction)rightActionClicked:(id)sender;
-- (IBAction)multiActionClicked:(id)sender;
+// Definition der Button-Actions
+- (IBAction)homepageAction:(id)sender;
+- (IBAction)dismissAction:(id)sender;
+
+- (IBAction)homeAction:(id)sender;
+- (IBAction)leftAction:(id)sender;
+- (IBAction)rightAction:(id)sender;
+- (IBAction)multiAction:(id)sender;
 
 // Währungssymbole
 - (IBAction)currencyAction:(id)sender;
 - (IBAction)cryptoAction:(id)sender;
+
+// RateExchange
+- (IBAction)rateInputAction:(id)sender;
 
 // Getter für die privaten Variablen
 - (NSDictionary*) applications;
