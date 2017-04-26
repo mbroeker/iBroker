@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B247B67D1EB02C74002D4FCB /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B247B67C1EB02C74002D4FCB /* Preferences.storyboard */; };
-		B2F58F321EAAC20C00E093C3 /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2F58F311EAAC20C00E093C3 /* iBroker.help */; };
+		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
+		B2B92BF21EB05F9C00278E7D /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF11EB05F9C00278E7D /* iBroker.help */; };
 		B2FA69351E93F2A300C47199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69341E93F2A300C47199 /* main.m */; };
 		B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2FA69391E93F2A300C47199 /* Assets.xcassets */; };
 		B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FA693B1E93F2A300C47199 /* Main.storyboard */; };
@@ -22,8 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		B247B67C1EB02C74002D4FCB /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Preferences.storyboard; path = preferences/Preferences.storyboard; sourceTree = "<group>"; };
-		B2F58F311EAAC20C00E093C3 /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
+		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
+		B2B92BF11EB05F9C00278E7D /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
 		B2FA692D1E93F2A300C47199 /* iBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2FA69341E93F2A300C47199 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2FA69391E93F2A300C47199 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,7 +59,7 @@
 		B247B6771EB02B9D002D4FCB /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
-				B247B67C1EB02C74002D4FCB /* Preferences.storyboard */,
+				B2B92BF01EB05F3500278E7D /* Preferences.storyboard */,
 				B2FF15CE1EB034E400F65E6B /* WalletsViewController.h */,
 				B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */,
 				B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */,
@@ -71,7 +71,7 @@
 		B2FA69241E93F2A300C47199 = {
 			isa = PBXGroup;
 			children = (
-				B2F58F311EAAC20C00E093C3 /* iBroker.help */,
+				B2B92BF11EB05F9C00278E7D /* iBroker.help */,
 				B2FA692F1E93F2A300C47199 /* iBroker */,
 				B2FA692E1E93F2A300C47199 /* Products */,
 			);
@@ -198,10 +198,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2F58F321EAAC20C00E093C3 /* iBroker.help in Resources */,
 				B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */,
+				B2B92BF21EB05F9C00278E7D /* iBroker.help in Resources */,
 				B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */,
-				B247B67D1EB02C74002D4FCB /* Preferences.storyboard in Resources */,
+				B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +226,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		B2B92BF01EB05F3500278E7D /* Preferences.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B2B92BEF1EB05F3500278E7D /* Base */,
+			);
+			name = Preferences.storyboard;
+			path = preferences;
+			sourceTree = "<group>";
+		};
 		B2FA693B1E93F2A300C47199 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
