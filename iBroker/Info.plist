@@ -11,7 +11,7 @@
 	<key>CFBundleHelpBookName</key>
 	<string>de.4customers.iBroker.help</string>
 	<key>CFBundleIconFile</key>
-	<string></string>
+	<string>shrd/iBroker.png</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>

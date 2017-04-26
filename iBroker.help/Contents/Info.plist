@@ -13,15 +13,15 @@
 	<key>CFBundlePackageType</key>
 	<string>BNDL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>4</string>
 	<key>CFBundleSignature</key>
 	<string>hbwr</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>4.0</string>
 	<key>HPDBookAccessPath</key>
 	<string>index.html</string>
 	<key>HPDBookIconPath</key>
-	<string>iBroker.png</string>
+	<string>shrd/iBroker.png</string>
 	<key>HPDBookIndexPath</key>
 	<string>search.helpindex</string>
 	<key>HPDBookKBProduct</key>
@@ -34,5 +34,7 @@
 	<string>iBroker Help</string>
 	<key>HPDBookType</key>
 	<string>3</string>
+	<key>HPDBookTopicListCSSPath</key>
+	<string>sty/main.css</string>
 </dict>
 </plist>

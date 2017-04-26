@@ -5,11 +5,11 @@
 	<key>BuildVersion</key>
 	<string>6</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.1</string>
+	<string>4</string>
 	<key>CFBundleVersion</key>
-	<string>0.1</string>
+	<string>0.4</string>
 	<key>ProjectName</key>
-	<string>iBrokerHelp</string>
+	<string>iBroker Help</string>
 	<key>SourceVersion</key>
 	<string>1</string>
 </dict>
