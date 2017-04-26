@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F2315" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="u0k-Ex-xGQ">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9532"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
+    </dependencies>
+    <scenes>
+        <!--Einstellungen-->
+        <scene sceneID="t4Q-f4-dSn">
+            <objects>
+                <tabViewController title="Einstellungen" selectedTabViewItemIndex="0" id="u0k-Ex-xGQ" sceneMemberID="viewController">
+                    <tabViewItems>
+                        <tabViewItem identifier="" id="dJw-c7-Fxl"/>
+                        <tabViewItem identifier="" id="6yC-vw-Dge"/>
+                    </tabViewItems>
+                    <tabView key="tabView" type="noTabsNoBorder" id="Wr1-30-btf">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <font key="font" metaFont="message"/>
+                        <tabViewItems/>
+                    </tabView>
+                    <connections>
+                        <segue destination="yX1-xt-20W" kind="relationship" relationship="tabItems" id="ykV-ul-8u6"/>
+                        <segue destination="Txn-YE-STf" kind="relationship" relationship="tabItems" id="pfF-eW-HHj"/>
+                    </connections>
+                </tabViewController>
+                <customObject id="3TI-xR-7Sy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="95" y="175"/>
+        </scene>
+        <!--Wallets-->
+        <scene sceneID="Edj-MR-a3A">
+            <objects>
+                <viewController title="Wallets" id="yX1-xt-20W" customClass="WalletsViewController" sceneMemberID="viewController">
+                    <view key="view" id="v7Y-KW-sUG" customClass="TabView">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box wantsLayer="YES" borderWidth="0.0" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="t0E-3Q-wQt">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="60"/>
+                                <view key="contentView" id="zMB-se-FKQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SAs-Qg-IiQ">
+                                            <rect key="frame" x="5" y="14" width="110" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="106" id="Cc5-3f-sQI"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="iBroker" id="K1d-Ll-XyT">
+                                                <font key="font" size="25" name="Krungthep"/>
+                                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="RBe-XY-Ja8">
+                                            <rect key="frame" x="345" y="12" width="103" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Speichern" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="wzy-eQ-GYd">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="saveAction:" target="yX1-xt-20W" id="n7V-i3-lHd"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="RBe-XY-Ja8" secondAttribute="trailing" constant="8" id="M2G-u3-1aH"/>
+                                        <constraint firstItem="SAs-Qg-IiQ" firstAttribute="top" secondItem="zMB-se-FKQ" secondAttribute="top" constant="6" id="Wim-1C-ICF"/>
+                                        <constraint firstAttribute="bottom" secondItem="SAs-Qg-IiQ" secondAttribute="bottom" constant="14" id="Xao-aT-8rA"/>
+                                        <constraint firstItem="SAs-Qg-IiQ" firstAttribute="leading" secondItem="zMB-se-FKQ" secondAttribute="leading" constant="7" id="ZQu-Dt-Ome"/>
+                                        <constraint firstItem="RBe-XY-Ja8" firstAttribute="top" secondItem="zMB-se-FKQ" secondAttribute="top" constant="20" symbolic="YES" id="ZeK-FJ-ULT"/>
+                                        <constraint firstItem="RBe-XY-Ja8" firstAttribute="centerY" secondItem="zMB-se-FKQ" secondAttribute="centerY" id="yPo-H4-Tt2"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="V4T-no-b3g">
+                                <rect key="frame" x="18" y="269" width="414" height="31"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre Konten" id="9Yv-7Q-972">
+                                    <font key="font" size="20" name="Krungthep"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="t0E-3Q-wQt" firstAttribute="top" secondItem="v7Y-KW-sUG" secondAttribute="top" constant="240" id="GyF-yb-9ed"/>
+                            <constraint firstItem="V4T-no-b3g" firstAttribute="top" secondItem="v7Y-KW-sUG" secondAttribute="top" id="XyJ-3b-hNy"/>
+                            <constraint firstItem="V4T-no-b3g" firstAttribute="leading" secondItem="v7Y-KW-sUG" secondAttribute="leading" constant="20" symbolic="YES" id="bBj-g9-gxf"/>
+                            <constraint firstAttribute="bottom" secondItem="t0E-3Q-wQt" secondAttribute="bottom" id="dgh-Ku-ff7"/>
+                            <constraint firstItem="t0E-3Q-wQt" firstAttribute="leading" secondItem="v7Y-KW-sUG" secondAttribute="leading" id="h5Z-Ts-vt5"/>
+                            <constraint firstAttribute="trailing" secondItem="V4T-no-b3g" secondAttribute="trailing" constant="20" symbolic="YES" id="tKG-Qb-qW6"/>
+                            <constraint firstItem="V4T-no-b3g" firstAttribute="centerX" secondItem="t0E-3Q-wQt" secondAttribute="centerX" id="x1N-wf-TWQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="Bz7-ms-ybZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-98" y="652"/>
+        </scene>
+        <!--Kurse-->
+        <scene sceneID="cYe-rY-tXM">
+            <objects>
+                <viewController title="Kurse" id="Txn-YE-STf" customClass="RatingsViewController" sceneMemberID="viewController">
+                    <view key="view" id="GhO-aN-QKm" customClass="TabView">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box wantsLayer="YES" borderWidth="0.0" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="bzU-pB-DjX">
+                                <rect key="frame" x="0.0" y="0.0" width="450" height="60"/>
+                                <view key="contentView" id="Tuu-ai-tWU">
+                                    <rect key="frame" x="0.0" y="0.0" width="450" height="60"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yZh-kq-MkQ">
+                                            <rect key="frame" x="5" y="14" width="110" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="106" id="zpq-mC-7Ch"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="iBroker" id="fOg-rD-Xdo">
+                                                <font key="font" size="25" name="Krungthep"/>
+                                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZfU-Li-ryH">
+                                            <rect key="frame" x="345" y="12" width="103" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Speichern" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="F1h-wK-y1Q">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="saveAction:" target="Txn-YE-STf" id="87k-Le-EXP"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="yZh-kq-MkQ" firstAttribute="top" secondItem="Tuu-ai-tWU" secondAttribute="top" constant="6" id="CKR-pf-YVf"/>
+                                        <constraint firstItem="ZfU-Li-ryH" firstAttribute="centerY" secondItem="Tuu-ai-tWU" secondAttribute="centerY" id="Ihd-p4-gNm"/>
+                                        <constraint firstItem="ZfU-Li-ryH" firstAttribute="top" secondItem="Tuu-ai-tWU" secondAttribute="top" constant="20" symbolic="YES" id="M8Y-4v-Kzb"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZfU-Li-ryH" secondAttribute="trailing" constant="8" id="lJg-pC-BGe"/>
+                                        <constraint firstAttribute="bottom" secondItem="yZh-kq-MkQ" secondAttribute="bottom" constant="14" id="pf7-g3-wKN"/>
+                                        <constraint firstItem="yZh-kq-MkQ" firstAttribute="leading" secondItem="Tuu-ai-tWU" secondAttribute="leading" constant="7" id="uET-Vj-tdM"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ECp-Uu-f1y">
+                                <rect key="frame" x="18" y="269" width="414" height="31"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre Kurse" id="pgE-E6-caD">
+                                    <font key="font" size="20" name="Krungthep"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bzU-pB-DjX" firstAttribute="leading" secondItem="GhO-aN-QKm" secondAttribute="leading" id="5Pm-aX-QQs"/>
+                            <constraint firstItem="ECp-Uu-f1y" firstAttribute="top" secondItem="GhO-aN-QKm" secondAttribute="top" id="Dze-G9-NgM"/>
+                            <constraint firstItem="bzU-pB-DjX" firstAttribute="top" secondItem="GhO-aN-QKm" secondAttribute="top" constant="240" id="TCG-F7-RU0"/>
+                            <constraint firstAttribute="trailing" secondItem="ECp-Uu-f1y" secondAttribute="trailing" constant="20" symbolic="YES" id="nck-gg-VPh"/>
+                            <constraint firstItem="ECp-Uu-f1y" firstAttribute="leading" secondItem="GhO-aN-QKm" secondAttribute="leading" constant="20" symbolic="YES" id="p9k-z6-dJX"/>
+                            <constraint firstItem="ECp-Uu-f1y" firstAttribute="centerX" secondItem="bzU-pB-DjX" secondAttribute="centerX" id="q3l-Of-ui0"/>
+                            <constraint firstAttribute="bottom" secondItem="bzU-pB-DjX" secondAttribute="bottom" id="vud-VW-bWe"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="pzb-FE-CXl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="407" y="652"/>
+        </scene>
+    </scenes>
+</document>

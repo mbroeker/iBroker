@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B247B67D1EB02C74002D4FCB /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B247B67C1EB02C74002D4FCB /* Preferences.storyboard */; };
 		B2520CD81E96C7B2001B80E3 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2520CD71E96C7B2001B80E3 /* Helper.m */; };
 		B2F58F321EAAC20C00E093C3 /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2F58F311EAAC20C00E093C3 /* iBroker.help */; };
 		B2FA69351E93F2A300C47199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69341E93F2A300C47199 /* main.m */; };
@@ -16,9 +17,12 @@
 		B2FA69521E94150000C47199 /* TabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69511E94150000C47199 /* TabView.m */; };
 		B2FA69581E9431A300C47199 /* TemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69571E9431A300C47199 /* TemplateViewController.m */; };
 		B2FA695B1E94404400C47199 /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA695A1E94404400C47199 /* TabViewController.m */; };
+		B2FF15D01EB034E400F65E6B /* WalletsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */; };
+		B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B247B67C1EB02C74002D4FCB /* Preferences.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Preferences.storyboard; path = preferences/Preferences.storyboard; sourceTree = "<group>"; };
 		B2520CD61E96C7B2001B80E3 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		B2520CD71E96C7B2001B80E3 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		B2F58F311EAAC20C00E093C3 /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
@@ -35,6 +39,10 @@
 		B2FA69571E9431A300C47199 /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TemplateViewController.m; sourceTree = "<group>"; };
 		B2FA69591E94404400C47199 /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
 		B2FA695A1E94404400C47199 /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
+		B2FF15CE1EB034E400F65E6B /* WalletsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalletsViewController.h; path = preferences/WalletsViewController.h; sourceTree = "<group>"; };
+		B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WalletsViewController.m; path = preferences/WalletsViewController.m; sourceTree = "<group>"; };
+		B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingsViewController.h; path = preferences/RatingsViewController.h; sourceTree = "<group>"; };
+		B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingsViewController.m; path = preferences/RatingsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +56,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B247B6771EB02B9D002D4FCB /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				B247B67C1EB02C74002D4FCB /* Preferences.storyboard */,
+				B2FF15CE1EB034E400F65E6B /* WalletsViewController.h */,
+				B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */,
+				B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */,
+				B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */,
+			);
+			name = Preferences;
+			sourceTree = "<group>";
+		};
 		B2FA69241E93F2A300C47199 = {
 			isa = PBXGroup;
 			children = (
@@ -68,6 +88,7 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
+				B247B6771EB02B9D002D4FCB /* Preferences */,
 				B2FA694C1E9403EB00C47199 /* tabviewcontroller */,
 				B2FA69441E93F35900C47199 /* appdelegate */,
 				B2FA69391E93F2A300C47199 /* Assets.xcassets */,
@@ -172,6 +193,7 @@
 				B2F58F321EAAC20C00E093C3 /* iBroker.help in Resources */,
 				B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */,
 				B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */,
+				B247B67D1EB02C74002D4FCB /* Preferences.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,8 +205,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2FA694A1E93F35900C47199 /* AppDelegate.m in Sources */,
+				B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */,
 				B2520CD81E96C7B2001B80E3 /* Helper.m in Sources */,
 				B2FA69521E94150000C47199 /* TabView.m in Sources */,
+				B2FF15D01EB034E400F65E6B /* WalletsViewController.m in Sources */,
 				B2FA69351E93F2A300C47199 /* main.m in Sources */,
 				B2FA69581E9431A300C47199 /* TemplateViewController.m in Sources */,
 				B2FA695B1E94404400C47199 /* TabViewController.m in Sources */,
