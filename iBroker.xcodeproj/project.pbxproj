@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43D6F9651A12E3B7440D164B /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F713419AF161FD0FB69C /* Calculator.m */; };
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2FA69351E93F2A300C47199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69341E93F2A300C47199 /* main.m */; };
@@ -22,6 +23,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		43D6F713419AF161FD0FB69C /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
+		43D6FAB9704D5BBC4D376F07 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
 		B2FA692D1E93F2A300C47199 /* iBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +129,8 @@
 				B2FF15F01EB038A900F65E6B /* Helper.m */,
 				B2FF15F11EB038A900F65E6B /* TabView.h */,
 				B2FF15F21EB038A900F65E6B /* TabView.m */,
+				43D6F713419AF161FD0FB69C /* Calculator.m */,
+				43D6FAB9704D5BBC4D376F07 /* Calculator.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				TargetAttributes = {
 					B2FA692C1E93F2A300C47199 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = NS52DCTHFQ;
 					};
 				};
 			};
@@ -220,6 +226,7 @@
 				B2FA69351E93F2A300C47199 /* main.m in Sources */,
 				B2FF15F41EB038A900F65E6B /* TabView.m in Sources */,
 				B2FF15F31EB038A900F65E6B /* Helper.m in Sources */,
+				43D6F9651A12E3B7440D164B /* Calculator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,11 +336,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = iBroker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.4customers.iBroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -341,11 +351,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = iBroker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = de.4customers.iBroker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

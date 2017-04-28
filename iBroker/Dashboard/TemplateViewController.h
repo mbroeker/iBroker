@@ -77,15 +77,7 @@
 - (void) homeURL:(NSString*) url;
 - (NSString*) homeURL;
 
-// Berechne die Summe im Wallet
-- (double)calculate:(NSString*)currency;
-
-// Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
-- (void)updateRatings;
-- (void)checkPointForKey:(NSString*)key;
-
 // Methoden zum Aktualisieren der Ansichten
-- (void)initialOverview;
 - (void)updateOverview;
 - (void)updateTemplateView:(NSString*)label;
 

@@ -42,6 +42,8 @@
         [defaults removeObjectForKey:@"initialRatings"];
 
         [defaults synchronize];
+
+        [NSApp terminate: self];
     }
 }
 

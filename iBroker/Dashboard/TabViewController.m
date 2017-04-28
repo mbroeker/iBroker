@@ -16,9 +16,9 @@
     self.tabView.delegate = self;
     
     TemplateViewController *controller = (TemplateViewController*)self.tabViewItems.firstObject.viewController;
-        
+
     // Startseite aufrufen
-    [controller initialOverview];
+    [controller updateOverview];
 }
 
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
