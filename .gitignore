@@ -1,4 +1,7 @@
 .hg
 .DS_Store
+.idea/
 iBroker.xcodeproj/xcuserdata/
 iBroker.xcodeproj/project.xcworkspace/xcuserdata/
+
+
