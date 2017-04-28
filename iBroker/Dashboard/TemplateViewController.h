@@ -82,7 +82,7 @@
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
 - (void)updateRatings;
-- (void) updateRatings:(NSString*)key;
+- (void)checkPointForKey:(NSString*)key;
 
 // Methoden zum Aktualisieren der Ansichten
 - (void)initialOverview;

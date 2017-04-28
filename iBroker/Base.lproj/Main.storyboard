@@ -96,6 +96,13 @@
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="2dT-kc-nrz"/>
+                                        <menuItem title="Zurück setzen" id="5jW-sL-1jd">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="applicationReset:" target="Voe-Tx-rLC" id="pZx-iZ-Xnb"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -434,9 +441,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g6T-5O-fao">
-                                            <rect key="frame" x="5" y="14" width="110" height="40"/>
+                                            <rect key="frame" x="5" y="14" width="135" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="106" id="bE7-tI-Tuc"/>
+                                                <constraint firstAttribute="width" constant="131" id="bE7-tI-Tuc"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="iBroker" id="Boa-Pw-8hT">
                                                 <font key="font" size="25" name="Krungthep"/>
@@ -445,7 +452,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydI-zJ-68H">
-                                            <rect key="frame" x="505" y="17" width="128" height="32"/>
+                                            <rect key="frame" x="500" y="17" width="128" height="32"/>
                                             <buttonCell key="cell" type="push" title="dismissButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qaL-jR-yCc">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -459,7 +466,7 @@
                                         <constraint firstItem="ydI-zJ-68H" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="15" id="6KA-e4-bGN"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="leading" secondItem="djh-fJ-a7e" secondAttribute="leading" constant="7" id="BXm-wN-4hN"/>
                                         <constraint firstItem="ydI-zJ-68H" firstAttribute="centerY" secondItem="g6T-5O-fao" secondAttribute="centerY" id="CGC-JY-4v6"/>
-                                        <constraint firstAttribute="trailing" secondItem="ydI-zJ-68H" secondAttribute="trailing" constant="10" id="T8o-Xj-oaD"/>
+                                        <constraint firstAttribute="trailing" secondItem="ydI-zJ-68H" secondAttribute="trailing" constant="15" id="T8o-Xj-oaD"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="6" id="f4V-Xf-UMh"/>
                                         <constraint firstAttribute="bottom" secondItem="g6T-5O-fao" secondAttribute="bottom" constant="14" id="udW-yt-T1r"/>
                                     </constraints>
