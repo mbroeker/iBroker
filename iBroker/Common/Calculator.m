@@ -17,8 +17,6 @@
     // Normale Eigenschaften
     NSMutableDictionary *currentRatings;
     NSMutableDictionary *saldoUrls;
-
-    BOOL hasFinished;
 }
 
 /*
@@ -29,12 +27,16 @@
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-       calculator = [[Calculator alloc] init];
+        calculator = [[Calculator alloc] init];
     });
 
     return calculator;
 }
 
+/**
+ * Der private Konstruktor der Klasse, der deswegen nicht in Calculator.h gelistet wird.
+ *
+ */
 - (id)init {
 
     if (self = [super init]) {
@@ -161,11 +163,6 @@
     @synchronized (self) {
         [self updateRatings];
     }
-
-    // uR blockiert, das Warten nicht!
-    while (!hasFinished) {
-        [self safeSleep:0.1];
-    }
 }
 
 /**
@@ -179,7 +176,7 @@
     [request setHTTPMethod:@"GET"];
 
     // Warte auf das Synchronisieren ohne Semaphore
-    hasFinished = false;
+    __block BOOL hasFinished = false;
 
     NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -204,14 +201,16 @@
         currentRatings[@"DOGE"] = [NSString stringWithFormat:@"%.8f", [self updateDoge]];
 
         if (initialRatings == NULL) {
-            [defaults setObject:currentRatings forKey:@"initialRatings"];
-            initialRatings = [currentRatings mutableCopy];
+            [self initialRatingsWithDictionary:currentRatings withUpdate:true];
         }
 
-        [defaults synchronize];
         hasFinished = true;
 
     }] resume];
+
+    while(!hasFinished) {
+        [self safeSleep:01];
+    }
 }
 
 - (double) updateDoge {
@@ -251,46 +250,83 @@
     return dogePrice;
 }
 
-// Warte maximal n * timeout Sekunden und gebe dann auf...
+// Warte timeout Sekunden
 - (void)safeSleep:(double)timeout {
-    const int MAX_RETRIES = 250;
+    [NSThread sleepForTimeInterval:timeout];
+}
 
-    static long int loops = 0;
+/**
+ * Liefert den aktuellen Saldo der jeweiligen Crypto-Währung
+ */
+- (double)currentSaldo:(NSString*)cUnit {
+    return [currentSaldo[cUnit] doubleValue];
+}
 
-    if (++loops < MAX_RETRIES) {
-        [NSThread sleepForTimeInterval:timeout];
-    } else {
-        /* if ([Helper messageText:@"Bitte warten" info:@"Netzwerkauslastung ist derzeit sehr hoch."] == NSAlertFirstButtonReturn) {
-            [NSApp terminate:self];
-        } */
+/**
+ * Liefert die aktuelle URL für das angegebene Label/Tab
+ */
+- (NSString*)saldoUrlForLabel:(NSString*)label {
+    return saldoUrls[label];
+}
 
-        NSLog(@"Mogelpackung: Die Daten konnten nicht aktualsiert werden.");
-        hasFinished = true;
-    }
+/**
+ * Aktualisiert den aktuellen Saldo für die CryptoWährung "cUnit" mit dem Wert "saldo"
+ */
+- (void)currentSaldo:(NSString*)cUnit withDouble: (double) saldo {
+    currentSaldo[cUnit] = [[NSNumber alloc] initWithDouble:saldo];
 
-    if (hasFinished) {
-        loops = 0;
+    [self currentSaldoForDictionary:currentSaldo withUpdate:false];
+}
+
+/**
+ * Ersetzt die aktuellen Saldo mit den Werten aus dem Dictionary
+ */
+- (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:dictionary forKey:@"currentSaldo"];
+    [defaults synchronize];
+
+    if (update) {
+        currentSaldo = [dictionary mutableCopy];
     }
 }
 
+/**
+ * Ersetzt die aktuellen saldoUrls mit den Werten aus dem Dictionary
+ */
+- (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:dictionary forKey:@"saldoUrls"];
+    [defaults synchronize];
+
+    if (update) {
+        saldoUrls = [dictionary mutableCopy];
+    }
+}
+
+/**
+ * Ersetzt die aktuellen initialRatings mit den Werten aus dem Dictionary
+ */
+- (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:dictionary forKey:@"initialRatings"];
+    [defaults synchronize];
+
+    if (update) {
+        initialRatings = [dictionary mutableCopy];
+    }
+}
+
+/* Properties gefallen mir nicht */
 - (NSMutableDictionary*)currentSaldo {
     return currentSaldo;
 }
 
-- (double)currentSaldo:(NSString*)unit {
-    return [currentSaldo[unit] doubleValue];
-}
-
-- (void)currentSaldoForUnit:(NSString*)cUnit withDouble: (double) saldo {
-    currentSaldo[cUnit] = [[NSNumber alloc] initWithDouble:saldo];
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:currentSaldo forKey:@"currentSaldo"];
-    [defaults synchronize];
-}
-
-- (NSString*)saldoUrlForLabel:(NSString*)label {
-    return saldoUrls[label];
+- (NSMutableDictionary*)saldoUrls {
+    return saldoUrls;
 }
 
 - (NSMutableDictionary*)initialRatings {
