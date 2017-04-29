@@ -13,7 +13,7 @@
 		B2FA69351E93F2A300C47199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69341E93F2A300C47199 /* main.m */; };
 		B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2FA69391E93F2A300C47199 /* Assets.xcassets */; };
 		B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FA693B1E93F2A300C47199 /* Main.storyboard */; };
-		B2FF15D01EB034E400F65E6B /* WalletsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */; };
+		B2FF15D01EB034E400F65E6B /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15CF1EB034E400F65E6B /* AddressViewController.m */; };
 		B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */; };
 		B2FF15EC1EB0384300F65E6B /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15E71EB0384300F65E6B /* TabViewController.m */; };
 		B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15E91EB0384300F65E6B /* TemplateViewController.m */; };
@@ -32,8 +32,8 @@
 		B2FA69391E93F2A300C47199 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B2FA693C1E93F2A300C47199 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B2FA693E1E93F2A300C47199 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2FF15CE1EB034E400F65E6B /* WalletsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WalletsViewController.h; path = preferences/WalletsViewController.h; sourceTree = "<group>"; };
-		B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WalletsViewController.m; path = preferences/WalletsViewController.m; sourceTree = "<group>"; };
+		B2FF15CE1EB034E400F65E6B /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressViewController.h; path = preferences/AddressViewController.h; sourceTree = "<group>"; };
+		B2FF15CF1EB034E400F65E6B /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressViewController.m; path = preferences/AddressViewController.m; sourceTree = "<group>"; };
 		B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingsViewController.h; path = preferences/RatingsViewController.h; sourceTree = "<group>"; };
 		B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingsViewController.m; path = preferences/RatingsViewController.m; sourceTree = "<group>"; };
 		B2FF15E61EB0384300F65E6B /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
@@ -63,8 +63,8 @@
 			isa = PBXGroup;
 			children = (
 				B2B92BF01EB05F3500278E7D /* Preferences.storyboard */,
-				B2FF15CE1EB034E400F65E6B /* WalletsViewController.h */,
-				B2FF15CF1EB034E400F65E6B /* WalletsViewController.m */,
+				B2FF15CE1EB034E400F65E6B /* AddressViewController.h */,
+				B2FF15CF1EB034E400F65E6B /* AddressViewController.m */,
 				B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */,
 				B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */,
 			);
@@ -222,7 +222,7 @@
 				B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */,
 				B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */,
 				B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */,
-				B2FF15D01EB034E400F65E6B /* WalletsViewController.m in Sources */,
+				B2FF15D01EB034E400F65E6B /* AddressViewController.m in Sources */,
 				B2FA69351E93F2A300C47199 /* main.m in Sources */,
 				B2FF15F41EB038A900F65E6B /* TabView.m in Sources */,
 				B2FF15F31EB038A900F65E6B /* Helper.m in Sources */,

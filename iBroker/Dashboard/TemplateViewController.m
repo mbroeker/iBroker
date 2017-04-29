@@ -120,7 +120,9 @@
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
+    // Standards
     self.dismissButton.title = @"Dashboard";
+    homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
 
     double percent = 0;
     double total = [calculator calculate:@"EUR"];
@@ -140,6 +142,7 @@
         if (total != 0) share = (amount / total) * 100.0;
         double price = ((currentPrice / initialPrice) * amount) - amount;
 
+    #ifdef DEBUG
         NSLog(@"%4s: %10s | %10s | %8s | %8s | %8s",
             [unit UTF8String],
             [[Helper double2German:initialPrice min:2 max:4] UTF8String],
@@ -148,9 +151,12 @@
             [[Helper double2German:amount min:4 max:2] UTF8String],
             [[Helper double2German:price min:2 max:2] UTF8String]
         );
+    #endif
+        
         prices += price;
     }
 
+#ifdef DEBUG
     NSLog(@" ALL: %10s | %10s | %8s | %8s | %8s",
         [[Helper double2German:initial min:2 max:4] UTF8String],
         [[Helper double2German:total min:2 max:4] UTF8String],
@@ -158,13 +164,18 @@
         [[Helper double2German:total min:2 max:2] UTF8String],
         [[Helper double2German:prices min:2 max:2] UTF8String]
     );
+#endif
 
     if (percent < 0.0) {
+    #ifdef DEBUG
         NSLog(@"---");
+    #endif
         [self.percentLabel setTextColor:[NSColor redColor]];
     } else {
         [self.percentLabel setTextColor:[NSColor whiteColor]];
+    #ifdef DEBUG
         NSLog(@"+++");
+    #endif
     }
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
 
@@ -212,7 +223,7 @@
 - (void)updateTemplateView:(NSString *)label {
 
     // Ratings aktualisieren
-    [calculator waitForUpdateRatings];
+    [calculator updateRatings];
 
     // Aktualisieren des Dismissbuttons und der headLine;
     self.dismissButton.title = label;
@@ -236,8 +247,10 @@
 
     [self.cryptoButton setImage:self.images[unit]];
 
+    NSDictionary *btcPricesAndPercent = [calculator unitsAndPercent:@"BTC"];
     NSDictionary *pricesAndPercent = [calculator unitsAndPercent:unit];
-    double percent = [pricesAndPercent[@"percent"] doubleValue];
+
+    double percent = [btcPricesAndPercent[@"percent"] doubleValue] - [pricesAndPercent[@"percent"] doubleValue];
 
     if (percent < 0.0) {
         [self.percentLabel setTextColor:[NSColor redColor]];
@@ -439,7 +452,7 @@
     if ([Helper messageText:text info:@"Möchten Sie Ihren aktuellen Bestand aktualisieren?"] == NSAlertFirstButtonReturn) {
         NSString *cUnit = tabs[tabTitle][0];
 
-        [calculator currentSaldoForUnit:cUnit withDouble: self.cryptoUnits.doubleValue];
+        [calculator currentSaldo:cUnit withDouble: self.cryptoUnits.doubleValue];
         self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[cUnit] doubleValue];
 
         // Checkpoint aktualisieren
