@@ -102,7 +102,13 @@
         if ([tabStrings[key][0] isEqualToString:@"ALL"]) {
             initialRatings = [currentRatings mutableCopy];
         } else {
-            initialRatings[tabStrings[key][0]] = currentRatings[tabStrings[key][0]];
+            if (![key isEqualToString:@"BTC"]) {
+                // aktualisiere den Kurs der Währung
+                initialRatings[tabStrings[key][0]] = currentRatings[tabStrings[key][0]];
+            }
+
+            // aktualisiere den BTC Kurs, auf den sich die Transaktion bezog
+            initialRatings[@"BTC"] = currentRatings[@"BTC"];
         }
 
         [defaults setObject:initialRatings forKey:@"initialRatings"];

@@ -247,10 +247,15 @@
 
     [self.cryptoButton setImage:self.images[unit]];
 
-    NSDictionary *btcPricesAndPercent = [calculator unitsAndPercent:@"BTC"];
     NSDictionary *pricesAndPercent = [calculator unitsAndPercent:unit];
 
-    double percent = [btcPricesAndPercent[@"percent"] doubleValue] - [pricesAndPercent[@"percent"] doubleValue];
+    double percent = [pricesAndPercent[@"percent"] doubleValue];
+
+    // Bilde die Differenz aus BTC
+    if (![unit isEqualToString:@"BTC"]) {
+        NSDictionary *btcPricesAndPercent = [calculator unitsAndPercent:@"BTC"];
+        percent -= [btcPricesAndPercent[@"percent"] doubleValue];
+    }
 
     if (percent < 0.0) {
         [self.percentLabel setTextColor:[NSColor redColor]];
