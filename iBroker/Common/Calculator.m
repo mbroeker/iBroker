@@ -4,7 +4,6 @@
 //
 
 #import "Calculator.h"
-#import "Helper.h"
 
 /**
  * Berechnungklasse für Crypto-Währungen
@@ -17,32 +16,50 @@
     // Normale Eigenschaften
     NSMutableDictionary *currentRatings;
     NSMutableDictionary *saldoUrls;
+    
+    NSArray *fiatCurrencies;
 }
 
-/*
- * Singleton Pattern nach Recherche im Internet...
+/**
+ * Der öffentliche Konstruktor mit Vorbelegung EUR/USD
  */
 + (id)instance {
+    return [self instance:@[@"EUR", @"USD"]];
+}
+
+/**
+ * Der öffentliche Konstruktor als statisches Singleton mit wählbaren Fiat-Währungen
+ */
++ (id)instance:(NSArray*)currencies {
     static Calculator *calculator = nil;
     static dispatch_once_t onceToken;
 
     dispatch_once(&onceToken, ^{
-        calculator = [[Calculator alloc] init];
+        calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
     });
 
     return calculator;
 }
 
 /**
+ * Der Standard Konstruktor
+ */
+- (id)init {
+    return [self initWithFiatCurrencies:@[@"EUR", @"USD"]];
+}
+
+/**
  * Der private Konstruktor der Klasse, der deswegen nicht in Calculator.h gelistet wird.
  *
  */
-- (id)init {
+- (id)initWithFiatCurrencies:(NSArray*)currencies {
 
     if (self = [super init]) {
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
+
+        fiatCurrencies = currencies;
 
         if (currentSaldo == NULL) {
             currentSaldo = [@{
@@ -72,9 +89,8 @@
         }
 
         [defaults synchronize];
+        [self updateRatings];
     }
-
-    [self waitForUpdateRatings];
 
     return self;
 }
@@ -82,38 +98,25 @@
 /**
  * Aktualisiere die Kurse der jeweiligen Währung
  */
-- (void)checkPointForKey:(NSString *)key {
-    NSDictionary *tabStrings = @{
-        @"Dashboard": @[@"ALL", @"alle Kurse"],
-        @"Bitcoin": @[@"BTC", @"den Bitcoin Kurs"],
-        @"Ethereum": @[@"ETH", @"den Ethereum Kurs"],
-        @"Litecoin": @[@"LTC", @"den Litecoin Kurs"],
-        @"Monero": @[@"XMR", @"den Monero Kurs"],
-        @"Dogecoin": @[@"DOGE", @"den Dogecoin Kurs"],
-    };
+- (void)checkPointForKey:(NSString *)key withBTCUpdate:(BOOL) btcUpdate {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabStrings[key][1]];
-    NSString *info = @"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!";
+    if ([key isEqualToString:@"ALL"]) {
+        initialRatings = [currentRatings mutableCopy];
+    } else {
+        if (![key isEqualToString:@"BTC"]) {
+            // aktualisiere den Kurs der Währung
+            initialRatings[key] = currentRatings[key];
+        }
 
-    if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
-
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-        if ([tabStrings[key][0] isEqualToString:@"ALL"]) {
-            initialRatings = [currentRatings mutableCopy];
-        } else {
-            if (![key isEqualToString:@"BTC"]) {
-                // aktualisiere den Kurs der Währung
-                initialRatings[tabStrings[key][0]] = currentRatings[tabStrings[key][0]];
-            }
-
+        if (btcUpdate) {
             // aktualisiere den BTC Kurs, auf den sich die Transaktion bezog
             initialRatings[@"BTC"] = currentRatings[@"BTC"];
         }
-
-        [defaults setObject:initialRatings forKey:@"initialRatings"];
-        [defaults synchronize];
     }
+
+    [defaults setObject:initialRatings forKey:@"initialRatings"];
+    [defaults synchronize];
 }
 
 /**
@@ -122,7 +125,7 @@
  * @param unit
  * @return NSDictionary*
  */
-- (NSDictionary*)unitsAndPercent:(NSString*)unit {
+- (NSDictionary*)checkpointForUnit:(NSString*)unit {
     double initialPrice = 1.0 / [initialRatings[unit] doubleValue];
     double currentPrice = 1.0 / [currentRatings[unit] doubleValue];
 
@@ -131,17 +134,28 @@
     return @{
         @"initialPrice": @(initialPrice),
         @"currentPrice": @(currentPrice),
-        @"percent": @(percent)
+        @"percent": @(percent),
+        @"estimatedPrice": @((1 + percent / 100.0) * currentPrice)
     };
 }
 
 /**
  * Berechne den Gesamtwert der Geldbörsen in Euro oder Dollar...
+ *
+ * @param currency
+ * @return double
  */
 - (double)calculate:(NSString *)currency {
     return [self calculateWithRatings:currentRatings currency:currency];
 }
 
+/**
+ * Berechne den Gesamtwert der Geldbörsen in Euro oder Dollar mit den übergebenen Ratings
+ *
+ * @param ratings
+ * @param currency
+ * @return double
+ */
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
@@ -154,7 +168,7 @@
 
     double sum = btc + eth + ltc + xmr + doge;
 
-    if ([currency isEqualToString:@"EUR"]) {
+    if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;
     }
 
@@ -164,18 +178,19 @@
 /**
  * synchronisierter Block, der garantiert, dass es nur ein Update gibt
  */
-- (void) waitForUpdateRatings {
+- (void)updateRatings {
 
     @synchronized (self) {
-        [self updateRatings];
+        [self unsynchronizedUpdateRatings];
     }
 }
 
 /**
  * Besorge die Kurse von cryptocompare per JSON-Request und speichere Sie in den App-Einstellungen
  */
-- (void)updateRatings {
-    NSString *jsonURL = @"https://min-api.cryptocompare.com/data/pricemulti?fsyms=EUR&tsyms=USD,BTC,ETH,LTC,XMR,DOGE";
+- (void)unsynchronizedUpdateRatings {
+    NSString *jsonURL =
+        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC,ETH,LTC,XMR,DOGE", fiatCurrencies[0], fiatCurrencies[1]];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:jsonURL]];
@@ -194,33 +209,43 @@
         id allkeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
         if (jsonError) {
             // Fehlermeldung wird angezeigt
-            [Helper messageText:[jsonError description] info:[jsonError debugDescription]];
+            NSLog(@"%@", [jsonError description]);
+
+            hasFinished = true;
+            
             return;
         }
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        currentRatings = [allkeys[@"EUR"] mutableCopy];
+        currentRatings = [allkeys[fiatCurrencies[0]] mutableCopy];
         initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
 
-        // DOGE RATINGS faken
-        currentRatings[@"DOGE"] = [NSString stringWithFormat:@"%.8f", [self updateDoge]];
+        // DOGE RATINGS aktualisieren, da dieser WS das nicht kann.
+        currentRatings[@"DOGE"] = [NSString stringWithFormat:@"%.8f", [self unsynchronizedUdateDoge]];
 
         if (initialRatings == NULL) {
             [self initialRatingsWithDictionary:currentRatings withUpdate:true];
         }
 
+        [defaults synchronize];
         hasFinished = true;
 
     }] resume];
 
     while(!hasFinished) {
-        [self safeSleep:01];
+        [self safeSleep:0.1];
     }
 }
 
-- (double) updateDoge {
-    NSString *jsonURL = @"https://api.cryptonator.com/api/ticker/doge-eur";
+/**
+ * Hilfsmethode, da der Kurs bei Cryptocompare ewig falsch ist.
+ *
+ * @return double
+ */
+- (double) unsynchronizedUdateDoge {
+    NSString *jsonURL =
+        [NSString stringWithFormat:@"https://api.cryptonator.com/api/ticker/doge-%@", [fiatCurrencies[0] lowercaseString]];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:jsonURL]];
@@ -240,7 +265,8 @@
         id allkeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
         if (jsonError) {
             // Fehlermeldung wird angezeigt
-            [Helper messageText:[jsonError description] info:[jsonError debugDescription]];
+            NSLog(@"%@", [jsonError description]);
+            
             return;
         }
 
@@ -256,13 +282,20 @@
     return dogePrice;
 }
 
-// Warte timeout Sekunden
+/**
+ * Warte timeout Sekunden
+ *
+ * @param timeout
+ */
 - (void)safeSleep:(double)timeout {
     [NSThread sleepForTimeInterval:timeout];
 }
 
 /**
  * Liefert den aktuellen Saldo der jeweiligen Crypto-Währung
+ *
+ * @param cUnit
+ * @return double
  */
 - (double)currentSaldo:(NSString*)cUnit {
     return [currentSaldo[cUnit] doubleValue];
@@ -270,6 +303,9 @@
 
 /**
  * Liefert die aktuelle URL für das angegebene Label/Tab
+ *
+ * @param label
+ * @return NSString*
  */
 - (NSString*)saldoUrlForLabel:(NSString*)label {
     return saldoUrls[label];
@@ -277,6 +313,9 @@
 
 /**
  * Aktualisiert den aktuellen Saldo für die CryptoWährung "cUnit" mit dem Wert "saldo"
+ *
+ * @param cUnit
+ * @param saldo
  */
 - (void)currentSaldo:(NSString*)cUnit withDouble: (double) saldo {
     currentSaldo[cUnit] = [[NSNumber alloc] initWithDouble:saldo];
@@ -286,6 +325,9 @@
 
 /**
  * Ersetzt die aktuellen Saldo mit den Werten aus dem Dictionary
+ *
+ * @param dictionary
+ * @param withUpdate
  */
 - (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -300,6 +342,9 @@
 
 /**
  * Ersetzt die aktuellen saldoUrls mit den Werten aus dem Dictionary
+ *
+ * @param dictionary
+ * @param withUpdate
  */
 - (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -314,6 +359,9 @@
 
 /**
  * Ersetzt die aktuellen initialRatings mit den Werten aus dem Dictionary
+ *
+ * @param dictionary
+ * @param withUpdate
  */
 - (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -326,19 +374,47 @@
     }
 }
 
-/* Properties gefallen mir nicht */
+/**
+ * Liefert die aktuellen Fiat-Währungen
+ *
+ * @return NSString*
+ */
+- (NSArray*)fiatCurrencies {
+    return fiatCurrencies;
+}
+
+/**
+ * Getter für currentSaldo
+ *
+ * @return NSMutableDictionary*
+ */
 - (NSMutableDictionary*)currentSaldo {
     return currentSaldo;
 }
 
+/**
+ * Getter für das saldoUrls
+ *
+ * @return NSMutableDictionary*
+ */
 - (NSMutableDictionary*)saldoUrls {
     return saldoUrls;
 }
 
+/**
+ * Getter für initialRatings
+ *
+ * @return NSMutableDictionary*
+ */
 - (NSMutableDictionary*)initialRatings {
     return initialRatings;
 }
 
+/**
+ * Getter für currentRatings
+ *
+ * @return NSMutableDictionary*
+ */
 - (NSMutableDictionary*)currentRatings {
     return currentRatings;
 }

@@ -9,6 +9,15 @@
 #import "Helper.h"
 
 @implementation Helper
+
+/**
+ * Umwandlung von double Werten in das Format des jeweiligen Landes(Deutschland)
+ *
+ * @param double
+ * @param min
+ * @param max
+ * @return NSString*
+ */
 + (NSString*) double2German:(double) value min:(int) min max:(int) max {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -20,6 +29,13 @@
     return [formatter stringFromNumber:[NSNumber numberWithDouble:value]];
 }
 
+/**
+ * Umwandlung von double Werten in das Prozent-Format des jeweiligen Landes(Deutschland)
+ *
+ * @param double
+ * @param fractions
+ * @return NSString*
+ */
 + (NSString*) double2GermanPercent:(double) value fractions:(int) fractions {
 
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -39,6 +55,14 @@
     return [NSString stringWithFormat:@"%@%@%%", signs, [formatter stringFromNumber:[NSNumber numberWithDouble:value]]];
 }
 
+/**
+ * Anzeige eines modalen Dialogs
+ *
+ * @param message
+ * @param info
+ * @return NSModalResponse*
+ *
+ */
 + (NSModalResponse)messageText:(NSString*) message info:(NSString*) info {
     
     NSAlert *msg = [[NSAlert alloc] init];

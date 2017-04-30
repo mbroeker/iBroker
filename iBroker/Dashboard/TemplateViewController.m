@@ -5,6 +5,9 @@
 //  Created by Markus Bröker on 04.04.17.
 //  Copyright © 2017 Markus Bröker. All rights reserved.
 //
+#ifndef DEBUG
+#define DEBUG 1
+#endif
 
 #import "TemplateViewController.h"
 #import "Helper.h"
@@ -27,6 +30,9 @@
     // Bilder und URLs
     NSMutableDictionary *images;
     NSString *homeURL;
+
+    
+    NSArray *fiatCurrencies;
 }
 
 /**
@@ -36,9 +42,12 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     calculator = [Calculator instance];
-
+    
+    // Liste der Fiat-Währungen
+    fiatCurrencies = [calculator fiatCurrencies];
+    
     tabs = @{
-        @"Dashboard": @[@"USD", @1],
+        @"Dashboard": @[fiatCurrencies[1], @1],
         @"Bitcoin": @[@"BTC", @1],
         @"Ethereum": @[@"ETH", @1],
         @"Litecoin": @[@"LTC", @1],
@@ -120,16 +129,35 @@
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
-    // Standards
+    // Setze den Button-Text aufs Dashboard
     self.dismissButton.title = @"Dashboard";
+    
+    // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
+    self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
+    
+    // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
+    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
+    
+    // Aktualisiere die URL für den HOME-Button
     homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
 
     double percent = 0;
-    double total = [calculator calculate:@"EUR"];
-    double initial = [calculator calculateWithRatings:initialRatings currency:@"EUR"];
+    double total = [calculator calculate:fiatCurrencies[0]];
+    double initial = [calculator calculateWithRatings:initialRatings currency:fiatCurrencies[0]];
     if (initial != 0) percent = (total / initial * 100.0) - 100.0;
 
     NSMutableDictionary *currentSaldo = [calculator currentSaldo];
+
+#ifdef DEBUG
+    printf("%4s: %10s | %10s | %10s | %10s | %10s\n",
+        [@"####" UTF8String],
+        [@"INITIAL" UTF8String],
+        [@"CURRENT" UTF8String],
+        [@"SHARE" UTF8String],
+        [@"AMOUNT" UTF8String],
+        [@"DIFF" UTF8String]
+    );
+#endif
 
     double prices = 0;
     for (id unit in [[currentSaldo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
@@ -143,7 +171,7 @@
         double price = ((currentPrice / initialPrice) * amount) - amount;
 
     #ifdef DEBUG
-        NSLog(@"%4s: %10s | %10s | %8s | %8s | %8s",
+        printf("%4s: %10s | %10s | %10s | %10s | %10s\n",
             [unit UTF8String],
             [[Helper double2German:initialPrice min:2 max:4] UTF8String],
             [[Helper double2German:currentPrice min:2 max:4] UTF8String],
@@ -157,7 +185,7 @@
     }
 
 #ifdef DEBUG
-    NSLog(@" ALL: %10s | %10s | %8s | %8s | %8s",
+    printf(" ALL: %10s | %10s | %10s | %10s | %10s\n",
         [[Helper double2German:initial min:2 max:4] UTF8String],
         [[Helper double2German:total min:2 max:4] UTF8String],
         [[Helper double2GermanPercent:percent fractions:2] UTF8String],
@@ -168,24 +196,35 @@
 
     if (percent < 0.0) {
     #ifdef DEBUG
-        NSLog(@"---");
+        printf("---\n");
     #endif
         [self.percentLabel setTextColor:[NSColor redColor]];
     } else {
         [self.percentLabel setTextColor:[NSColor whiteColor]];
     #ifdef DEBUG
-        NSLog(@"+++");
+        printf("+++\n");
     #endif
     }
+
+#ifdef DEBUG
+    printf("####: %10s | %10s | %10s | %10s | %10s\n",
+        [@"BTC" UTF8String],
+        [@"ETH" UTF8String],
+        [@"XMR" UTF8String],
+        [@"LTC" UTF8String],
+        [@"DOGE" UTF8String]
+    );
+#endif
+    
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
 
-    [self.currencyButton setImage:images[@"EUR"]];
-    self.currencyUnits.doubleValue = [calculator calculate:@"EUR"];
+    [self.currencyButton setImage:images[fiatCurrencies[0]]];
+    self.currencyUnits.doubleValue = [calculator calculate:fiatCurrencies[0]];
 
-    [self.cryptoButton setImage:images[@"USD"]];
-    self.cryptoUnits.doubleValue = [calculator calculate:@"USD"];
+    [self.cryptoButton setImage:images[fiatCurrencies[1]]];
+    self.cryptoUnits.doubleValue = [calculator calculate:fiatCurrencies[1]];
 
-    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:[currentRatings[@"USD"] doubleValue] min:2 max:2]];
+    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:[currentRatings[fiatCurrencies[1]] doubleValue] min:2 max:2]];
 
     self.currency1Field.stringValue = [Helper double2German:1 / [currentRatings[@"BTC"] doubleValue] min:2 max:4];
     self.currency2Field.stringValue = [Helper double2German:1 / [currentRatings[@"ETH"] doubleValue] min:2 max:4];
@@ -213,12 +252,12 @@
     if ([currentRatings[@"DOGE"] doubleValue] > [initialRatings[@"DOGE"] doubleValue]) {
         [self.currency5Field setBackgroundColor:[NSColor yellowColor]];
     }
-
-    [self.exchangeSelection selectItemWithTitle:@"EUR"];
 }
 
 /**
  * Aktualisiere den jeweiligen Tab
+ *
+ * @param label
  */
 - (void)updateTemplateView:(NSString *)label {
 
@@ -244,18 +283,18 @@
     // Aktiviere die Eingabe für die Crypto-Einheiten
     self.cryptoUnits.editable = true;
 
+    // Setze das Bild für die FiatWährung
+    [self.currencyButton setImage:self.images[fiatCurrencies[0]]];
 
+    // Setze das Bild für die Einheit
     [self.cryptoButton setImage:self.images[unit]];
+    
+    // Setze den Taschenrechner auf EUR
+    self.exchangeSelection.title = fiatCurrencies[0];
 
-    NSDictionary *pricesAndPercent = [calculator unitsAndPercent:unit];
+    NSDictionary *pricesAndPercent = [calculator checkpointForUnit:unit];
 
     double percent = [pricesAndPercent[@"percent"] doubleValue];
-
-    // Bilde die Differenz aus BTC
-    if (![unit isEqualToString:@"BTC"]) {
-        NSDictionary *btcPricesAndPercent = [calculator unitsAndPercent:@"BTC"];
-        percent -= [btcPricesAndPercent[@"percent"] doubleValue];
-    }
 
     if (percent < 0.0) {
         [self.percentLabel setTextColor:[NSColor redColor]];
@@ -318,13 +357,42 @@
         [self.currency5Field setBackgroundColor:[NSColor yellowColor]];
     }
 
+    double btcPercent = [[calculator checkpointForUnit:@"BTC"][@"percent"] doubleValue];
     NSMutableDictionary *currencyUnits = [[NSMutableDictionary alloc] init];
     for (id currencyUnit in currentRatings) {
-        NSDictionary *cPricesAndPercent = [calculator unitsAndPercent:currencyUnit];
+        NSDictionary *cPricesAndPercent = [calculator checkpointForUnit:currencyUnit];
 
         double cPercent = [cPricesAndPercent[@"percent"] doubleValue];
+
+        // Bilde die Differenz aus BTC und der jeweiligen Währung, falls es sich nicht um BTC handelt.
+        if (![currencyUnit isEqualToString:@"BTC"]) {
+            cPercent -= btcPercent;
+        }
+
         currencyUnits[currencyUnit] = @(cPercent);
     }
+
+#ifdef DEBUG
+    printf("%4s: %+9.4f%% | %9.4f%% | %9.4f%% | %9.4f%% | %9.4f%%\n",
+        [@"%" UTF8String],
+        [currencyUnits[@"BTC"] doubleValue],
+        [currencyUnits[@"ETH"] doubleValue],
+        [currencyUnits[@"XMR"] doubleValue],
+        [currencyUnits[@"LTC"] doubleValue],
+        [currencyUnits[@"DOGE"] doubleValue]
+    );
+#endif
+
+#ifdef DEBUG
+    printf("%4s: %+9.4f%% | %10.4f | %10.4f | %10.4f | %10.4f\n",
+        [@"+/-" UTF8String],
+        [calculator currentSaldo:@"BTC"] * (1 + [currencyUnits[@"BTC"] doubleValue] / 100.0) - [calculator currentSaldo:@"BTC"],
+        [calculator currentSaldo:@"ETH"] * (1 + [currencyUnits[@"ETH"] doubleValue] / 100.0) - [calculator currentSaldo:@"ETH"],
+        [calculator currentSaldo:@"XMR"] * (1 + [currencyUnits[@"XMR"] doubleValue] / 100.0) - [calculator currentSaldo:@"XMR"],
+        [calculator currentSaldo:@"LTC"] * (1 + [currencyUnits[@"LTC"] doubleValue] / 100.0) - [calculator currentSaldo:@"LTC"],
+        [calculator currentSaldo:@"DOGE"] * (1 + [currencyUnits[@"DOGE"] doubleValue] / 100.0) - [calculator currentSaldo:@"DOGE"]
+    );
+#endif
 
     NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
     NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
@@ -349,12 +417,12 @@
     if ([lowestKey isEqualToString:@"XMR"]) [self.currency3Field setBackgroundColor:lowestColor];
     if ([lowestKey isEqualToString:@"LTC"]) [self.currency4Field setBackgroundColor:lowestColor];
     if ([lowestKey isEqualToString:@"DOGE"]) [self.currency5Field setBackgroundColor:lowestColor];
-
-    self.exchangeSelection.title = @"EUR";
 }
 
 /**
  * Action-Handler für den homepageButton
+ *
+ * @param sender
  */
 - (IBAction)homepageAction:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[@"homepage"]]];
@@ -362,6 +430,8 @@
 
 /**
  * Action-Handler zum Starten der jeweiligen Wallet-App
+ *
+ * @param sender
  */
 - (IBAction)dismissAction:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -395,6 +465,8 @@
 
 /**
  * Action-Handler zum Starten der Crypto-Page des Vertrauens
+ *
+ * @param sender
  */
 - (IBAction)homeAction:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:homeURL]];
@@ -402,6 +474,8 @@
 
 /**
  * Action-Handler zum Aufruf des Crypto-Shifters
+ *
+ * @param sender
  */
 - (IBAction)leftAction:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[@"trader1"]]];
@@ -409,6 +483,8 @@
 
 /**
  * Action-Handler zum Aufruf des Crypto-Shifters
+ *
+ * @param sender
  */
 - (IBAction)rightAction:(id)sender {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[@"trader2"]]];
@@ -416,14 +492,33 @@
 
 /**
  * Action-Handler zum Aktualisieren des initialen Kurses der gewählten Währung (blaues Info-Icon)
+ *
+ * @param sender
  */
 - (IBAction)multiAction:(id)sender {
     NSString *tabTitle = [self.dismissButton title];
-    [calculator checkPointForKey:tabTitle];
+    
+    NSDictionary *tabStrings = @{
+        @"Dashboard":  @[@"ALL", @"alle Kurse"],
+        @"Bitcoin": @[@"BTC", @"den Bitcoin Kurs"],
+        @"Ethereum": @[@"ETH", @"den Ethereum Kurs"],
+        @"Monero":  @[@"XMR", @"den Monero Kurs"],
+        @"Litecoin": @[@"LTC", @"den Litecoin Kurs"],
+        @"Dogecoin": @[@"DOGE", @"den Dogecoin Kurs"]
+    };    
+    
+    NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabStrings[tabTitle][1]];
+    NSString *info = @"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!";
+
+    if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
+        [calculator checkPointForKey:tabStrings[tabTitle][0] withBTCUpdate:FALSE];
+    }
 }
 
 /**
- * noch frei
+ * Action Handler für das Anzeigen des umgerechneten Bestands
+ *
+ * @param sender
  */
 - (IBAction)currencyAction:(id)sender {
 
@@ -441,9 +536,9 @@
 }
 
 /**
- * Aktualisieren des eingegeben Bestands per Click
+ * Aktualisieren des eingegeben Bestands per Klick
  *
- * @TODO: Enter-Handler implementieren
+ * @param sender
  */
 - (IBAction)cryptoAction:(id)sender {
     NSString *tabTitle = [self.dismissButton title];
@@ -461,47 +556,70 @@
         self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[cUnit] doubleValue];
 
         // Checkpoint aktualisieren
-        [calculator checkPointForKey:tabTitle];
+        [calculator checkPointForKey:cUnit withBTCUpdate:TRUE];
     }
 }
 
-// Einfacher Währungsumrechner
+/**
+ * Einfacher Währungsumrechner 
+ *
+ * @param sender
+ */
 - (IBAction)rateInputAction:(id)sender {
     NSString *tabTitle = [self.dismissButton title];
 
     NSString *cUnit = tabs[tabTitle][0];
     NSString *exchangeUnit = self.exchangeSelection.selectedItem.title;
 
-    double exchangeFactor = ([exchangeUnit isEqualToString:@"EUR"]) ? 1 : [currentRatings[exchangeUnit] doubleValue];
+    double exchangeFactor = ([exchangeUnit isEqualToString:fiatCurrencies[0]]) ? 1 : [currentRatings[exchangeUnit] doubleValue];
 
     double amount = self.rateInputLabel.doubleValue;
     double result = amount / [currentRatings[cUnit] doubleValue] * exchangeFactor;
 
-    self.rateInputCurrencyLabel.stringValue = cUnit;
     self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:4]];
 }
 
-// Datenkapselung: Getter in Objective-C
+/**
+ * Getter für das applications Dictionary
+ *
+ * @return NSDictionary*
+ */
 - (NSDictionary *)applications {
     return applications;
 }
 
-// Datenkapselung: Getter in Objective-C
+/**
+ * Getter für das traders Dictionary
+ *
+ * @return NSDictionary*
+ */
 - (NSDictionary *)traders {
     return traders;
 }
 
-// Datenkapselung: Getter in Objective-C
+/**
+ * Getter für das images Dictionary
+ *
+ * @return NSDictionary*
+ */
 - (NSDictionary *)images {
     return images;
 }
 
-// Datenkapselung: Getter in Objective-C
+/**
+ * Getter für homeURL
+ *
+ * @return NSString*
+ */
 - (NSString *)homeURL {
     return homeURL;
 }
 
-// Datenkapselung: Setter in Objective-C
+/**
+ * Setter für die homeURL
+ *
+ * @param NSString*
+ */
 - (void)homeURL:(NSString *)url {
     homeURL = url;
 }

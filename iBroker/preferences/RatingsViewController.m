@@ -56,24 +56,11 @@
     self.usdField.doubleValue = [initialRatings[@"USD"] doubleValue];
 }
 
-- (IBAction)btcAction:(id)sender {
-}
-
-- (IBAction)ethAction:(id)sender {
-}
-
-- (IBAction)dogeAction:(id)sender {
-}
-
-- (IBAction)xmrAction:(id)sender {
-}
-
-- (IBAction)ltcAction:(id)sender {
-}
-
-- (IBAction)usdAction:(id)sender {
-}
-
+/**
+ * Speichern des aktuellen Ratings per Klick
+ *
+ * @param sender
+ */
 - (IBAction)saveAction:(id)sender {
     double btc = self.btcField.doubleValue;
     double eth = self.ethField.doubleValue;
@@ -91,4 +78,47 @@
 
     [calculator initialRatingsWithDictionary:initialRatings withUpdate:true];
 }
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)btcAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)ethAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)dogeAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)xmrAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)ltcAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)usdAction:(id)sender {
+}
+
 @end

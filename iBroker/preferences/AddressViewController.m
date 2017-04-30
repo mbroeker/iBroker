@@ -28,25 +28,11 @@
     self.dashboardField.stringValue = saldoUrls[@"Dashboard"];
 }
 
-- (IBAction)btcAction:(id)sender {
-}
-
-- (IBAction)ethAction:(id)sender {
-}
-
-- (IBAction)xmrAction:(id)sender {
-}
-
-- (IBAction)ltcAction:(id)sender {
-}
-
-
-- (IBAction)dogeAction:(id)sender {
-}
-
-- (IBAction)dashboardAction:(id)sender {
-}
-
+/**
+ * Speichern der Adressen des Nutzers
+ *
+ * @param sender
+ */
 - (IBAction)saveAction:(id)sender {
     saldoUrls[@"Bitcoin"] = self.btcField.stringValue;
     saldoUrls[@"Ethereum"] = self.ethField.stringValue;
@@ -57,4 +43,47 @@
     
     [calculator saldoUrlsForDictionary:saldoUrls withUpdate:true];
 }
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)btcAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)ethAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)xmrAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)ltcAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)dogeAction:(id)sender {
+}
+
+/**
+ *
+ * @param sender
+ */
+- (IBAction)dashboardAction:(id)sender {
+}
+
 @end

@@ -21,6 +21,11 @@
     [controller updateOverview];
 }
 
+/**
+ * Sinn und Zweck: Erkennen des jeweils angewählten Tabs
+ *
+ * @param tabViewItem
+ */
 - (void)tabView:(NSTabView *)tabView didSelectTabViewItem:(NSTabViewItem *)tabViewItem {
     [super tabView:tabView didSelectTabViewItem:tabViewItem];
     

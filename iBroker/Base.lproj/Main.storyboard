@@ -453,7 +453,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydI-zJ-68H">
-                                            <rect key="frame" x="500" y="17" width="128" height="32"/>
+                                            <rect key="frame" x="495" y="14" width="128" height="32"/>
                                             <buttonCell key="cell" type="push" title="dismissButton" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="qaL-jR-yCc">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -465,9 +465,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="6" id="41s-gs-zCr"/>
-                                        <constraint firstItem="ydI-zJ-68H" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="15" id="Beb-4u-f1e"/>
-                                        <constraint firstItem="ydI-zJ-68H" firstAttribute="centerY" secondItem="g6T-5O-fao" secondAttribute="centerY" id="M6m-Ht-zQx"/>
-                                        <constraint firstAttribute="trailing" secondItem="ydI-zJ-68H" secondAttribute="trailing" constant="15" id="jhT-71-3yd"/>
+                                        <constraint firstItem="ydI-zJ-68H" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="18" id="Beb-4u-f1e"/>
+                                        <constraint firstItem="ydI-zJ-68H" firstAttribute="centerY" secondItem="g6T-5O-fao" secondAttribute="centerY" constant="2.5" id="M6m-Ht-zQx"/>
+                                        <constraint firstAttribute="trailing" secondItem="ydI-zJ-68H" secondAttribute="trailing" constant="20" id="jhT-71-3yd"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="leading" secondItem="djh-fJ-a7e" secondAttribute="leading" constant="7" id="mds-Sp-r6o"/>
                                         <constraint firstAttribute="bottom" secondItem="g6T-5O-fao" secondAttribute="bottom" constant="14" id="vxe-XH-so3"/>
                                     </constraints>

@@ -10,6 +10,11 @@
 
 @implementation TabView
 
+/**
+ * Sinn und Zweck: Füllen des Hintergrunds des TabViews mit der gewählten Farbe
+ *
+ * @param dirtyRect
+ */
 - (void) drawRect:(NSRect)dirtyRect {
     static const NSRect offsetRect = (NSRect) { 0, 0, 0, 0 };
     
