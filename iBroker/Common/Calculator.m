@@ -120,7 +120,7 @@
 }
 
 /**
- * Liefert NSDictionary mit den Schlüsseln "initialPrice", "currentPrice", "percent"
+ * Liefert NSDictionary mit den Schlüsseln "initialPrice", "currentPrice", "percent", "effectivePrice"
  *
  * @param unit
  * @return NSDictionary*
@@ -129,13 +129,13 @@
     double initialPrice = 1.0 / [initialRatings[unit] doubleValue];
     double currentPrice = 1.0 / [currentRatings[unit] doubleValue];
 
-    double percent = 100.0 * (currentPrice / initialPrice) - 100.0;
+    double percent = 100.0 * ((currentPrice / initialPrice) - 1);
 
     return @{
         @"initialPrice": @(initialPrice),
         @"currentPrice": @(currentPrice),
         @"percent": @(percent),
-        @"estimatedPrice": @((1 + percent / 100.0) * currentPrice)
+        @"effectivePrice": @((1 + percent / 100.0) * currentPrice)
     };
 }
 
