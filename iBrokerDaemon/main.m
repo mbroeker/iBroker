@@ -54,17 +54,18 @@ NSString *makeString(NSDictionary *checkpoint, NSDictionary *currentRatings, NSS
 /**
  * Die Hauptroutine dieses Daemons
  *
- * @param calculator
  */
-void brokerRun(Calculator *calculator) {
+void brokerRun() {
+    Calculator *calculator = [Calculator instance];
+    
     NSDictionary *initialRatings = [calculator initialRatings];
     NSDictionary *currentRatings = [calculator currentRatings];
 
-    double btcPrice = 1 / [initialRatings[@"BTC"] doubleValue];
-    double ethPrice = 1 / [initialRatings[@"ETH"] doubleValue];
-    double xmrPrice = 1 / [initialRatings[@"XMR"] doubleValue];
-    double ltcPrice = 1 / [initialRatings[@"LTC"] doubleValue];
-    double dogePrice = 1 / [initialRatings[@"DOGE"] doubleValue];
+    double btcPrice = 1.0f / [initialRatings[@"BTC"] doubleValue];
+    double ethPrice = 1.0f / [initialRatings[@"ETH"] doubleValue];
+    double xmrPrice = 1.0f / [initialRatings[@"XMR"] doubleValue];
+    double ltcPrice = 1.0f / [initialRatings[@"LTC"] doubleValue];
+    double dogePrice = 1.0f / [initialRatings[@"DOGE"] doubleValue];
 
     static int counter = 0;
 
@@ -114,10 +115,10 @@ void brokerRun(Calculator *calculator) {
  *
  * @param argc
  * @param argv
- * @param calculator
  */
-void parseOptions(int argc, const char **argv, Calculator *calculator) {
+void parseOptions(int argc, const char **argv) {
 
+    Calculator *calculator = [Calculator instance];
     double value = 0;
 
     for (int i = 1; i < argc; i++) {
@@ -129,32 +130,33 @@ void parseOptions(int argc, const char **argv, Calculator *calculator) {
         }
 
         if (!strcmp(argv[i], "--btc")) {
-            value = atof(argv[i+1]);
+            value = atof(argv[i + 1]);
             [calculator currentSaldo:@"BTC" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--eth")) {
-            value = atof(argv[i+1]);
+            value = atof(argv[i + 1]);
             [calculator currentSaldo:@"ETH" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--xmr")) {
-            value = atof(argv[i+1]);
+            value = atof(argv[i + 1]);
             [calculator currentSaldo:@"XMR" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--ltc")) {
-            value = atof(argv[i+1]);
+            value = atof(argv[i + 1]);
             [calculator currentSaldo:@"LTC" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--doge")) {
-            value = atof(argv[i+1]);
+            value = atof(argv[i + 1]);
             [calculator currentSaldo:@"DOGE" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--reset")) {
             [Calculator reset];
+            
             exit(EXIT_SUCCESS);
         }
     }
@@ -179,13 +181,12 @@ void parseOptions(int argc, const char **argv, Calculator *calculator) {
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
 
-        Calculator *calculator = [Calculator instance];
-
         if (argc > 1) {
-            parseOptions(argc, argv, calculator);
+            parseOptions(argc, argv);
         }
 
-        brokerRun(calculator);
+        brokerRun();
+
     }
 
     return EXIT_SUCCESS;
