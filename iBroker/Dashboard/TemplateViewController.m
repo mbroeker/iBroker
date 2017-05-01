@@ -224,7 +224,8 @@
     [self.cryptoButton setImage:images[fiatCurrencies[1]]];
     self.cryptoUnits.doubleValue = [calculator calculate:fiatCurrencies[1]];
 
-    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:[currentRatings[fiatCurrencies[1]] doubleValue] min:2 max:2]];
+    self.rateInputLabel.placeholderString = @"1";
+    self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:1.0f / [currentRatings[fiatCurrencies[1]] doubleValue] min:2 max:4]];
 
     self.currency1Field.stringValue = [Helper double2German:1 / [currentRatings[@"BTC"] doubleValue] min:2 max:4];
     self.currency2Field.stringValue = [Helper double2German:1 / [currentRatings[@"ETH"] doubleValue] min:2 max:4];
@@ -308,9 +309,9 @@
     self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[unit] doubleValue];
 
     double rate = units / [currentRatings[unit] doubleValue];
-    self.rateInputLabel.stringValue = [Helper double2German:units min:0 max:0];
+    self.rateInputLabel.placeholderString = [Helper double2German:units min:0 max:0];
     self.rateInputCurrencyLabel.stringValue = unit;
-    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:rate min:2 max:4]];
+    self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:rate min:2 max:4]];
 
     double cUnit = [currentRatings[unit] doubleValue];
 
