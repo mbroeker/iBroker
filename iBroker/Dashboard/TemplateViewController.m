@@ -149,7 +149,7 @@
     NSMutableDictionary *currentSaldo = [calculator currentSaldo];
 
 #ifdef DEBUG
-    printf("%4s: %10s | %10s | %10s | %10s | %10s\n",
+    printf("%4s: %24s | %24s | %24s | %24s | %24s\n",
         [@"####" UTF8String],
         [@"INITIAL" UTF8String],
         [@"CURRENT" UTF8String],
@@ -171,7 +171,7 @@
         double price = ((currentPrice / initialPrice) * amount) - amount;
 
     #ifdef DEBUG
-        printf("%4s: %10s | %10s | %10s | %10s | %10s\n",
+        printf("%4s: %24s | %24s | %24s | %24s | %24s\n",
             [unit UTF8String],
             [[Helper double2German:initialPrice min:2 max:4] UTF8String],
             [[Helper double2German:currentPrice min:2 max:4] UTF8String],
@@ -185,7 +185,7 @@
     }
 
 #ifdef DEBUG
-    printf(" ALL: %10s | %10s | %10s | %10s | %10s\n",
+    printf(" ALL: %24s | %24s | %24s | %24s | %24s\n",
         [[Helper double2German:initial min:2 max:4] UTF8String],
         [[Helper double2German:total min:2 max:4] UTF8String],
         [[Helper double2GermanPercent:percent fractions:2] UTF8String],
@@ -207,7 +207,7 @@
     }
 
 #ifdef DEBUG
-    printf("####: %10s | %10s | %10s | %10s | %10s\n",
+    printf("####: %24s | %24s | %24s | %24s | %24s\n",
         [@"BTC" UTF8String],
         [@"ETH" UTF8String],
         [@"XMR" UTF8String],
@@ -374,7 +374,7 @@
     }
 
 #ifdef DEBUG
-    printf("%4s: %+9.4f%% | %9.4f%% | %9.4f%% | %9.4f%% | %9.4f%%\n",
+    printf("%4s: %+23.4f%% | %23.4f%% | %23.4f%% | %23.4f%% | %23.8f%%\n",
         [@"%" UTF8String],
         [currencyUnits[@"BTC"] doubleValue],
         [currencyUnits[@"ETH"] doubleValue],
@@ -382,10 +382,8 @@
         [currencyUnits[@"LTC"] doubleValue],
         [currencyUnits[@"DOGE"] doubleValue]
     );
-#endif
 
-#ifdef DEBUG
-    printf("%4s: %+9.4f%% | %10.4f | %10.4f | %10.4f | %10.4f\n",
+    printf("%4s: %+23.4f%% | %24.4f | %24.4f | %24.4f | %24.8f\n",
         [@"+/-" UTF8String],
         [calculator currentSaldo:@"BTC"] * (1 + [currencyUnits[@"BTC"] doubleValue] / 100.0) - [calculator currentSaldo:@"BTC"],
         [calculator currentSaldo:@"ETH"] * (1 + [currencyUnits[@"ETH"] doubleValue] / 100.0) - [calculator currentSaldo:@"ETH"],
