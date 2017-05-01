@@ -26,7 +26,6 @@ void safeSleep(double timeout) {
  *
  * @param checkpoint
  * @param currentRatings
- * @param btcPercent
  * @param cUnit
  * @return
  */
@@ -165,7 +164,7 @@ void parseOptions(int argc, const char **argv) {
 
     printf("%s: Ihr aktueller Bestand beträgt:\n", argv[0]);
     for (id key in [dictionary allKeys]) {
-        printf("%4s: %.8f\n", [key UTF8String], [[dictionary objectForKey:key] doubleValue]);
+        printf("%4s: %.8f\n", [key UTF8String], [dictionary[key] doubleValue]);
     }
 
     exit(EXIT_SUCCESS);
