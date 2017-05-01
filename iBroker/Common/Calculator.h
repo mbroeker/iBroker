@@ -11,6 +11,8 @@
 + (id)instance;
 + (id)instance:(NSArray*)currencies;
 
++ (void)reset;
+
 // Umrechnungsmethoden für Crypto-Währungen
 - (NSDictionary*)checkpointForUnit:(NSString*)unit;
 - (double)calculate:(NSString*)currency;

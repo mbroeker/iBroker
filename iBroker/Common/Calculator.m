@@ -96,6 +96,20 @@
 }
 
 /**
+ * Statische Reset-Methode zum Abräumen
+ *
+ */
++ (void)reset {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults removeObjectForKey:@"saldoUrls"];
+    [defaults removeObjectForKey:@"currentSaldo"];
+    [defaults removeObjectForKey:@"initialRatings"];
+
+    [defaults synchronize];
+}
+
+/**
  * Aktualisiere die Kurse der jeweiligen Währung
  */
 - (void)checkPointForKey:(NSString *)key withBTCUpdate:(BOOL) btcUpdate {

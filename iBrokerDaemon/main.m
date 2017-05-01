@@ -120,39 +120,53 @@ void parseOptions(int argc, const char **argv, Calculator *calculator) {
 
     double value = 0;
 
-    for (int i=0; i < argc; i++) {
-        if (!strcmp(argv[i], "--help")) {
+    for (int i = 1; i < argc; i++) {
+        if (!strcmp(argv[i], "--help") || !strcmp(argv[i], "-h")) {
             printf("Usage: %s [--btc BTC] [--eth ETH] [--xmr XMR] [--ltc LTC] [--doge DOGE]\n", argv[0]);
             printf("Usage: %s --help - prints this help\n", argv[0]);
+
             exit(EXIT_SUCCESS);
         }
 
         if (!strcmp(argv[i], "--btc")) {
             value = atof(argv[i+1]);
-            [calculator currentSaldo:@"@BTC" withDouble:value];
+            [calculator currentSaldo:@"BTC" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--eth")) {
             value = atof(argv[i+1]);
-            [calculator currentSaldo:@"@ETH" withDouble:value];
+            [calculator currentSaldo:@"ETH" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--xmr")) {
             value = atof(argv[i+1]);
-            [calculator currentSaldo:@"@XMR" withDouble:value];
+            [calculator currentSaldo:@"XMR" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--ltc")) {
             value = atof(argv[i+1]);
-            [calculator currentSaldo:@"@LTC" withDouble:value];
+            [calculator currentSaldo:@"LTC" withDouble:value];
         }
 
         if (!strcmp(argv[i], "--doge")) {
             value = atof(argv[i+1]);
-            [calculator currentSaldo:@"@DOGE" withDouble:value];
+            [calculator currentSaldo:@"DOGE" withDouble:value];
         }
 
+        if (!strcmp(argv[i], "--reset")) {
+            [Calculator reset];
+            exit(EXIT_SUCCESS);
+        }
     }
+
+    NSDictionary *dictionary = [calculator currentSaldo];
+
+    printf("%s: Ihr aktueller Bestand beträgt:\n", argv[0]);
+    for (id key in [dictionary allKeys]) {
+        printf("%4s: %.8f\n", [key UTF8String], [[dictionary objectForKey:key] doubleValue]);
+    }
+
+    exit(EXIT_SUCCESS);
 }
 
 /**
