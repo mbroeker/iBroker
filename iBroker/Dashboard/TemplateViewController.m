@@ -141,82 +141,100 @@
     // Aktualisiere die URL für den HOME-Button
     homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
 
-    double percent = 0;
-    double total = [calculator calculate:fiatCurrencies[0]];
-    double initial = [calculator calculateWithRatings:initialRatings currency:fiatCurrencies[0]];
-    if (initial != 0) percent = (total / initial * 100.0) - 100.0;
+#ifdef DEBUG
+    NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+        [@"####" UTF8String],
+        [@"BALANCE IN EUR" UTF8String],
+        [@"BALANCE IN BTC" UTF8String],
+        [@"INITIAL IN EUR" UTF8String],
+        [@"CURRENT IN EUR" UTF8String],
+        [@"SHARE IN %" UTF8String],
+        [@"DIFF IN EUR" UTF8String],
+        [@"DIFF IN %" UTF8String]
+    );
+#endif
 
     NSMutableDictionary *currentSaldo = [calculator currentSaldo];
 
-#ifdef DEBUG
-    printf("%4s: %24s | %24s | %24s | %24s | %24s\n",
-        [@"####" UTF8String],
-        [@"INITIAL" UTF8String],
-        [@"CURRENT" UTF8String],
-        [@"SHARE" UTF8String],
-        [@"AMOUNT" UTF8String],
-        [@"DIFF" UTF8String]
-    );
-#endif
+    typedef struct LOOP_VARS {
+        double initialBalancesInEUR;
+        double totalBalancesInEUR;
+        double balancesInEUR;
+        double balancesInBTC;
+        double effectivePercent;
+        double diffsInPercent;
+        double diffsInEuro;
+        double shares;
+    } LOOP_VARS;
 
-    double prices = 0;
+    LOOP_VARS loop_vars;
+
+    loop_vars.effectivePercent = 0;
+    loop_vars.totalBalancesInEUR = [calculator calculate:fiatCurrencies[0]];
+    loop_vars.initialBalancesInEUR = [calculator calculateWithRatings:initialRatings currency:fiatCurrencies[0]];
+    if (loop_vars.initialBalancesInEUR != 0) loop_vars.effectivePercent = (loop_vars.totalBalancesInEUR / loop_vars.initialBalancesInEUR * 100.0) - 100.0;
+
     for (id unit in [[currentSaldo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
-        double initialPrice = 1.0 / [initialRatings[unit] doubleValue];
-        double currentPrice = 1.0 / [currentRatings[unit] doubleValue];
+        NSDictionary *checkpoint = [calculator checkpointForUnit:unit];
 
-        double amount = [currentSaldo[unit] doubleValue] / [currentRatings[unit] doubleValue];
+        double initialPrice = [checkpoint[@"initialPrice"] doubleValue];
+        double currentPrice = [checkpoint[@"currentPrice"] doubleValue];
+        double btcPrice = [currentRatings[@"BTC"] doubleValue] / [currentRatings[unit] doubleValue];
+
+        double amount = [currentSaldo[unit] doubleValue];
+
+        double balanceInEUR =  amount * currentPrice;
+        double balanceInBTC = amount * btcPrice;
 
         double share = 0;
-        if (total != 0) share = (amount / total) * 100.0;
-        double price = ((currentPrice / initialPrice) * amount) - amount;
+        if (loop_vars.totalBalancesInEUR != 0) share = (balanceInEUR / loop_vars.totalBalancesInEUR) * 100.0;
+
+        double diffInEuro = ((currentPrice / initialPrice) * balanceInEUR) - balanceInEUR;
+        double diffInPercent = [checkpoint[@"percent"] doubleValue];
 
     #ifdef DEBUG
-        printf("%4s: %24s | %24s | %24s | %24s | %24s\n",
+        NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
             [unit UTF8String],
-            [[Helper double2German:initialPrice min:2 max:4] UTF8String],
-            [[Helper double2German:currentPrice min:2 max:4] UTF8String],
+            [[Helper double2German:balanceInEUR min:2 max:2] UTF8String],
+            [[Helper double2German:balanceInBTC min:8 max:8] UTF8String],
+            [[Helper double2German:initialPrice min:2 max:2] UTF8String],
+            [[Helper double2German:currentPrice min:2 max:2] UTF8String],
             [[Helper double2GermanPercent:share fractions:2] UTF8String],
-            [[Helper double2German:amount min:4 max:2] UTF8String],
-            [[Helper double2German:price min:2 max:2] UTF8String]
+            [[Helper double2German:diffInEuro min:2 max:2] UTF8String],
+            [[Helper double2GermanPercent:diffInPercent fractions:2] UTF8String]
         );
     #endif
-        
-        prices += price;
+
+        loop_vars.shares += share;
+        loop_vars.diffsInEuro += diffInEuro;
+        loop_vars.diffsInPercent += diffInPercent;
+        loop_vars.balancesInEUR += balanceInEUR;
+        loop_vars.balancesInBTC += balanceInBTC;
     }
 
 #ifdef DEBUG
-    printf(" ALL: %24s | %24s | %24s | %24s | %24s\n",
-        [[Helper double2German:initial min:2 max:4] UTF8String],
-        [[Helper double2German:total min:2 max:4] UTF8String],
-        [[Helper double2GermanPercent:percent fractions:2] UTF8String],
-        [[Helper double2German:total min:2 max:2] UTF8String],
-        [[Helper double2German:prices min:2 max:2] UTF8String]
+    NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+        [@"ALL" UTF8String],
+        [[Helper double2German:loop_vars.balancesInEUR min:2 max:2] UTF8String],
+        [[Helper double2German:loop_vars.balancesInBTC min:8 max:8] UTF8String],
+        [[Helper double2German:loop_vars.initialBalancesInEUR min:2 max:2] UTF8String],
+        [[Helper double2German:loop_vars.totalBalancesInEUR min:2 max:2] UTF8String],
+        [[Helper double2GermanPercent:loop_vars.shares fractions:0] UTF8String],
+        [[Helper double2German:loop_vars.diffsInEuro min:2 max:2] UTF8String],
+        [[Helper double2GermanPercent:loop_vars.effectivePercent fractions:2] UTF8String]
     );
 #endif
 
-    if (percent < 0.0) {
-    #ifdef DEBUG
-        printf("---\n");
-    #endif
+    /* Diese Annahme muss immer erfüllt sein */
+    assert(loop_vars.totalBalancesInEUR == loop_vars.balancesInEUR);
+
+    if (loop_vars.effectivePercent < 0.0) {
         [self.percentLabel setTextColor:[NSColor redColor]];
     } else {
         [self.percentLabel setTextColor:[NSColor whiteColor]];
-    #ifdef DEBUG
-        printf("+++\n");
-    #endif
     }
 
-#ifdef DEBUG
-    printf("####: %24s | %24s | %24s | %24s | %24s\n",
-        [@"BTC" UTF8String],
-        [@"ETH" UTF8String],
-        [@"XMR" UTF8String],
-        [@"LTC" UTF8String],
-        [@"DOGE" UTF8String]
-    );
-#endif
-    
-    self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
+    self.percentLabel.stringValue = [Helper double2GermanPercent:loop_vars.effectivePercent fractions:2];
 
     [self.currencyButton setImage:images[fiatCurrencies[0]]];
     self.currencyUnits.doubleValue = [calculator calculate:fiatCurrencies[0]];
@@ -372,26 +390,6 @@
 
         currencyUnits[currencyUnit] = @(cPercent);
     }
-
-#ifdef DEBUG
-    printf("%4s: %+23.4f%% | %23.4f%% | %23.4f%% | %23.4f%% | %23.8f%%\n",
-        [@"%" UTF8String],
-        [currencyUnits[@"BTC"] doubleValue],
-        [currencyUnits[@"ETH"] doubleValue],
-        [currencyUnits[@"XMR"] doubleValue],
-        [currencyUnits[@"LTC"] doubleValue],
-        [currencyUnits[@"DOGE"] doubleValue]
-    );
-
-    printf("%4s: %+23.4f%% | %24.4f | %24.4f | %24.4f | %24.8f\n",
-        [@"+/-" UTF8String],
-        [calculator currentSaldo:@"BTC"] * (1 + [currencyUnits[@"BTC"] doubleValue] / 100.0) - [calculator currentSaldo:@"BTC"],
-        [calculator currentSaldo:@"ETH"] * (1 + [currencyUnits[@"ETH"] doubleValue] / 100.0) - [calculator currentSaldo:@"ETH"],
-        [calculator currentSaldo:@"XMR"] * (1 + [currencyUnits[@"XMR"] doubleValue] / 100.0) - [calculator currentSaldo:@"XMR"],
-        [calculator currentSaldo:@"LTC"] * (1 + [currencyUnits[@"LTC"] doubleValue] / 100.0) - [calculator currentSaldo:@"LTC"],
-        [calculator currentSaldo:@"DOGE"] * (1 + [currencyUnits[@"DOGE"] doubleValue] / 100.0) - [calculator currentSaldo:@"DOGE"]
-    );
-#endif
 
     NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
     NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
