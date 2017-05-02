@@ -7,106 +7,162 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Cocoa/Cocoa.h>
 #import "Calculator.h"
 
-#include <string.h>
+#ifndef DEFAULT_TIMEOUT
+#define DEFAULT_TIMEOUT 60
+#endif
+
+#ifndef DEFAULT_ROWS
+#define DEFAULT_ROWS 50
+#endif
+
+typedef struct CONFIG {
+    NSTimeInterval timeout;
+    int rows;
+} CONFIG;
 
 /**
  * Warte timeout Sekunden
  *
  * @param timeout
  */
-void safeSleep(double timeout) {
+void safeSleep(NSTimeInterval timeout) {
     [NSThread sleepForTimeInterval:timeout];
 }
 
 /**
- * Hilfsmethode zum Zusammenbauen der jeweiligen Format-Strings
+ * Hilfsfunktion zum Zusammenbauen der Headline
  *
  * @param checkpoint
- * @param currentRatings
- * @param cUnit
+ * @param currency
  * @return
  */
-NSString *makeString(NSDictionary *checkpoint, NSDictionary *currentRatings, NSString *cUnit) {
-    double effectivePrice = [checkpoint[@"effectivePrice"] doubleValue];
-    double effectivePercent = [checkpoint[@"percent"] doubleValue];
-    double priceInBTC = [currentRatings[@"BTC"] doubleValue] / [currentRatings[cUnit] doubleValue];
+const char *makeHeadlineString(NSDictionary *checkpoint, NSString *currency) {
+    NSString *format = format = @"1 %@ : %.2f EUR : %.2f EUR : %.2f%%";
 
-    NSString *theString = [NSString stringWithFormat:@"%.6f EUR / %.8f BTC / %+.4f%%",
-            effectivePrice * (1 + effectivePercent / 100.0f),
-            priceInBTC,
+    if ([currency isEqualToString:@"DOGE"]) {
+        format = @"1 %@ : %.6f EUR : %.6f EUR : %.2f%%";
+    }
+
+    NSString *theHeadLine = [
+        NSString stringWithFormat:format,
+            currency,
+            [checkpoint[@"initialPrice"] doubleValue],
+            [checkpoint[@"currentPrice"] doubleValue],
+            [checkpoint[@"percent"] doubleValue]
+    ];
+
+    return [theHeadLine UTF8String];
+}
+
+/**
+ * Hilfsfunktion zum Zusammenbauen der Zeile
+ *
+ * @param checkpoint
+ * @param currency
+ * @param currentRatings
+ * @param btcPercent
+ * @return
+ */
+const char *makeString(NSDictionary *checkpoint, NSString *currency, NSDictionary *currentRatings, double btcPercent) {
+    double effectivePercent = [checkpoint[@"percent"] doubleValue];
+    if (![currency isEqualToString:@"BTC"]) effectivePercent -= btcPercent;
+
+    double currentPrice = [checkpoint[@"currentPrice"] doubleValue];
+    double currentPriceInBTC = [currentRatings[@"BTC"] doubleValue] / [currentRatings[currency] doubleValue];
+
+    NSString *theString = [
+        NSString stringWithFormat:@"%.6f EUR / %.8f BTC / %+.2f%%",
+            currentPrice,
+            currentPriceInBTC,
             effectivePercent
     ];
 
-#ifdef WITH_BEEP
-    // Falls einer der Checkpoints unter -4% liegt, wird auf Teufel komm raus rumgepiept, bis eingegriffen wird.
-    if (([checkpoint[@"percent"] doubleValue] - btcPercent) < -4) {
-        NSBeep();
-    }
-#endif
-
-    return theString;
+    return [theString UTF8String];
 }
 
 /**
  * Die Hauptroutine dieses Daemons
  *
+ * @param config
  */
-void brokerRun() {
-    Calculator *calculator = [Calculator instance];
-    
-    NSDictionary *initialRatings = [calculator initialRatings];
-    NSDictionary *currentRatings = [calculator currentRatings];
-
-    double btcPrice = 1.0f / [initialRatings[@"BTC"] doubleValue];
-    double ethPrice = 1.0f / [initialRatings[@"ETH"] doubleValue];
-    double xmrPrice = 1.0f / [initialRatings[@"XMR"] doubleValue];
-    double ltcPrice = 1.0f / [initialRatings[@"LTC"] doubleValue];
-    double dogePrice = 1.0f / [initialRatings[@"DOGE"] doubleValue];
+void brokerRun(CONFIG config) {
 
     static int counter = 0;
 
     for (;;) {
+        Calculator *calculator = [Calculator instance];
 
-        if ((counter++ % 25) == 0) {
-            printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
-                [[NSString stringWithFormat:@"1 BTC war %.2f EUR", btcPrice] UTF8String],
-                [[NSString stringWithFormat:@"1 ETH war %.2f EUR", ethPrice] UTF8String],
-                [[NSString stringWithFormat:@"1 XMR war %.2f EUR", xmrPrice] UTF8String],
-                [[NSString stringWithFormat:@"1 LTC war %.2f EUR", ltcPrice] UTF8String],
-                [[NSString stringWithFormat:@"1 DOGE war %.6f EUR", dogePrice] UTF8String]
-            );
-
-            if (counter == 25) counter = 0;
-        }
+        NSDictionary *currentRatings = [calculator currentRatings];
 
         NSDictionary *btcCheckpoint = [calculator checkpointForUnit:@"BTC"];
         NSDictionary *ethCheckpoint = [calculator checkpointForUnit:@"ETH"];
         NSDictionary *xmrCheckpoint = [calculator checkpointForUnit:@"XMR"];
         NSDictionary *ltcCheckpoint = [calculator checkpointForUnit:@"LTC"];
-        NSDictionary *dogeCheckpoint = [calculator checkpointForUnit:@"DOGE"];
+        NSDictionary *dogCheckpoint = [calculator checkpointForUnit:@"DOGE"];
 
-        NSString *btcString = makeString(btcCheckpoint, currentRatings, @"BTC");
-        NSString *ethString = makeString(ethCheckpoint, currentRatings, @"ETH");
-        NSString *xmrString = makeString(xmrCheckpoint, currentRatings, @"XMR");
-        NSString *ltcString = makeString(ltcCheckpoint, currentRatings, @"LTC");
-        NSString *dogeString = makeString(dogeCheckpoint, currentRatings, @"DOGE");
+        double btcPercent = [btcCheckpoint[@"percent"] doubleValue];
+
+        if ((counter++ % config.rows) == 0) {
+            printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
+                makeHeadlineString(btcCheckpoint, @"BTC"),
+                makeHeadlineString(ethCheckpoint, @"ETH"),
+                makeHeadlineString(xmrCheckpoint, @"XMR"),
+                makeHeadlineString(ltcCheckpoint, @"LTC"),
+                makeHeadlineString(dogCheckpoint, @"DOGE")
+            );
+
+            if (counter == 25) counter = 0;
+        }
 
         printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
-            [btcString UTF8String],
-            [ethString UTF8String],
-            [xmrString UTF8String],
-            [ltcString UTF8String],
-            [dogeString UTF8String]
+            makeString(btcCheckpoint, @"BTC", currentRatings, btcPercent),
+            makeString(ethCheckpoint, @"ETH", currentRatings, btcPercent),
+            makeString(xmrCheckpoint, @"XMR", currentRatings, btcPercent),
+            makeString(ltcCheckpoint, @"LTC", currentRatings, btcPercent),
+            makeString(dogCheckpoint, @"DOGE", currentRatings, btcPercent)
         );
 
         [calculator updateRatings];
-        currentRatings = [calculator currentRatings];
-
-        safeSleep(15);
+        safeSleep(config.timeout);
     }
+}
+/**
+ * Kompakte Übersicht der Funktionen des Daemons
+ *
+ * @param name
+ */
+void usage(const char *name) {
+    printf("Anzeige der Gewinne und Verluste beim Handeln mit Alt-Coins\n\n");
+    printf("Copyright   Copyright(C) 2017 4customers UG\n");
+    printf("Autor       Markus Bröker<broeker.markus@googlemail.com>\n\n");
+
+    printf("Benutzung:  %s [OPTIONEN]\n\n", name);
+
+    printf("Kontooptionen\n\n");
+
+    printf("  --balance\t\tZeige den aktuellen Gesamtsaldo aller Coins an\n");
+    printf("  --list\n\n");
+
+    printf("  --btc ANZAHL\t\tSetze den aktuellen Saldo für Bitcoins\n");
+    printf("  --eth ANZAHL\t\tSetze den aktuellen Saldo für Ethereum\n");
+    printf("  --xmr ANZAHL\t\tSetze den aktuellen Saldo für Monero\n");
+    printf("  --ltc ANZAHL\t\tSetze den aktuellen Saldo für Lightcoins\n");
+    printf("  --doge ANZAHL\t\tSetze den aktuellen Saldo für Dogecoins\n\n");
+
+    printf("ANZAHL im amerikanische Dezimalformat (0.5 anstatt 0,5)\n\n");
+
+    printf("Allgemeine Optionen\n\n");
+
+    printf("  --rows ROWS\t\tAnzeige der Überschrift nach ROWS Zeilen\n");
+    printf("  --timeout TIMEOUT\tAktualisierungsinterval TIMEOUT in Sekunden\n");
+    printf("  --reset\t\tSetze die Daten auf die Anfangseinstellungen zurück\n");
+    printf("  --help\t\tZeige diese Hilfe an\n\n");
+
+    printf("Bei Fragen und Anregungen kontaktieren Sie den Support unter +49 0151 54129488!\n");
+
+    exit(EXIT_SUCCESS);
 }
 
 /**
@@ -115,17 +171,14 @@ void brokerRun() {
  * @param argc
  * @param argv
  */
-void parseOptions(int argc, const char **argv) {
+void parseOptions(int argc, const char **argv, CONFIG *config) {
 
     Calculator *calculator = [Calculator instance];
     double value = 0;
 
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--help") || !strcmp(argv[i], "-h")) {
-            printf("Usage: %s [--btc BTC] [--eth ETH] [--xmr XMR] [--ltc LTC] [--doge DOGE]\n", argv[0]);
-            printf("Usage: %s --help - prints this help\n", argv[0]);
-
-            exit(EXIT_SUCCESS);
+            usage(argv[0]);
         }
 
         if (!strcmp(argv[i], "--btc")) {
@@ -153,21 +206,32 @@ void parseOptions(int argc, const char **argv) {
             [calculator currentSaldo:@"DOGE" withDouble:value];
         }
 
-        if (!strcmp(argv[i], "--reset")) {
+        if (!strcmp(argv[i], "--timeout") || !strcmp(argv[i], "-t")) {
+            value = atof(argv[i + 1]);
+            config->timeout = value;
+        }
+
+        if (!strcmp(argv[i], "--rows")) {
+            value = atof(argv[i + 1]);
+            config->rows = value;
+        }
+
+        if (!strcmp(argv[i], "--reset") || !strcmp(argv[i], "-r")) {
             [Calculator reset];
-            
+
+            exit(EXIT_SUCCESS);
+        }
+
+        if (!strcmp(argv[i], "--balance") || !strcmp(argv[i], "--list")) {
+            NSDictionary *dictionary = [calculator currentSaldo];
+
+            for (id key in [dictionary allKeys]) {
+                printf("%4s: %.8f\n", [key UTF8String], [dictionary[key] doubleValue]);
+            }
+
             exit(EXIT_SUCCESS);
         }
     }
-
-    NSDictionary *dictionary = [calculator currentSaldo];
-
-    printf("%s: Ihr aktueller Bestand beträgt:\n", argv[0]);
-    for (id key in [dictionary allKeys]) {
-        printf("%4s: %.8f\n", [key UTF8String], [dictionary[key] doubleValue]);
-    }
-
-    exit(EXIT_SUCCESS);
 }
 
 /**
@@ -179,13 +243,13 @@ void parseOptions(int argc, const char **argv) {
  */
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
+        CONFIG config = { DEFAULT_TIMEOUT, DEFAULT_ROWS };
 
         if (argc > 1) {
-            parseOptions(argc, argv);
+            parseOptions(argc, argv, &config);
         }
 
-        brokerRun();
-
+        brokerRun(config);
     }
 
     return EXIT_SUCCESS;
