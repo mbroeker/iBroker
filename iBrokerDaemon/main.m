@@ -35,19 +35,19 @@ void safeSleep(NSTimeInterval timeout) {
  * Hilfsfunktion zum Zusammenbauen der Headline
  *
  * @param checkpoint
- * @param currency
+ * @param asset
  * @return
  */
-const char *makeHeadlineString(NSDictionary *checkpoint, NSString *currency) {
+const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
     NSString *format = format = @"1 %@ : %.2f EUR : %.2f EUR : %.2f%%";
 
-    if ([currency isEqualToString:@"DOGE"]) {
+    if ([asset isEqualToString:@"DOGE"]) {
         format = @"1 %@ : %.6f EUR : %.6f EUR : %.2f%%";
     }
 
     NSString *theHeadLine = [
         NSString stringWithFormat:format,
-            currency,
+            asset,
             [checkpoint[@"initialPrice"] doubleValue],
             [checkpoint[@"currentPrice"] doubleValue],
             [checkpoint[@"percent"] doubleValue]
@@ -60,17 +60,17 @@ const char *makeHeadlineString(NSDictionary *checkpoint, NSString *currency) {
  * Hilfsfunktion zum Zusammenbauen der Zeile
  *
  * @param checkpoint
- * @param currency
+ * @param asset
  * @param currentRatings
  * @param btcPercent
  * @return
  */
-const char *makeString(NSDictionary *checkpoint, NSString *currency, NSDictionary *currentRatings, double btcPercent) {
+const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *currentRatings, double btcPercent) {
     double effectivePercent = [checkpoint[@"percent"] doubleValue];
-    if (![currency isEqualToString:@"BTC"]) effectivePercent -= btcPercent;
+    if (![asset isEqualToString:@"BTC"]) effectivePercent -= btcPercent;
 
     double currentPrice = [checkpoint[@"currentPrice"] doubleValue];
-    double currentPriceInBTC = [currentRatings[@"BTC"] doubleValue] / [currentRatings[currency] doubleValue];
+    double currentPriceInBTC = [currentRatings[@"BTC"] doubleValue] / [currentRatings[asset] doubleValue];
 
     NSString *theString = [
         NSString stringWithFormat:@"%.6f EUR / %.8f BTC / %+.2f%%",
@@ -96,11 +96,11 @@ void brokerRun(CONFIG config) {
     for (;;) {
         NSDictionary *currentRatings = [calculator currentRatings];
 
-        NSDictionary *btcCheckpoint = [calculator checkpointForUnit:@"BTC"];
-        NSDictionary *ethCheckpoint = [calculator checkpointForUnit:@"ETH"];
-        NSDictionary *xmrCheckpoint = [calculator checkpointForUnit:@"XMR"];
-        NSDictionary *ltcCheckpoint = [calculator checkpointForUnit:@"LTC"];
-        NSDictionary *dogCheckpoint = [calculator checkpointForUnit:@"DOGE"];
+        NSDictionary *btcCheckpoint = [calculator checkpointForAsset:@"BTC"];
+        NSDictionary *ethCheckpoint = [calculator checkpointForAsset:@"ETH"];
+        NSDictionary *xmrCheckpoint = [calculator checkpointForAsset:@"XMR"];
+        NSDictionary *ltcCheckpoint = [calculator checkpointForAsset:@"LTC"];
+        NSDictionary *dogCheckpoint = [calculator checkpointForAsset:@"DOGE"];
 
         double btcPercent = [btcCheckpoint[@"percent"] doubleValue];
 
@@ -173,6 +173,7 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
 
     Calculator *calculator = [Calculator instance];
     double value = 0;
+    BOOL update = false;
 
     for (int i = 1; i < argc; i++) {
         if (!strcmp(argv[i], "--help") || !strcmp(argv[i], "-h")) {
@@ -182,26 +183,36 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
         if (!strcmp(argv[i], "--btc")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:@"BTC" withDouble:value];
+            [calculator updateCheckpointForAsset:@"BTC" withBTCUpdate:false];
+            update = true;
         }
 
         if (!strcmp(argv[i], "--eth")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:@"ETH" withDouble:value];
+            [calculator updateCheckpointForAsset:@"ETH" withBTCUpdate:false];
+            update = true;
         }
 
         if (!strcmp(argv[i], "--xmr")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:@"XMR" withDouble:value];
+            [calculator updateCheckpointForAsset:@"XMR" withBTCUpdate:false];
+            update = true;
         }
 
         if (!strcmp(argv[i], "--ltc")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:@"LTC" withDouble:value];
+            [calculator updateCheckpointForAsset:@"LTC" withBTCUpdate:false];
+            update = true;
         }
 
         if (!strcmp(argv[i], "--doge")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:@"DOGE" withDouble:value];
+            [calculator updateCheckpointForAsset:@"DOGE" withBTCUpdate:false];
+            update = true;
         }
 
         if (!strcmp(argv[i], "--timeout") || !strcmp(argv[i], "-t")) {
@@ -223,12 +234,28 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
         if (!strcmp(argv[i], "--balance") || !strcmp(argv[i], "--list")) {
             NSDictionary *dictionary = [calculator currentSaldo];
 
-            for (id key in [dictionary allKeys]) {
-                printf("%4s: %.8f\n", [key UTF8String], [dictionary[key] doubleValue]);
+            for (id asset in [[dictionary allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
+                NSDictionary *ratings = [calculator checkpointForAsset:asset];
+
+                double initialPrice = [ratings[@"initialPrice"] doubleValue];
+                double currentPrice = [ratings[@"currentPrice"] doubleValue];
+                double percent = [ratings[@"percent"] doubleValue];
+
+                printf("%4s: %12s | %11s | %11s | %6s\n",
+                    [asset UTF8String],
+                    [[NSString stringWithFormat:@"%4.6f", [dictionary[asset] doubleValue]] UTF8String],
+                    [[NSString stringWithFormat:@"%4.6f", initialPrice] UTF8String],
+                    [[NSString stringWithFormat:@"%4.6f", currentPrice] UTF8String],
+                    [[NSString stringWithFormat:@"%3.2f", percent] UTF8String]
+                );
             }
 
             exit(EXIT_SUCCESS);
         }
+    }
+
+    if (update) {
+        exit(EXIT_SUCCESS);
     }
 }
 
