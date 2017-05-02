@@ -18,15 +18,15 @@
  * @param max
  * @return NSString*
  */
-+ (NSString*) double2German:(double) value min:(int) min max:(int) max {
++ (NSString*) double2German:(double) value min:(NSUInteger) min max:(NSUInteger) max {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
     [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     [formatter setMinimumFractionDigits:min];
     [formatter setMaximumFractionDigits:max];
-        
-    return [formatter stringFromNumber:[NSNumber numberWithDouble:value]];
+
+    return [formatter stringFromNumber:@(value)];
 }
 
 /**
@@ -36,7 +36,7 @@
  * @param fractions
  * @return NSString*
  */
-+ (NSString*) double2GermanPercent:(double) value fractions:(int) fractions {
++ (NSString*) double2GermanPercent:(double) value fractions:(NSUInteger) fractions {
 
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
@@ -52,7 +52,7 @@
         return @"+/- 0";
     }
     
-    return [NSString stringWithFormat:@"%@%@ %%", signs, [formatter stringFromNumber:[NSNumber numberWithDouble:value]]];
+    return [NSString stringWithFormat:@"%@%@ %%", signs, [formatter stringFromNumber:@(value)]];
 }
 
 /**
