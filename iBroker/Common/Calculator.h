@@ -14,22 +14,22 @@
 + (void)reset;
 
 // Umrechnungsmethoden für Crypto-Währungen
-- (NSDictionary*)checkpointForUnit:(NSString*)unit;
 - (double)calculate:(NSString*)currency;
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency;
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
 - (void)updateRatings;
-- (void)checkPointForKey:(NSString*)key withBTCUpdate:(BOOL) btcUpdate;
+- (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate;
 
 // Methoden für das Aktualisieren des Saldos
-- (double)currentSaldo:(NSString*)cUnit;
-- (void)currentSaldo:(NSString*)cUnit withDouble:(double) saldo;
+- (double)currentSaldo:(NSString*)asset;
+- (void)currentSaldo:(NSString*)asset withDouble:(double) saldo;
 
 // Getter für einen spezifischen Saldo
 - (NSString*)saldoUrlForLabel:(NSString*)label;
 
 // Setter für die jeweiligen Dictionaries
+- (NSDictionary*)checkpointForAsset:(NSString*)asset;
 - (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update;
 - (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update;
 - (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update;

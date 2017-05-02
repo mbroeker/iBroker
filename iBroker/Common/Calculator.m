@@ -111,19 +111,20 @@
 
 /**
  * Aktualisiere die Kurse der jeweiligen Währung
+ *
+ * @param asset
+ * @param btcUpdate
  */
-- (void)checkPointForKey:(NSString *)key withBTCUpdate:(BOOL) btcUpdate {
+- (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    if ([key isEqualToString:@"ALL"]) {
+    if ([asset isEqualToString:@"ALL"]) {
         initialRatings = [currentRatings mutableCopy];
     } else {
-        if (![key isEqualToString:@"BTC"]) {
-            // aktualisiere den Kurs der Währung
-            initialRatings[key] = currentRatings[key];
-        }
+        // aktualisiere den Kurs der Währung
+        initialRatings[asset] = currentRatings[asset];
 
-        if (btcUpdate) {
+        if (![asset isEqualToString:@"BTC"] && btcUpdate) {
             // aktualisiere den BTC Kurs, auf den sich die Transaktion bezog
             initialRatings[@"BTC"] = currentRatings[@"BTC"];
         }
@@ -136,12 +137,12 @@
 /**
  * Liefert NSDictionary mit den Schlüsseln "initialPrice", "currentPrice", "percent", "effectivePrice"
  *
- * @param unit
+ * @param asset
  * @return NSDictionary*
  */
-- (NSDictionary*)checkpointForUnit:(NSString*)unit {
-    double initialPrice = 1.0 / [initialRatings[unit] doubleValue];
-    double currentPrice = 1.0 / [currentRatings[unit] doubleValue];
+- (NSDictionary*)checkpointForAsset:(NSString*)asset {
+    double initialPrice = 1.0 / [initialRatings[asset] doubleValue];
+    double currentPrice = 1.0 / [currentRatings[asset] doubleValue];
 
     double percent = 100.0 * ((currentPrice / initialPrice) - 1);
 
@@ -308,11 +309,11 @@
 /**
  * Liefert den aktuellen Saldo der jeweiligen Crypto-Währung
  *
- * @param cUnit
+ * @param asset
  * @return double
  */
-- (double)currentSaldo:(NSString*)cUnit {
-    return [currentSaldo[cUnit] doubleValue];
+- (double)currentSaldo:(NSString*)asset {
+    return [currentSaldo[asset] doubleValue];
 }
 
 /**
@@ -328,11 +329,11 @@
 /**
  * Aktualisiert den aktuellen Saldo für die CryptoWährung "cUnit" mit dem Wert "saldo"
  *
- * @param cUnit
+ * @param asset
  * @param saldo
  */
-- (void)currentSaldo:(NSString*)cUnit withDouble: (double) saldo {
-    currentSaldo[cUnit] = [[NSNumber alloc] initWithDouble:saldo];
+- (void)currentSaldo:(NSString*)asset withDouble: (double) saldo {
+    currentSaldo[asset] = [[NSNumber alloc] initWithDouble:saldo];
 
     [self currentSaldoForDictionary:currentSaldo withUpdate:false];
 }
