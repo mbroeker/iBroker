@@ -49,10 +49,10 @@
     if (value > 0.0) {
         signs = @"+";
     } else if (value == 0.0) {
-        return @"+/-0";
+        return @"+/- 0";
     }
     
-    return [NSString stringWithFormat:@"%@%@%%", signs, [formatter stringFromNumber:[NSNumber numberWithDouble:value]]];
+    return [NSString stringWithFormat:@"%@%@ %%", signs, [formatter stringFromNumber:[NSNumber numberWithDouble:value]]];
 }
 
 /**
