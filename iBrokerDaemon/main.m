@@ -89,11 +89,11 @@ const char *makeString(NSDictionary *checkpoint, NSString *currency, NSDictionar
  */
 void brokerRun(CONFIG config) {
 
-    static int counter = 0;
+    static unsigned long counter = 0;
+
+    Calculator *calculator = [Calculator instance];
 
     for (;;) {
-        Calculator *calculator = [Calculator instance];
-
         NSDictionary *currentRatings = [calculator currentRatings];
 
         NSDictionary *btcCheckpoint = [calculator checkpointForUnit:@"BTC"];
@@ -112,8 +112,6 @@ void brokerRun(CONFIG config) {
                 makeHeadlineString(ltcCheckpoint, @"LTC"),
                 makeHeadlineString(dogCheckpoint, @"DOGE")
             );
-
-            if (counter == 25) counter = 0;
         }
 
         printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
