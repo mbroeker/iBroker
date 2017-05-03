@@ -18,7 +18,7 @@
     [super viewDidLoad];
     
     calculator = [Calculator instance];
-    saldoUrls = [[calculator saldoUrls] mutableCopy];
+    saldoUrls = [calculator saldoUrls];
     
     self.btcField.stringValue = saldoUrls[@"Bitcoin"];
     self.ethField.stringValue = saldoUrls[@"Ethereum"];
@@ -41,7 +41,7 @@
     saldoUrls[@"Dogecoin"] = self.dogeField.stringValue;
     saldoUrls[@"Dashboard"] = self.dashboardField.stringValue;
     
-    [calculator saldoUrlsForDictionary:saldoUrls withUpdate:true];
+    [calculator saldoUrlsForDictionary:saldoUrls];
 }
 
 /**

@@ -46,7 +46,7 @@
     [super viewDidLoad];
     
     calculator = [Calculator instance];
-    initialRatings = [[calculator initialRatings] mutableCopy];
+    initialRatings = [calculator initialRatings];
     
     self.btcField.doubleValue = [initialRatings[@"BTC"] doubleValue];
     self.ethField.doubleValue = [initialRatings[@"ETH"] doubleValue];
@@ -76,7 +76,7 @@
     initialRatings[@"DOGE"] = @(doge);
     initialRatings[@"USD"] = @(dollar);
 
-    [calculator initialRatingsWithDictionary:initialRatings withUpdate:true];
+    [calculator initialRatingsWithDictionary:initialRatings];
 }
 
 /**
