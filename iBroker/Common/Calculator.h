@@ -30,9 +30,9 @@
 
 // Setter für die jeweiligen Dictionaries
 - (NSDictionary*)checkpointForAsset:(NSString*)asset;
-- (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update;
-- (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update;
-- (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update;
+- (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary;
+- (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary;
+- (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary;
 
 // die aktuellen Fiat-Währungen
 - (NSArray*)fiatCurrencies;

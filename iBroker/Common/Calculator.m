@@ -240,7 +240,7 @@
         currentRatings[@"DOGE"] = [NSString stringWithFormat:@"%.8f", [self unsynchronizedUdateDoge]];
 
         if (initialRatings == NULL) {
-            [self initialRatingsWithDictionary:currentRatings withUpdate:true];
+            [self initialRatingsWithDictionary:currentRatings];
         }
 
         [defaults synchronize];
@@ -327,7 +327,7 @@
 }
 
 /**
- * Aktualisiert den aktuellen Saldo für die CryptoWährung "cUnit" mit dem Wert "saldo"
+ * Aktualisiert den aktuellen Saldo für die CryptoWährung "asset" mit dem Wert "saldo"
  *
  * @param asset
  * @param saldo
@@ -335,58 +335,49 @@
 - (void)currentSaldo:(NSString*)asset withDouble: (double) saldo {
     currentSaldo[asset] = [[NSNumber alloc] initWithDouble:saldo];
 
-    [self currentSaldoForDictionary:currentSaldo withUpdate:false];
+    [self currentSaldoForDictionary:currentSaldo];
 }
 
 /**
  * Ersetzt die aktuellen Saldo mit den Werten aus dem Dictionary
  *
  * @param dictionary
- * @param withUpdate
  */
-- (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
+- (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults setObject:dictionary forKey:@"currentSaldo"];
     [defaults synchronize];
 
-    if (update) {
-        currentSaldo = [dictionary mutableCopy];
-    }
+    currentSaldo = [dictionary mutableCopy];
 }
 
 /**
  * Ersetzt die aktuellen saldoUrls mit den Werten aus dem Dictionary
  *
  * @param dictionary
- * @param withUpdate
  */
-- (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
+- (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults setObject:dictionary forKey:@"saldoUrls"];
     [defaults synchronize];
 
-    if (update) {
-        saldoUrls = [dictionary mutableCopy];
-    }
+    saldoUrls = [dictionary mutableCopy];
 }
 
 /**
  * Ersetzt die aktuellen initialRatings mit den Werten aus dem Dictionary
  *
  * @param dictionary
- * @param withUpdate
  */
-- (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary withUpdate:(BOOL)update {
+- (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults setObject:dictionary forKey:@"initialRatings"];
     [defaults synchronize];
 
-    if (update) {
-        initialRatings = [dictionary mutableCopy];
-    }
+    initialRatings = [dictionary mutableCopy];
 }
 
 /**
@@ -404,7 +395,7 @@
  * @return NSMutableDictionary*
  */
 - (NSMutableDictionary*)currentSaldo {
-    return currentSaldo;
+    return [currentSaldo mutableCopy];
 }
 
 /**
@@ -413,7 +404,7 @@
  * @return NSMutableDictionary*
  */
 - (NSMutableDictionary*)saldoUrls {
-    return saldoUrls;
+    return [saldoUrls mutableCopy];
 }
 
 /**
@@ -422,7 +413,7 @@
  * @return NSMutableDictionary*
  */
 - (NSMutableDictionary*)initialRatings {
-    return initialRatings;
+    return [initialRatings mutableCopy];
 }
 
 /**
@@ -431,7 +422,7 @@
  * @return NSMutableDictionary*
  */
 - (NSMutableDictionary*)currentRatings {
-    return currentRatings;
+    return [currentRatings mutableCopy];
 }
 
 @end
