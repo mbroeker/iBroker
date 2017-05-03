@@ -17,10 +17,6 @@
 @private
     Calculator *calculator;
 
-    // Normale Eigenschaften
-    NSMutableDictionary *initialRatings;
-    NSMutableDictionary *currentRatings;
-
     NSMutableDictionary *applications;
     NSMutableDictionary *traders;
 
@@ -91,9 +87,6 @@
         [defaults setObject:traders forKey:@"traders"];
     }
 
-    initialRatings = [calculator initialRatings];
-    currentRatings = [calculator currentRatings];
-
     [defaults synchronize];
 }
 
@@ -155,6 +148,8 @@
 #endif
 
     NSMutableDictionary *currentSaldo = [calculator currentSaldo];
+    NSMutableDictionary *initialRatings = [calculator initialRatings];
+    NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     typedef struct LOOP_VARS {
         double initialBalancesInEUR;
@@ -190,7 +185,7 @@
         if (loop_vars.totalBalancesInEUR != 0) share = (balanceInEUR / loop_vars.totalBalancesInEUR) * 100.0;
 
         double diffInEuro = ((currentPrice / initialPrice) * balanceInEUR) - balanceInEUR;
-        double diffInPercent = (amount > 0) ? [checkpoint[@"percent"] doubleValue] : 0;
+        double diffInPercent = (amount >= 0) ? [checkpoint[@"percent"] doubleValue] : 0;
 
     #ifdef DEBUG
         NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
@@ -312,7 +307,10 @@
     // Setze den Taschenrechner auf EUR
     self.exchangeSelection.title = fiatCurrencies[0];
 
+    // Hole die aktualisierten Dictionaries
     NSDictionary *checkpoint = [calculator checkpointForAsset:asset];
+    NSMutableDictionary *initialRatings = [calculator initialRatings];
+    NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     double percent = [checkpoint[@"percent"] doubleValue];
 
@@ -520,6 +518,8 @@
  */
 - (IBAction)currencyAction:(id)sender {
 
+    // Aktualisierte Ratings besorgen
+    NSMutableDictionary *currentRatings = [calculator currentRatings];
     NSString *text;
 
     text = [NSString stringWithFormat:@"%@ BTC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE",
@@ -545,16 +545,23 @@
         return;
     }
 
+    // Aktualisierte Ratings besorgen
+    NSMutableDictionary *currentRatings = [calculator currentRatings];
+
     NSString *text = [NSString stringWithFormat:@"%@ Bestand aktualisieren", tabTitle];
 
     if ([Helper messageText:text info:@"Möchten Sie Ihren aktuellen Bestand aktualisieren?"] == NSAlertFirstButtonReturn) {
-        NSString *cUnit = tabs[tabTitle][0];
+        NSString *asset = tabs[tabTitle][0];
 
-        [calculator currentSaldo:cUnit withDouble: self.cryptoUnits.doubleValue];
-        self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[cUnit] doubleValue];
+        BOOL mustUpdateBecauseIHaveBought = (self.cryptoUnits.doubleValue > [calculator currentSaldo:asset]);
 
-        // Checkpoint aktualisieren
-        [calculator updateCheckpointForAsset:cUnit withBTCUpdate:TRUE];
+        [calculator currentSaldo:asset withDouble: self.cryptoUnits.doubleValue];
+        self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[asset] doubleValue];
+
+        if (mustUpdateBecauseIHaveBought) {
+            // Checkpoint aktualisieren
+            [calculator updateCheckpointForAsset:asset withBTCUpdate:TRUE];
+        }
     }
 }
 
@@ -568,6 +575,9 @@
 
     NSString *cAsset = tabs[tabTitle][0];
     NSString *exchangeUnit = self.exchangeSelection.selectedItem.title;
+
+    // Aktualisierte Ratings besorgen
+    NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     double exchangeFactor = ([exchangeUnit isEqualToString:fiatCurrencies[0]]) ? 1 : [currentRatings[exchangeUnit] doubleValue];
 
