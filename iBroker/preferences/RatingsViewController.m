@@ -10,7 +10,6 @@
 #import "Calculator.h"
 
 @implementation RatingsViewController {
-    NSMutableDictionary *initialRatings;
     Calculator *calculator;
 }
 
@@ -46,7 +45,9 @@
     [super viewDidLoad];
     
     calculator = [Calculator instance];
-    initialRatings = [calculator initialRatings];
+
+    // Aktualisierte Ratings besorgen
+    NSMutableDictionary *initialRatings = [calculator initialRatings];
     
     self.btcField.doubleValue = [initialRatings[@"BTC"] doubleValue];
     self.ethField.doubleValue = [initialRatings[@"ETH"] doubleValue];
@@ -62,6 +63,9 @@
  * @param sender
  */
 - (IBAction)saveAction:(id)sender {
+    // Aktualisierte Ratings besorgen
+    NSMutableDictionary *initialRatings = [calculator initialRatings];
+
     double btc = self.btcField.doubleValue;
     double eth = self.ethField.doubleValue;
     double xmr = self.xmrField.doubleValue;

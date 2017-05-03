@@ -10,15 +10,17 @@
 #import "Calculator.h"
 
 @implementation AddressViewController {
-    NSMutableDictionary *saldoUrls;
     Calculator *calculator;
 }
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     calculator = [Calculator instance];
-    saldoUrls = [calculator saldoUrls];
+
+    // aktualisierten Saldo besorgen
+    NSMutableDictionary *saldoUrls = [calculator saldoUrls];
     
     self.btcField.stringValue = saldoUrls[@"Bitcoin"];
     self.ethField.stringValue = saldoUrls[@"Ethereum"];
@@ -34,6 +36,9 @@
  * @param sender
  */
 - (IBAction)saveAction:(id)sender {
+    // aktualisierten Saldo besorgen
+    NSMutableDictionary *saldoUrls = [calculator saldoUrls];
+
     saldoUrls[@"Bitcoin"] = self.btcField.stringValue;
     saldoUrls[@"Ethereum"] = self.ethField.stringValue;
     saldoUrls[@"Monero"] = self.xmrField.stringValue;
