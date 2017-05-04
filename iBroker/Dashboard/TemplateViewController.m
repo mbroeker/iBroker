@@ -32,6 +32,20 @@
 }
 
 /**
+ * AKtualsiert das aktive Tab
+ */
+- (void)updateCurrentView {
+
+    // View aktualisieren
+    NSString *label = self.headlineLabel.stringValue;
+    if ([label isEqualToString:@"Dashboard"]) {
+        [self updateOverview];
+    } else {
+        [self updateTemplateView:label];
+    }
+}
+
+/**
  * Zurücksetzen der Farben
  */
 - (void)resetColors {
@@ -106,7 +120,6 @@
     self.statusLabel.placeholderString = @"+/- 0";
     self.infoLabel.placeholderString = @"Escobar Edition";
     
-
     [defaults synchronize];
 }
 
@@ -545,6 +558,8 @@
     if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
         [calculator updateCheckpointForAsset:tabStrings[tabTitle][0] withBTCUpdate:FALSE];
     }
+    
+    [self updateCurrentView];
 }
 
 /**
@@ -569,6 +584,8 @@
     ];
 
     [Helper messageText:@"Gesamtbestand umgerechnet:" info:text];
+    
+    [self updateCurrentView];
 }
 
 /**
