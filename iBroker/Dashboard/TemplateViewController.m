@@ -102,9 +102,6 @@
         [defaults setObject:traders forKey:@"traders"];
     }
 
-    // Farben zurück setzen
-    [self resetColors];
-
     // Ich brauche den Placeholder Text eigentlich nur in Xcode zum Finden des Labels
     self.statusLabel.placeholderString = @"+/- 0";
     self.infoLabel.placeholderString = @"Escobar Edition";
@@ -153,6 +150,9 @@
     
     // Aktualisiere die URL für den HOME-Button
     homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
+    
+    // Farben zurück setzen
+    [self resetColors];
 
 #ifdef DEBUG
     NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
@@ -196,8 +196,8 @@
 
         double initialPrice = [checkpoint[@"initialPrice"] doubleValue];
         double currentPrice = [checkpoint[@"currentPrice"] doubleValue];
-        double btcPrice = [currentRatings[@"BTC"] doubleValue] / [currentRatings[asset] doubleValue];
-        double zecPrice = [currentRatings[@"ZEC"] doubleValue] / [currentRatings[asset] doubleValue];
+        double btcPrice = [asset isEqualToString:@"BTC"] ? 1 : [currentRatings[@"BTC"] doubleValue] / [currentRatings[asset] doubleValue];
+        double zecPrice = [asset isEqualToString:@"ZEC"] ? 1 : [currentRatings[@"ZEC"] doubleValue] / [currentRatings[asset] doubleValue];
 
         double amount = [currentSaldo[asset] doubleValue];
 
@@ -308,6 +308,9 @@
 
     // Ratings aktualisieren
     [calculator updateRatings];
+
+    // Farben zurück setzen
+    [self resetColors];
 
     // Aktualisieren der Headline
     self.headlineLabel.stringValue = label;
