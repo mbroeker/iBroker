@@ -21,6 +21,8 @@
 // Definition der Labels
 @property (weak) IBOutlet NSTextField *headlineLabel;
 @property (weak) IBOutlet NSTextFieldCell *percentLabel;
+@property (strong) IBOutlet NSTextField *iBrokerLabel;
+@property (strong) IBOutlet NSTextField *statusLabel;
 
 // Definition des blauen InfoButtons
 @property (weak) IBOutlet NSButton *multiButton;
