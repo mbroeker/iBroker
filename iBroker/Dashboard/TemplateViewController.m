@@ -31,6 +31,16 @@
     NSArray *fiatCurrencies;
 }
 
+- (void)resetColors {
+    NSColor *bgColor = [NSColor whiteColor];
+
+    self.currency1Field.backgroundColor = bgColor;
+    self.currency2Field.backgroundColor = bgColor;
+    self.currency3Field.backgroundColor = bgColor;
+    self.currency4Field.backgroundColor = bgColor;
+    self.currency5Field.backgroundColor = bgColor;
+}
+
 /**
  * Initialisiere alle Datenstrukturen
  */
@@ -87,6 +97,12 @@
         [defaults setObject:traders forKey:@"traders"];
     }
 
+    // Farben zurück setzen
+    [self resetColors];
+
+    // Ich brauche den Placeholder Text eigentlich nur in Xcode zum Finden des Labels
+    self.statusLabel.placeholderString = @"+/- 0";
+
     [defaults synchronize];
 }
 
@@ -135,10 +151,11 @@
     homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
 
 #ifdef DEBUG
-    NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+    NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
         [@"####" UTF8String],
         [@"BALANCE IN EUR" UTF8String],
         [@"BALANCE IN BTC" UTF8String],
+        [@"BALANCE IN ZEC" UTF8String],
         [@"INITIAL IN EUR" UTF8String],
         [@"CURRENT IN EUR" UTF8String],
         [@"SHARE IN %" UTF8String],
@@ -156,6 +173,7 @@
         double totalBalancesInEUR;
         double balancesInEUR;
         double balancesInBTC;
+        double balancesInZEC;
         double effectivePercent;
         double diffsInPercent;
         double diffsInEuro;
@@ -163,7 +181,7 @@
     } LOOP_VARS;
 
     // Standardmäßig sind die Werte zwar genullt, aber schaden tuts nicht.
-    LOOP_VARS loop_vars = {0, 0, 0, 0, 0, 0, 0, 0};
+    LOOP_VARS loop_vars = {0, 0, 0, 0, 0, 0, 0, 0, 0};
 
     loop_vars.totalBalancesInEUR = [calculator calculate:fiatCurrencies[0]];
     loop_vars.initialBalancesInEUR = [calculator calculateWithRatings:initialRatings currency:fiatCurrencies[0]];
@@ -175,11 +193,13 @@
         double initialPrice = [checkpoint[@"initialPrice"] doubleValue];
         double currentPrice = [checkpoint[@"currentPrice"] doubleValue];
         double btcPrice = [currentRatings[@"BTC"] doubleValue] / [currentRatings[asset] doubleValue];
+        double zecPrice = [currentRatings[@"ZEC"] doubleValue] / [currentRatings[asset] doubleValue];
 
         double amount = [currentSaldo[asset] doubleValue];
 
         double balanceInEUR =  amount * currentPrice;
         double balanceInBTC = amount * btcPrice;
+        double balanceInZEC = amount * zecPrice;
 
         double share = 0;
         if (loop_vars.totalBalancesInEUR != 0) share = (balanceInEUR / loop_vars.totalBalancesInEUR) * 100.0;
@@ -188,10 +208,11 @@
         double diffInPercent = (amount >= 0) ? [checkpoint[@"percent"] doubleValue] : 0;
 
     #ifdef DEBUG
-        NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+        NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
             [asset UTF8String],
             [[Helper double2German:balanceInEUR min:2 max:2] UTF8String],
             [[Helper double2German:balanceInBTC min:8 max:8] UTF8String],
+            [[Helper double2German:balanceInZEC min:8 max:8] UTF8String],
             [[Helper double2German:initialPrice min:2 max:2] UTF8String],
             [[Helper double2German:currentPrice min:2 max:2] UTF8String],
             [[Helper double2GermanPercent:share fractions:2] UTF8String],
@@ -205,13 +226,15 @@
         loop_vars.diffsInPercent += diffInPercent;
         loop_vars.balancesInEUR += balanceInEUR;
         loop_vars.balancesInBTC += balanceInBTC;
+        loop_vars.balancesInZEC += balanceInZEC;
     }
 
 #ifdef DEBUG
-    NSLog(@"%4s %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+    NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
         [@"ALL" UTF8String],
         [[Helper double2German:loop_vars.balancesInEUR min:2 max:2] UTF8String],
         [[Helper double2German:loop_vars.balancesInBTC min:8 max:8] UTF8String],
+        [[Helper double2German:loop_vars.balancesInZEC min:8 max:8] UTF8String],
         [[Helper double2German:loop_vars.initialBalancesInEUR min:2 max:2] UTF8String],
         [[Helper double2German:loop_vars.totalBalancesInEUR min:2 max:2] UTF8String],
         [[Helper double2GermanPercent:loop_vars.shares fractions:0] UTF8String],
@@ -221,16 +244,19 @@
 #endif
 
     /* Diese beiden Annahmen, dass die berechneten Werte maximal um eine Milli-Einheit abweichen, müssen immer erfüllt sein */
-    assert(fabs(loop_vars.totalBalancesInEUR - loop_vars.balancesInEUR) < 0.001);
-    assert(fabs(loop_vars.shares - 100.0) < 0.001);
+    if (loop_vars.shares != 0) {
+        assert(fabs(loop_vars.totalBalancesInEUR - loop_vars.balancesInEUR) < 0.001);
+        assert(fabs(loop_vars.shares - 100.0) < 0.001);
+    }
 
     if (loop_vars.effectivePercent < 0.0) {
-        [self.percentLabel setTextColor:[NSColor redColor]];
+        self.percentLabel.textColor = [NSColor redColor];
     } else {
-        [self.percentLabel setTextColor:[NSColor whiteColor]];
+        self.percentLabel.textColor = [NSColor whiteColor];
     }
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:loop_vars.effectivePercent fractions:2];
+    if (loop_vars.diffsInEuro != 0) self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:loop_vars.diffsInEuro min:2 max:2]];
 
     [self.currencyButton setImage:images[fiatCurrencies[0]]];
     self.currencyUnits.doubleValue = [calculator calculate:fiatCurrencies[0]];
@@ -249,23 +275,23 @@
 
     // Beachte: Es sind Kehrwerte ...
     if ([currentRatings[@"BTC"] doubleValue] > [initialRatings[@"BTC"] doubleValue]) {
-        [self.currency1Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency1Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"ETH"] doubleValue] > [initialRatings[@"ETH"] doubleValue]) {
-        [self.currency2Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency2Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"XMR"] doubleValue] > [initialRatings[@"XMR"] doubleValue]) {
-        [self.currency3Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency3Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"LTC"] doubleValue] > [initialRatings[@"LTC"] doubleValue]) {
-        [self.currency4Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency4Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"DOGE"] doubleValue] > [initialRatings[@"DOGE"] doubleValue]) {
-        [self.currency5Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency5Field.backgroundColor = [NSColor yellowColor];
     }
 }
 
@@ -322,15 +348,20 @@
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
 
-    self.cryptoUnits.doubleValue = [calculator currentSaldo:asset];
-    self.currencyUnits.doubleValue = self.cryptoUnits.doubleValue / [currentRatings[asset] doubleValue];
+    double assetRating = [currentRatings[asset] doubleValue];
+    double saldo = [calculator currentSaldo:asset];
+    double priceInEuro = saldo / assetRating;
+    double diffInEuro = priceInEuro * (percent / 100);
 
-    double rate = assets / [currentRatings[asset] doubleValue];
+    self.cryptoUnits.doubleValue = saldo;
+    self.currencyUnits.doubleValue = priceInEuro;
+
+    if (diffInEuro != 0) self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:diffInEuro min:2 max:2]];
+
+    double rate = assets / assetRating;
     self.rateInputLabel.placeholderString = [Helper double2German:assets min:0 max:0];
     self.rateInputCurrencyLabel.stringValue = asset;
     self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:rate min:2 max:4]];
-
-    double assetRating = [currentRatings[asset] doubleValue];
 
     if ([asset isEqualToString:@"DOGE"]) assetRating /= [tabs[@"Dogecoin"][1] doubleValue];
 
@@ -360,19 +391,19 @@
     }
 
     if ([currentRatings[@"ETH"] doubleValue] > [initialRatings[@"ETH"] doubleValue]) {
-        [self.currency2Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency2Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"XMR"] doubleValue] > [initialRatings[@"XMR"] doubleValue]) {
-        [self.currency3Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency3Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"LTC"] doubleValue] > [initialRatings[@"LTC"] doubleValue]) {
-        [self.currency4Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency4Field.backgroundColor = [NSColor yellowColor];
     }
 
     if ([currentRatings[@"DOGE"] doubleValue] > [initialRatings[@"DOGE"] doubleValue]) {
-        [self.currency5Field setBackgroundColor:[NSColor yellowColor]];
+        self.currency5Field.backgroundColor = [NSColor yellowColor];
     }
 
     double btcPercent = [[calculator checkpointForAsset:@"BTC"][@"percent"] doubleValue];
@@ -396,11 +427,11 @@
 
     if ([highest doubleValue] > 10.0) highestColor = [NSColor blueColor];
 
-    if ([highestKey isEqualToString:@"BTC"]) [self.currency1Field setBackgroundColor:highestColor];
-    if ([highestKey isEqualToString:@"ETH"]) [self.currency2Field setBackgroundColor:highestColor];
-    if ([highestKey isEqualToString:@"XMR"]) [self.currency3Field setBackgroundColor:highestColor];
-    if ([highestKey isEqualToString:@"LTC"]) [self.currency4Field setBackgroundColor:highestColor];
-    if ([highestKey isEqualToString:@"DOGE"]) [self.currency5Field setBackgroundColor:highestColor];
+    if ([highestKey isEqualToString:@"BTC"]) self.currency1Field.backgroundColor = highestColor;
+    if ([highestKey isEqualToString:@"ETH"]) self.currency2Field.backgroundColor = highestColor;
+    if ([highestKey isEqualToString:@"XMR"]) self.currency3Field.backgroundColor = highestColor;
+    if ([highestKey isEqualToString:@"LTC"]) self.currency4Field.backgroundColor = highestColor;
+    if ([highestKey isEqualToString:@"DOGE"]) self.currency5Field.backgroundColor = highestColor;
 
     NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
     NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
@@ -522,8 +553,9 @@
     NSMutableDictionary *currentRatings = [calculator currentRatings];
     NSString *text;
 
-    text = [NSString stringWithFormat:@"%@ BTC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE",
+    text = [NSString stringWithFormat:@"%@ BTC\n%@ ZEC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE\n",
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"BTC"] min:4 max:8],
+        [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"ZEC"] min:4 max:8],
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"ETH"] min:4 max:8],
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"XMR"] min:4 max:8],
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"LTC"] min:4 max:8],
