@@ -23,6 +23,7 @@
 @property (weak) IBOutlet NSTextFieldCell *percentLabel;
 @property (strong) IBOutlet NSTextField *iBrokerLabel;
 @property (strong) IBOutlet NSTextField *statusLabel;
+@property (strong) IBOutlet NSTextField *infoLabel;
 
 // Definition des blauen InfoButtons
 @property (weak) IBOutlet NSButton *multiButton;
@@ -83,6 +84,8 @@
 - (void)updateOverview;
 - (void)updateTemplateView:(NSString*)label;
 
+// Methoden zum Einrichten der Datenstrukturen
 - (void)initializeWithDefaults;
+- (void)resetColors;
 
 @end

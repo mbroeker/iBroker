@@ -31,6 +31,9 @@
     NSArray *fiatCurrencies;
 }
 
+/**
+ * Zurücksetzen der Farben
+ */
 - (void)resetColors {
     NSColor *bgColor = [NSColor whiteColor];
 
@@ -39,6 +42,8 @@
     self.currency3Field.backgroundColor = bgColor;
     self.currency4Field.backgroundColor = bgColor;
     self.currency5Field.backgroundColor = bgColor;
+    
+    self.percentLabel.textColor = [NSColor whiteColor];
 }
 
 /**
@@ -102,6 +107,8 @@
 
     // Ich brauche den Placeholder Text eigentlich nur in Xcode zum Finden des Labels
     self.statusLabel.placeholderString = @"+/- 0";
+    self.infoLabel.placeholderString = @"Escobar Edition";
+    
 
     [defaults synchronize];
 }
@@ -138,9 +145,6 @@
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
-    // Setze den Button-Text aufs Dashboard
-    self.dismissButton.title = @"Dashboard";
-    
     // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
     self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
     
@@ -305,8 +309,7 @@
     // Ratings aktualisieren
     [calculator updateRatings];
 
-    // Aktualisieren des Dismissbuttons und der headLine;
-    self.dismissButton.title = label;
+    // Aktualisieren der Headline
     self.headlineLabel.stringValue = label;
 
     NSString *asset = tabs[label][0];
@@ -341,9 +344,7 @@
     double percent = [checkpoint[@"percent"] doubleValue];
 
     if (percent < 0.0) {
-        [self.percentLabel setTextColor:[NSColor redColor]];
-    } else {
-        [self.percentLabel setTextColor:[NSColor whiteColor]];
+        self.percentLabel.textColor = [NSColor redColor];
     }
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
@@ -462,9 +463,10 @@
  */
 - (IBAction)dismissAction:(id)sender {
     NSAlert *alert = [[NSAlert alloc] init];
-    NSButton *button = (NSButton *) sender;
-
-    if ([button.title isEqualToString:@"Dashboard"]) {
+    NSString *title = self.headlineLabel.stringValue;
+    
+    if ([title isEqualToString:@"Dashboard"]) {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:self.vendorURL]];
         return;
     }
 
@@ -472,17 +474,17 @@
 
     [alert addButtonWithTitle:@"Starten"];
     [alert addButtonWithTitle:@"Nein"];
-    alert.messageText = [NSString stringWithFormat:@"%@ starten?", button.title];
+    alert.messageText = [NSString stringWithFormat:@"%@ starten?", title];
     alert.informativeText = @"Das Programm wird automatisch gestartet.";
 
     if ([alert runModal] == NSAlertFirstButtonReturn) {
-        if (![[NSWorkspace sharedWorkspace] launchApplication:applications[button.title]]) {
+        if (![[NSWorkspace sharedWorkspace] launchApplication:applications[title]]) {
             NSAlert *msg = [[NSAlert alloc] init];
             [msg setAlertStyle:NSWarningAlertStyle];
 
             [msg addButtonWithTitle:@"Abnicken"];
-            msg.messageText = [NSString stringWithFormat:@"Fehler beim Starten der %@ Wallet", button.title];
-            msg.informativeText = [NSString stringWithFormat:@"Installieren Sie %@.", applications[button.title]];
+            msg.messageText = [NSString stringWithFormat:@"Fehler beim Starten der %@ Wallet", title];
+            msg.informativeText = [NSString stringWithFormat:@"Installieren Sie %@.", applications[title]];
 
             [msg runModal];
         }
@@ -523,7 +525,7 @@
  * @param sender
  */
 - (IBAction)multiAction:(id)sender {
-    NSString *tabTitle = [self.dismissButton title];
+    NSString *tabTitle = self.headlineLabel.stringValue;
     
     NSDictionary *tabStrings = @{
         @"Dashboard":  @[@"ALL", @"alle Kurse"],
@@ -553,13 +555,14 @@
     NSMutableDictionary *currentRatings = [calculator currentRatings];
     NSString *text;
 
-    text = [NSString stringWithFormat:@"%@ BTC\n%@ ZEC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE\n",
+    text = [NSString stringWithFormat:@"%@ BTC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE\n%@ ZEC\n%@ USD",
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"BTC"] min:4 max:8],
-        [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"ZEC"] min:4 max:8],
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"ETH"] min:4 max:8],
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"XMR"] min:4 max:8],
         [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"LTC"] min:4 max:8],
-        [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"DOGE"] min:4 max:8]
+        [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"DOGE"] min:4 max:8],
+        [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"ZEC"] min:4 max:8],
+        [Helper double2German:[calculator calculateWithRatings:currentRatings currency:@"USD"] min:4 max:8]
     ];
 
     [Helper messageText:@"Gesamtbestand umgerechnet:" info:text];
@@ -571,8 +574,7 @@
  * @param sender
  */
 - (IBAction)cryptoAction:(id)sender {
-    NSString *tabTitle = [self.dismissButton title];
-
+    NSString *tabTitle = self.headlineLabel.stringValue;
     if ([tabTitle isEqualToString:@"Dashboard"]) {
         return;
     }
@@ -603,7 +605,7 @@
  * @param sender
  */
 - (IBAction)rateInputAction:(id)sender {
-    NSString *tabTitle = [self.dismissButton title];
+    NSString *tabTitle = self.headlineLabel.stringValue;
 
     NSString *cAsset = tabs[tabTitle][0];
     NSString *exchangeUnit = self.exchangeSelection.selectedItem.title;
@@ -644,6 +646,15 @@
  */
 - (NSDictionary *)images {
     return images;
+}
+
+/**
+ * Getter für homeURL
+ *
+ * @return NSString*
+ */
+- (NSString *)vendorURL {
+    return @"https://www.4customers.de/ibroker/";
 }
 
 /**
