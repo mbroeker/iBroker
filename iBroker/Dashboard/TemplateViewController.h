@@ -10,13 +10,16 @@
 
 @interface TemplateViewController : NSViewController
 
-// Definition der Buttons
-@property (weak) IBOutlet NSButton *homepageButton;
-@property (weak) IBOutlet NSButton *dismissButton;
-
+// Definition der Menü-Buttons
 @property (weak) IBOutlet NSButton *homeButton;
 @property (weak) IBOutlet NSButton *leftButton;
 @property (weak) IBOutlet NSButton *rightButton;
+@property (weak) IBOutlet NSButton *walletButton;
+
+@property (weak) IBOutlet NSButton *homepageButton;
+
+// Definition des blauen InfoButtons
+@property (weak) IBOutlet NSButton *infoButton;
 
 // Definition der Labels
 @property (weak) IBOutlet NSTextField *headlineLabel;
@@ -25,9 +28,6 @@
 @property (strong) IBOutlet NSTextField *statusLabel;
 @property (strong) IBOutlet NSTextField *infoLabel;
 
-// Definition des blauen InfoButtons
-@property (weak) IBOutlet NSButton *multiButton;
-
 // Definition der Eingabefelder
 @property (weak) IBOutlet NSButton *currencyButton;
 @property (weak) IBOutlet NSTextField *currencyUnits;
@@ -35,7 +35,7 @@
 @property (weak) IBOutlet NSButton *cryptoButton;
 @property (weak) IBOutlet NSTextField *cryptoUnits;
 
-// Definition des unteren Labels
+// Definition der unteren Labels
 @property (strong) IBOutlet NSTextField *rateInputLabel;
 @property (strong) IBOutlet NSTextField *rateInputCurrencyLabel;
 @property (weak) IBOutlet NSTextField *rateOutputLabel;
@@ -56,13 +56,13 @@
 @property (strong) IBOutlet NSPopUpButton *exchangeSelection;
 
 // Definition der Button-Actions
-- (IBAction)homepageAction:(id)sender;
-- (IBAction)dismissAction:(id)sender;
-
 - (IBAction)homeAction:(id)sender;
 - (IBAction)leftAction:(id)sender;
 - (IBAction)rightAction:(id)sender;
-- (IBAction)multiAction:(id)sender;
+- (IBAction)walletAction:(id)sender;
+- (IBAction)infoAction:(id)sender;
+
+- (IBAction)homepageAction:(id)sender;
 
 // Währungssymbole
 - (IBAction)currencyAction:(id)sender;
@@ -75,9 +75,6 @@
 - (NSDictionary*) applications;
 - (NSDictionary*) traders;
 - (NSDictionary*) images;
-
-// Getter und Setter
-- (void) homeURL:(NSString*) url;
 - (NSString*) homeURL;
 
 // Methoden zum Aktualisieren der Ansichten

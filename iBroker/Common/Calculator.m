@@ -205,7 +205,7 @@
  */
 - (void)unsynchronizedUpdateRatings {
     NSString *jsonURL =
-        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC,ETH,LTC,XMR,DOGE,ZEC", fiatCurrencies[0], fiatCurrencies[1]];
+        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC,ETH,LTC,XMR,DOGE,ZEC,DASH,XRP", fiatCurrencies[0], fiatCurrencies[1]];
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:jsonURL]];

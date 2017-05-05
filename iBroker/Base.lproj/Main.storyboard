@@ -211,7 +211,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="multiAction:" target="2wC-py-DJR" id="Bc5-1l-hnp"/>
+                                    <action selector="infoAction:" target="2wC-py-DJR" id="Bc5-1l-hnp"/>
                                 </connections>
                             </button>
                             <box wantsLayer="YES" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="ibZ-fl-489">
@@ -322,7 +322,7 @@
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="dismissAction:" target="2wC-py-DJR" id="W39-V1-Ea7"/>
+                                                <action selector="walletAction:" target="2wC-py-DJR" id="W39-V1-Ea7"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -542,9 +542,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g6T-5O-fao">
-                                            <rect key="frame" x="10" y="2" width="114" height="40"/>
+                                            <rect key="frame" x="12" y="2" width="131" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="110" id="hHz-hS-aMU"/>
+                                                <constraint firstAttribute="width" constant="127" id="hHz-hS-aMU"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="iBroker" id="Boa-Pw-8hT">
                                                 <font key="font" size="25" name="Krungthep"/>
@@ -553,17 +553,17 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m8T-Bw-tnd">
-                                            <rect key="frame" x="128" y="2" width="358" height="40"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="Info" id="BiY-c6-xVz">
+                                            <rect key="frame" x="151" y="2" width="333" height="40"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Escobar Edition" placeholderString="" id="BiY-c6-xVz">
                                                 <font key="font" size="25" name="Krungthep"/>
                                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qxy-RG-i6z">
-                                            <rect key="frame" x="490" y="2" width="135" height="40"/>
+                                            <rect key="frame" x="492" y="2" width="131" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="131" id="bIy-8M-zAe"/>
+                                                <constraint firstAttribute="width" constant="127" id="bIy-8M-zAe"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" placeholderString="Status" id="yYV-xP-eAj">
                                                 <font key="font" size="25" name="Krungthep"/>
@@ -575,12 +575,12 @@
                                     <constraints>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="m8T-Bw-tnd" secondAttribute="top" id="1Cx-ao-qe4"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="baseline" secondItem="m8T-Bw-tnd" secondAttribute="baseline" id="1oD-LC-miO"/>
-                                        <constraint firstAttribute="trailing" secondItem="Qxy-RG-i6z" secondAttribute="trailing" constant="14" id="2rA-Lg-C0U"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qxy-RG-i6z" secondAttribute="trailing" constant="16" id="2rA-Lg-C0U"/>
                                         <constraint firstItem="Qxy-RG-i6z" firstAttribute="top" secondItem="m8T-Bw-tnd" secondAttribute="top" id="Ay6-RW-H05"/>
-                                        <constraint firstItem="g6T-5O-fao" firstAttribute="leading" secondItem="djh-fJ-a7e" secondAttribute="leading" constant="12" id="DKJ-Hs-OLf"/>
-                                        <constraint firstItem="Qxy-RG-i6z" firstAttribute="leading" secondItem="m8T-Bw-tnd" secondAttribute="trailing" constant="8" symbolic="YES" id="DqJ-6v-lbY"/>
+                                        <constraint firstItem="g6T-5O-fao" firstAttribute="leading" secondItem="djh-fJ-a7e" secondAttribute="leading" constant="14" id="DKJ-Hs-OLf"/>
+                                        <constraint firstItem="Qxy-RG-i6z" firstAttribute="leading" secondItem="m8T-Bw-tnd" secondAttribute="trailing" constant="12" id="DqJ-6v-lbY"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="3" id="TLp-L0-qMf"/>
-                                        <constraint firstItem="m8T-Bw-tnd" firstAttribute="leading" secondItem="g6T-5O-fao" secondAttribute="trailing" constant="8" symbolic="YES" id="cB7-pD-6aW"/>
+                                        <constraint firstItem="m8T-Bw-tnd" firstAttribute="leading" secondItem="g6T-5O-fao" secondAttribute="trailing" constant="12" id="cB7-pD-6aW"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="centerY" secondItem="djh-fJ-a7e" secondAttribute="centerY" id="mFF-PF-bEg"/>
                                         <constraint firstItem="m8T-Bw-tnd" firstAttribute="baseline" secondItem="Qxy-RG-i6z" secondAttribute="baseline" id="ta9-Q0-5DH"/>
                                     </constraints>
@@ -720,21 +720,21 @@
                         <outlet property="currency5Label" destination="DEQ-kb-9Dj" id="DsK-l5-W5d"/>
                         <outlet property="currencyButton" destination="h8R-Ca-f07" id="9ZU-8C-gsh"/>
                         <outlet property="currencyUnits" destination="cPk-Kk-daI" id="o8L-DK-X4b"/>
-                        <outlet property="dismissButton" destination="I8c-Qp-8Ez" id="kU3-KO-C6J"/>
                         <outlet property="exchangeSelection" destination="Qtu-xX-OW2" id="GuY-0m-7lL"/>
                         <outlet property="headlineLabel" destination="cqL-ye-zmb" id="8Mh-Ba-mKi"/>
                         <outlet property="homeButton" destination="xMq-92-SOU" id="X3b-PJ-G1F"/>
                         <outlet property="homepageButton" destination="jF1-eZ-tYZ" id="NkO-8l-Jm5"/>
                         <outlet property="iBrokerLabel" destination="g6T-5O-fao" id="YeY-vv-d7l"/>
+                        <outlet property="infoButton" destination="36w-6A-NbZ" id="crK-Xi-naI"/>
                         <outlet property="infoLabel" destination="m8T-Bw-tnd" id="Em2-ZB-Jkz"/>
                         <outlet property="leftButton" destination="Yti-eZ-CdL" id="OBw-L5-E9U"/>
-                        <outlet property="multiButton" destination="36w-6A-NbZ" id="crK-Xi-naI"/>
                         <outlet property="percentLabel" destination="gRb-72-KO9" id="dtf-Hb-rU3"/>
                         <outlet property="rateInputCurrencyLabel" destination="Zkw-JC-xWt" id="4iZ-qi-tmi"/>
                         <outlet property="rateInputLabel" destination="hD5-1w-bmW" id="whb-di-IFV"/>
                         <outlet property="rateOutputLabel" destination="byo-Q7-Pc5" id="EHk-xD-QqZ"/>
                         <outlet property="rightButton" destination="af1-Jr-cka" id="qIk-Ak-IwW"/>
                         <outlet property="statusLabel" destination="Qxy-RG-i6z" id="tr5-3l-3vR"/>
+                        <outlet property="walletButton" destination="I8c-Qp-8Ez" id="kU3-KO-C6J"/>
                     </connections>
                 </viewController>
                 <customObject id="nvB-9g-wSM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
