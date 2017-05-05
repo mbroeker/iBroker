@@ -10,6 +10,8 @@
 
 @interface RatingsViewController : NSViewController
 
+@property (strong) IBOutlet NSTextField *ratingsHeadline;
+
 // Properties List
 @property (strong) IBOutlet NSTextField *btcField;
 @property (strong) IBOutlet NSTextField *ethField;
@@ -28,5 +30,8 @@
 - (IBAction)xmrAction:(id)sender;
 - (IBAction)ltcAction:(id)sender;
 - (IBAction)usdAction:(id)sender;
+
+// Interne Methode zum Aktualisieren des Views
+- (void)updateView;
 
 @end

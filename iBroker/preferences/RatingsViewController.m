@@ -41,20 +41,24 @@
     [formatter setMaximumFractionDigits:8];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
+- (void)updateView {
     calculator = [Calculator instance];
 
     // Aktualisierte Ratings besorgen
-    NSMutableDictionary *initialRatings = [calculator initialRatings];
-    
-    self.btcField.doubleValue = [initialRatings[@"BTC"] doubleValue];
-    self.ethField.doubleValue = [initialRatings[@"ETH"] doubleValue];
-    self.xmrField.doubleValue = [initialRatings[@"XMR"] doubleValue];
-    self.ltcField.doubleValue = [initialRatings[@"LTC"] doubleValue];
-    self.dogeField.doubleValue = [initialRatings[@"DOGE"] doubleValue];
-    self.usdField.doubleValue = [initialRatings[@"USD"] doubleValue];
+    NSMutableDictionary *ratings = [calculator initialRatings];
+
+    self.btcField.doubleValue = [ratings[@"BTC"] doubleValue];
+    self.ethField.doubleValue = [ratings[@"ETH"] doubleValue];
+    self.xmrField.doubleValue = [ratings[@"XMR"] doubleValue];
+    self.ltcField.doubleValue = [ratings[@"LTC"] doubleValue];
+    self.dogeField.doubleValue = [ratings[@"DOGE"] doubleValue];
+    self.usdField.doubleValue = [ratings[@"USD"] doubleValue];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    [self updateView];
 }
 
 /**
@@ -81,6 +85,9 @@
     initialRatings[@"USD"] = @(dollar);
 
     [calculator initialRatingsWithDictionary:initialRatings];
+
+    // Gespeicherte Daten neu einlesen...
+    [self updateView];
 }
 
 /**
