@@ -8,6 +8,8 @@
 
 #import "TabViewController.h"
 
+#define DEFAULT_TIMEOUT 60
+
 @implementation TabViewController {
 @private
     TemplateViewController *controller;
@@ -27,10 +29,10 @@
     dispatch_async(autoRefreshQueue, ^{
 
         while(true) {
-            [NSThread sleepForTimeInterval:30];
+            [NSThread sleepForTimeInterval:DEFAULT_TIMEOUT];
 
             dispatch_async(dispatch_get_main_queue(), ^{
-                [controller updateCurrentView];
+                [controller updateCurrentView:true];
             });
         }
 

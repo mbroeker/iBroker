@@ -9,6 +9,8 @@
 #define DEBUG 1
 #endif
 
+const double CHECKPOINT_PERCENTAGE = 5.0;
+
 typedef struct COINCHANGE {
     double effectivePercent;
     double diffsInPercent;
@@ -54,7 +56,10 @@ typedef struct DASHBOARD {
 /**
  * AKtualsiert das aktive Tab
  */
-- (void)updateCurrentView {
+- (void)updateCurrentView:(BOOL)withRatings {
+    if (withRatings) {
+        [calculator updateRatings];
+    }
 
     // View aktualisieren
     NSString *label = self.headlineLabel.stringValue;
@@ -203,7 +208,7 @@ typedef struct DASHBOARD {
     NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
     NSColor *highestColor = [NSColor greenColor];
 
-    if ([highest doubleValue] > 5.0) highestColor = [NSColor blueColor];
+    if ([highest doubleValue] > CHECKPOINT_PERCENTAGE) highestColor = [NSColor blueColor];
 
     if ([highestKey isEqualToString:BTC]) self.currency1Field.backgroundColor = highestColor;
     if ([highestKey isEqualToString:ETH]) self.currency2Field.backgroundColor = highestColor;
@@ -215,7 +220,7 @@ typedef struct DASHBOARD {
     NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
     NSColor *lowestColor = dangerColor;
 
-    if ([lowest doubleValue] < -5.0) lowestColor = [NSColor magentaColor];
+    if ([lowest doubleValue] < -CHECKPOINT_PERCENTAGE) lowestColor = [NSColor magentaColor];
 
     if ([lowestKey isEqualToString:BTC]) [self.currency1Field setBackgroundColor:lowestColor];
     if ([lowestKey isEqualToString:ETH]) [self.currency2Field setBackgroundColor:lowestColor];
@@ -408,9 +413,6 @@ typedef struct DASHBOARD {
  */
 - (void)updateTemplateView:(NSString *)label {
 
-    // Ratings aktualisieren
-    [calculator updateRatings];
-
     // Farben zurück setzen
     [self resetColors];
 
@@ -523,7 +525,6 @@ typedef struct DASHBOARD {
  * @param sender
  */
 - (IBAction)walletAction:(id)sender {
-    NSAlert *alert = [[NSAlert alloc] init];
     NSString *title = self.headlineLabel.stringValue;
 
     if ([title isEqualToString:@"Dashboard"]) {
@@ -531,26 +532,16 @@ typedef struct DASHBOARD {
         return;
     }
 
-    [alert setAlertStyle:NSInformationalAlertStyle];
+    if (![[NSWorkspace sharedWorkspace] launchApplication:applications[title]]) {
+        NSAlert *msg = [[NSAlert alloc] init];
+        [msg setAlertStyle:NSWarningAlertStyle];
 
-    [alert addButtonWithTitle:@"Starten"];
-    [alert addButtonWithTitle:@"Nein"];
-    alert.messageText = [NSString stringWithFormat:@"%@ starten?", title];
-    alert.informativeText = @"Das Programm wird automatisch gestartet.";
+        [msg addButtonWithTitle:@"Abnicken"];
+        msg.messageText = [NSString stringWithFormat:@"Fehler beim Starten der %@ Wallet", title];
+        msg.informativeText = [NSString stringWithFormat:@"Installieren Sie %@.", applications[title]];
 
-    if ([alert runModal] == NSAlertFirstButtonReturn) {
-        if (![[NSWorkspace sharedWorkspace] launchApplication:applications[title]]) {
-            NSAlert *msg = [[NSAlert alloc] init];
-            [msg setAlertStyle:NSWarningAlertStyle];
-
-            [msg addButtonWithTitle:@"Abnicken"];
-            msg.messageText = [NSString stringWithFormat:@"Fehler beim Starten der %@ Wallet", title];
-            msg.informativeText = [NSString stringWithFormat:@"Installieren Sie %@.", applications[title]];
-
-            [msg runModal];
-        }
+        [msg runModal];
     }
-
 }
 
 /**
@@ -598,13 +589,13 @@ typedef struct DASHBOARD {
     };
 
     NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabStrings[tabTitle][1]];
-    NSString *info = @"Der Vergleich (+/-) bezieht sich auf die zuletzt gespeicherten Kurse!";
+    NSString *info = @"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Checkpoint!";
 
     if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
         [calculator updateCheckpointForAsset:tabStrings[tabTitle][0] withBTCUpdate:FALSE];
     }
 
-    [self updateCurrentView];
+    [self updateCurrentView:false];
 }
 
 /**
@@ -631,8 +622,6 @@ typedef struct DASHBOARD {
     ];
 
     [Helper messageText:@"Gesamtbestand umgerechnet:" info:text];
-
-    [self updateCurrentView];
 }
 
 /**

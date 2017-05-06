@@ -80,7 +80,7 @@
 // Methoden zum Aktualisieren der Ansichten
 - (void)updateOverview;
 - (void)updateTemplateView:(NSString*)label;
-- (void)updateCurrentView;
+- (void)updateCurrentView:(BOOL)withRatings;
 
 // Methoden zum Einrichten der Datenstrukturen
 - (void)initializeWithDefaults;
