@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "Helper.h"
+#import "Calculator.h"
 
 @implementation AppDelegate
 
@@ -56,9 +57,9 @@
 
         [defaults removeObjectForKey:@"applications"];
         [defaults removeObjectForKey:@"traders"];
-        [defaults removeObjectForKey:@"saldoUrls"];
-        [defaults removeObjectForKey:@"currentSaldo"];
-        [defaults removeObjectForKey:@"initialRatings"];
+        [defaults removeObjectForKey:KEY_SALDO_URLS];
+        [defaults removeObjectForKey:KEY_CURRENT_SALDO];
+        [defaults removeObjectForKey:KEY_INITIAL_RATINGS];
 
         [defaults synchronize];
 
