@@ -24,7 +24,7 @@
  * Der öffentliche Konstruktor mit Vorbelegung EUR/USD
  */
 + (id)instance {
-    return [self instance:@[@"EUR", @"USD"]];
+    return [self instance:@[EUR, USD]];
 }
 
 /**
@@ -45,7 +45,7 @@
  * Der Standard Konstruktor
  */
 - (id)init {
-    return [self initWithFiatCurrencies:@[@"EUR", @"USD"]];
+    return [self initWithFiatCurrencies:@[EUR, USD]];
 }
 
 /**
@@ -57,23 +57,23 @@
     if (self = [super init]) {
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
+        currentSaldo = [[defaults objectForKey:KEY_CURRENT_SALDO] mutableCopy];
 
         fiatCurrencies = currencies;
 
         if (currentSaldo == NULL) {
             currentSaldo = [@{
-                @"BTC": @0.0,
-                @"ETH": @0.0,
-                @"LTC": @0.0,
-                @"XMR": @0.0,
-                @"DOGE": @0.0,
+                BTC: @0.0,
+                ETH: @0.0,
+                LTC: @0.0,
+                XMR: @0.0,
+                DOGE: @0.0,
             } mutableCopy];
 
-            [defaults setObject:currentSaldo forKey:@"currentSaldo"];
+            [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
         }
 
-        saldoUrls = [defaults objectForKey:@"saldoUrls"];
+        saldoUrls = [defaults objectForKey:KEY_SALDO_URLS];
 
         if (saldoUrls == NULL) {
             saldoUrls = [@{
@@ -85,7 +85,7 @@
                 @"Dogecoin": @"http://dogechain.info/",
             } mutableCopy];
 
-            [defaults setObject:saldoUrls forKey:@"saldoUrls"];
+            [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
         }
 
         [defaults synchronize];
@@ -102,9 +102,9 @@
 + (void)reset {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults removeObjectForKey:@"saldoUrls"];
-    [defaults removeObjectForKey:@"currentSaldo"];
-    [defaults removeObjectForKey:@"initialRatings"];
+    [defaults removeObjectForKey:KEY_SALDO_URLS];
+    [defaults removeObjectForKey:KEY_CURRENT_SALDO];
+    [defaults removeObjectForKey:KEY_INITIAL_RATINGS];
 
     [defaults synchronize];
 }
@@ -124,13 +124,13 @@
         // aktualisiere den Kurs der Währung
         initialRatings[asset] = currentRatings[asset];
 
-        if (![asset isEqualToString:@"BTC"] && btcUpdate) {
+        if (![asset isEqualToString:BTC] && btcUpdate) {
             // aktualisiere den BTC Kurs, auf den sich die Transaktion bezog
-            initialRatings[@"BTC"] = currentRatings[@"BTC"];
+            initialRatings[BTC] = currentRatings[BTC];
         }
     }
 
-    [defaults setObject:initialRatings forKey:@"initialRatings"];
+    [defaults setObject:initialRatings forKey:KEY_INITIAL_RATINGS];
     [defaults synchronize];
 }
 
@@ -147,10 +147,10 @@
     double percent = 100.0 * ((currentPrice / initialPrice) - 1);
 
     return @{
-        @"initialPrice": @(initialPrice),
-        @"currentPrice": @(currentPrice),
-        @"percent": @(percent),
-        @"effectivePrice": @((1 + percent / 100.0) * currentPrice)
+        KEY_INITIAL_PRICE: @(initialPrice),
+        KEY_CURRENT_PRICE: @(currentPrice),
+        KEY_PERCENT: @(percent),
+        KEY_EFFECTIVE_PRICE: @((1 + percent / 100.0) * currentPrice)
     };
 }
 
@@ -173,13 +173,13 @@
  */
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    currentSaldo = [[defaults objectForKey:@"currentSaldo"] mutableCopy];
+    currentSaldo = [[defaults objectForKey:KEY_CURRENT_SALDO] mutableCopy];
 
-    double btc = [currentSaldo[@"BTC"] doubleValue] / [ratings[@"BTC"] doubleValue];
-    double eth = [currentSaldo[@"ETH"] doubleValue] / [ratings[@"ETH"] doubleValue];
-    double ltc = [currentSaldo[@"LTC"] doubleValue] / [ratings[@"LTC"] doubleValue];
-    double xmr = [currentSaldo[@"XMR"] doubleValue] / [ratings[@"XMR"] doubleValue];
-    double doge = [currentSaldo[@"DOGE"] doubleValue] / [ratings[@"DOGE"] doubleValue];
+    double btc = [currentSaldo[BTC] doubleValue] / [ratings[BTC] doubleValue];
+    double eth = [currentSaldo[ETH] doubleValue] / [ratings[ETH] doubleValue];
+    double ltc = [currentSaldo[LTC] doubleValue] / [ratings[LTC] doubleValue];
+    double xmr = [currentSaldo[XMR] doubleValue] / [ratings[XMR] doubleValue];
+    double doge = [currentSaldo[DOGE] doubleValue] / [ratings[DOGE] doubleValue];
 
     double sum = btc + eth + ltc + xmr + doge;
 
@@ -234,10 +234,10 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
         currentRatings = [allkeys[fiatCurrencies[0]] mutableCopy];
-        initialRatings = [[defaults objectForKey:@"initialRatings"] mutableCopy];
+        initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
 
         // DOGE RATINGS aktualisieren, da dieser WS das nicht kann.
-        currentRatings[@"DOGE"] = [NSString stringWithFormat:@"%.8f", [self unsynchronizedUdateDoge]];
+        currentRatings[DOGE] = [NSString stringWithFormat:@"%.8f", [self unsynchronizedUdateDoge]];
 
         if (initialRatings == NULL) {
             [self initialRatingsWithDictionary:currentRatings];
@@ -346,7 +346,7 @@
 - (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults setObject:dictionary forKey:@"currentSaldo"];
+    [defaults setObject:dictionary forKey:KEY_CURRENT_SALDO];
     [defaults synchronize];
 
     currentSaldo = [dictionary mutableCopy];
@@ -360,7 +360,7 @@
 - (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults setObject:dictionary forKey:@"saldoUrls"];
+    [defaults setObject:dictionary forKey:KEY_SALDO_URLS];
     [defaults synchronize];
 
     saldoUrls = [dictionary mutableCopy];
@@ -374,7 +374,7 @@
 - (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults setObject:dictionary forKey:@"initialRatings"];
+    [defaults setObject:dictionary forKey:KEY_INITIAL_RATINGS];
     [defaults synchronize];
 
     initialRatings = [dictionary mutableCopy];

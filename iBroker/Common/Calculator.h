@@ -5,6 +5,27 @@
 
 #import <Foundation/Foundation.h>
 
+#define BTC @"BTC"
+#define ETH @"ETH"
+#define XMR @"XMR"
+#define LTC @"LTC"
+#define DOGE @"DOGE"
+
+#define ZEC @"ZEC"
+#define DASH @"DASH"
+#define XRP @"XRP"
+
+#define EUR @"EUR"
+#define USD @"USD"
+
+#define KEY_INITIAL_RATINGS @"initialRatings"
+#define KEY_CURRENT_SALDO @"currentSaldo"
+#define KEY_SALDO_URLS @"saldoUrls"
+
+#define KEY_INITIAL_PRICE @"initialPrice"
+#define KEY_CURRENT_PRICE @"currentPrice"
+#define KEY_EFFECTIVE_PRICE @"effectivePrice"
+#define KEY_PERCENT @"percent"
 
 @interface Calculator : NSObject
 
