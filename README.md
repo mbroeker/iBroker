@@ -5,7 +5,7 @@ Eine simple Bestandssoftware fürs Online-Traden auf diversen Tauschbörsen
 ### iBroker - Escobar Edition ###
 
 * Schnellübersicht
-* Version 11
+* Version 14
 * 4customers UG - https://www.4customers.de/ibroker
 
 ### Erstmal ist es eine Spielwiese ###
