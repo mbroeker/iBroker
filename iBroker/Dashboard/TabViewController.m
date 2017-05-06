@@ -8,24 +8,32 @@
 
 #import "TabViewController.h"
 
-@implementation TabViewController
+@implementation TabViewController {
+@private
+    TemplateViewController *controller;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.tabView.delegate = self;
 
-    TemplateViewController *controller = (TemplateViewController*)self.tabViewItems.firstObject.viewController;
+    controller = (TemplateViewController*)self.tabViewItems.firstObject.viewController;
 
     // Startseite aufrufen
     [controller updateOverview];
 
     dispatch_queue_t autoRefreshQueue = dispatch_queue_create("Auto-Refresh",NULL);
     dispatch_async(autoRefreshQueue, ^{
+
         while(true) {
             [NSThread sleepForTimeInterval:30];
-            [controller updateCurrentView];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [controller updateCurrentView];
+            });
         }
+
     });
 }
 
@@ -39,7 +47,7 @@
 
     NSString *tab = tabViewItem.label;
 
-    TemplateViewController *controller = (TemplateViewController*)tabViewItem.viewController;
+    controller = (TemplateViewController*)tabViewItem.viewController;
     [controller updateTemplateView:tab];
 }
 
