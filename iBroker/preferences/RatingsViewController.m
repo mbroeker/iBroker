@@ -47,12 +47,12 @@
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *ratings = [calculator initialRatings];
 
-    self.btcField.doubleValue = [ratings[@"BTC"] doubleValue];
-    self.ethField.doubleValue = [ratings[@"ETH"] doubleValue];
-    self.xmrField.doubleValue = [ratings[@"XMR"] doubleValue];
-    self.ltcField.doubleValue = [ratings[@"LTC"] doubleValue];
-    self.dogeField.doubleValue = [ratings[@"DOGE"] doubleValue];
-    self.usdField.doubleValue = [ratings[@"USD"] doubleValue];
+    self.btcField.doubleValue = 1 / [ratings[@"BTC"] doubleValue];
+    self.ethField.doubleValue = 1 / [ratings[@"ETH"] doubleValue];
+    self.xmrField.doubleValue = 1 / [ratings[@"XMR"] doubleValue];
+    self.ltcField.doubleValue = 1 / [ratings[@"LTC"] doubleValue];
+    self.dogeField.doubleValue = 1 / [ratings[@"DOGE"] doubleValue];
+    self.usdField.doubleValue = 1 / [ratings[@"USD"] doubleValue];
 }
 
 - (void)viewDidLoad {
@@ -70,12 +70,12 @@
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *initialRatings = [calculator initialRatings];
 
-    double btc = self.btcField.doubleValue;
-    double eth = self.ethField.doubleValue;
-    double xmr = self.xmrField.doubleValue;
-    double ltc = self.ltcField.doubleValue;
-    double doge = self.dogeField.doubleValue;
-    double dollar = self.usdField.doubleValue;
+    double btc = 1 / self.btcField.doubleValue;
+    double eth = 1 / self.ethField.doubleValue;
+    double xmr = 1 / self.xmrField.doubleValue;
+    double ltc = 1 / self.ltcField.doubleValue;
+    double doge = 1 / self.dogeField.doubleValue;
+    double dollar = 1 / self.usdField.doubleValue;
 
     initialRatings[@"BTC"] = @(btc);
     initialRatings[@"ETH"] = @(eth);

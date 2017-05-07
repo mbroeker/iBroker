@@ -484,7 +484,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZfU-Li-ryH">
-                                            <rect key="frame" x="589" y="13" width="103" height="32"/>
+                                            <rect key="frame" x="590" y="13" width="103" height="32"/>
                                             <buttonCell key="cell" type="push" title="Speichern" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="F1h-wK-y1Q">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -499,7 +499,7 @@
                                         <constraint firstItem="yZh-kq-MkQ" firstAttribute="leading" secondItem="Tuu-ai-tWU" secondAttribute="leading" constant="20" symbolic="YES" id="Lcx-NZ-hWe"/>
                                         <constraint firstItem="yZh-kq-MkQ" firstAttribute="top" secondItem="Tuu-ai-tWU" secondAttribute="top" constant="10" id="R8L-ju-1w0"/>
                                         <constraint firstItem="yZh-kq-MkQ" firstAttribute="centerY" secondItem="ZfU-Li-ryH" secondAttribute="centerY" id="iuW-yE-LXx"/>
-                                        <constraint firstAttribute="trailing" secondItem="ZfU-Li-ryH" secondAttribute="trailing" constant="26" id="vg6-8d-0Sf"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZfU-Li-ryH" secondAttribute="trailing" constant="25" id="vg6-8d-0Sf"/>
                                         <constraint firstAttribute="bottom" secondItem="ZfU-Li-ryH" secondAttribute="bottom" constant="20" symbolic="YES" id="vmY-Ay-BY7"/>
                                     </constraints>
                                 </view>
@@ -511,7 +511,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="672" id="mfb-5j-NVF"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre initialen Kurse" placeholderString="" id="Ilt-AS-aFi">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre initialen Kurse (EUR)" placeholderString="" id="Ilt-AS-aFi">
                                     <font key="font" size="20" name="Krungthep"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
