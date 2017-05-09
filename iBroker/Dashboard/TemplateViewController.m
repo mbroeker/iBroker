@@ -150,6 +150,12 @@ typedef struct DASHBOARD {
     dangerColor = [NSColor colorWithCalibratedRed:200.0f/255.0f green:79.0f/255.0f blue:35.0f/255.0f alpha:1.0f];
 
     [defaults synchronize];
+    
+    // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
+    self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
+
+    // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
+    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];    
 }
 
 /**
@@ -283,12 +289,6 @@ typedef struct DASHBOARD {
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
-    // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
-    self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
-
-    // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
-    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
-
     // Aktualisiere die URL für den HOME-Button
     homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
 
@@ -376,12 +376,6 @@ typedef struct DASHBOARD {
     );
 #endif
 
-    /* Diese beiden Annahmen, dass die berechneten Werte maximal um eine Milli-Einheit abweichen, müssen immer erfüllt sein */
-    if (loop_vars.shares != 0) {
-        assert(fabs(loop_vars.totalBalancesInEUR - loop_vars.balancesInEUR) < 0.001);
-        assert(fabs(loop_vars.shares - 100.0) < 0.001);
-    }
-
     self.percentLabel.stringValue = [Helper double2GermanPercent:loop_vars.coinchange.effectivePercent fractions:2];
     if (loop_vars.coinchange.diffsInEuro != 0) self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:loop_vars.coinchange.diffsInEuro min:2 max:2]];
 
@@ -425,6 +419,9 @@ typedef struct DASHBOARD {
     // Standards
     homeURL = [calculator saldoUrlForLabel:label];
 
+    // Aktualisiere den Kurs des Tabs - falls einer gesetzt ist
+    [self rateInputAction:self];
+
     if ([label isEqualToString:@"Dashboard"]) {
         [self updateOverview];
 
@@ -440,9 +437,11 @@ typedef struct DASHBOARD {
     // Setze das Bild für die Einheit
     [self.cryptoButton setImage:self.images[asset]];
 
-    // Setze den Taschenrechner auf EUR
-    self.exchangeSelection.title = fiatCurrencies[0];
-
+    if ([self.rateInputLabel.stringValue isEqualToString:@""]) {
+        // Setze den Taschenrechner auf EUR
+        self.exchangeSelection.title = fiatCurrencies[0];
+    }
+    
     // Hole die aktualisierten Dictionaries
     NSDictionary *checkpoint = [calculator checkpointForAsset:asset];
     NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
@@ -670,6 +669,11 @@ typedef struct DASHBOARD {
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     double exchangeFactor = ([exchangeUnit isEqualToString:fiatCurrencies[0]]) ? 1 : [currentRatings[exchangeUnit] doubleValue];
+
+    if ([self.rateInputLabel.stringValue isEqualToString:@""]) {
+        // keine Eingabe, keine Aktualisierung
+        return;
+    }
 
     double amount = self.rateInputLabel.doubleValue;
     double result = amount / [currentRatings[cAsset] doubleValue] * exchangeFactor;
