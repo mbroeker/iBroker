@@ -47,6 +47,7 @@ typedef struct DASHBOARD {
 
     // EURO UND USD derzeit
     NSArray *fiatCurrencies;
+    NSString *fiatCurrencySymbol;
 
     // meine nettes Rot
     NSColor *dangerColor;
@@ -95,6 +96,12 @@ typedef struct DASHBOARD {
 
     // Liste der Fiat-Währungen
     fiatCurrencies = [calculator fiatCurrencies];
+    
+    if ([fiatCurrencies[0] isEqualToString:@"EUR"]) {
+        fiatCurrencySymbol = @"€";
+    } else {
+        fiatCurrencySymbol = @"$";
+    }
 
     tabs = @{
         @"Dashboard": @[fiatCurrencies[1], @1],
@@ -373,7 +380,11 @@ typedef struct DASHBOARD {
 #endif
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:loop_vars.coinchange.effectivePercent fractions:2];
-    if (loop_vars.coinchange.diffsInEuro != 0) self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:loop_vars.coinchange.diffsInEuro min:2 max:2]];
+    if (loop_vars.coinchange.diffsInEuro != 0) self.statusLabel.stringValue = [
+        NSString stringWithFormat:@"%@ %@",
+            [Helper double2German:loop_vars.coinchange.diffsInEuro min:2 max:2],
+            fiatCurrencySymbol
+    ];
 
     [self markDockLabels:loop_vars.coinchange];
 
@@ -466,7 +477,11 @@ typedef struct DASHBOARD {
     self.currencyUnits.doubleValue = priceInEuro;
 
     if (diffInEuro != 0) {
-        self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:diffInEuro min:2 max:2]];
+        self.statusLabel.stringValue = [
+            NSString stringWithFormat:@"%@ %@",
+                [Helper double2German:diffInEuro min:2 max:2],
+                fiatCurrencySymbol
+        ];
     } else {
         // Placeholder reaktivieren
         self.statusLabel.stringValue = @"";

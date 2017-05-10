@@ -542,9 +542,9 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g6T-5O-fao">
-                                            <rect key="frame" x="12" y="2" width="131" height="40"/>
+                                            <rect key="frame" x="12" y="2" width="174" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="127" id="hHz-hS-aMU"/>
+                                                <constraint firstAttribute="width" constant="170" id="hHz-hS-aMU"/>
                                             </constraints>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="iBroker" id="Boa-Pw-8hT">
                                                 <font key="font" size="25" name="Krungthep"/>
@@ -552,20 +552,20 @@
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m8T-Bw-tnd">
-                                            <rect key="frame" x="151" y="2" width="333" height="40"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Escobar Edition" placeholderString="" id="BiY-c6-xVz">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qxy-RG-i6z">
+                                            <rect key="frame" x="456" y="2" width="174" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="170" id="bIy-8M-zAe"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" placeholderString="Status" id="yYV-xP-eAj">
                                                 <font key="font" size="25" name="Krungthep"/>
                                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qxy-RG-i6z">
-                                            <rect key="frame" x="492" y="2" width="131" height="40"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="127" id="bIy-8M-zAe"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" placeholderString="Status" id="yYV-xP-eAj">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m8T-Bw-tnd">
+                                            <rect key="frame" x="182" y="2" width="279" height="40"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Escobar Edition" placeholderString="" id="BiY-c6-xVz">
                                                 <font key="font" size="25" name="Krungthep"/>
                                                 <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -575,12 +575,12 @@
                                     <constraints>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="m8T-Bw-tnd" secondAttribute="top" id="1Cx-ao-qe4"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="baseline" secondItem="m8T-Bw-tnd" secondAttribute="baseline" id="1oD-LC-miO"/>
-                                        <constraint firstAttribute="trailing" secondItem="Qxy-RG-i6z" secondAttribute="trailing" constant="16" id="2rA-Lg-C0U"/>
+                                        <constraint firstAttribute="trailing" secondItem="Qxy-RG-i6z" secondAttribute="trailing" constant="9" id="2rA-Lg-C0U"/>
                                         <constraint firstItem="Qxy-RG-i6z" firstAttribute="top" secondItem="m8T-Bw-tnd" secondAttribute="top" id="Ay6-RW-H05"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="leading" secondItem="djh-fJ-a7e" secondAttribute="leading" constant="14" id="DKJ-Hs-OLf"/>
-                                        <constraint firstItem="Qxy-RG-i6z" firstAttribute="leading" secondItem="m8T-Bw-tnd" secondAttribute="trailing" constant="12" id="DqJ-6v-lbY"/>
+                                        <constraint firstItem="Qxy-RG-i6z" firstAttribute="leading" secondItem="m8T-Bw-tnd" secondAttribute="trailing" constant="-1" id="DqJ-6v-lbY"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="djh-fJ-a7e" secondAttribute="top" constant="3" id="TLp-L0-qMf"/>
-                                        <constraint firstItem="m8T-Bw-tnd" firstAttribute="leading" secondItem="g6T-5O-fao" secondAttribute="trailing" constant="12" id="cB7-pD-6aW"/>
+                                        <constraint firstItem="m8T-Bw-tnd" firstAttribute="leading" secondItem="g6T-5O-fao" secondAttribute="trailing" id="cB7-pD-6aW"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="centerY" secondItem="djh-fJ-a7e" secondAttribute="centerY" id="mFF-PF-bEg"/>
                                         <constraint firstItem="m8T-Bw-tnd" firstAttribute="baseline" secondItem="Qxy-RG-i6z" secondAttribute="baseline" id="ta9-Q0-5DH"/>
                                     </constraints>
