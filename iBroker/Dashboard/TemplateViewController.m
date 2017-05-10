@@ -24,7 +24,6 @@ typedef struct DASHBOARD {
     double totalBalancesInEUR;
     double balancesInEUR;
     double balancesInBTC;
-    double balancesInZEC;
     double shares;
 } DASHBOARD;
 
@@ -298,9 +297,9 @@ typedef struct DASHBOARD {
 #ifdef DEBUG
     NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
         [@"####" UTF8String],
+        [@"BALANCE" UTF8String],        
         [@"BALANCE IN EUR" UTF8String],
         [@"BALANCE IN BTC" UTF8String],
-        [@"BALANCE IN ZEC" UTF8String],
         [@"INITIAL IN EUR" UTF8String],
         [@"CURRENT IN EUR" UTF8String],
         [@"SHARE IN %" UTF8String],
@@ -314,7 +313,7 @@ typedef struct DASHBOARD {
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     // Standardmäßig sind die Werte zwar genullt, aber schaden tuts nicht.
-    DASHBOARD loop_vars = { {0, 0, 0}, 0, 0, 0, 0, 0, 0};
+    DASHBOARD loop_vars = { {0, 0, 0}, 0, 0, 0, 0, 0 };
 
     loop_vars.totalBalancesInEUR = [calculator calculate:fiatCurrencies[0]];
     loop_vars.initialBalancesInEUR = [calculator calculateWithRatings:initialRatings currency:fiatCurrencies[0]];
@@ -326,13 +325,11 @@ typedef struct DASHBOARD {
         double initialPrice = [checkpoint[KEY_INITIAL_PRICE] doubleValue];
         double currentPrice = [checkpoint[KEY_CURRENT_PRICE] doubleValue];
         double btcPrice = [asset isEqualToString:BTC] ? 1 : [currentRatings[BTC] doubleValue] / [currentRatings[asset] doubleValue];
-        double zecPrice = [asset isEqualToString:ZEC] ? 1 : [currentRatings[ZEC] doubleValue] / [currentRatings[asset] doubleValue];
 
         double amount = [currentSaldo[asset] doubleValue];
 
         double balanceInEUR =  amount * currentPrice;
         double balanceInBTC = amount * btcPrice;
-        double balanceInZEC = amount * zecPrice;
 
         double share = 0;
         if (loop_vars.totalBalancesInEUR != 0) share = (balanceInEUR / loop_vars.totalBalancesInEUR) * 100.0;
@@ -343,9 +340,9 @@ typedef struct DASHBOARD {
         #ifdef DEBUG
         NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
             [asset UTF8String],
+            [[Helper double2German:amount min:8 max:8] UTF8String],
             [[Helper double2German:balanceInEUR min:2 max:2] UTF8String],
             [[Helper double2German:balanceInBTC min:8 max:8] UTF8String],
-            [[Helper double2German:balanceInZEC min:8 max:8] UTF8String],
             [[Helper double2German:initialPrice min:2 max:2] UTF8String],
             [[Helper double2German:currentPrice min:2 max:2] UTF8String],
             [[Helper double2GermanPercent:share fractions:2] UTF8String],
@@ -359,15 +356,14 @@ typedef struct DASHBOARD {
         loop_vars.coinchange.diffsInPercent += diffInPercent;
         loop_vars.balancesInEUR += balanceInEUR;
         loop_vars.balancesInBTC += balanceInBTC;
-        loop_vars.balancesInZEC += balanceInZEC;
     }
 
 #ifdef DEBUG
     NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
         [@"ALL" UTF8String],
+        [@"   ---   " UTF8String],
         [[Helper double2German:loop_vars.balancesInEUR min:2 max:2] UTF8String],
         [[Helper double2German:loop_vars.balancesInBTC min:8 max:8] UTF8String],
-        [[Helper double2German:loop_vars.balancesInZEC min:8 max:8] UTF8String],
         [[Helper double2German:loop_vars.initialBalancesInEUR min:2 max:2] UTF8String],
         [[Helper double2German:loop_vars.totalBalancesInEUR min:2 max:2] UTF8String],
         [[Helper double2GermanPercent:loop_vars.shares fractions:0] UTF8String],
