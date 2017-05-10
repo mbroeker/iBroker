@@ -469,7 +469,12 @@ typedef struct DASHBOARD {
     self.cryptoUnits.doubleValue = saldo;
     self.currencyUnits.doubleValue = priceInEuro;
 
-    if (diffInEuro != 0) self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:diffInEuro min:2 max:2]];
+    if (diffInEuro != 0) {
+        self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ EUR", [Helper double2German:diffInEuro min:2 max:2]];
+    } else {
+        // Placeholder reaktivieren
+        self.statusLabel.stringValue = @"";
+    }
 
     double rate = assets / assetRating;
     self.rateInputLabel.placeholderString = [Helper double2German:assets min:0 max:0];
@@ -651,6 +656,9 @@ typedef struct DASHBOARD {
             // Checkpoint aktualisieren
             [calculator updateCheckpointForAsset:asset withBTCUpdate:TRUE];
         }
+        
+        // nach dem Aktualisieren des Bestands muss die Statusleiste aktualisisiert werden...
+        [self updateCurrentView:false];
     }
 }
 
