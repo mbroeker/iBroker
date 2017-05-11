@@ -12,11 +12,12 @@
     // Synchronisierte Einstellungen und Eigenschaften
     NSMutableDictionary *initialRatings;
     NSMutableDictionary *currentSaldo;
+    NSMutableDictionary *saldoUrls;
 
     // Normale Eigenschaften
     NSMutableDictionary *currentRatings;
-    NSMutableDictionary *saldoUrls;
-    
+    NSMutableDictionary *ticker;
+
     NSArray *fiatCurrencies;
 }
 
@@ -227,7 +228,7 @@
             NSLog(@"%@", [jsonError description]);
 
             hasFinished = true;
-            
+
             return;
         }
 
@@ -242,6 +243,8 @@
         if (initialRatings == NULL) {
             [self initialRatingsWithDictionary:currentRatings];
         }
+
+        ticker = [[Brokerage poloniexTicker] mutableCopy];
 
         [defaults synchronize];
         hasFinished = true;
@@ -281,7 +284,7 @@
         if (jsonError) {
             // Fehlermeldung wird angezeigt
             NSLog(@"%@", [jsonError description]);
-            
+
             return;
         }
 
@@ -423,6 +426,10 @@
  */
 - (NSMutableDictionary*)currentRatings {
     return [currentRatings mutableCopy];
+}
+
+- (NSMutableDictionary*)ticker {
+    return [ticker mutableCopy];
 }
 
 @end

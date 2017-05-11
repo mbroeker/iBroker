@@ -4,6 +4,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Brokerage.h"
 
 #define BTC @"BTC"
 #define ETH @"ETH"
@@ -63,4 +64,5 @@
 - (NSMutableDictionary*)saldoUrls;
 - (NSMutableDictionary*)initialRatings;
 - (NSMutableDictionary*)currentRatings;
+- (NSMutableDictionary*)ticker;
 @end

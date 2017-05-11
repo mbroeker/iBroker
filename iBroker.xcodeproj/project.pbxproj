@@ -14,6 +14,7 @@
 		B25106E21EB7356F0092D911 /* TabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DF1EB7356F0092D911 /* TabView.m */; };
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
+		B2EE3EF81EC4A7C900D71791 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EE3EF71EC4A7C900D71791 /* Brokerage.m */; };
 		B2FA69351E93F2A300C47199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69341E93F2A300C47199 /* main.m */; };
 		B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B2FA69391E93F2A300C47199 /* Assets.xcassets */; };
 		B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FA693B1E93F2A300C47199 /* Main.storyboard */; };
@@ -51,6 +52,8 @@
 		B25106DF1EB7356F0092D911 /* TabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabView.m; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
+		B2EE3EF61EC4A7C900D71791 /* Brokerage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brokerage.h; sourceTree = "<group>"; };
+		B2EE3EF71EC4A7C900D71791 /* Brokerage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brokerage.m; sourceTree = "<group>"; };
 		B2FA692D1E93F2A300C47199 /* iBroker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iBroker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B2FA69341E93F2A300C47199 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B2FA69391E93F2A300C47199 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -125,6 +128,15 @@
 			path = iBroker/Common;
 			sourceTree = SOURCE_ROOT;
 		};
+		B275C33A1EC3F4AF00147099 /* Brokerage */ = {
+			isa = PBXGroup;
+			children = (
+				B2EE3EF61EC4A7C900D71791 /* Brokerage.h */,
+				B2EE3EF71EC4A7C900D71791 /* Brokerage.m */,
+			);
+			path = Brokerage;
+			sourceTree = "<group>";
+		};
 		B2FA69241E93F2A300C47199 = {
 			isa = PBXGroup;
 			children = (
@@ -147,6 +159,7 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
+				B275C33A1EC3F4AF00147099 /* Brokerage */,
 				B2FF15F51EB038F900F65E6B /* AppDelegate */,
 				B2FF15EE1EB038A900F65E6B /* Common */,
 				B2FF15E11EB0384300F65E6B /* Dashboard */,
@@ -312,6 +325,7 @@
 				B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */,
 				B2FF15D01EB034E400F65E6B /* AddressViewController.m in Sources */,
 				B2FA69351E93F2A300C47199 /* main.m in Sources */,
+				B2EE3EF81EC4A7C900D71791 /* Brokerage.m in Sources */,
 				B2FF15F41EB038A900F65E6B /* TabView.m in Sources */,
 				B2FF15F31EB038A900F65E6B /* Helper.m in Sources */,
 				43D6F9651A12E3B7440D164B /* Calculator.m in Sources */,

@@ -73,6 +73,14 @@ typedef struct DASHBOARD {
     NSColor *chartBGColor = [NSColor whiteColor];
     NSColor *infoBarFGColor = [NSColor colorWithCalibratedRed:178.0f / 255.0f green:178.0f / 255.0f blue:178.0f / 255.0f alpha:1.0f];
 
+    // Poloniex Leiste
+    self.volumeField.backgroundColor = chartBGColor;
+    self.highField.backgroundColor = chartBGColor;
+    self.lowField.backgroundColor = chartBGColor;
+    self.high24Field.backgroundColor = chartBGColor;
+    self.low24Field.backgroundColor = chartBGColor;
+
+    // Chart Leiste
     self.currency1Field.backgroundColor = chartBGColor;
     self.currency2Field.backgroundColor = chartBGColor;
     self.currency3Field.backgroundColor = chartBGColor;
@@ -96,7 +104,7 @@ typedef struct DASHBOARD {
 
     // Liste der Fiat-Währungen
     fiatCurrencies = [calculator fiatCurrencies];
-    
+
     if ([fiatCurrencies[0] isEqualToString:@"EUR"]) {
         fiatCurrencySymbol = @"€";
     } else {
@@ -156,12 +164,12 @@ typedef struct DASHBOARD {
     dangerColor = [NSColor colorWithCalibratedRed:200.0f/255.0f green:79.0f/255.0f blue:35.0f/255.0f alpha:1.0f];
 
     [defaults synchronize];
-    
+
     // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
     self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
 
     // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
-    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];    
+    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
 }
 
 /**
@@ -291,6 +299,62 @@ typedef struct DASHBOARD {
     }
 }
 
+// Simpler Fetch der Poloniex Daten
+-(void)updateTicker:(NSString*)label {
+
+    if ([label isEqualToString:@"Dashboard"] || [label isEqualToString:@"Bitcoin"]) {
+        self.volumeLabel.stringValue = BTC;
+        self.highLabel.stringValue = ETH;
+        self.lowLabel.stringValue = XMR;
+        self.high24Label.stringValue = LTC;
+        self.low24Label.stringValue = DOGE;
+
+        NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
+        NSDictionary *ethCheckpoint = [calculator checkpointForAsset:ETH];
+        NSDictionary *xmrCheckpoint = [calculator checkpointForAsset:XMR];
+        NSDictionary *ltcCheckpoint = [calculator checkpointForAsset:LTC];
+        NSDictionary *dogeCheckpoint = [calculator checkpointForAsset:DOGE];
+
+        double btcPercent = [btcCheckpoint[KEY_PERCENT] doubleValue];
+        double ethPercent = [ethCheckpoint[KEY_PERCENT] doubleValue];
+        double xmrPercent = [xmrCheckpoint[KEY_PERCENT] doubleValue];
+        double ltcPercent = [ltcCheckpoint[KEY_PERCENT] doubleValue];
+        double dogePercent = [dogeCheckpoint[KEY_PERCENT] doubleValue];
+
+        self.volumeField.stringValue = [Helper double2GermanPercent:btcPercent fractions:2];
+        self.highField.stringValue = [Helper double2GermanPercent:ethPercent fractions:2];
+        self.lowField.stringValue = [Helper double2GermanPercent:xmrPercent fractions:2];
+        self.high24Field.stringValue = [Helper double2GermanPercent:ltcPercent fractions:2];
+        self.low24Field.stringValue = [Helper double2GermanPercent:dogePercent fractions:2];
+
+        if (btcPercent < 0) self.volumeField.backgroundColor = dangerColor;
+        if (ethPercent < 0) self.highField.backgroundColor = dangerColor;
+        if (xmrPercent < 0) self.lowField.backgroundColor = dangerColor;
+        if (ltcPercent < 0) self.high24Field.backgroundColor = dangerColor;
+        if (dogePercent < 0) self.low24Field.backgroundColor = dangerColor;
+
+        return;
+    }
+
+    NSDictionary *keys = @{
+        @"Ethereum": @"BTC_ETH",
+        @"Monero": @"BTC_XMR",
+        @"Litecoin": @"BTC_LTC",
+        @"Dogecoin": @"BTC_DOGE"
+    };
+
+    NSDictionary *ticker = [calculator ticker];
+    NSDictionary *tickerData = ticker[keys[label]];
+
+    double factor = ([label isEqualToString:@"Dogecoin"]) ? 10000 : 1;
+
+    self.volumeField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:4 max:4];
+    self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH] doubleValue] min:4 max:4];
+    self.lowField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW] doubleValue] min:4 max:4];
+    self.high24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:4 max:4];
+    self.low24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW24] doubleValue] min:4 max:4];
+}
+
 /**
  * Übersicht mit richtigen Live-Werten
  */
@@ -304,7 +368,7 @@ typedef struct DASHBOARD {
 #ifdef DEBUG
     NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
         [@"####" UTF8String],
-        [@"BALANCE" UTF8String],        
+        [@"BALANCE" UTF8String],
         [@"BALANCE IN EUR" UTF8String],
         [@"BALANCE IN BTC" UTF8String],
         [@"INITIAL IN EUR" UTF8String],
@@ -380,11 +444,8 @@ typedef struct DASHBOARD {
 #endif
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:loop_vars.coinchange.effectivePercent fractions:2];
-    if (loop_vars.coinchange.diffsInEuro != 0) self.statusLabel.stringValue = [
-        NSString stringWithFormat:@"%@ %@",
-            [Helper double2German:loop_vars.coinchange.diffsInEuro min:2 max:2],
-            fiatCurrencySymbol
-    ];
+    if (loop_vars.coinchange.diffsInEuro != 0)
+        self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:loop_vars.coinchange.diffsInEuro min:2 max:2], fiatCurrencySymbol];
 
     [self markDockLabels:loop_vars.coinchange];
 
@@ -405,6 +466,8 @@ typedef struct DASHBOARD {
 
     [self markGainers];
     [self markLoosers];
+
+    [self updateTicker:@"Dashboard"];
 }
 
 /**
@@ -448,7 +511,7 @@ typedef struct DASHBOARD {
         // Setze den Taschenrechner auf EUR
         self.exchangeSelection.title = fiatCurrencies[0];
     }
-    
+
     // Hole die aktualisierten Dictionaries
     NSDictionary *checkpoint = [calculator checkpointForAsset:asset];
     NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
@@ -477,11 +540,7 @@ typedef struct DASHBOARD {
     self.currencyUnits.doubleValue = priceInEuro;
 
     if (diffInEuro != 0) {
-        self.statusLabel.stringValue = [
-            NSString stringWithFormat:@"%@ %@",
-                [Helper double2German:diffInEuro min:2 max:2],
-                fiatCurrencySymbol
-        ];
+        self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:diffInEuro min:2 max:2], fiatCurrencySymbol];
     } else {
         // Placeholder reaktivieren
         self.statusLabel.stringValue = @"";
@@ -523,6 +582,8 @@ typedef struct DASHBOARD {
 
     [self markGainers];
     [self markLoosers];
+
+    [self updateTicker:label];
 }
 
 /**
@@ -667,7 +728,7 @@ typedef struct DASHBOARD {
             // Checkpoint aktualisieren
             [calculator updateCheckpointForAsset:asset withBTCUpdate:TRUE];
         }
-        
+
         // nach dem Aktualisieren des Bestands muss die Statusleiste aktualisisiert werden...
         [self updateCurrentView:false];
     }

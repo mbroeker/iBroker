@@ -53,6 +53,20 @@
 @property (strong) IBOutlet NSTextField *currency4Field;
 @property (strong) IBOutlet NSTextField *currency5Field;
 
+// Definition der Poloniex Label und Felder
+@property (strong) IBOutlet NSTextField *volumeLabel;
+@property (strong) IBOutlet NSTextField *highLabel;
+@property (strong) IBOutlet NSTextField *lowLabel;
+@property (strong) IBOutlet NSTextField *high24Label;
+@property (strong) IBOutlet NSTextField *low24Label;
+
+@property (strong) IBOutlet NSTextField *volumeField;
+@property (strong) IBOutlet NSTextField *highField;
+@property (strong) IBOutlet NSTextField *lowField;
+@property (strong) IBOutlet NSTextField *high24Field;
+@property (strong) IBOutlet NSTextField *low24Field;
+
+
 @property (strong) IBOutlet NSPopUpButton *exchangeSelection;
 
 // Definition der Button-Actions
