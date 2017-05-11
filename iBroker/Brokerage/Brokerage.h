@@ -17,5 +17,10 @@
 #define POLONIEX_LAST @"last"
 
 @interface Brokerage : NSObject
++ (NSDictionary*)jsonRequest:(NSString*)jsonURL;
++ (NSDictionary*)cryptoCompareRatings:(NSArray*)fiatCurrencies;
++ (double) cryptonatorsDogUpdate:(NSArray*)fiatCurrencies;
 + (NSDictionary*)poloniexTicker;
+
++ (void)safeSleep:(NSTimeInterval)timeout;
 @end
