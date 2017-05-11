@@ -497,6 +497,10 @@ typedef struct DASHBOARD {
 
         return;
     }
+    
+    if ([label isEqualToString:@"Dogecoin"]) {
+        self.currency5Label.stringValue = @"10k DOGE";
+    }
 
     // Aktiviere die Eingabe für die Crypto-Einheiten
     self.cryptoUnits.editable = true;
