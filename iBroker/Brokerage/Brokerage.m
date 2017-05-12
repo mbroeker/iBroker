@@ -30,7 +30,7 @@
         NSData *jsonData = [requestReply dataUsingEncoding:NSUTF8StringEncoding];
         NSError *jsonError;
 
-        id allkeys = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
+        result = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
         if (jsonError) {
             // Fehlermeldung wird angezeigt
             NSLog(@"%@", [jsonError description]);
@@ -40,8 +40,6 @@
 
             return;
         }
-        
-        result = allkeys;
 
         hasFinished = true;
 
