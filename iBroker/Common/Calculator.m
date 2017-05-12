@@ -4,7 +4,7 @@
 //
 
 #import "Calculator.h"
-#import "Helper.h"
+#import "Algorithm.h"
 
 /**
  * Berechnungklasse für Crypto-Währungen
