@@ -27,6 +27,11 @@ a {
   color: #fff;
 }
 
+p {
+  font-size: 1.1em;
+  padding-bottom: 10px
+}
+
 /* Defaults für dieses Projekt */
 h1, h2, h3, h4, p { padding: 5px; }
 
@@ -45,6 +50,10 @@ body {
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 .text-center { text-align: center; }
+
+.content .row {
+  padding-bottom: 15px;
+}
 
 .row:after {
   content: "";
@@ -73,6 +82,10 @@ body {
 
 .img-responsive {
   width: 100%;
+}
+
+.img-25 {
+  max-width: 25%;
 }
 
 .page {
