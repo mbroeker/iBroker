@@ -13,12 +13,12 @@
 /**
  * Umwandlung von double Werten in das Format des jeweiligen Landes(Deutschland)
  *
- * @param double
+ * @param value
  * @param min
  * @param max
  * @return NSString*
  */
-+ (NSString*) double2German:(double) value min:(NSUInteger) min max:(NSUInteger) max {
++ (NSString*)double2German:(double) value min:(NSUInteger) min max:(NSUInteger) max {
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
@@ -32,11 +32,11 @@
 /**
  * Umwandlung von double Werten in das Prozent-Format des jeweiligen Landes(Deutschland)
  *
- * @param double
+ * @param value
  * @param fractions
  * @return NSString*
  */
-+ (NSString*) double2GermanPercent:(double) value fractions:(NSUInteger) fractions {
++ (NSString*)double2GermanPercent:(double) value fractions:(NSUInteger) fractions {
 
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     
