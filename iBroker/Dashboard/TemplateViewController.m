@@ -308,6 +308,10 @@ typedef struct DASHBOARD {
         self.lowLabel.stringValue = XMR;
         self.high24Label.stringValue = LTC;
         self.low24Label.stringValue = DOGE;
+        
+        if ([label isEqualToString:@"Dashboard"]) {
+            self.currency5Label.stringValue = @"10k DOGE";
+        }
 
         NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
         NSDictionary *ethCheckpoint = [calculator checkpointForAsset:ETH];
@@ -346,7 +350,7 @@ typedef struct DASHBOARD {
     NSDictionary *ticker = [calculator ticker];
     NSDictionary *tickerData = ticker[keys[label]];
 
-    double factor = ([label isEqualToString:@"Dogecoin"]) ? 10000 : 1;
+    double factor = [tabs[label][1] doubleValue];
 
     self.volumeField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:4 max:4];
     self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH] doubleValue] min:4 max:4];
