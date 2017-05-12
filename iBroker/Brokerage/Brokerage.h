@@ -12,7 +12,8 @@
 #define POLONIEX_HIGH @"highestBid"
 #define POLONIEX_LOW24 @"low24hr"
 #define POLONIEX_HIGH24 @"high24hr"
-#define POLONIEX_VOLUME @"baseVolume"
+#define POLONIEX_QUOTE_VOLUME @"quoteVolume"
+#define POLONIEX_BASE_VOLUME @"baseVolume"
 #define POLONIEX_PERCENT @"percentChange"
 #define POLONIEX_LAST @"last"
 

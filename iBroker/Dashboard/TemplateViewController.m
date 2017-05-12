@@ -693,16 +693,28 @@ typedef struct DASHBOARD {
     NSMutableDictionary *currentRatings = [calculator currentRatings];
     NSString *text;
 
+    NSArray *data = @[
+        @([calculator calculateWithRatings:currentRatings currency:BTC]),
+        @([calculator calculateWithRatings:currentRatings currency:ETH]),
+        @([calculator calculateWithRatings:currentRatings currency:XMR]),
+        @([calculator calculateWithRatings:currentRatings currency:LTC]),
+        @([calculator calculateWithRatings:currentRatings currency:DOGE]),
+        @([calculator calculateWithRatings:currentRatings currency:ZEC]),
+        @([calculator calculateWithRatings:currentRatings currency:DASH]),
+        @([calculator calculateWithRatings:currentRatings currency:XRP]),
+        @([calculator calculateWithRatings:currentRatings currency:USD])
+    ];
+
     text = [NSString stringWithFormat:@"%@ BTC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE\n%@ ZEC\n%@ DASH\n%@ XRP\n%@ USD",
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:BTC] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:ETH] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:XMR] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:LTC] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:DOGE] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:ZEC] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:DASH] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:XRP] min:4 max:8],
-          [Helper double2German:[calculator calculateWithRatings:currentRatings currency:USD] min:4 max:8]
+          [Helper double2German:[data[0] doubleValue] min:4 max:8],
+          [Helper double2German:[data[1] doubleValue] min:4 max:8],
+          [Helper double2German:[data[2] doubleValue] min:4 max:8],
+          [Helper double2German:[data[3] doubleValue] min:4 max:8],
+          [Helper double2German:[data[4] doubleValue] min:4 max:8],
+          [Helper double2German:[data[5] doubleValue] min:4 max:8],
+          [Helper double2German:[data[6] doubleValue] min:4 max:8],
+          [Helper double2German:[data[7] doubleValue] min:4 max:8],
+          [Helper double2German:[data[8] doubleValue] min:4 max:8]
     ];
 
     [Helper messageText:@"Gesamtbestand umgerechnet:" info:text];

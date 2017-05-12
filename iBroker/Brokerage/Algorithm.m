@@ -98,7 +98,7 @@
  */
 + (void)gaussAlgorithm:(double**)A withEquations:(int)equations {
 
-    double ACCURACY = 0.001;
+    double ACCURACY = pow(10, -3);
 
     int i, j, k, n;
 
@@ -110,7 +110,7 @@
     i = 0;
     for (j = 0; j < MAXY; j++) {
         for (k = j + 1; k < MAXY; k++) {
-            if (A[k][i] != 0) {
+            if (A[k][i] != 0.0) {
                 h = A[j][i] / A[k][i];
             } else {
                 continue;
@@ -121,7 +121,7 @@
                 A[k][n] += A[j][n];
 
                 if ((A[k][n] < ACCURACY) && (A[k][n] > -ACCURACY)) {
-                    A[k][n] = ACCURACY;
+                    A[k][n] = 0.0;
                 }
             }
         }
@@ -133,7 +133,12 @@
 
     for (j = MAXY - 1; j > -1; j--) {
         for (k = j - 1; k > -1; k--) {
-            h = A[j][i] / A[k][i];
+            if (A[k][i] != 0.0) {
+                h = A[j][i] / A[k][i];
+            } else {
+                h = 0.0;
+            }
+
             for (n = MAXX - 1; n > k - 1; n--) {
                 A[k][n] *= -h;
                 A[k][n] += (A[j][n]);
