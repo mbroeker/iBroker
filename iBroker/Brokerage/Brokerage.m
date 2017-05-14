@@ -66,7 +66,7 @@
  */
 + (NSDictionary*)cryptoCompareRatings:(NSArray*)fiatCurrencies {
     NSString *jsonURL =
-        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC,ETH,LTC,XMR,DOGE,ZEC,DASH,XRP", fiatCurrencies[0], fiatCurrencies[1]];
+        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC,ETH,LTC,XMR,DOGE", fiatCurrencies[0], fiatCurrencies[1]];
     
     return [Brokerage jsonRequest:jsonURL];
 }

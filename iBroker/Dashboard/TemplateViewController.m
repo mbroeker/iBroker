@@ -50,7 +50,18 @@ typedef struct DASHBOARD {
     NSString *fiatCurrencySymbol;
 
     // meine nettes Rot
-    NSColor *dangerColor;
+    NSColor *defaultDangerColor;
+
+    NSColor *defaultGainColor;
+    NSColor *defaultLooseColor;
+
+    // Low / High
+    NSColor *defaultLowerColor;
+    NSColor *defaultHigherColor;
+
+    // Low / High
+    NSColor *defaultLowestColor;
+    NSColor *defaultHighestColor;
 }
 
 /**
@@ -161,7 +172,15 @@ typedef struct DASHBOARD {
     self.infoLabel.placeholderString = @"Escobar Edition";
 
     // mein patentgeschützer Rotton
-    dangerColor = [NSColor colorWithCalibratedRed:200.0f/255.0f green:79.0f/255.0f blue:35.0f/255.0f alpha:1.0f];
+    defaultDangerColor = [NSColor colorWithCalibratedRed:200.0f/255.0f green:79.0f/255.0f blue:35.0f/255.0f alpha:1.0f];
+
+    defaultHigherColor = [NSColor greenColor];
+    defaultHighestColor = [NSColor magentaColor];
+    defaultGainColor = [NSColor blueColor];
+
+    defaultLowerColor = [NSColor yellowColor];
+    defaultLowestColor = [NSColor orangeColor];
+    defaultLooseColor = [NSColor redColor];
 
     [defaults synchronize];
 
@@ -216,6 +235,18 @@ typedef struct DASHBOARD {
 
         double cPercent = [aCheckpoint[KEY_PERCENT] doubleValue];
 
+        if ([cAsset isEqualToString:BTC] && cPercent > 0) self.currency1Field.backgroundColor = defaultHigherColor;
+        if ([cAsset isEqualToString:ETH] && cPercent > 0) self.currency2Field.backgroundColor = defaultHigherColor;
+        if ([cAsset isEqualToString:XMR] && cPercent > 0) self.currency3Field.backgroundColor = defaultHigherColor;
+        if ([cAsset isEqualToString:LTC] && cPercent > 0) self.currency4Field.backgroundColor = defaultHigherColor;
+        if ([cAsset isEqualToString:DOGE] && cPercent > 0) self.currency5Field.backgroundColor = defaultHigherColor;
+
+        if ([cAsset isEqualToString:BTC] && cPercent > CHECKPOINT_PERCENTAGE) self.currency1Field.backgroundColor = defaultHighestColor;
+        if ([cAsset isEqualToString:ETH] && cPercent > CHECKPOINT_PERCENTAGE) self.currency2Field.backgroundColor = defaultHighestColor;
+        if ([cAsset isEqualToString:XMR] && cPercent > CHECKPOINT_PERCENTAGE) self.currency3Field.backgroundColor = defaultHighestColor;
+        if ([cAsset isEqualToString:LTC] && cPercent > CHECKPOINT_PERCENTAGE) self.currency4Field.backgroundColor = defaultHighestColor;
+        if ([cAsset isEqualToString:DOGE] && cPercent > CHECKPOINT_PERCENTAGE) self.currency5Field.backgroundColor = defaultHighestColor;
+
         // Bilde die Differenz aus BTC und der jeweiligen Cryptowährung, falls es sich nicht um BTC handelt.
         if (![cAsset isEqualToString:BTC]) {
             cPercent -= btcPercent;
@@ -226,56 +257,57 @@ typedef struct DASHBOARD {
 
     NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
     NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
-    NSColor *highestColor = [NSColor greenColor];
 
-    if ([highest doubleValue] > CHECKPOINT_PERCENTAGE) highestColor = [NSColor blueColor];
-
-    if ([highestKey isEqualToString:BTC]) self.currency1Field.backgroundColor = highestColor;
-    if ([highestKey isEqualToString:ETH]) self.currency2Field.backgroundColor = highestColor;
-    if ([highestKey isEqualToString:XMR]) self.currency3Field.backgroundColor = highestColor;
-    if ([highestKey isEqualToString:LTC]) self.currency4Field.backgroundColor = highestColor;
-    if ([highestKey isEqualToString:DOGE]) self.currency5Field.backgroundColor = highestColor;
-
-    NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
-    NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
-    NSColor *lowestColor = dangerColor;
-
-    if ([lowest doubleValue] < -CHECKPOINT_PERCENTAGE) lowestColor = [NSColor magentaColor];
-
-    if ([lowestKey isEqualToString:BTC]) [self.currency1Field setBackgroundColor:lowestColor];
-    if ([lowestKey isEqualToString:ETH]) [self.currency2Field setBackgroundColor:lowestColor];
-    if ([lowestKey isEqualToString:XMR]) [self.currency3Field setBackgroundColor:lowestColor];
-    if ([lowestKey isEqualToString:LTC]) [self.currency4Field setBackgroundColor:lowestColor];
-    if ([lowestKey isEqualToString:DOGE]) [self.currency5Field setBackgroundColor:lowestColor];
+    if ([highestKey isEqualToString:BTC]) self.currency1Field.backgroundColor = defaultGainColor;
+    if ([highestKey isEqualToString:ETH]) self.currency2Field.backgroundColor = defaultGainColor;
+    if ([highestKey isEqualToString:XMR]) self.currency3Field.backgroundColor = defaultGainColor;
+    if ([highestKey isEqualToString:LTC]) self.currency4Field.backgroundColor = defaultGainColor;
+    if ([highestKey isEqualToString:DOGE]) self.currency5Field.backgroundColor = defaultGainColor;
 }
 
 /**
  * Markieren der Verlierer der obersten Leiste
  */
 - (void)markLoosers {
-    NSMutableDictionary *initialRatings = [calculator initialRatings];
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
-    // Beachte: Es sind Kehrwerte ...
-    if ([currentRatings[BTC] doubleValue] > [initialRatings[BTC] doubleValue]) {
-        self.currency1Field.backgroundColor = [NSColor yellowColor];
+    NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
+    double btcPercent = [btcCheckpoint[BTC] doubleValue];
+
+    NSMutableDictionary *currencyUnits = [[NSMutableDictionary alloc] init];
+    for (id cAsset in currentRatings) {
+        NSDictionary *aCheckpoint = [calculator checkpointForAsset:cAsset];
+
+        double cPercent = [aCheckpoint[KEY_PERCENT] doubleValue];
+
+        if ([cAsset isEqualToString:BTC] && cPercent < 0) self.currency1Field.backgroundColor = defaultLowerColor;
+        if ([cAsset isEqualToString:ETH] && cPercent < 0) self.currency2Field.backgroundColor = defaultLowerColor;
+        if ([cAsset isEqualToString:XMR] && cPercent < 0) self.currency3Field.backgroundColor = defaultLowerColor;
+        if ([cAsset isEqualToString:LTC] && cPercent < 0) self.currency4Field.backgroundColor = defaultLowerColor;
+        if ([cAsset isEqualToString:DOGE] && cPercent < 0) self.currency5Field.backgroundColor = defaultLowerColor;
+
+        if ([cAsset isEqualToString:BTC] && cPercent < -CHECKPOINT_PERCENTAGE) self.currency1Field.backgroundColor = defaultLowestColor;
+        if ([cAsset isEqualToString:ETH] && cPercent < -CHECKPOINT_PERCENTAGE) self.currency2Field.backgroundColor = defaultLowestColor;
+        if ([cAsset isEqualToString:XMR] && cPercent < -CHECKPOINT_PERCENTAGE) self.currency3Field.backgroundColor = defaultLowestColor;
+        if ([cAsset isEqualToString:LTC] && cPercent < -CHECKPOINT_PERCENTAGE) self.currency4Field.backgroundColor = defaultLowestColor;
+        if ([cAsset isEqualToString:DOGE] && cPercent < -CHECKPOINT_PERCENTAGE) self.currency5Field.backgroundColor = defaultLowestColor;
+
+        // Bilde die Differenz aus BTC und der jeweiligen Cryptowährung, falls es sich nicht um BTC handelt.
+        if (![cAsset isEqualToString:BTC]) {
+            cPercent -= btcPercent;
+        }
+
+        currencyUnits[cAsset] = @(cPercent);
     }
 
-    if ([currentRatings[ETH] doubleValue] > [initialRatings[ETH] doubleValue]) {
-        self.currency2Field.backgroundColor = [NSColor yellowColor];
-    }
+    NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
+    NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
 
-    if ([currentRatings[XMR] doubleValue] > [initialRatings[XMR] doubleValue]) {
-        self.currency3Field.backgroundColor = [NSColor yellowColor];
-    }
-
-    if ([currentRatings[LTC] doubleValue] > [initialRatings[LTC] doubleValue]) {
-        self.currency4Field.backgroundColor = [NSColor yellowColor];
-    }
-
-    if ([currentRatings[DOGE] doubleValue] > [initialRatings[DOGE] doubleValue]) {
-        self.currency5Field.backgroundColor = [NSColor yellowColor];
-    }
+    if ([lowestKey isEqualToString:BTC]) self.currency1Field.backgroundColor = defaultLooseColor;
+    if ([lowestKey isEqualToString:ETH]) self.currency2Field.backgroundColor = defaultLooseColor;
+    if ([lowestKey isEqualToString:XMR]) self.currency3Field.backgroundColor = defaultLooseColor;
+    if ([lowestKey isEqualToString:LTC]) self.currency4Field.backgroundColor = defaultLooseColor;
+    if ([lowestKey isEqualToString:DOGE]) self.currency5Field.backgroundColor = defaultLooseColor;
 }
 
 /**
@@ -283,19 +315,19 @@ typedef struct DASHBOARD {
  */
 - (void)markDockLabels:(COINCHANGE) loop_vars {
     if (loop_vars.effectivePercent < 0.0) {
-        self.percentLabel.textColor = [NSColor redColor];
+        self.percentLabel.textColor = defaultLooseColor;
     }
 
     if (loop_vars.diffsInPercent < 0.0) {
-        self.infoLabel.textColor = dangerColor;
+        self.infoLabel.textColor = defaultDangerColor;
     }
 
     if (loop_vars.diffsInEuro < 0.0) {
-        self.statusLabel.textColor = dangerColor;
+        self.statusLabel.textColor = defaultDangerColor;
     }
 
     if (loop_vars.diffsInEuro < 0.0 && loop_vars.diffsInPercent < 0.0) {
-        self.iBrokerLabel.textColor = dangerColor;
+        self.iBrokerLabel.textColor = defaultDangerColor;
     }
 }
 
@@ -331,11 +363,17 @@ typedef struct DASHBOARD {
         self.high24Field.stringValue = [Helper double2GermanPercent:ltcPercent fractions:2];
         self.low24Field.stringValue = [Helper double2GermanPercent:dogePercent fractions:2];
 
-        if (btcPercent < 0) self.volumeField.backgroundColor = dangerColor;
-        if (ethPercent < 0) self.highField.backgroundColor = dangerColor;
-        if (xmrPercent < 0) self.lowField.backgroundColor = dangerColor;
-        if (ltcPercent < 0) self.high24Field.backgroundColor = dangerColor;
-        if (dogePercent < 0) self.low24Field.backgroundColor = dangerColor;
+        if (btcPercent < 0) self.volumeField.backgroundColor = defaultLowerColor;
+        if (ethPercent < 0) self.highField.backgroundColor = defaultLowerColor;
+        if (xmrPercent < 0) self.lowField.backgroundColor = defaultLowerColor;
+        if (ltcPercent < 0) self.high24Field.backgroundColor = defaultLowerColor;
+        if (dogePercent < 0) self.low24Field.backgroundColor = defaultLowerColor;
+
+        if (btcPercent > 0) self.volumeField.backgroundColor = defaultHigherColor;
+        if (ethPercent > 0) self.highField.backgroundColor = defaultHigherColor;
+        if (xmrPercent > 0) self.lowField.backgroundColor = defaultHigherColor;
+        if (ltcPercent > 0) self.high24Field.backgroundColor = defaultHigherColor;
+        if (dogePercent > 0) self.low24Field.backgroundColor = defaultHigherColor;
 
         return;
     }
@@ -560,7 +598,7 @@ typedef struct DASHBOARD {
     self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:rate min:2 max:4]];
 
     if (percent < 0.0) {
-        self.percentLabel.textColor = [NSColor redColor];
+        self.percentLabel.textColor = defaultLooseColor;
     }
 
     COINCHANGE coinchange = { 0, diffPercent, diffInEuro };
@@ -699,22 +737,16 @@ typedef struct DASHBOARD {
         @([calculator calculateWithRatings:currentRatings currency:XMR]),
         @([calculator calculateWithRatings:currentRatings currency:LTC]),
         @([calculator calculateWithRatings:currentRatings currency:DOGE]),
-        @([calculator calculateWithRatings:currentRatings currency:ZEC]),
-        @([calculator calculateWithRatings:currentRatings currency:DASH]),
-        @([calculator calculateWithRatings:currentRatings currency:XRP]),
         @([calculator calculateWithRatings:currentRatings currency:USD])
     ];
 
-    text = [NSString stringWithFormat:@"%@ BTC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE\n%@ ZEC\n%@ DASH\n%@ XRP\n%@ USD",
+    text = [NSString stringWithFormat:@"%@ BTC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ DOGE\n%@ USD",
           [Helper double2German:[data[0] doubleValue] min:4 max:8],
           [Helper double2German:[data[1] doubleValue] min:4 max:8],
           [Helper double2German:[data[2] doubleValue] min:4 max:8],
           [Helper double2German:[data[3] doubleValue] min:4 max:8],
           [Helper double2German:[data[4] doubleValue] min:4 max:8],
-          [Helper double2German:[data[5] doubleValue] min:4 max:8],
-          [Helper double2German:[data[6] doubleValue] min:4 max:8],
-          [Helper double2German:[data[7] doubleValue] min:4 max:8],
-          [Helper double2German:[data[8] doubleValue] min:4 max:8]
+          [Helper double2German:[data[5] doubleValue] min:4 max:8]
     ];
 
     [Helper messageText:@"Gesamtbestand umgerechnet:" info:text];

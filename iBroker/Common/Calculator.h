@@ -12,10 +12,6 @@
 #define LTC @"LTC"
 #define DOGE @"DOGE"
 
-#define ZEC @"ZEC"
-#define DASH @"DASH"
-#define XRP @"XRP"
-
 #define EUR @"EUR"
 #define USD @"USD"
 
