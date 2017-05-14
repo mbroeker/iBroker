@@ -771,7 +771,8 @@ typedef struct DASHBOARD {
     double exchangeFactor = ([exchangeUnit isEqualToString:fiatCurrencies[0]]) ? 1 : [currentRatings[exchangeUnit] doubleValue];
 
     if ([self.rateInputLabel.stringValue isEqualToString:@""]) {
-        // keine Eingabe, keine Aktualisierung
+        // keine Eingabe, reaktiviere den Placeholder!
+        self.rateOutputLabel.stringValue = @"";
         return;
     }
 
