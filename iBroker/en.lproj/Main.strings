@@ -1,0 +1,195 @@
+
+/* Class = "NSTextFieldCell"; title = "HIGH"; ObjectID = "0um-5d-4tk"; */
+"0um-5d-4tk.title" = "HIGH";
+
+/* Class = "NSMenuItem"; title = "iBroker"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "iBroker";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Rate Field"; ObjectID = "1Ys-Dp-0XL"; */
+"1Ys-Dp-0XL.placeholderString" = "Rate Field";
+
+/* Class = "NSTextFieldCell"; title = "0,0"; ObjectID = "1eH-Do-Vcu"; */
+"1eH-Do-Vcu.title" = "0,0";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "1ka-EZ-NIN"; */
+"1ka-EZ-NIN.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; title = "Dashboard"; ObjectID = "200-jD-Tem"; */
+"200-jD-Tem.title" = "Dashboard";
+
+/* Class = "NSTextFieldCell"; title = "XMR"; ObjectID = "2Vk-ZH-fHh"; */
+"2Vk-ZH-fHh.title" = "XMR";
+
+/* Class = "NSViewController"; title = "Dashboard"; ObjectID = "2wC-py-DJR"; */
+"2wC-py-DJR.title" = "Dashboard";
+
+/* Class = "NSTabViewItem"; label = "Dashboard"; ObjectID = "35g-m1-hvR"; */
+"35g-m1-hvR.label" = "Dashboard";
+
+/* Class = "NSMenuItem"; title = "Programm beenden"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "Quit Application";
+
+/* Class = "NSMenuItem"; title = "Zurück setzen"; ObjectID = "5jW-sL-1jd"; */
+"5jW-sL-1jd.title" = "Reset App";
+
+/* Class = "NSMenuItem"; title = "Über das Programm"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "About";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSMenuItem"; title = "Einstellungen"; ObjectID = "BOF-NM-1cW"; */
+"BOF-NM-1cW.title" = "Preferences";
+
+/* Class = "NSTextFieldCell"; title = "Escobar Edition"; ObjectID = "BiY-c6-xVz"; */
+"BiY-c6-xVz.title" = "Escobar Edition";
+
+/* Class = "NSTextFieldCell"; title = "iBroker"; ObjectID = "Boa-Pw-8hT"; */
+"Boa-Pw-8hT.title" = "iBroker";
+
+/* Class = "NSTabViewItem"; label = "Litecoin"; ObjectID = "CsD-Nb-58b"; */
+"CsD-Nb-58b.label" = "Litecoin";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "EVR-A1-L2s"; */
+"EVR-A1-L2s.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "ExN-Qq-Ttf"; */
+"ExN-Qq-Ttf.placeholderString" = "Chart";
+
+/* Class = "NSMenu"; title = "Hilfe"; ObjectID = "F2S-fz-NVQ"; */
+"F2S-fz-NVQ.title" = "Help";
+
+/* Class = "NSMenuItem"; title = "Hilfe zum Programm"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "Help for iBroker";
+
+/* Class = "NSWindow"; title = "iBroker"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "iBroker";
+
+/* Class = "NSTabViewItem"; label = "Ethereum"; ObjectID = "Iy3-lG-c43"; */
+"Iy3-lG-c43.label" = "Ethereum";
+
+/* Class = "NSTextFieldCell"; title = "ETH"; ObjectID = "Jhy-T7-mq2"; */
+"Jhy-T7-mq2.title" = "ETH";
+
+/* Class = "NSMenuItem"; title = "Alle Anzeigen"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "ETH"; ObjectID = "Kzw-Ya-M9S"; */
+"Kzw-Ya-M9S.title" = "ETH";
+
+/* Class = "NSMenuItem"; title = "Alles anzeigen"; ObjectID = "LE2-aR-0XJ"; */
+"LE2-aR-0XJ.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "BTC"; ObjectID = "M9j-Q9-xhP"; */
+"M9j-Q9-xhP.title" = "BTC";
+
+/* Class = "NSMenuItem"; title = "Minimieren"; ObjectID = "OY7-WF-poV"; */
+"OY7-WF-poV.title" = "Minimize";
+
+/* Class = "NSMenuItem"; title = "Programm minimieren"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "Minimize iBroker";
+
+/* Class = "NSMenuItem"; title = "XMR"; ObjectID = "OsJ-v1-9gS"; */
+"OsJ-v1-9gS.title" = "XMR";
+
+/* Class = "NSTextFieldCell"; title = "LTC"; ObjectID = "PaQ-vX-qRG"; */
+"PaQ-vX-qRG.title" = "LTC";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "QCn-PU-dxM"; */
+"QCn-PU-dxM.title" = "Box";
+
+/* Class = "NSMenuItem"; title = "Maximieren"; ObjectID = "R4o-n2-Eq4"; */
+"R4o-n2-Eq4.title" = "Maximize";
+
+/* Class = "NSTextFieldCell"; title = "BTC"; ObjectID = "T7K-JM-k8d"; */
+"T7K-JM-k8d.title" = "BTC";
+
+/* Class = "NSMenu"; title = "Fenster"; ObjectID = "Td7-aD-5lo"; */
+"Td7-aD-5lo.title" = "Window";
+
+/* Class = "NSMenuItem"; title = "USD"; ObjectID = "Trz-bG-51a"; */
+"Trz-bG-51a.title" = "USD";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "Ux0-BH-TEe"; */
+"Ux0-BH-TEe.placeholderString" = "Chart";
+
+/* Class = "NSMenuItem"; title = "EUR"; ObjectID = "V0C-0w-ftI"; */
+"V0C-0w-ftI.title" = "EUR";
+
+/* Class = "NSMenuItem"; title = "Andere minimieren"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "Minimize others";
+
+/* Class = "NSTextFieldCell"; title = "LOW"; ObjectID = "X35-X7-bW7"; */
+"X35-X7-bW7.title" = "LOW";
+
+/* Class = "NSTextFieldCell"; title = "0,0"; ObjectID = "Ywa-JN-XWX"; */
+"Ywa-JN-XWX.title" = "0,0";
+
+/* Class = "NSMenuItem"; title = "LTC"; ObjectID = "Z6u-mu-Fv9"; */
+"Z6u-mu-Fv9.title" = "LTC";
+
+/* Class = "NSMenuItem"; title = "ZEC"; ObjectID = "aSo-ax-AZ8"; */
+"aSo-ax-AZ8.title" = "ZEC";
+
+/* Class = "NSMenuItem"; title = "Fenster"; ObjectID = "aUF-d1-5bR"; */
+"aUF-d1-5bR.title" = "Window";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "adB-Si-qHl"; */
+"adB-Si-qHl.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "cms-kU-nB6"; */
+"cms-kU-nB6.placeholderString" = "Chart";
+
+/* Class = "NSTabViewItem"; label = "Dogecoin"; ObjectID = "crd-Yr-PwP"; */
+"crd-Yr-PwP.label" = "Dogecoin";
+
+/* Class = "NSTextFieldCell"; title = "USD"; ObjectID = "dqN-5n-MED"; */
+"dqN-5n-MED.title" = "USD";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "efq-o8-e3w"; */
+"efq-o8-e3w.placeholderString" = "Chart";
+
+/* Class = "NSMenuItem"; title = "DOGE"; ObjectID = "fJH-dY-dZy"; */
+"fJH-dY-dZy.title" = "DOGE";
+
+/* Class = "NSTextFieldCell"; placeholderString = "1"; ObjectID = "fUg-se-HRw"; */
+"fUg-se-HRw.placeholderString" = "1";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "g1m-5x-eS7"; */
+"g1m-5x-eS7.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "gMG-Hh-ftb"; */
+"gMG-Hh-ftb.placeholderString" = "Chart";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "ibZ-fl-489"; */
+"ibZ-fl-489.title" = "Box";
+
+/* Class = "NSTextFieldCell"; title = "24h LOW"; ObjectID = "l8V-LL-wt6"; */
+"l8V-LL-wt6.title" = "24h LOW";
+
+/* Class = "NSTabViewItem"; label = "Bitcoin"; ObjectID = "ops-d6-6mK"; */
+"ops-d6-6mK.label" = "Bitcoin";
+
+/* Class = "NSTextFieldCell"; title = "DOGE"; ObjectID = "rPX-67-TNi"; */
+"rPX-67-TNi.title" = "DOGE";
+
+/* Class = "NSTabViewItem"; label = "Monero"; ObjectID = "u2t-8g-r97"; */
+"u2t-8g-r97.label" = "Monero";
+
+/* Class = "NSMenu"; title = "iBroker"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "iBroker";
+
+/* Class = "NSTextFieldCell"; title = "LAST"; ObjectID = "wGI-ya-hos"; */
+"wGI-ya-hos.title" = "LAST";
+
+/* Class = "NSTextFieldCell"; title = "24h HIGH"; ObjectID = "wo1-Yp-77I"; */
+"wo1-Yp-77I.title" = "24h HIGH";
+
+/* Class = "NSMenuItem"; title = "Hilfe"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Help";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "xl1-fh-nxD"; */
+"xl1-fh-nxD.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Status"; ObjectID = "yYV-xP-eAj"; */
+"yYV-xP-eAj.placeholderString" = "Status";

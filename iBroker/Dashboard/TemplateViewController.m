@@ -577,7 +577,7 @@ typedef struct DASHBOARD {
         diffPercent -= btcPercent;
     }
 
-    NSString *infoPercentString = [NSString stringWithFormat:@"Tausch %@", [Helper double2GermanPercent:diffPercent fractions:2]];
+    NSString *infoPercentString = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"exchange", @"Tausch"), [Helper double2GermanPercent:diffPercent fractions:2]];
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
     self.infoLabel.stringValue = infoPercentString;
@@ -658,9 +658,9 @@ typedef struct DASHBOARD {
         NSAlert *msg = [[NSAlert alloc] init];
         [msg setAlertStyle:NSWarningAlertStyle];
 
-        [msg addButtonWithTitle:@"Abnicken"];
-        msg.messageText = [NSString stringWithFormat:@"Fehler beim Starten der %@ Wallet", title];
-        msg.informativeText = [NSString stringWithFormat:@"Installieren Sie %@.", applications[title]];
+        [msg addButtonWithTitle:NSLocalizedString(@"ok", @"Abnicken"])];
+        msg.messageText = [NSString stringWithFormat:NSLocalizedString(@"error_starting_app_with_param", @"Fehler beim Starten der %@ Wallet"), title];
+        msg.informativeText = [NSString stringWithFormat:NSLocalizedString(@"install_app_with_param", @"Installieren Sie %@."), applications[title]];
 
         [msg runModal];
     }
@@ -702,16 +702,16 @@ typedef struct DASHBOARD {
     NSString *tabTitle = self.headlineLabel.stringValue;
 
     NSDictionary *tabStrings = @{
-        @"Dashboard":  @[@"ALL", @"alle Kurse"],
-        @"Bitcoin": @[BTC, @"den Bitcoin Kurs"],
-        @"Ethereum": @[ETH, @"den Ethereum Kurs"],
-        @"Monero":  @[XMR, @"den Monero Kurs"],
-        @"Litecoin": @[LTC, @"den Litecoin Kurs"],
-        @"Dogecoin": @[DOGE, @"den Dogecoin Kurs"]
+        @"Dashboard":  @[@"ALL", NSLocalizedString(@"all_charts", @"alle Kurse")],
+        @"Bitcoin": @[BTC, NSLocalizedString(@"bitcoin_chart", @"den Bitcoin Kurs")],
+        @"Ethereum": @[ETH, NSLocalizedString(@"ethereum_chart", @"den Ethereum Kurs")],
+        @"Monero":  @[XMR, NSLocalizedString(@"monero_chart", @"den Monero Kurs")],
+        @"Litecoin": @[LTC, NSLocalizedString(@"litecoin_chart", @"den Litecoin Kurs")],
+        @"Dogecoin": @[DOGE, NSLocalizedString(@"dogecoin_chart", @"den Dogecoin Kurs")]
     };
 
-    NSString *msg = [NSString stringWithFormat:@"Möchten Sie %@ aktualisieren?", tabStrings[tabTitle][1]];
-    NSString *info = @"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Checkpoint!";
+    NSString *msg = [NSString stringWithFormat:NSLocalizedString(@"wanna_update_with_asset", @"Möchten Sie %@ aktualisieren?"), tabStrings[tabTitle][1]];
+    NSString *info = NSLocalizedString(@"comparison_belongs_to_checkpoint", @"Der Vergleich (+/-) bezieht sich auf den zuletzt gespeicherten Checkpoint!");
 
     if ([Helper messageText:msg info:info] == NSAlertFirstButtonReturn) {
         [calculator updateCheckpointForAsset:tabStrings[tabTitle][0] withBTCUpdate:FALSE];
@@ -749,7 +749,7 @@ typedef struct DASHBOARD {
           [Helper double2German:[data[5] doubleValue] min:4 max:8]
     ];
 
-    [Helper messageText:@"Gesamtbestand umgerechnet:" info:text];
+    [Helper messageText:NSLocalizedString(@"total_saldo", @"Gesamtbestand umgerechnet:") info:text];
 }
 
 /**
@@ -766,9 +766,9 @@ typedef struct DASHBOARD {
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
-    NSString *text = [NSString stringWithFormat:@"%@ Bestand aktualisieren", tabTitle];
+    NSString *text = [NSString stringWithFormat:NSLocalizedString(@"update_saldo_with_asset", @"%@ Bestand aktualisieren"), tabTitle];
 
-    if ([Helper messageText:text info:@"Möchten Sie Ihren aktuellen Bestand aktualisieren?"] == NSAlertFirstButtonReturn) {
+    if ([Helper messageText:text info:NSLocalizedString(@"wanna_update_current_saldo", @"Möchten Sie Ihren aktuellen Bestand aktualisieren?")] == NSAlertFirstButtonReturn) {
         NSString *asset = tabs[tabTitle][0];
 
         BOOL mustUpdateBecauseIHaveBought = (self.cryptoUnits.doubleValue > [calculator currentSaldo:asset]);

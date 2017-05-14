@@ -68,8 +68,8 @@
     NSAlert *msg = [[NSAlert alloc] init];
     
     [msg setAlertStyle:NSInformationalAlertStyle];
-    [msg addButtonWithTitle:@"Anwenden"];
-    [msg addButtonWithTitle:@"Verwerfen"];
+    [msg addButtonWithTitle:NSLocalizedString(@"ok", @"Anwenden"])];
+    [msg addButtonWithTitle:NSLocalizedString(@"abort", @"Verwerfen"])];
     
     msg.messageText = message;
     msg.informativeText = info;

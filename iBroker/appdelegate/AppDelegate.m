@@ -51,8 +51,7 @@
 * @param sender
 */
 - (IBAction)applicationReset:(id)sender {
-
-    if ([Helper messageText:@"Anwendungs-Reset" info:@"Möchten Sie auf die Standard-Einstellungen zurück setzen?"] == NSAlertFirstButtonReturn) {
+    if ([Helper messageText:NSLocalizedString(@"application_reset", @"Anwendungs-Reset") info:NSLocalizedString(@"wanna_reset_to_app_defaults", @"Möchten Sie auf die Standard-Einstellungen zurück setzen?")] == NSAlertFirstButtonReturn) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
         [defaults removeObjectForKey:@"applications"];
