@@ -210,17 +210,23 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSDictionary *allkeys = [Brokerage cryptoCompareRatings:fiatCurrencies];
 
-        currentRatings = [allkeys[fiatCurrencies[0]] mutableCopy];
-        initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
+        if (allkeys != NULL) {
+            currentRatings = [allkeys[fiatCurrencies[0]] mutableCopy];
+            initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
 
-        // DOGE RATINGS aktualisieren, da dieser WS das nicht kann.
-        currentRatings[DOGE] = [NSString stringWithFormat:@"%.8f", [Brokerage cryptonatorsDogUpdate:fiatCurrencies]];
+            // DOGE RATINGS aktualisieren, da dieser WS das nicht kann.
+            double dogeValue = [Brokerage cryptonatorsDogUpdate:fiatCurrencies];
+            currentRatings[DOGE] = [NSString stringWithFormat:@"%.8f", dogeValue];
 
-        if (initialRatings == NULL) {
-            [self initialRatingsWithDictionary:currentRatings];
+            if (initialRatings == NULL) {
+                [self initialRatingsWithDictionary:currentRatings];
+            }
+
+            NSDictionary *poloniexTicker = [Brokerage poloniexTicker];
+            if (poloniexTicker != NULL) {
+                ticker = [poloniexTicker mutableCopy];
+            }
         }
-
-        ticker = [[Brokerage poloniexTicker] mutableCopy];
 
         [defaults synchronize];
 }
