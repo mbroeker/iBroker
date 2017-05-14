@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//DE" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -27,7 +27,7 @@
         <h3>Dashboard</h3>
 
         <div class="row description">
-          <img class="img img-25 right" src="../gfx/Dashboard.png" />
+          <img class="img img-25 right" src="../gfx/Dashboard.png" alt="Dashboard" />
 
           <p>Die erste Reihe des iBrokers zeigt Ihnen die prozentualen Änderungen zu Ihren letzten Checkpoints an.</p>
           <p>Die zweite Reihe des iBrokers zeigt Ihnen die aktuellen Kurse in Euro an.</p>
@@ -38,10 +38,10 @@
         <h3>Bitcoin</h3>
 
         <div class="row description">
-          <img class="img img-25 right" src="../gfx/Bitcoin.png" />
+          <img class="img img-25 right" src="../gfx/Bitcoin.png" alt="Bitcoin" />
 
           <p>Die erste Reihe des iBrokers zeigt Ihnen die prozentualen Änderungen zu Ihren letzten Checkpoints an.</p>
-          <p>Die zweite Reihe des iBrokers zeigt Ihnen die aktuellen Umrechnungsfaktoren für die jeweilige Cryptowährung an.</p>
+          <p>Die zweite Reihe des iBrokers zeigt Ihnen die aktuellen Umrechnungsfaktoren für die jeweilige Asset an.</p>
         </div>
       </div>
 
@@ -49,10 +49,43 @@
         <h3>Ethereum, Monero, Litecoin, Dogecoin</h3>
 
         <div class="row description">
-          <img class="img img-25 right" src="../gfx/Poloniex.png" />
+          <img class="img img-25 right" src="../gfx/Poloniex.png" alt="Poloniex" />
 
           <p>Die erste Reihe des iBrokers zeigt Ihnen die aktuellen Börsendaten von Poloniex an.</p>
-          <p>Die zweite Reihe des iBrokers zeigt Ihnen die aktuellen Umrechnungsfaktoren für die jeweilige Cryptowährung an.</p>
+          <p>Die zweite Reihe des iBrokers zeigt Ihnen die aktuellen Umrechnungsfaktoren für die jeweilige Asset an.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <h3>Farben</h3>
+
+        <div class="row">
+          <table class="colors">
+            <tr class="blau">
+              <td class="text-right">BLAU</td>
+              <td>Asset mit 5% Kursgewinn und mehr</td>
+            </tr>
+
+            <tr class="magenta">
+              <td class="text-right">Magenta</td>
+              <td>Asset mit -5% Kursverlust und weniger</td>
+            </tr>
+
+            <tr class="grün">
+              <td class="text-right">GRÜN</td>
+              <td>Asset hat am meisten an Wert zu gelegt</td>
+            </tr>
+
+            <tr class="gelb">
+              <td class="text-right">GELB</td>
+              <td>Kurs liegt unterhalb des letzten Checkpoints</td>
+            </tr>
+
+            <tr class="rot">
+              <td class="text-right">ROT</td>
+              <td>Asset hat am meisten an Wert verloren</td>
+            </tr>
+          </table>
         </div>
       </div>
 
@@ -61,11 +94,8 @@
 
         <div class="row">
           <p>
-            Tragen Sie Ihren Bestand in die jeweiligen Felder der Cryptowährungen Bitcoin, Ethereum, Monero, Litecoin und Dogecoin ein.
-          </p>
-
-          <p>
-            iBroker berechnet auf Grundlage Ihres Bestands Ihren Gesamtbestand in Euro!
+            Tragen Sie Ihren Bestand in die jeweiligen Felder der Assets Bitcoin, Ethereum, Monero, Litecoin und Dogecoin ein.
+            <br />iBroker berechnet auf Grundlage Ihres Asset-Bestands Ihren Gesamtbestand in Euro.
           </p>
         </div>
       </div>
@@ -75,20 +105,24 @@
 
         <div class="row">
           <p>
-            Das <strong>Homesymbol</strong> öffnet die Standard-Webseite für den gewählten Reiter - siehe Einstellungen
+            Das <strong>Homesymbol</strong> öffnet die Standard-Webseite für den gewählten Reiter - siehe Einstellungen.
+            <br />Die <strong>Pfeile</strong> verweisen auf Trading-Seiten.
+            <br />Der <strong>Austauschbutton</strong> startet die Standard-Wallet-Anwendung für die gewählte Währung.
+            <br />Beim Klick auf das <strong>Euro-Symbol</strong> erscheint eine überarbeitungswürdige Gesamtstatikstik.
           </p>
+        </div>
 
-          <p>
-            Die <strong>Pfeile</strong> verweisen auf Trading-Seiten
-          </p>
+        <div class="row">
+          <h4>Falls Sie gekauft haben</h4>
+          <p>Ein Klick auf das <strong>Asset-Symbol</strong> aktualisiert die Checkpoints für die gewählte Asset als auch für BTC.</p>
+          <br />
 
-          <p>
-            Der <strong>Austauschbutton</strong> startet die Standard-Wallet-Anwendung für die gewählte Währung.
-          </p>
+          <h4>Falls Sie verkauft haben</h4>
+          <p>Ein Klick auf das <strong>Asset-Symbol</strong> aktualisiert den Checkpoint für BTC.</p>
+          <br />
 
-          <p>
-            Beim Klick auf das <strong>Euro-Symbol</strong> erscheint eine überarbeitungswürdige Gesamtstatikstik
-          </p>
+          <h4>Allgemein</h4>
+          <p>Ein Klick auf das blaue Info-Icon aktualisiert den letzten Checkpoint für die gewählte Asset.</p>
         </div>
       </div>
 
@@ -96,8 +130,17 @@
         <h3>Sonstige Informationen</h3>
 
         <div class="row">
-          <p>In /var/log/system.log finden Sie die berechnten Kurse der letzten Wochen.</p>
-          <p>Richten Sie sich einfach im Dienstprogramm Konsole eine neue Systemprotokollanfrage "Sender ist gleich iBroker" ein.</p>
+          <p>
+            Das Aktualisierungsintervall liegt derzeit bei 1 Minute.
+            <br /> Der Taschenrechner aktualisiert sich bei Kursänderungen mit - bitte berücksichtigen!
+          </p>
+        </div>
+
+        <div class="row">
+          <p>
+            In /var/log/system.log finden Sie die berechneten Kurse der letzten Wochen.
+            <br />Richten Sie sich im Dienstprogramm Konsole eine neue Systemprotokollanfrage "Sender ist gleich iBroker" ein.
+          </p>
         </div>
       </div>
     </div>
