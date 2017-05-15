@@ -390,11 +390,11 @@ typedef struct DASHBOARD {
 
     double factor = [tabs[label][1] doubleValue];
 
-    self.volumeField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:4 max:4];
-    self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH] doubleValue] min:4 max:4];
-    self.lowField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW] doubleValue] min:4 max:4];
-    self.high24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:4 max:4];
-    self.low24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW24] doubleValue] min:4 max:4];
+    self.volumeField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:5 max:5];
+    self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH] doubleValue] min:5 max:5];
+    self.lowField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW] doubleValue] min:5 max:5];
+    self.high24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:5 max:5];
+    self.low24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW24] doubleValue] min:5 max:5];
 }
 
 /**
@@ -614,11 +614,11 @@ typedef struct DASHBOARD {
         DOGE: @([currentRatings[DOGE] doubleValue] / assetRating)
     };
 
-    self.currency1Field.stringValue = [Helper double2German: [currentPriceInUnits[BTC] doubleValue] min:4 max:4];
-    self.currency2Field.stringValue = [Helper double2German: [currentPriceInUnits[ETH] doubleValue] min:4 max:4];
-    self.currency3Field.stringValue = [Helper double2German: [currentPriceInUnits[XMR] doubleValue] min:4 max:4];
-    self.currency4Field.stringValue = [Helper double2German: [currentPriceInUnits[LTC] doubleValue] min:4 max:4];
-    self.currency5Field.stringValue = [Helper double2German: [currentPriceInUnits[DOGE] doubleValue] min:4 max:4];
+    self.currency1Field.stringValue = [Helper double2German: [currentPriceInUnits[BTC] doubleValue] min:5 max:5];
+    self.currency2Field.stringValue = [Helper double2German: [currentPriceInUnits[ETH] doubleValue] min:5 max:5];
+    self.currency3Field.stringValue = [Helper double2German: [currentPriceInUnits[XMR] doubleValue] min:5 max:5];
+    self.currency4Field.stringValue = [Helper double2German: [currentPriceInUnits[LTC] doubleValue] min:5 max:5];
+    self.currency5Field.stringValue = [Helper double2German: [currentPriceInUnits[DOGE] doubleValue] min:5 max:5];
 
     if ([asset isEqualToString:BTC]) self.currency1Field.stringValue = @"1";
     if ([asset isEqualToString:ETH]) self.currency2Field.stringValue = @"1";

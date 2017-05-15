@@ -9,6 +9,7 @@ Eine simple Bestandssoftware fürs Online-Traden auf diversen Tauschbörsen
 * Taschenrechner für Crypto-Währungen
 * Aktualisierungsintervall 1m
 * Intelligentes Setzen von Checkpoints
+* Genauigkeit auf 5 Stellen
 
 ### Der iBroker ###
 
