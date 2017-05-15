@@ -6,7 +6,7 @@
   Copyright © 2017 Markus Bröker. All rights reserved.
 */
 abort = "Abort";
-acknoledge = "Acknoledge";
+acknowledge = "Acknowledge";
 all_charts = "all Charts";
 application_reset = "Reset of the Application";
 bitcoin_chart = "the Bitcoin Chart";
@@ -18,8 +18,8 @@ exchange = "Exchange";
 install_app_with_param = "Install %@";
 litecoin_chart = "the Litecoin Chart";
 monero_chart = "the Monero Chart";
-ok = "OK";
-total_saldo = "Your total saldo in";
+ok = "Dismiss";
+total_saldo = "Your estimated saldo would be";
 update_saldo_with_asset = "Update your saldo for %@";
 wanna_update = "Do you want to update?";
 wanna_update_current_saldo = "Do you want to update your current Saldo?";

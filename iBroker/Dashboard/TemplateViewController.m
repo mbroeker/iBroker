@@ -658,7 +658,7 @@ typedef struct DASHBOARD {
         NSAlert *msg = [[NSAlert alloc] init];
         [msg setAlertStyle:NSWarningAlertStyle];
 
-        [msg addButtonWithTitle:NSLocalizedString(@"ok", @"Abnicken"])];
+        [msg addButtonWithTitle:NSLocalizedString(@"ok", @"OK"])];
         msg.messageText = [NSString stringWithFormat:NSLocalizedString(@"error_starting_app_with_param", @"Fehler beim Starten der %@ Wallet"), title];
         msg.informativeText = [NSString stringWithFormat:NSLocalizedString(@"install_app_with_param", @"Installieren Sie %@."), applications[title]];
 

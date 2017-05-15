@@ -6,7 +6,7 @@
   Copyright © 2017 Markus Bröker. All rights reserved.
 */
 abort = "Verwerfen";
-acknoledge = "Abnicken";
+acknowledge = "Bestätigen";
 application_reset = "Anwendungs-Reset";
 all_charts = "alle Kurse";
 bitcoin_chart = "den Bitcoin Kurs";
@@ -18,7 +18,7 @@ exchange = "Tausch";
 install_app_with_param = "Installieren Sie %@.";
 litecoin_chart = "den Litecoin Kurs";
 monero_chart = "den Monero Kurs";
-ok = "Anwenden";
+ok = "OK";
 total_saldo = "Gesamtbestand umgerechnet";
 update_saldo_with_asset = "%@ Bestand aktualisieren";
 wanna_update = "Möchten Sie aktualisieren?";
