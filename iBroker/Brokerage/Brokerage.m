@@ -7,7 +7,6 @@
 //
 
 #import "Brokerage.h"
-#import "Helper.h"
 
 @implementation Brokerage
 
@@ -34,11 +33,6 @@
         if (jsonError) {
             // Fehlermeldung wird angezeigt
             NSLog(@"%@", [jsonError description]);
-
-            // Deadlocks vermeiden
-            hasFinished = true;
-
-            return;
         }
 
         hasFinished = true;
@@ -77,11 +71,13 @@
  * @return double
  */
 + (double) cryptonatorsDogUpdate:(NSArray*)fiatCurrencies {
-    NSString *jsonURL =
-        [NSString stringWithFormat:@"https://api.cryptonator.com/api/ticker/doge-%@", [fiatCurrencies[0] lowercaseString]];
+    NSString *jsonURL = [NSString stringWithFormat:@"https://api.cryptonator.com/api/ticker/doge-%@", [fiatCurrencies[0] lowercaseString]];
+    double dogePrice = 0;
     
     NSDictionary *result = [Brokerage jsonRequest:jsonURL];
-    double dogePrice = 1 / [result[@"ticker"][@"price"] doubleValue];
+    if (result != NULL)  {
+        dogePrice = 1 / [result[@"ticker"][@"price"] doubleValue];
+    }
     
     return dogePrice;
 }
