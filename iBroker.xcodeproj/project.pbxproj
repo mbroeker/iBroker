@@ -15,6 +15,7 @@
 		B25106E01EB7356F0092D911 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DB1EB7356F0092D911 /* Calculator.m */; };
 		B25106E11EB7356F0092D911 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DD1EB7356F0092D911 /* Helper.m */; };
 		B25106E21EB7356F0092D911 /* TabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DF1EB7356F0092D911 /* TabView.m */; };
+		B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A9FD41ECA10050020555E /* ApplicationsViewController.m */; };
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2EE3EF81EC4A7C900D71791 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EE3EF71EC4A7C900D71791 /* Brokerage.m */; };
@@ -47,7 +48,6 @@
 		43D6F713419AF161FD0FB69C /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		43D6FAB9704D5BBC4D376F07 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
 		B224E8251EC8E8F30039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
-		B224E8271EC8E9EF0039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		B224E8321EC8F4840039A911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B224E8341EC8F48A0039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B224E8361EC92C790039A911 /* Algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Algorithm.h; sourceTree = "<group>"; };
@@ -62,6 +62,9 @@
 		B25106DD1EB7356F0092D911 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		B25106DE1EB7356F0092D911 /* TabView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabView.h; sourceTree = "<group>"; };
 		B25106DF1EB7356F0092D911 /* TabView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabView.m; sourceTree = "<group>"; };
+		B25A9FD31ECA10050020555E /* ApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationsViewController.h; path = preferences/ApplicationsViewController.h; sourceTree = "<group>"; };
+		B25A9FD41ECA10050020555E /* ApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationsViewController.m; path = preferences/ApplicationsViewController.m; sourceTree = "<group>"; };
+		B25A9FD81ECA257F0020555E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
 		B2EE3EF61EC4A7C900D71791 /* Brokerage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brokerage.h; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 				B2FF15CF1EB034E400F65E6B /* AddressViewController.m */,
 				B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */,
 				B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */,
+				B25A9FD31ECA10050020555E /* ApplicationsViewController.h */,
+				B25A9FD41ECA10050020555E /* ApplicationsViewController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2FF15EC1EB0384300F65E6B /* TabViewController.m in Sources */,
+				B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */,
 				B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */,
 				B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */,
 				B2EF257C1EC5B2E000C79B2E /* Algorithm.m in Sources */,
@@ -382,7 +388,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				B2B92BEF1EB05F3500278E7D /* Base */,
-				B224E8271EC8E9EF0039A911 /* en */,
+				B25A9FD81ECA257F0020555E /* en */,
 			);
 			name = Preferences.storyboard;
 			path = preferences;
