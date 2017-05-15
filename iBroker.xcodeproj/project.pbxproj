@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		43D6F9651A12E3B7440D164B /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F713419AF161FD0FB69C /* Calculator.m */; };
 		B224E8311EC8F4840039A911 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B224E8331EC8F4840039A911 /* Localizable.strings */; };
+		B224E83A1EC92C790039A911 /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B224E8371EC92C790039A911 /* Algorithm.m */; };
+		B224E83B1EC92C790039A911 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B224E8391EC92C790039A911 /* Brokerage.m */; };
 		B25106D51EB734A80092D911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106D41EB734A80092D911 /* main.m */; };
 		B25106E01EB7356F0092D911 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DB1EB7356F0092D911 /* Calculator.m */; };
 		B25106E11EB7356F0092D911 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DD1EB7356F0092D911 /* Helper.m */; };
@@ -48,6 +50,10 @@
 		B224E8271EC8E9EF0039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		B224E8321EC8F4840039A911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B224E8341EC8F48A0039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B224E8361EC92C790039A911 /* Algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Algorithm.h; sourceTree = "<group>"; };
+		B224E8371EC92C790039A911 /* Algorithm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Algorithm.m; sourceTree = "<group>"; };
+		B224E8381EC92C790039A911 /* Brokerage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brokerage.h; sourceTree = "<group>"; };
+		B224E8391EC92C790039A911 /* Brokerage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brokerage.m; sourceTree = "<group>"; };
 		B25106D21EB734A80092D911 /* iBrokerDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iBrokerDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		B25106D41EB734A80092D911 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B25106DA1EB7356F0092D911 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
@@ -101,6 +107,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B224E8351EC92C790039A911 /* Brokerage */ = {
+			isa = PBXGroup;
+			children = (
+				B224E8361EC92C790039A911 /* Algorithm.h */,
+				B224E8371EC92C790039A911 /* Algorithm.m */,
+				B224E8381EC92C790039A911 /* Brokerage.h */,
+				B224E8391EC92C790039A911 /* Brokerage.m */,
+			);
+			name = Brokerage;
+			path = iBroker/Brokerage;
+			sourceTree = SOURCE_ROOT;
+		};
 		B247B6771EB02B9D002D4FCB /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +134,7 @@
 		B25106D31EB734A80092D911 /* iBrokerDaemon */ = {
 			isa = PBXGroup;
 			children = (
+				B224E8351EC92C790039A911 /* Brokerage */,
 				B25106D91EB7356F0092D911 /* Common */,
 				B25106D41EB734A80092D911 /* main.m */,
 			);
@@ -320,7 +339,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B224E83A1EC92C790039A911 /* Algorithm.m in Sources */,
 				B25106D51EB734A80092D911 /* main.m in Sources */,
+				B224E83B1EC92C790039A911 /* Brokerage.m in Sources */,
 				B25106E11EB7356F0092D911 /* Helper.m in Sources */,
 				B25106E21EB7356F0092D911 /* TabView.m in Sources */,
 				B25106E01EB7356F0092D911 /* Calculator.m in Sources */,
