@@ -221,11 +221,12 @@
             if (initialRatings == NULL) {
                 [self initialRatingsWithDictionary:currentRatings];
             }
+        }
 
-            NSDictionary *poloniexTicker = [Brokerage poloniexTicker];
-            if (poloniexTicker != NULL) {
-                ticker = [poloniexTicker mutableCopy];
-            }
+        // Im Idealfall geht sowohl der Ticker als auch CryptoCompare
+        NSDictionary *poloniexTicker = [Brokerage poloniexTicker];
+        if (poloniexTicker != NULL) {
+            ticker = [poloniexTicker mutableCopy];
         }
 
         [defaults synchronize];
