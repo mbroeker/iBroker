@@ -88,9 +88,14 @@
             saldoUrls = [@{
                 @"Dashboard": @"https://poloniex.com/exchange#btc_xmr",
                 @"Bitcoin": @"https://blockchain.info/",
+                @"ZCash": @"https://explorer.zcha.in",
                 @"Ethereum": @"https://etherscan.io/",
                 @"Litecoin": @"https://chainz.cryptoid.info/ltc/",
                 @"Monero": @"https://moneroblocks.info",
+                @"Gamecoin": @"https://blockexplorer.gamecredits.com",
+                @"Ripple": @"https://charts.ripple.com/",
+                @"Safe Maid Coin": @"https://maidsafe.net/features.html",
+                @"Stellar Lumens": @"https://stellarchain.io",
                 @"Dogecoin": @"https://dogechain.info",
                 @"Ripple": @"http://ripple.info/",
             } mutableCopy];
@@ -113,49 +118,62 @@
 
         [defaults synchronize];
 
-        [self upgradeAssistant];
+        // Migration älterer Installationen
+        if (!saldoUrls[@"ZCash"]) {
+            [self upgradeAssistant];
+        }
+
         [self updateRatings];
     }
 
     return self;
 }
 
+/**
+ * simpler Upgrade Assistent
+ */
 - (void)upgradeAssistant {
     BOOL mustUpdate = false;
 
-    if (!saldoUrls[@"Ripple"]) {
-        saldoUrls[@"Ripple"] = @"http://ripple.info/";
-    }
+    if (!saldoUrls[@"ZCash"]) {
+        saldoUrls[@"ZCash"] = @"https://explorer.zcha.in";
 
-    if (!currentSaldo[ZEC]) {
         currentSaldo[ZEC] = @0.0;
         initialRatings[ZEC] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!currentSaldo[GAME]) {
+    if (!saldoUrls[@"Gamecoin"]) {
+        saldoUrls[@"Gamecoin"] = @"https://blockexplorer.gamecredits.com";
+
         currentSaldo[GAME] = @0.0;
         initialRatings[GAME] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!currentSaldo[XRP]) {
-        currentSaldo[XRP] = @0.0;
-        initialRatings[XRP] = @0.0;
+    if (!saldoUrls[@"Safe Maid Coin"]) {
+        saldoUrls[@"Safe Maid Coin"] = @"https://maidsafe.net/features.html";
 
-        mustUpdate = true;
-    }
-
-    if (!currentSaldo[MAID]) {
         currentSaldo[MAID] = @0.0;
         initialRatings[MAID] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!currentSaldo[STR]) {
+    if (!saldoUrls[@"Ripple"]) {
+        saldoUrls[@"Ripple"] = @"https://charts.ripple.com/";
+
+        currentSaldo[XRP] = @0.0;
+        initialRatings[XRP] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[@"Stellar Lumens"]) {
+        saldoUrls[@"Stellar Lumens"] = @"https://stellarchain.io";
+
         currentSaldo[STR] = @0.0;
         initialRatings[STR] = @0.0;
 
@@ -164,10 +182,13 @@
 
     if (mustUpdate) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:initialRatings forKey:KEY_INITIAL_RATINGS];
-        [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
-    }
 
+        [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
+        [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
+        [defaults setObject:initialRatings forKey:KEY_INITIAL_RATINGS];
+
+        [defaults synchronize];
+    }
 }
 
 /**
@@ -251,12 +272,17 @@
     currentSaldo = [[defaults objectForKey:KEY_CURRENT_SALDO] mutableCopy];
 
     double btc = [currentSaldo[BTC] doubleValue] / [ratings[BTC] doubleValue];
+    double zec = [currentSaldo[ZEC] doubleValue] / [ratings[ZEC] doubleValue];
     double eth = [currentSaldo[ETH] doubleValue] / [ratings[ETH] doubleValue];
     double ltc = [currentSaldo[LTC] doubleValue] / [ratings[LTC] doubleValue];
     double xmr = [currentSaldo[XMR] doubleValue] / [ratings[XMR] doubleValue];
+    double game = [currentSaldo[GAME] doubleValue] / [ratings[GAME] doubleValue];
     double xrp = [currentSaldo[XRP] doubleValue] / [ratings[XRP] doubleValue];
+    double maid = [currentSaldo[MAID] doubleValue] / [ratings[MAID] doubleValue];
+    double str = [currentSaldo[STR] doubleValue] / [ratings[STR] doubleValue];
+    double doge = [currentSaldo[DOGE] doubleValue] / [ratings[DOGE] doubleValue];
 
-    double sum = btc + eth + ltc + xmr + xrp;
+    double sum = btc + zec + eth + ltc + xmr + + game + xrp + maid + str + doge;
 
     if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;

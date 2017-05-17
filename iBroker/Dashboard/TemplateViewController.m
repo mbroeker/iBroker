@@ -171,7 +171,7 @@ typedef struct DASHBOARD {
     if (applications == NULL) {
         applications = [@{
             @"Bitcoin": @"/Applications/Electrum.App",
-            @"ZCash": @"/Applications/Electrum.App",
+            @"ZCash": @"",
             @"Ethereum": @"/Applications/Ethereum Wallet.App",
             @"Monero": @"/Applications/monero-wallet-gui.App",
             @"Litecoin": @"/Applications/Electrum-LTC.App",
@@ -219,6 +219,53 @@ typedef struct DASHBOARD {
 
     // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
     [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
+
+    // Migration älterer Installationen
+    if (!applications[@"ZCash"]) {
+        [self updateAssistant];
+    }
+}
+
+/**
+ * simpler Upgrade Assistent
+ */
+- (void)updateAssistant {
+
+    BOOL mustUpdate = false;
+
+    if (!applications[@"ZCash"]) {
+        applications[@"ZCash"] = @"https://explorer.zcha.in";
+        mustUpdate = true;
+    }
+
+    if (!applications[@"Gamecoin"]) {
+        applications[@"Gamecoin"] = @"";
+        mustUpdate = true;
+    }
+
+    if (!applications[@"Ripple"]) {
+        applications[@"Ripple"] = @"";
+        mustUpdate = true;
+    }
+
+    if (!applications[@"Maid Safe Coin"]) {
+        applications[@"Maid Safe Coin"] = @"";
+        mustUpdate = true;
+    }
+
+    if (!applications[@"Stellar Lumens"]) {
+        applications[@"Stellar Lumens"] = @"";
+        mustUpdate = true;
+    }
+
+    if (mustUpdate) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:applications forKey:@"applications"];
+        NSLog(@"Migrating applications");
+
+        [defaults synchronize];
+    }
+
 }
 
 /**
