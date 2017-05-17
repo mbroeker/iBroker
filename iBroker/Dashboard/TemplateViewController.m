@@ -917,7 +917,7 @@ typedef struct DASHBOARD {
 - (IBAction)rateInputAction:(id)sender {
     NSString *tabTitle = self.headlineLabel.stringValue;
 
-    NSString *cAsset = tabs[tabTitle][0];
+    NSString *cAsset = ([tabTitle isEqualToString:@"Dashboard"] ? fiatCurrencies[1] : labels[tabTitle]);
     NSString *exchangeUnit = self.exchangeSelection.selectedItem.title;
 
     // Aktualisierte Ratings besorgen
