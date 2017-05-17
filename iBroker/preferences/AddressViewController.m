@@ -23,10 +23,16 @@
     NSMutableDictionary *saldoUrls = [calculator saldoUrls];
     
     self.btcField.stringValue = saldoUrls[@"Bitcoin"];
+    self.zecField.stringValue = saldoUrls[@"ZCash"];
     self.ethField.stringValue = saldoUrls[@"Ethereum"];
     self.xmrField.stringValue = saldoUrls[@"Monero"];
     self.ltcField.stringValue = saldoUrls[@"Litecoin"];
+    self.gameField.stringValue = saldoUrls[@"Gamecoin"];
+    self.xrpField.stringValue = saldoUrls[@"Ripple"];
+    self.maidField.stringValue = saldoUrls[@"Safe Maid Coin"];
+    self.strField.stringValue = saldoUrls[@"Stellar Lumens"];
     self.dogeField.stringValue = saldoUrls[@"Dogecoin"];
+    
     self.dashboardField.stringValue = saldoUrls[@"Dashboard"];
 }
 
@@ -40,55 +46,18 @@
     NSMutableDictionary *saldoUrls = [calculator saldoUrls];
 
     saldoUrls[@"Bitcoin"] = self.btcField.stringValue;
+    saldoUrls[@"ZCash"] = self.zecField.stringValue;
     saldoUrls[@"Ethereum"] = self.ethField.stringValue;
     saldoUrls[@"Monero"] = self.xmrField.stringValue;
     saldoUrls[@"Litecoin"] = self.ltcField.stringValue;
+    saldoUrls[@"Gamecoin"] = self.gameField.stringValue;
+    saldoUrls[@"Ripple"] = self.xrpField.stringValue;
+    saldoUrls[@"Safe Maid Coin"] = self.maidField.stringValue;
+    saldoUrls[@"Stellar Lumens"] = self.strField.stringValue;
     saldoUrls[@"Dogecoin"] = self.dogeField.stringValue;
     saldoUrls[@"Dashboard"] = self.dashboardField.stringValue;
     
     [calculator saldoUrlsForDictionary:saldoUrls];
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)btcAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)ethAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)xmrAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)ltcAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)dogeAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)dashboardAction:(id)sender {
 }
 
 @end

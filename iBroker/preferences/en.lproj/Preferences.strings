@@ -7,11 +7,11 @@
 /* Class = "NSTabViewItem"; label = "Anwendungen"; ObjectID = "IvL-R4-6Xs"; */
 "IvL-R4-6Xs.label" = "Applications";
 
-/* Class = "NSTextFieldCell"; title = "Ihre Konten und Adressen"; ObjectID = "9Yv-7Q-972"; */
-"9Yv-7Q-972.title" = "Your Accounts and Addresses";
+/* Class = "NSTextFieldCell"; title = "Ihre Konten und Adressen"; ObjectID = "HtI-qx-WwD"; */
+"HtI-qx-WwD.title" = "Your Accounts and Addresses";
 
-/* Class = "NSTextFieldCell"; title = "Ihre initialen Kurse (EUR)"; ObjectID = "Ilt-AS-aFi"; */
-"Ilt-AS-aFi.title" = "Your initial Charts (EUR)";
+/* Class = "NSTextFieldCell"; title = "Ihre initialen Kurse (EUR)"; ObjectID = "Ukn-PJ-ZoR"; */
+"Ukn-PJ-ZoR.title" = "Your initial Charts (EUR)";
 
 /* Class = "NSTextFieldCell"; title = "Ihre Kurse"; ObjectID = "pgE-E6-caD"; */
 "pgE-E6-caD.title" = "Your Charts";
