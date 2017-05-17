@@ -7,9 +7,14 @@
 #import "Brokerage.h"
 
 #define BTC @"BTC"
+#define ZEC @"ZEC"
 #define ETH @"ETH"
 #define XMR @"XMR"
 #define LTC @"LTC"
+#define GAME @"GAME"
+#define XRP @"XRP"
+#define MAID @"MAID"
+#define STR @"STR"
 #define DOGE @"DOGE"
 
 #define EUR @"EUR"
@@ -61,4 +66,5 @@
 - (NSMutableDictionary*)initialRatings;
 - (NSMutableDictionary*)currentRatings;
 - (NSMutableDictionary*)ticker;
+- (NSDictionary*)tickerKeys;
 @end

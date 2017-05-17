@@ -20,6 +20,8 @@
     NSMutableDictionary *ticker;
 
     NSArray *fiatCurrencies;
+
+    NSDictionary *tickerKeys;
 }
 
 /**
@@ -66,16 +68,21 @@
         if (currentSaldo == NULL) {
             currentSaldo = [@{
                 BTC: @0.0,
+                ZEC: @0.0,
                 ETH: @0.0,
                 LTC: @0.0,
                 XMR: @0.0,
+                GAME: @0.0,
+                XRP: @0.0,
+                MAID: @0.0,
+                STR: @0.0,
                 DOGE: @0.0,
             } mutableCopy];
 
             [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
         }
 
-        saldoUrls = [defaults objectForKey:KEY_SALDO_URLS];
+        saldoUrls = [[defaults objectForKey:KEY_SALDO_URLS] mutableCopy];
 
         if (saldoUrls == NULL) {
             saldoUrls = [@{
@@ -84,17 +91,83 @@
                 @"Ethereum": @"https://etherscan.io/",
                 @"Litecoin": @"https://chainz.cryptoid.info/ltc/",
                 @"Monero": @"https://moneroblocks.info",
-                @"Dogecoin": @"http://dogechain.info/",
+                @"Dogecoin": @"https://dogechain.info",
+                @"Ripple": @"http://ripple.info/",
             } mutableCopy];
 
             [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
         }
 
+        tickerKeys = @{
+            BTC: BTC,
+            ZEC: @"BTC_ZEC",
+            ETH: @"BTC_ETH",
+            XMR: @"BTC_XMR",
+            LTC: @"BTC_LTC",
+            GAME: @"BTC_GAME",
+            XRP: @"BTC_XRP",
+            MAID: @"BTC_MAID",
+            STR: @"BTC_STR",
+            DOGE: @"BTC_DOGE"
+        };
+
         [defaults synchronize];
+
+        [self upgradeAssistant];
         [self updateRatings];
     }
 
     return self;
+}
+
+- (void)upgradeAssistant {
+    BOOL mustUpdate = false;
+
+    if (!saldoUrls[@"Ripple"]) {
+        saldoUrls[@"Ripple"] = @"http://ripple.info/";
+    }
+
+    if (!currentSaldo[ZEC]) {
+        currentSaldo[ZEC] = @0.0;
+        initialRatings[ZEC] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!currentSaldo[GAME]) {
+        currentSaldo[GAME] = @0.0;
+        initialRatings[GAME] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!currentSaldo[XRP]) {
+        currentSaldo[XRP] = @0.0;
+        initialRatings[XRP] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!currentSaldo[MAID]) {
+        currentSaldo[MAID] = @0.0;
+        initialRatings[MAID] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!currentSaldo[STR]) {
+        currentSaldo[STR] = @0.0;
+        initialRatings[STR] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (mustUpdate) {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:initialRatings forKey:KEY_INITIAL_RATINGS];
+        [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
+    }
+
 }
 
 /**
@@ -181,9 +254,9 @@
     double eth = [currentSaldo[ETH] doubleValue] / [ratings[ETH] doubleValue];
     double ltc = [currentSaldo[LTC] doubleValue] / [ratings[LTC] doubleValue];
     double xmr = [currentSaldo[XMR] doubleValue] / [ratings[XMR] doubleValue];
-    double doge = [currentSaldo[DOGE] doubleValue] / [ratings[DOGE] doubleValue];
+    double xrp = [currentSaldo[XRP] doubleValue] / [ratings[XRP] doubleValue];
 
-    double sum = btc + eth + ltc + xmr + doge;
+    double sum = btc + eth + ltc + xmr + xrp;
 
     if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;
@@ -207,29 +280,43 @@
  */
 - (void)unsynchronizedUpdateRatings {
 
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        NSDictionary *allkeys = [Brokerage cryptoCompareRatings:fiatCurrencies];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *allkeys = [Brokerage poloniexTicker];
 
-        if (allkeys != NULL) {
-            currentRatings = [allkeys[fiatCurrencies[0]] mutableCopy];
-            initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
+    if (allkeys != NULL) {
+        ticker = [allkeys mutableCopy];
 
-            // DOGE RATINGS aktualisieren, da dieser WS das nicht kann.
-            double dogeValue = [Brokerage cryptonatorsDogUpdate:fiatCurrencies];
-            currentRatings[DOGE] = [NSString stringWithFormat:@"%.8f", dogeValue];
+        currentRatings = [[NSMutableDictionary alloc] init];
 
-            if (initialRatings == NULL) {
-                [self initialRatingsWithDictionary:currentRatings];
+        double btcValue = 0;
+        NSDictionary *ratings = [Brokerage cryptoCompareRatings:fiatCurrencies];
+        if (ratings != nil) {
+            btcValue = [ratings[fiatCurrencies[0]][BTC] doubleValue];
+            double fiatValue = [ratings[fiatCurrencies[0]][fiatCurrencies[1]] doubleValue];
+
+            currentRatings[BTC] = [NSNumber numberWithDouble:btcValue];
+            currentRatings[fiatCurrencies[1]] = [NSNumber numberWithDouble:fiatValue];
+        }
+
+        for (id key in tickerKeys) {
+            double assetValue = btcValue;
+            if (![key isEqualToString:BTC]) {
+                assetValue /= ([allkeys[tickerKeys[key]][POLONIEX_LAST] doubleValue]);
             }
+
+            currentRatings[key] = [NSNumber numberWithDouble:assetValue];
         }
 
-        // Im Idealfall geht sowohl der Ticker als auch CryptoCompare
-        NSDictionary *poloniexTicker = [Brokerage poloniexTicker];
-        if (poloniexTicker != NULL) {
-            ticker = [poloniexTicker mutableCopy];
-        }
+        initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
 
-        [defaults synchronize];
+        ticker[BTC] = [Brokerage cryptoCompareBTCTicker:[currentRatings[USD] doubleValue]];
+
+        if (initialRatings == NULL) {
+            [self initialRatingsWithDictionary:currentRatings];
+        }
+    }
+
+    [defaults synchronize];
 }
 
 /**
@@ -353,6 +440,10 @@
 
 - (NSMutableDictionary*)ticker {
     return [ticker mutableCopy];
+}
+
+- (NSDictionary*)tickerKeys {
+    return tickerKeys;
 }
 
 @end

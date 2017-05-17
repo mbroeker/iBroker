@@ -7,21 +7,16 @@
 */
 abort = "Abort";
 acknowledge = "Acknowledge";
-all_charts = "all Charts";
+all_charts = "all assets";
 application_reset = "Reset of the Application";
-bitcoin_chart = "the Bitcoin Chart";
 comparison_belongs_to_checkpoint = "The Comparision (+/-) belongs to the last saved Checkpoint!";
-dogecoin_chart = "the Dogecoin Chart";
 error_starting_app_with_param = "Error starting the Wallet Application %@";
-ethereum_chart = "the Ethereum Chart";
 exchange = "Exchange";
 install_app_with_param = "Install %@";
-litecoin_chart = "the Litecoin Chart";
-monero_chart = "the Monero Chart";
 ok = "Dismiss";
 total_saldo = "Your estimated saldo would be";
 update_saldo_with_asset = "Update your saldo for %@";
 wanna_update = "Do you want to update?";
 wanna_update_current_saldo = "Do you want to update your current Saldo?";
-wanna_update_with_asset = "Do you want to update your current Saldo for %@?";
+wanna_update_with_asset = "Do you want to update your current checkpoint for %@?";
 wanna_reset_to_app_defaults = "Do you want to reset the application to default settings and quit?";

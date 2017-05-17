@@ -10,6 +10,9 @@
 
 @interface TemplateViewController : NSViewController
 
+// Die Menübar selber
+@property (strong) IBOutlet NSView *menuBar;
+
 // Definition der Menü-Buttons
 @property (weak) IBOutlet NSButton *homeButton;
 @property (weak) IBOutlet NSButton *leftButton;
@@ -46,6 +49,12 @@
 @property (strong) IBOutlet NSTextField *currency3Label;
 @property (strong) IBOutlet NSTextField *currency4Label;
 @property (strong) IBOutlet NSTextField *currency5Label;
+@property (strong) IBOutlet NSTextField *currency6Label;
+@property (strong) IBOutlet NSTextField *currency7Label;
+@property (strong) IBOutlet NSTextField *currency8Label;
+@property (strong) IBOutlet NSTextField *currency9Label;
+@property (strong) IBOutlet NSTextField *currency10Label;
+
 
 @property (strong) IBOutlet NSTextField *currency1Field;
 @property (strong) IBOutlet NSTextField *currency2Field;
@@ -53,19 +62,24 @@
 @property (strong) IBOutlet NSTextField *currency4Field;
 @property (strong) IBOutlet NSTextField *currency5Field;
 
+@property (strong) IBOutlet NSTextField *currency6Field;
+@property (strong) IBOutlet NSTextField *currency7Field;
+@property (strong) IBOutlet NSTextField *currency8Field;
+@property (strong) IBOutlet NSTextField *currency9Field;
+@property (strong) IBOutlet NSTextField *currency10Field;
+
 // Definition der Poloniex Label und Felder
 @property (strong) IBOutlet NSTextField *volumeLabel;
 @property (strong) IBOutlet NSTextField *highLabel;
-@property (strong) IBOutlet NSTextField *lowLabel;
+@property (strong) IBOutlet NSTextField *changeLabel;
 @property (strong) IBOutlet NSTextField *high24Label;
 @property (strong) IBOutlet NSTextField *low24Label;
 
 @property (strong) IBOutlet NSTextField *volumeField;
 @property (strong) IBOutlet NSTextField *highField;
-@property (strong) IBOutlet NSTextField *lowField;
+@property (strong) IBOutlet NSTextField *changeField;
 @property (strong) IBOutlet NSTextField *high24Field;
 @property (strong) IBOutlet NSTextField *low24Field;
-
 
 @property (strong) IBOutlet NSPopUpButton *exchangeSelection;
 

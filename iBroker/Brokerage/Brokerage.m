@@ -60,26 +60,31 @@
  */
 + (NSDictionary*)cryptoCompareRatings:(NSArray*)fiatCurrencies {
     NSString *jsonURL =
-        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC,ETH,LTC,XMR,DOGE", fiatCurrencies[0], fiatCurrencies[1]];
+        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC&extraParams=de.4customers.iBroker", fiatCurrencies[0], fiatCurrencies[1]];
     
     return [Brokerage jsonRequest:jsonURL];
 }
 
-/**
- * Hilfsmethode, da der Kurs bei Cryptocompare ewig falsch ist.
- *
- * @return double
- */
-+ (double) cryptonatorsDogUpdate:(NSArray*)fiatCurrencies {
-    NSString *jsonURL = [NSString stringWithFormat:@"https://api.cryptonator.com/api/ticker/doge-%@", [fiatCurrencies[0] lowercaseString]];
-    double dogePrice = 0;
-    
-    NSDictionary *result = [Brokerage jsonRequest:jsonURL];
-    if (result != NULL)  {
-        dogePrice = 1 / [result[@"ticker"][@"price"] doubleValue];
-    }
-    
-    return dogePrice;
++ (NSDictionary*)cryptoCompareBTCTicker:(double)usdFactor {
+    NSString *jsonURL =
+        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1&e=Poloniex&extraParams=de.4customers.iBroker"];
+
+    NSDictionary *theirData = [Brokerage jsonRequest:jsonURL];
+
+    NSMutableDictionary *poloniexData = [[NSMutableDictionary alloc] init];
+
+    NSDictionary *data = theirData[@"Data"][0];
+    poloniexData[POLONIEX_HIGH24] = [NSNumber numberWithDouble:[data[@"high"] doubleValue] / usdFactor];
+    poloniexData[POLONIEX_LOW24] = [NSNumber numberWithDouble:[data[@"low"] doubleValue] / usdFactor];
+    poloniexData[POLONIEX_HIGH] = [NSNumber numberWithDouble:[data[@"close"] doubleValue] / usdFactor];
+    poloniexData[POLONIEX_LOW] = [NSNumber numberWithDouble:[data[@"open"] doubleValue] / usdFactor];
+    poloniexData[POLONIEX_LAST] = [NSNumber numberWithDouble:[data[@"close"] doubleValue] / usdFactor];
+
+    poloniexData[POLONIEX_BASE_VOLUME] = data[@"volumefrom"];
+    poloniexData[POLONIEX_QUOTE_VOLUME] = data[@"volumeto"];
+    poloniexData[POLONIEX_PERCENT] = [NSNumber numberWithDouble:100 * ([data[@"volumefrom"] doubleValue] / [data[@"volumeto"] doubleValue])];
+
+    return poloniexData;
 }
 
 /**
