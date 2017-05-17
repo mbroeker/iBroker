@@ -10,4 +10,6 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 @property (weak) IBOutlet NSWindow *window;
+@property (weak) IBOutlet NSMenuItem *menubarItem;
+
 @end

@@ -24,6 +24,10 @@
  * @param aNotification
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *state = [defaults valueForKey:@"menubar"];
+
+    self.menubarItem.state = state.integerValue;
 }
 
 /**
@@ -43,6 +47,23 @@
  */
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return true;
+}
+
+/**
+ * Schaltet die Menübar an/aus
+ *
+ * @param sender
+ */
+- (IBAction)toggleMenuBar:(id)sender {
+    NSMenuItem *item = (NSMenuItem*)sender;
+
+    item.state = !item.state;
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *state = [NSNumber numberWithInteger:item.state];
+
+    [defaults setValue:state forKey: @"menubar"];
+    [defaults synchronize];
 }
 
 /**
