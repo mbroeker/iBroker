@@ -16,8 +16,8 @@
  * @param dirtyRect
  */
 - (void) drawRect:(NSRect)dirtyRect {
-    static const NSRect offsetRect = (NSRect) { 0, 0, 0, 0 };
-    
+    static const NSRect offsetRect = (NSRect) { 10, 0, -20, 0 };
+
     NSRect rect = self.frame;
     
     rect.origin.x += offsetRect.origin.x;
