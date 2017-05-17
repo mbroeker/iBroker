@@ -632,7 +632,7 @@ typedef struct DASHBOARD {
     double assets = [(NSNumber *) tabs[label][1] doubleValue];
 
     // Standards
-    homeURL = [calculator saldoUrlForLabel:label];
+    homeURL = [calculator saldoUrlForLabel:tabs[label][0]];
 
     // Aktualisiere den Kurs des Tabs - falls einer gesetzt ist
     [self rateInputAction:self];
