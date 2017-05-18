@@ -86,7 +86,7 @@ typedef struct DASHBOARD_VARS {
     NSColor *infoBarFGColor = [NSColor colorWithCalibratedRed:178.0f / 255.0f green:178.0f / 255.0f blue:178.0f / 255.0f alpha:1.0f];
 
     // Poloniex Leiste
-    self.volumeField.backgroundColor = chartBGColor;
+    self.lastField.backgroundColor = chartBGColor;
     self.highField.backgroundColor = chartBGColor;
     self.changeField.backgroundColor = chartBGColor;
     self.high24Field.backgroundColor = chartBGColor;
@@ -448,7 +448,7 @@ typedef struct DASHBOARD_VARS {
 -(void)updateTicker:(NSString*)label {
 
     if ([label isEqualToString:DASHBOARD]) {
-        self.volumeField.stringValue = @"---";
+        self.lastField.stringValue = @"---";
         self.highField.stringValue = @"---";
         self.changeField.stringValue = @"---";
         self.high24Field.stringValue = @"---";
@@ -468,11 +468,12 @@ typedef struct DASHBOARD_VARS {
 
     if ([label isEqualToString:BTC]) {
         fractions = 2;
-        self.highLabel.stringValue = @"OPEN";
+        self.lastLabel.stringValue = @"OPEN";
+        self.highLabel.stringValue = @"CLOSE";
     }
 
     double changeInPercent = 100 * [tickerData[POLONIEX_PERCENT] doubleValue];
-    self.volumeField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:fractions max:fractions];
+    self.lastField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:fractions max:fractions];
     self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH] doubleValue] min:fractions max:fractions];
     self.changeField.stringValue = [Helper double2GermanPercent:changeInPercent fractions:2];
     self.high24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:fractions max:fractions];

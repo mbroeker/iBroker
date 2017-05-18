@@ -56,7 +56,7 @@
 }
 
 /**
- * Besorge die Kurse von cryptocompare per JSON-Request und speichere Sie in den App-Einstellungen
+ * Besorge die Kurse von cryptocompare per JSON-Request
  */
 + (NSDictionary*)cryptoCompareRatings:(NSArray*)fiatCurrencies {
     NSString *jsonURL =
@@ -65,6 +65,9 @@
     return [Brokerage jsonRequest:jsonURL];
 }
 
+/**
+ * Besorge den fehlenden BTC-Ticker von cryptoCompare und fake diesen ins Poloniex-Format
+ */
 + (NSDictionary*)cryptoCompareBTCTicker:(double)usdFactor {
     NSString *jsonURL =
         [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1&e=Poloniex&extraParams=de.4customers.iBroker"];
@@ -78,7 +81,7 @@
     poloniexData[POLONIEX_LOW24] = [NSNumber numberWithDouble:[data[@"low"] doubleValue] / usdFactor];
     poloniexData[POLONIEX_HIGH] = [NSNumber numberWithDouble:[data[@"close"] doubleValue] / usdFactor];
     poloniexData[POLONIEX_LOW] = [NSNumber numberWithDouble:[data[@"open"] doubleValue] / usdFactor];
-    poloniexData[POLONIEX_LAST] = [NSNumber numberWithDouble:[data[@"close"] doubleValue] / usdFactor];
+    poloniexData[POLONIEX_LAST] = [NSNumber numberWithDouble:[data[@"open"] doubleValue] / usdFactor];
 
     poloniexData[POLONIEX_BASE_VOLUME] = data[@"volumefrom"];
     poloniexData[POLONIEX_QUOTE_VOLUME] = data[@"volumeto"];

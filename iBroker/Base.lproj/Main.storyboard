@@ -963,6 +963,8 @@
                         <outlet property="iBrokerLabel" destination="g6T-5O-fao" id="YeY-vv-d7l"/>
                         <outlet property="infoButton" destination="36w-6A-NbZ" id="crK-Xi-naI"/>
                         <outlet property="infoLabel" destination="m8T-Bw-tnd" id="Em2-ZB-Jkz"/>
+                        <outlet property="lastField" destination="F2G-3h-NaD" id="JYM-CM-rzy"/>
+                        <outlet property="lastLabel" destination="3Og-Gw-jnu" id="tkI-7e-MJL"/>
                         <outlet property="leftButton" destination="Yti-eZ-CdL" id="OBw-L5-E9U"/>
                         <outlet property="low24Field" destination="Eux-yU-TCb" id="rUf-Do-T1x"/>
                         <outlet property="low24Label" destination="DEQ-kb-9Dj" id="tpH-N6-9VV"/>
@@ -973,8 +975,6 @@
                         <outlet property="rateOutputLabel" destination="byo-Q7-Pc5" id="EHk-xD-QqZ"/>
                         <outlet property="rightButton" destination="af1-Jr-cka" id="qIk-Ak-IwW"/>
                         <outlet property="statusLabel" destination="Qxy-RG-i6z" id="tr5-3l-3vR"/>
-                        <outlet property="volumeField" destination="F2G-3h-NaD" id="Ji7-6C-GGR"/>
-                        <outlet property="volumeLabel" destination="3Og-Gw-jnu" id="9ME-Ec-B3i"/>
                         <outlet property="walletButton" destination="I8c-Qp-8Ez" id="kU3-KO-C6J"/>
                     </connections>
                 </viewController>
