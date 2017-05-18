@@ -2,10 +2,13 @@
 /* Class = "NSTextFieldCell"; title = "HIGH"; ObjectID = "0um-5d-4tk"; */
 "0um-5d-4tk.title" = "HIGH";
 
+/* Class = "NSMenuItem"; title = "iBroker"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "iBroker";
+
 /* Class = "NSTextFieldCell"; placeholderString = "Rate Field"; ObjectID = "1Ys-Dp-0XL"; */
 "1Ys-Dp-0XL.placeholderString" = "Rate Field";
 
-/* Class = "NSTextFieldCell"; title = "0,0"; ObjectID = "1eH-Do-Vcu"; */
+/* Class = "NSTextFieldCell"; title = "0.0"; ObjectID = "1eH-Do-Vcu"; */
 "1eH-Do-Vcu.title" = "0.0";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "1ka-EZ-NIN"; */
@@ -14,20 +17,23 @@
 /* Class = "NSTextFieldCell"; title = "Dashboard"; ObjectID = "200-jD-Tem"; */
 "200-jD-Tem.title" = "Dashboard";
 
-/* Class = "NSViewController"; title = "Dashboard"; ObjectID = "2wC-py-DJR"; */
-"2wC-py-DJR.title" = "Dashboard";
-
-/* Class = "NSTabViewItem"; label = "Dashboard"; ObjectID = "35g-m1-hvR"; */
-"35g-m1-hvR.label" = "Dashboard";
-
 /* Class = "NSMenuItem"; title = "Programm beenden"; ObjectID = "4sb-4s-VLi"; */
 "4sb-4s-VLi.title" = "Quit Application";
 
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "4vc-37-SrV"; */
+"4vc-37-SrV.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "5WR-pz-LnN"; */
+"5WR-pz-LnN.placeholderString" = "Chart";
+
 /* Class = "NSMenuItem"; title = "Zurück setzen"; ObjectID = "5jW-sL-1jd"; */
-"5jW-sL-1jd.title" = "Reset App";
+"5jW-sL-1jd.title" = "Application Reset";
 
 /* Class = "NSMenuItem"; title = "Über das Programm"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "About";
+"5kV-Vb-QxS.title" = "About iBroker";
+
+/* Class = "NSMenuItem"; title = "Menüleiste"; ObjectID = "7GE-rs-aAs"; */
+"7GE-rs-aAs.title" = "Menubar";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Main Menu";
@@ -37,6 +43,15 @@
 
 /* Class = "NSTextFieldCell"; title = "Escobar Edition"; ObjectID = "BiY-c6-xVz"; */
 "BiY-c6-xVz.title" = "Escobar Edition";
+
+/* Class = "NSTextFieldCell"; title = "iBroker"; ObjectID = "Boa-Pw-8hT"; */
+"Boa-Pw-8hT.title" = "iBroker";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "CHo-nz-QdA"; */
+"CHo-nz-QdA.placeholderString" = "Chart";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "ELP-22-eyf"; */
+"ELP-22-eyf.placeholderString" = "Chart";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "EVR-A1-L2s"; */
 "EVR-A1-L2s.placeholderString" = "Chart";
@@ -49,6 +64,9 @@
 
 /* Class = "NSMenuItem"; title = "Hilfe zum Programm"; ObjectID = "FKE-Sm-Kum"; */
 "FKE-Sm-Kum.title" = "Help for iBroker";
+
+/* Class = "NSWindow"; title = "iBroker"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "iBroker";
 
 /* Class = "NSMenuItem"; title = "Alle Anzeigen"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "Show All";
@@ -77,10 +95,13 @@
 /* Class = "NSMenuItem"; title = "Andere minimieren"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "Minimize others";
 
-/* Class = "NSTextFieldCell"; title = "LOW"; ObjectID = "X35-X7-bW7"; */
-"X35-X7-bW7.title" = "LOW";
+/* Class = "NSTextFieldCell"; title = "24h CHANGE"; ObjectID = "X35-X7-bW7"; */
+"X35-X7-bW7.title" = "24h CHANGE";
 
-/* Class = "NSTextFieldCell"; title = "0,0"; ObjectID = "Ywa-JN-XWX"; */
+/* Class = "NSTabViewItem"; label = "MAID"; ObjectID = "XBF-ls-CU9"; */
+"XBF-ls-CU9.label" = "MAID";
+
+/* Class = "NSTextFieldCell"; title = "0.0"; ObjectID = "Ywa-JN-XWX"; */
 "Ywa-JN-XWX.title" = "0.0";
 
 /* Class = "NSMenuItem"; title = "Fenster"; ObjectID = "aUF-d1-5bR"; */
@@ -95,9 +116,6 @@
 /* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "efq-o8-e3w"; */
 "efq-o8-e3w.placeholderString" = "Chart";
 
-/* Class = "NSTextFieldCell"; placeholderString = "1"; ObjectID = "fUg-se-HRw"; */
-"fUg-se-HRw.placeholderString" = "1";
-
 /* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "g1m-5x-eS7"; */
 "g1m-5x-eS7.placeholderString" = "Chart";
 
@@ -110,6 +128,9 @@
 /* Class = "NSTextFieldCell"; title = "24h LOW"; ObjectID = "l8V-LL-wt6"; */
 "l8V-LL-wt6.title" = "24h LOW";
 
+/* Class = "NSMenu"; title = "iBroker"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "iBroker";
+
 /* Class = "NSTextFieldCell"; title = "LAST"; ObjectID = "wGI-ya-hos"; */
 "wGI-ya-hos.title" = "LAST";
 
@@ -118,6 +139,9 @@
 
 /* Class = "NSMenuItem"; title = "Hilfe"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Help";
+
+/* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "xCC-gr-YEB"; */
+"xCC-gr-YEB.placeholderString" = "Chart";
 
 /* Class = "NSTextFieldCell"; placeholderString = "Kurs"; ObjectID = "xl1-fh-nxD"; */
 "xl1-fh-nxD.placeholderString" = "Chart";
