@@ -447,14 +447,10 @@ typedef struct DASHBOARD_VARS {
 // Simpler Fetch der Poloniex Daten
 -(void)updateTicker:(NSString*)label {
 
-    if ([label isEqualToString:DASHBOARD]) {
-        self.lastField.stringValue = @"---";
-        self.highField.stringValue = @"---";
-        self.changeField.stringValue = @"---";
-        self.high24Field.stringValue = @"---";
-        self.low24Field.stringValue = @"---";
+    if ([label isEqualToString:DASHBOARD] || [label isEqualToString:BTC]) {
+        label = BTC;
 
-        return;
+        self.changeLabel.stringValue = @"24h CHANGE";
     }
 
     NSDictionary *keys = [calculator tickerKeys];
@@ -464,17 +460,15 @@ typedef struct DASHBOARD_VARS {
 
     double factor = [tabs[label][1] doubleValue];
 
-    int fractions = 8;
+    NSUInteger fractions = 8;
 
     if ([label isEqualToString:BTC]) {
         fractions = 2;
-        self.lastLabel.stringValue = @"OPEN";
-        self.highLabel.stringValue = @"CLOSE";
     }
 
     double changeInPercent = 100 * [tickerData[POLONIEX_PERCENT] doubleValue];
     self.lastField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:fractions max:fractions];
-    self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH] doubleValue] min:fractions max:fractions];
+    self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_BID] doubleValue] min:fractions max:fractions];
     self.changeField.stringValue = [Helper double2GermanPercent:changeInPercent fractions:2];
     self.high24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:fractions max:fractions];
     self.low24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW24] doubleValue] min:fractions max:fractions];
@@ -682,8 +676,8 @@ typedef struct DASHBOARD_VARS {
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
     self.infoLabel.stringValue = infoPercentString;
 
-    self.cryptoUnits.doubleValue = saldo;
     self.currencyUnits.doubleValue = priceInEuro;
+    self.cryptoUnits.doubleValue = saldo;
 
     if (diffInEuro != 0) {
         self.statusLabel.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:diffInEuro min:2 max:2], fiatCurrencySymbol];
@@ -717,20 +711,23 @@ typedef struct DASHBOARD_VARS {
         DOGE: @([currentRatings[DOGE] doubleValue] / assetRating)
     };
 
-    int fractions = 8;
+    NSUInteger fractions = ([label isEqualToString:BTC]) ? 4 : 8;
+
     self.currency1Field.stringValue = [Helper double2German: [currentPriceInUnits[BTC] doubleValue] min:fractions max:fractions];
     self.currency2Field.stringValue = [Helper double2German: [currentPriceInUnits[ZEC] doubleValue] min:fractions max:fractions];
     self.currency3Field.stringValue = [Helper double2German: [currentPriceInUnits[ETH] doubleValue] min:fractions max:fractions];
     self.currency4Field.stringValue = [Helper double2German: [currentPriceInUnits[XMR] doubleValue] min:fractions max:fractions];
     self.currency5Field.stringValue = [Helper double2German: [currentPriceInUnits[LTC] doubleValue] min:fractions max:fractions];
 
-    fractions = 5;
+    fractions = ([label isEqualToString:BTC]) ? 4 : 6;
+
     self.currency6Field.stringValue = [Helper double2German: [currentPriceInUnits[GAME] doubleValue] min:fractions max:fractions];
     self.currency7Field.stringValue = [Helper double2German: [currentPriceInUnits[XRP] doubleValue] min:fractions max:fractions];
     self.currency8Field.stringValue = [Helper double2German: [currentPriceInUnits[MAID] doubleValue] min:fractions max:fractions];
     self.currency9Field.stringValue = [Helper double2German: [currentPriceInUnits[STR] doubleValue] min:fractions max:fractions];
 
-    fractions = 2;
+    fractions = ([label isEqualToString:BTC]) ? 2 : 4;
+
     self.currency10Field.stringValue = [Helper double2German: [currentPriceInUnits[DOGE] doubleValue] min:fractions max:fractions];
 
     if ([asset isEqualToString:BTC]) self.currency1Field.stringValue = @"1";

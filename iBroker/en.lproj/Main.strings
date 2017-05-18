@@ -1,7 +1,4 @@
 
-/* Class = "NSTextFieldCell"; title = "HIGH"; ObjectID = "0um-5d-4tk"; */
-"0um-5d-4tk.title" = "HIGH";
-
 /* Class = "NSMenuItem"; title = "iBroker"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "iBroker";
 
@@ -95,9 +92,6 @@
 /* Class = "NSMenuItem"; title = "Andere minimieren"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "Minimize others";
 
-/* Class = "NSTextFieldCell"; title = "24h CHANGE"; ObjectID = "X35-X7-bW7"; */
-"X35-X7-bW7.title" = "24h CHANGE";
-
 /* Class = "NSTabViewItem"; label = "MAID"; ObjectID = "XBF-ls-CU9"; */
 "XBF-ls-CU9.label" = "MAID";
 
@@ -125,17 +119,8 @@
 /* Class = "NSBox"; title = "Box"; ObjectID = "ibZ-fl-489"; */
 "ibZ-fl-489.title" = "Box";
 
-/* Class = "NSTextFieldCell"; title = "24h LOW"; ObjectID = "l8V-LL-wt6"; */
-"l8V-LL-wt6.title" = "24h LOW";
-
 /* Class = "NSMenu"; title = "iBroker"; ObjectID = "uQy-DD-JDr"; */
 "uQy-DD-JDr.title" = "iBroker";
-
-/* Class = "NSTextFieldCell"; title = "LAST"; ObjectID = "wGI-ya-hos"; */
-"wGI-ya-hos.title" = "LAST";
-
-/* Class = "NSTextFieldCell"; title = "24h HIGH"; ObjectID = "wo1-Yp-77I"; */
-"wo1-Yp-77I.title" = "24h HIGH";
 
 /* Class = "NSMenuItem"; title = "Hilfe"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Help";

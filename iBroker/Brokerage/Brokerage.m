@@ -12,6 +12,10 @@
 
 /**
  * Allgemeiner jsonRequest Handler
+ *
+ * @param jsonURL
+ *
+ * @return NSDictionary*
  */
 + (NSDictionary*)jsonRequest:(NSString*)jsonURL {
 
@@ -49,54 +53,82 @@
 /**
  * Besorge den Ticker von Poloniex
  */
-+ (NSDictionary*)poloniexTicker {
++ (NSDictionary*)poloniexTicker:(NSArray*)fiatCurrencies {
     NSString *jsonURL = @"https://poloniex.com/public?command=returnTicker";
 
-    return [Brokerage jsonRequest:jsonURL];
+    NSMutableDictionary *ticker = [[Brokerage jsonRequest:jsonURL] mutableCopy];
+
+    if (!ticker[@"BTC_XMR"]) {
+        NSLog(@"API-ERROR: Cannot retrieve ticker data");
+    }
+
+    ticker[@"BTC_EUR"] = [Brokerage bitstampBTCTicker:fiatCurrencies[0]];
+    ticker[fiatCurrencies[1]] = @([Brokerage fiatExchangeRate:fiatCurrencies]);
+
+    return ticker;
 }
 
 /**
- * Besorge die Kurse von cryptocompare per JSON-Request
- */
-+ (NSDictionary*)cryptoCompareRatings:(NSArray*)fiatCurrencies {
-    NSString *jsonURL =
-        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@,BTC&extraParams=de.4customers.iBroker", fiatCurrencies[0], fiatCurrencies[1]];
-    
-    return [Brokerage jsonRequest:jsonURL];
-}
-
-/**
- * Besorge den fehlenden BTC-Ticker von cryptoCompare und fake diesen ins Poloniex-Format
+ * Besorge den Umrechnungsfaktor EUR/USD
  * 
- * WICHTIG: LAST = OPEN, LOW = OPEN, HIGH = CLOSE - das ist definitiv eine temporäre Lösung
+ * @param fiatCurrencies
+ *
+ * @return double
  */
-+ (NSDictionary*)cryptoCompareBTCTicker:(double)usdFactor {
++ (double)fiatExchangeRate:(NSArray*)fiatCurrencies {
     NSString *jsonURL =
-        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/histoday?fsym=BTC&tsym=USD&limit=1&e=Poloniex&extraParams=de.4customers.iBroker"];
+        [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@&extraParams=de.4customers.iBroker", fiatCurrencies[0], fiatCurrencies[1]];
+
+    NSDictionary *data = [Brokerage jsonRequest:jsonURL];
+
+    if (!data[fiatCurrencies[0]]) {
+        NSLog(@"API-ERROR: Cannot retrieve exchange rates for %@/%@", fiatCurrencies[0], fiatCurrencies[1]);
+    }
+
+    return [data[fiatCurrencies[0]][fiatCurrencies[1]] doubleValue];
+}
+
+/**
+ * Besorge den fehlenden BTC-Ticker von bitstamp und fake diesen ins Poloniex-Format
+ *
+ * @param asset
+ *
+ * @return NSDictionary*
+ */
++ (NSDictionary*)bitstampBTCTicker:(NSString*)asset {
+    NSString *jsonURL = [NSString stringWithFormat:@"https://www.bitstamp.net/api/v2/ticker/btc%@/", [asset lowercaseString]];
 
     NSDictionary *theirData = [Brokerage jsonRequest:jsonURL];
 
-    NSDictionary *data = theirData[@"Data"][0];
+    if (!theirData[@"last"]) {
+        NSLog(@"API-ERROR: Cannot retrieve exchange rates for BTC/%@", asset);
+    }
 
-    double high24 = [data[@"high"] doubleValue] / usdFactor;
-    double low24 = [data[@"low"] doubleValue] / usdFactor;
-    double open = [data[@"open"] doubleValue] / usdFactor;
-    double close = [data[@"close"] doubleValue] / usdFactor;
+    // aktuelle Anfragen und Käufe
+    double ask = [theirData[@"ask"] doubleValue];
+    double bid = [theirData[@"bid"] doubleValue];
+
+    // 24h Change
+    double high24 = [theirData[@"high"] doubleValue];
+    double low24 = [theirData[@"low"] doubleValue];
+
+    // aktueller Kurs
+    double last = [theirData[@"last"] doubleValue];
+
+    // Heutiger Eröffnungskurs
+    double open= [theirData[@"open"] doubleValue];
+    double percent = (last / open) - 1;
 
     NSMutableDictionary *poloniexData = [[NSMutableDictionary alloc] init];
 
-    poloniexData[POLONIEX_HIGH24] = [NSNumber numberWithDouble:high24];
-    poloniexData[POLONIEX_LOW24] = [NSNumber numberWithDouble:low24];
-    poloniexData[POLONIEX_HIGH] = [NSNumber numberWithDouble:close];
-    poloniexData[POLONIEX_LOW] = [NSNumber numberWithDouble:open];
-    poloniexData[POLONIEX_LAST] = [NSNumber numberWithDouble:open];
+    poloniexData[POLONIEX_HIGH24] = @(high24);
+    poloniexData[POLONIEX_LOW24] = @(low24);
+    poloniexData[POLONIEX_ASK] = @(ask);
+    poloniexData[POLONIEX_BID] = @(bid);
+    poloniexData[POLONIEX_LAST] = @(last);
 
     // Poloniex liefert ausgerechnete Werte (50% sind halt 50 / 100 = 0.5)
-    poloniexData[POLONIEX_PERCENT] = [NSNumber numberWithDouble:(high24 / low24) - 1];
-
-    // BASE ist BTC / Quote ist irgendeine Asset :)
-    poloniexData[POLONIEX_BASE_VOLUME] = data[@"volumeto"];
-    poloniexData[POLONIEX_QUOTE_VOLUME] = data[@"volumefrom"];
+    poloniexData[POLONIEX_PERCENT] = @(percent);
 
     return poloniexData;
 }

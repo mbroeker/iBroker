@@ -4,7 +4,6 @@
 //
 
 #import "Calculator.h"
-#import "Algorithm.h"
 
 /**
  * Berechnungklasse für Crypto-Währungen
@@ -103,7 +102,7 @@
         }
 
         tickerKeys = @{
-            BTC: BTC,
+            BTC: @"BTC_EUR",
             ZEC: @"BTC_ZEC",
             ETH: @"BTC_ETH",
             XMR: @"BTC_XMR",
@@ -306,35 +305,29 @@
 - (void)unsynchronizedUpdateRatings {
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *allkeys = [Brokerage poloniexTicker];
+    NSDictionary *tickerDictionary = [Brokerage poloniexTicker:fiatCurrencies];
 
-    if (allkeys != NULL) {
-        ticker = [allkeys mutableCopy];
+    if (tickerDictionary != NULL) {
+        ticker = [tickerDictionary mutableCopy];
+
+        double btcValue = 1 / [tickerDictionary[@"BTC_EUR"][POLONIEX_LAST] doubleValue];
 
         currentRatings = [[NSMutableDictionary alloc] init];
 
-        double btcValue = 0;
-        NSDictionary *ratings = [Brokerage cryptoCompareRatings:fiatCurrencies];
-        if (ratings != nil) {
-            btcValue = [ratings[fiatCurrencies[0]][BTC] doubleValue];
-            double fiatValue = [ratings[fiatCurrencies[0]][fiatCurrencies[1]] doubleValue];
-
-            currentRatings[BTC] = [NSNumber numberWithDouble:btcValue];
-            currentRatings[fiatCurrencies[1]] = [NSNumber numberWithDouble:fiatValue];
-        }
+        currentRatings[BTC] = @(btcValue);
+        currentRatings[fiatCurrencies[1]] = tickerDictionary[fiatCurrencies[1]];
 
         for (id key in tickerKeys) {
             double assetValue = btcValue;
+
             if (![key isEqualToString:BTC]) {
-                assetValue /= ([allkeys[tickerKeys[key]][POLONIEX_LAST] doubleValue]);
+                assetValue /= [tickerDictionary[tickerKeys[key]][POLONIEX_LAST] doubleValue];
             }
 
-            currentRatings[key] = [NSNumber numberWithDouble:assetValue];
+            currentRatings[key] = @(assetValue);
         }
 
         initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
-
-        ticker[BTC] = [Brokerage cryptoCompareBTCTicker:[currentRatings[USD] doubleValue]];
 
         if (initialRatings == NULL) {
             [self initialRatingsWithDictionary:currentRatings];

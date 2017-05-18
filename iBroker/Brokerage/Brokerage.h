@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-#define POLONIEX_LOW @"lowestAsk"
-#define POLONIEX_HIGH @"highestBid"
+#define POLONIEX_ASK @"lowestAsk"
+#define POLONIEX_BID @"highestBid"
 #define POLONIEX_LOW24 @"low24hr"
 #define POLONIEX_HIGH24 @"high24hr"
 #define POLONIEX_QUOTE_VOLUME @"quoteVolume"
@@ -19,9 +19,7 @@
 
 @interface Brokerage : NSObject
 + (NSDictionary*)jsonRequest:(NSString*)jsonURL;
-+ (NSDictionary*)cryptoCompareRatings:(NSArray*)fiatCurrencies;
-+ (NSDictionary*)poloniexTicker;
-+ (NSDictionary*)cryptoCompareBTCTicker:(double)euroFactor;
++ (NSDictionary*)poloniexTicker:(NSArray*)fiatCurrencies;
 
 + (void)safeSleep:(NSTimeInterval)timeout;
 @end
