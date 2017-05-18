@@ -61,6 +61,9 @@
     [formatter setMaximumFractionDigits:8];
 }
 
+/**
+ * Aktualisierung des Views vereinheitlicht
+ */
 - (void)updateView {
     calculator = [Calculator instance];
 

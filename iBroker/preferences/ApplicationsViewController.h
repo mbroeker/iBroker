@@ -10,8 +10,6 @@
 
 @interface ApplicationsViewController : NSViewController
 
-@property (strong) IBOutlet NSTextField *applicationsHeadline;
-
 // Properties List
 @property (strong) IBOutlet NSTextField *btcField;
 @property (strong) IBOutlet NSTextField *zecField;

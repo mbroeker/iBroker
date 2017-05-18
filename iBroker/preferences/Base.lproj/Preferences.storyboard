@@ -114,9 +114,9 @@
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dGH-LL-YhM">
-                                <rect key="frame" x="0.0" y="718" width="709" height="31"/>
+                                <rect key="frame" x="0.0" y="718" width="707" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="705" id="56R-rB-iG6"/>
+                                    <constraint firstAttribute="width" constant="703" id="56R-rB-iG6"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre Konten und Adressen" placeholderString="" id="HtI-qx-WwD">
                                     <font key="font" size="20" name="Krungthep"/>
@@ -487,7 +487,7 @@
                             <constraint firstItem="IkW-ab-HuL" firstAttribute="top" secondItem="vzd-ns-DHO" secondAttribute="top" id="Ixa-mB-9Rv"/>
                             <constraint firstItem="sdX-Fa-YkK" firstAttribute="top" secondItem="xvj-1p-yVX" secondAttribute="top" id="JBS-hY-Fqg"/>
                             <constraint firstItem="c5I-j2-8b9" firstAttribute="top" secondItem="9aT-kr-vUE" secondAttribute="top" id="JCG-nJ-ykX"/>
-                            <constraint firstAttribute="trailing" secondItem="dGH-LL-YhM" secondAttribute="trailing" constant="-2" id="Jbd-Su-xwp"/>
+                            <constraint firstAttribute="trailing" secondItem="dGH-LL-YhM" secondAttribute="trailing" id="Jbd-Su-xwp"/>
                             <constraint firstItem="dGH-LL-YhM" firstAttribute="leading" secondItem="v7Y-KW-sUG" secondAttribute="leading" constant="2" id="Jo7-Th-mpM"/>
                             <constraint firstItem="yP4-Jx-rRV" firstAttribute="bottom" secondItem="HZz-aP-N1K" secondAttribute="bottom" id="Jzq-Ig-948"/>
                             <constraint firstItem="3nA-6O-iNu" firstAttribute="trailing" secondItem="ucN-pb-9NK" secondAttribute="trailing" id="LbV-8t-lza"/>
@@ -654,17 +654,6 @@
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ffA-xj-V4S">
-                                <rect key="frame" x="0.0" y="718" width="709" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="705" id="chB-Ua-c02"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre initialen Kurse (EUR)" placeholderString="" id="Ukn-PJ-ZoR">
-                                    <font key="font" size="20" name="Krungthep"/>
-                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JG7-CR-7MV">
                                 <rect key="frame" x="20" y="180" width="606" height="48"/>
                                 <constraints>
@@ -993,6 +982,17 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ffA-xj-V4S">
+                                <rect key="frame" x="0.0" y="718" width="707" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="703" id="chB-Ua-c02"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre initialen Kurse (EUR)" placeholderString="" id="Ukn-PJ-ZoR">
+                                    <font key="font" size="20" name="Krungthep"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="KsK-b5-0eP" firstAttribute="bottom" secondItem="JG7-CR-7MV" secondAttribute="bottom" id="0T0-f5-ZtJ"/>
@@ -1057,7 +1057,7 @@
                             <constraint firstItem="kry-P5-59W" firstAttribute="trailing" secondItem="xCa-4Y-NOS" secondAttribute="trailing" id="mcs-tR-vFc"/>
                             <constraint firstItem="IQj-hR-Ahi" firstAttribute="leading" secondItem="C4u-Pf-OK9" secondAttribute="leading" id="nZr-VI-dhJ"/>
                             <constraint firstItem="KsK-b5-0eP" firstAttribute="leading" secondItem="DOm-xV-c3W" secondAttribute="leading" id="o4h-E5-Yo7"/>
-                            <constraint firstAttribute="trailing" secondItem="ffA-xj-V4S" secondAttribute="trailing" constant="-2" id="oNQ-GB-qoi"/>
+                            <constraint firstAttribute="trailing" secondItem="ffA-xj-V4S" secondAttribute="trailing" id="oNQ-GB-qoi"/>
                             <constraint firstItem="Hc3-Ne-tg5" firstAttribute="leading" secondItem="C4u-Pf-OK9" secondAttribute="leading" id="owA-fJ-11H"/>
                             <constraint firstItem="GkJ-GG-YA5" firstAttribute="leading" secondItem="Ww1-Iu-XjU" secondAttribute="leading" id="p9v-xo-YsX"/>
                             <constraint firstItem="fy7-af-oLA" firstAttribute="leading" secondItem="GhO-aN-QKm" secondAttribute="leading" constant="20" symbolic="YES" id="pHh-LY-B0M"/>
@@ -1170,9 +1170,9 @@
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xTZ-uA-wgf">
-                                <rect key="frame" x="16" y="659" width="670" height="31"/>
+                                <rect key="frame" x="0.0" y="659" width="707" height="31"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="666" id="Gpd-eE-oVn"/>
+                                    <constraint firstAttribute="width" constant="703" id="Gpd-eE-oVn"/>
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Ihre Anwendungen" placeholderString="" id="WEN-8p-MCk">
                                     <font key="font" size="20" name="Krungthep"/>
@@ -1495,7 +1495,7 @@
                             <constraint firstItem="vcV-el-TNs" firstAttribute="trailing" secondItem="59g-4h-RsL" secondAttribute="trailing" id="9tn-pX-hj4"/>
                             <constraint firstItem="Paq-cr-rsN" firstAttribute="leading" secondItem="Exz-54-M6E" secondAttribute="trailing" constant="11" id="ATf-dM-RKS"/>
                             <constraint firstItem="aPl-vP-hTB" firstAttribute="leading" secondItem="59g-4h-RsL" secondAttribute="leading" id="Amm-3v-Am7"/>
-                            <constraint firstItem="xTZ-uA-wgf" firstAttribute="leading" secondItem="Iid-d2-NwW" secondAttribute="leading" constant="18" id="Bum-st-xzA"/>
+                            <constraint firstItem="xTZ-uA-wgf" firstAttribute="leading" secondItem="Iid-d2-NwW" secondAttribute="leading" constant="2" id="Bum-st-xzA"/>
                             <constraint firstItem="bB1-5L-d7D" firstAttribute="top" secondItem="2ou-P1-SYN" secondAttribute="top" id="CC0-hI-HGr"/>
                             <constraint firstItem="xTZ-uA-wgf" firstAttribute="top" secondItem="Iid-d2-NwW" secondAttribute="top" id="Dn0-WH-l2f"/>
                             <constraint firstItem="Mmf-9A-X0f" firstAttribute="top" secondItem="byL-Ie-uKq" secondAttribute="top" id="EQr-Qn-5rh"/>
@@ -1545,7 +1545,7 @@
                             <constraint firstItem="PsG-dv-QDi" firstAttribute="trailing" secondItem="IJE-uT-ieN" secondAttribute="trailing" id="nlp-WU-m06"/>
                             <constraint firstItem="u5r-VG-KIJ" firstAttribute="trailing" secondItem="vVx-1t-URd" secondAttribute="trailing" id="npq-Gl-zks"/>
                             <constraint firstItem="Exz-54-M6E" firstAttribute="top" secondItem="Paq-cr-rsN" secondAttribute="top" id="nxA-XM-but"/>
-                            <constraint firstAttribute="trailing" secondItem="xTZ-uA-wgf" secondAttribute="trailing" constant="21" id="pZW-M1-i5H"/>
+                            <constraint firstAttribute="trailing" secondItem="xTZ-uA-wgf" secondAttribute="trailing" id="pZW-M1-i5H"/>
                             <constraint firstItem="aPl-vP-hTB" firstAttribute="bottom" secondItem="yYF-oR-cOk" secondAttribute="bottom" id="qeV-86-Mbi"/>
                             <constraint firstItem="IJE-uT-ieN" firstAttribute="leading" secondItem="PsG-dv-QDi" secondAttribute="leading" id="rpV-qE-9mK"/>
                             <constraint firstItem="PsG-dv-QDi" firstAttribute="bottom" secondItem="RBQ-7a-jvT" secondAttribute="bottom" id="sQD-vB-qNt"/>
@@ -1559,7 +1559,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="applicationsHeadline" destination="xTZ-uA-wgf" id="4Ss-rd-edv"/>
                         <outlet property="btcField" destination="Exz-54-M6E" id="921-le-u4S"/>
                         <outlet property="dogeField" destination="PsG-dv-QDi" id="pSe-Kf-FB4"/>
                         <outlet property="ethField" destination="vVx-1t-URd" id="i23-tL-owW"/>

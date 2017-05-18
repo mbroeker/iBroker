@@ -10,8 +10,6 @@
 
 @interface RatingsViewController : NSViewController
 
-@property (strong) IBOutlet NSTextField *ratingsHeadline;
-
 // Properties List
 @property (strong) IBOutlet NSTextField *btcField;
 @property (strong) IBOutlet NSTextField *zecField;
