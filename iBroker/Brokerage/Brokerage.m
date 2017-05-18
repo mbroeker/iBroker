@@ -67,6 +67,8 @@
 
 /**
  * Besorge den fehlenden BTC-Ticker von cryptoCompare und fake diesen ins Poloniex-Format
+ * 
+ * WICHTIG: LAST = OPEN, LOW = OPEN, HIGH = CLOSE - das ist definitiv eine temporäre Lösung
  */
 + (NSDictionary*)cryptoCompareBTCTicker:(double)usdFactor {
     NSString *jsonURL =
@@ -74,18 +76,27 @@
 
     NSDictionary *theirData = [Brokerage jsonRequest:jsonURL];
 
+    NSDictionary *data = theirData[@"Data"][0];
+
+    double high24 = [data[@"high"] doubleValue] / usdFactor;
+    double low24 = [data[@"low"] doubleValue] / usdFactor;
+    double open = [data[@"open"] doubleValue] / usdFactor;
+    double close = [data[@"close"] doubleValue] / usdFactor;
+
     NSMutableDictionary *poloniexData = [[NSMutableDictionary alloc] init];
 
-    NSDictionary *data = theirData[@"Data"][0];
-    poloniexData[POLONIEX_HIGH24] = [NSNumber numberWithDouble:[data[@"high"] doubleValue] / usdFactor];
-    poloniexData[POLONIEX_LOW24] = [NSNumber numberWithDouble:[data[@"low"] doubleValue] / usdFactor];
-    poloniexData[POLONIEX_HIGH] = [NSNumber numberWithDouble:[data[@"close"] doubleValue] / usdFactor];
-    poloniexData[POLONIEX_LOW] = [NSNumber numberWithDouble:[data[@"open"] doubleValue] / usdFactor];
-    poloniexData[POLONIEX_LAST] = [NSNumber numberWithDouble:[data[@"open"] doubleValue] / usdFactor];
+    poloniexData[POLONIEX_HIGH24] = [NSNumber numberWithDouble:high24];
+    poloniexData[POLONIEX_LOW24] = [NSNumber numberWithDouble:low24];
+    poloniexData[POLONIEX_HIGH] = [NSNumber numberWithDouble:close];
+    poloniexData[POLONIEX_LOW] = [NSNumber numberWithDouble:open];
+    poloniexData[POLONIEX_LAST] = [NSNumber numberWithDouble:open];
 
-    poloniexData[POLONIEX_BASE_VOLUME] = data[@"volumefrom"];
-    poloniexData[POLONIEX_QUOTE_VOLUME] = data[@"volumeto"];
-    poloniexData[POLONIEX_PERCENT] = [NSNumber numberWithDouble:100 * ([data[@"volumefrom"] doubleValue] / [data[@"volumeto"] doubleValue])];
+    // Poloniex liefert ausgerechnete Werte (50% sind halt 50 / 100 = 0.5)
+    poloniexData[POLONIEX_PERCENT] = [NSNumber numberWithDouble:(high24 / low24) - 1];
+
+    // BASE ist BTC / Quote ist irgendeine Asset :)
+    poloniexData[POLONIEX_BASE_VOLUME] = data[@"volumeto"];
+    poloniexData[POLONIEX_QUOTE_VOLUME] = data[@"volumefrom"];
 
     return poloniexData;
 }
