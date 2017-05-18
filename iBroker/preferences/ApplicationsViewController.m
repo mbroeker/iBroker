@@ -18,22 +18,25 @@
     [self updateView];
 }
 
+/**
+ * Aktualisierung des Views vereinheitlicht
+ */
 - (void)updateView {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     // aktualisierten Saldo besorgen
     NSMutableDictionary *applications = [[defaults objectForKey:@"applications"] mutableCopy];
     
-    self.btcField.stringValue = applications[@"Bitcoin"];
-    self.zecField.stringValue = applications[@"ZCash"];
-    self.ethField.stringValue = applications[@"Ethereum"];
-    self.xmrField.stringValue = applications[@"Monero"];
-    self.ltcField.stringValue = applications[@"Litecoin"];
-    self.gameField.stringValue = applications[@"Gamecoin"];
-    self.xrpField.stringValue = applications[@"Ripple"];
-    self.maidField.stringValue = applications[@"Safe Maid Coin"];
-    self.strField.stringValue = applications[@"Stellar Lumens"];
-    self.dogeField.stringValue = applications[@"Dogecoin"];
+    self.btcField.stringValue = applications[BITCOIN];
+    self.zecField.stringValue = applications[ZCASH];
+    self.ethField.stringValue = applications[ETHEREUM];
+    self.xmrField.stringValue = applications[MONERO];
+    self.ltcField.stringValue = applications[LITECOIN];
+    self.gameField.stringValue = applications[GAMECOIN];
+    self.xrpField.stringValue = applications[RIPPLE];
+    self.maidField.stringValue = applications[SAFEMAID];
+    self.strField.stringValue = applications[STELLAR];
+    self.dogeField.stringValue = applications[DOGECOIN];
 }
 
 /**
@@ -47,56 +50,22 @@
     // aktualisierten Saldo besorgen
     NSMutableDictionary *applications = [[defaults objectForKey:@"applications"] mutableCopy];
     
-    applications[@"Bitcoin"] = self.btcField.stringValue;
-    applications[@"ZCash"] = self.zecField.stringValue;
-    applications[@"Ethereum"] = self.ethField.stringValue;
-    applications[@"Monero"] = self.xmrField.stringValue;
-    applications[@"Litecoin"] = self.ltcField.stringValue;
-    applications[@"Gamecoin"] = self.gameField.stringValue;
-    applications[@"Ripple"] = self.xrpField.stringValue;
-    applications[@"Safe Maid Coin"] = self.xrpField.stringValue;
-    applications[@"Stellar Lumens"] = self.strField.stringValue;
-    applications[@"Dogecoin"] = self.dogeField.stringValue;
+    applications[BITCOIN] = self.btcField.stringValue;
+    applications[ZCASH] = self.zecField.stringValue;
+    applications[ETHEREUM] = self.ethField.stringValue;
+    applications[MONERO] = self.xmrField.stringValue;
+    applications[LITECOIN] = self.ltcField.stringValue;
+    applications[GAMECOIN] = self.gameField.stringValue;
+    applications[RIPPLE] = self.xrpField.stringValue;
+    applications[SAFEMAID] = self.maidField.stringValue;
+    applications[STELLAR] = self.strField.stringValue;
+    applications[DOGECOIN] = self.dogeField.stringValue;
 
     [defaults setObject:applications forKey:@"applications"];
     [defaults synchronize];
 
+    // Gepeicherte Daten neu einlesen...
     [self updateView];
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)btcAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)ethAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)xmrAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)ltcAction:(id)sender {
-}
-
-/**
- *
- * @param sender
- */
-- (IBAction)dogeAction:(id)sender {
 }
 
 @end

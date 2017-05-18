@@ -86,18 +86,17 @@
 
         if (saldoUrls == NULL) {
             saldoUrls = [@{
-                @"Dashboard": @"https://poloniex.com/exchange#btc_xmr",
-                @"Bitcoin": @"https://blockchain.info/",
-                @"ZCash": @"https://explorer.zcha.in",
-                @"Ethereum": @"https://etherscan.io/",
-                @"Litecoin": @"https://chainz.cryptoid.info/ltc/",
-                @"Monero": @"https://moneroblocks.info",
-                @"Gamecoin": @"https://blockexplorer.gamecredits.com",
-                @"Ripple": @"https://charts.ripple.com/",
-                @"Safe Maid Coin": @"https://maidsafe.net/features.html",
-                @"Stellar Lumens": @"https://stellarchain.io",
-                @"Dogecoin": @"https://dogechain.info",
-                @"Ripple": @"http://ripple.info/",
+                DASHBOARD: @"https://poloniex.com/exchange#btc_xmr",
+                BITCOIN: @"https://blockchain.info/",
+                ZCASH: @"https://explorer.zcha.in",
+                ETHEREUM: @"https://etherscan.io/",
+                LITECOIN: @"https://chainz.cryptoid.info/ltc/",
+                MONERO: @"https://moneroblocks.info",
+                GAMECOIN: @"https://blockexplorer.gamecredits.com",
+                RIPPLE: @"https://charts.ripple.com/",
+                SAFEMAID: @"https://maidsafe.net/features.html",
+                STELLAR: @"https://stellarchain.io",
+                DOGECOIN: @"https://dogechain.info"
             } mutableCopy];
 
             [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
@@ -119,7 +118,7 @@
         [defaults synchronize];
 
         // Migration älterer Installationen
-        if (!saldoUrls[@"ZCash"]) {
+        if (!saldoUrls[ZCASH]) {
             [self upgradeAssistant];
         }
 
@@ -135,8 +134,8 @@
 - (void)upgradeAssistant {
     BOOL mustUpdate = false;
 
-    if (!saldoUrls[@"ZCash"]) {
-        saldoUrls[@"ZCash"] = @"https://explorer.zcha.in";
+    if (!saldoUrls[ZCASH]) {
+        saldoUrls[ZCASH] = @"https://explorer.zcha.in";
 
         currentSaldo[ZEC] = @0.0;
         initialRatings[ZEC] = @0.0;
@@ -144,8 +143,8 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[@"Gamecoin"]) {
-        saldoUrls[@"Gamecoin"] = @"https://blockexplorer.gamecredits.com";
+    if (!saldoUrls[GAMECOIN]) {
+        saldoUrls[GAMECOIN] = @"https://blockexplorer.gamecredits.com";
 
         currentSaldo[GAME] = @0.0;
         initialRatings[GAME] = @0.0;
@@ -153,8 +152,8 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[@"Safe Maid Coin"]) {
-        saldoUrls[@"Safe Maid Coin"] = @"https://maidsafe.net/features.html";
+    if (!saldoUrls[SAFEMAID]) {
+        saldoUrls[SAFEMAID] = @"https://maidsafe.net/features.html";
 
         currentSaldo[MAID] = @0.0;
         initialRatings[MAID] = @0.0;
@@ -162,8 +161,8 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[@"Ripple"]) {
-        saldoUrls[@"Ripple"] = @"https://charts.ripple.com/";
+    if (!saldoUrls[RIPPLE]) {
+        saldoUrls[RIPPLE] = @"https://charts.ripple.com/";
 
         currentSaldo[XRP] = @0.0;
         initialRatings[XRP] = @0.0;
@@ -171,8 +170,8 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[@"Stellar Lumens"]) {
-        saldoUrls[@"Stellar Lumens"] = @"https://stellarchain.io";
+    if (!saldoUrls[STELLAR]) {
+        saldoUrls[STELLAR] = @"https://stellarchain.io";
 
         currentSaldo[STR] = @0.0;
         initialRatings[STR] = @0.0;

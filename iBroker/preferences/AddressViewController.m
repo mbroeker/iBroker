@@ -13,27 +13,33 @@
     Calculator *calculator;
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
+    [self updateView];
+}
+
+/**
+ * Aktualisierung des Views vereinheitlicht
+ */
+- (void)updateView {
     calculator = [Calculator instance];
 
     // aktualisierten Saldo besorgen
     NSMutableDictionary *saldoUrls = [calculator saldoUrls];
     
-    self.btcField.stringValue = saldoUrls[@"Bitcoin"];
-    self.zecField.stringValue = saldoUrls[@"ZCash"];
-    self.ethField.stringValue = saldoUrls[@"Ethereum"];
-    self.xmrField.stringValue = saldoUrls[@"Monero"];
-    self.ltcField.stringValue = saldoUrls[@"Litecoin"];
-    self.gameField.stringValue = saldoUrls[@"Gamecoin"];
-    self.xrpField.stringValue = saldoUrls[@"Ripple"];
-    self.maidField.stringValue = saldoUrls[@"Safe Maid Coin"];
-    self.strField.stringValue = saldoUrls[@"Stellar Lumens"];
-    self.dogeField.stringValue = saldoUrls[@"Dogecoin"];
+    self.btcField.stringValue = saldoUrls[BITCOIN];
+    self.zecField.stringValue = saldoUrls[ZCASH];
+    self.ethField.stringValue = saldoUrls[ETHEREUM];
+    self.xmrField.stringValue = saldoUrls[MONERO];
+    self.ltcField.stringValue = saldoUrls[LITECOIN];
+    self.gameField.stringValue = saldoUrls[GAMECOIN];
+    self.xrpField.stringValue = saldoUrls[RIPPLE];
+    self.maidField.stringValue = saldoUrls[SAFEMAID];
+    self.strField.stringValue = saldoUrls[STELLAR];
+    self.dogeField.stringValue = saldoUrls[DOGECOIN];
     
-    self.dashboardField.stringValue = saldoUrls[@"Dashboard"];
+    self.dashboardField.stringValue = saldoUrls[DASHBOARD];
 }
 
 /**
@@ -45,19 +51,22 @@
     // aktualisierten Saldo besorgen
     NSMutableDictionary *saldoUrls = [calculator saldoUrls];
 
-    saldoUrls[@"Bitcoin"] = self.btcField.stringValue;
-    saldoUrls[@"ZCash"] = self.zecField.stringValue;
-    saldoUrls[@"Ethereum"] = self.ethField.stringValue;
-    saldoUrls[@"Monero"] = self.xmrField.stringValue;
-    saldoUrls[@"Litecoin"] = self.ltcField.stringValue;
-    saldoUrls[@"Gamecoin"] = self.gameField.stringValue;
-    saldoUrls[@"Ripple"] = self.xrpField.stringValue;
-    saldoUrls[@"Safe Maid Coin"] = self.maidField.stringValue;
-    saldoUrls[@"Stellar Lumens"] = self.strField.stringValue;
-    saldoUrls[@"Dogecoin"] = self.dogeField.stringValue;
-    saldoUrls[@"Dashboard"] = self.dashboardField.stringValue;
+    saldoUrls[BITCOIN] = self.btcField.stringValue;
+    saldoUrls[ZCASH] = self.zecField.stringValue;
+    saldoUrls[ETHEREUM] = self.ethField.stringValue;
+    saldoUrls[MONERO] = self.xmrField.stringValue;
+    saldoUrls[LITECOIN] = self.ltcField.stringValue;
+    saldoUrls[GAMECOIN] = self.gameField.stringValue;
+    saldoUrls[RIPPLE] = self.xrpField.stringValue;
+    saldoUrls[SAFEMAID] = self.maidField.stringValue;
+    saldoUrls[STELLAR] = self.strField.stringValue;
+    saldoUrls[DOGECOIN] = self.dogeField.stringValue;
+    saldoUrls[DASHBOARD] = self.dashboardField.stringValue;
     
     [calculator saldoUrlsForDictionary:saldoUrls];
+
+    // Gespeicherte Daten neu einlesen...
+    [self updateView];
 }
 
 @end

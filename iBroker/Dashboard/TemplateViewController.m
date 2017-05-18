@@ -17,7 +17,7 @@ typedef struct COINCHANGE {
     double diffsInEuro;
 } COINCHANGE;
 
-typedef struct DASHBOARD {
+typedef struct DASHBOARD_VARS {
     COINCHANGE coinchange;
 
     double initialBalancesInEUR;
@@ -25,7 +25,7 @@ typedef struct DASHBOARD {
     double balancesInEUR;
     double balancesInBTC;
     double shares;
-} DASHBOARD;
+} DASHBOARD_VARS;
 
 #import "TemplateViewController.h"
 #import "Helper.h"
@@ -124,31 +124,31 @@ typedef struct DASHBOARD {
     }
 
     tabs = @{
-        @"Dashboard": @[@"Dashboard", @1],
-        BTC: @[@"Bitcoin", @1],
-        ZEC: @[@"ZCash", @1],
-        ETH: @[@"Ethereum", @1],
-        XMR: @[@"Monero", @1],
-        LTC: @[@"Litecoin", @1],
-        GAME: @[@"Gamecoin", @1],
-        XRP: @[@"Ripple", @1],
-        MAID: @[@"Safe Maid Coin", @1],
-        STR: @[@"Stellar Lumens", @1],
-        DOGE: @[@"Dogecoin", @1],
+        DASHBOARD: @[DASHBOARD, @1],
+        BTC: @[BITCOIN, @1],
+        ZEC: @[ZCASH, @1],
+        ETH: @[ETHEREUM, @1],
+        XMR: @[MONERO, @1],
+        LTC: @[LITECOIN, @1],
+        GAME: @[GAMECOIN, @1],
+        XRP: @[RIPPLE, @1],
+        MAID: @[SAFEMAID, @1],
+        STR: @[STELLAR, @1],
+        DOGE: @[DOGECOIN, @1],
     };
 
     labels = @{
-        @"Dashboard": @"Dashboard",
-        @"Bitcoin": BTC,
-        @"ZCash": ZEC,
-        @"Ethereum": ETH,
-        @"Monero": XMR,
-        @"Litecoin": LTC,
-        @"Gamecoin": GAME,
-        @"Ripple": XRP,
-        @"Safe Maid Coin": MAID,
-        @"Stellar Lumens": STR,
-        @"Dogecoin": DOGE
+        DASHBOARD: DASHBOARD,
+        BITCOIN: BTC,
+        ZCASH: ZEC,
+        ETHEREUM: ETH,
+        MONERO: XMR,
+        LITECOIN: LTC,
+        GAMECOIN: GAME,
+        RIPPLE: XRP,
+        SAFEMAID: MAID,
+        STELLAR: STR,
+        DOGECOIN: DOGE
     };
 
     images = @{
@@ -170,16 +170,16 @@ typedef struct DASHBOARD {
 
     if (applications == NULL) {
         applications = [@{
-            @"Bitcoin": @"/Applications/Electrum.App",
-            @"ZCash": @"",
-            @"Ethereum": @"/Applications/Ethereum Wallet.App",
-            @"Monero": @"/Applications/monero-wallet-gui.App",
-            @"Litecoin": @"/Applications/Electrum-LTC.App",
-            @"Gamecoin": @"",
-            @"Ripple": @"",
-            @"Safe Maid Coin": @"",
-            @"Stellar Lumens": @"",
-            @"Dogecoin": @"/Applications/MultiDoge.App",
+            BITCOIN: @"/Applications/Electrum.App",
+            ZCASH: @"",
+            ETHEREUM: @"/Applications/Ethereum Wallet.App",
+            MONERO: @"/Applications/monero-wallet-gui.App",
+            LITECOIN: @"/Applications/Electrum-LTC.App",
+            GAMECOIN: @"",
+            RIPPLE: @"",
+            SAFEMAID: @"",
+            STELLAR: @"",
+            DOGECOIN: @"/Applications/MultiDoge.App",
         } mutableCopy];
 
         [defaults setObject:applications forKey:@"applications"];
@@ -221,7 +221,7 @@ typedef struct DASHBOARD {
     [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
 
     // Migration älterer Installationen
-    if (!applications[@"ZCash"]) {
+    if (!applications[ZCASH]) {
         [self updateAssistant];
     }
 }
@@ -233,28 +233,28 @@ typedef struct DASHBOARD {
 
     BOOL mustUpdate = false;
 
-    if (!applications[@"ZCash"]) {
-        applications[@"ZCash"] = @"https://explorer.zcha.in";
+    if (!applications[ZCASH]) {
+        applications[ZCASH] = @"https://explorer.zcha.in";
         mustUpdate = true;
     }
 
-    if (!applications[@"Gamecoin"]) {
-        applications[@"Gamecoin"] = @"";
+    if (!applications[GAMECOIN]) {
+        applications[GAMECOIN] = @"";
         mustUpdate = true;
     }
 
-    if (!applications[@"Ripple"]) {
-        applications[@"Ripple"] = @"";
+    if (!applications[RIPPLE]) {
+        applications[RIPPLE] = @"";
         mustUpdate = true;
     }
 
-    if (!applications[@"Maid Safe Coin"]) {
-        applications[@"Maid Safe Coin"] = @"";
+    if (!applications[SAFEMAID]) {
+        applications[SAFEMAID] = @"";
         mustUpdate = true;
     }
 
-    if (!applications[@"Stellar Lumens"]) {
-        applications[@"Stellar Lumens"] = @"";
+    if (!applications[STELLAR]) {
+        applications[STELLAR] = @"";
         mustUpdate = true;
     }
 
@@ -447,7 +447,7 @@ typedef struct DASHBOARD {
 // Simpler Fetch der Poloniex Daten
 -(void)updateTicker:(NSString*)label {
 
-    if ([label isEqualToString:@"Dashboard"]) {
+    if ([label isEqualToString:DASHBOARD]) {
         self.volumeField.stringValue = @"---";
         self.highField.stringValue = @"---";
         self.changeField.stringValue = @"---";
@@ -500,7 +500,7 @@ typedef struct DASHBOARD {
  */
 - (void)updateOverview {
     // Aktualisiere die URL für den HOME-Button
-    homeURL = [calculator saldoUrlForLabel:@"Dashboard"];
+    homeURL = [calculator saldoUrlForLabel:DASHBOARD];
 
     // Farben zurück setzen
     [self resetColors];
@@ -524,7 +524,7 @@ typedef struct DASHBOARD {
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     // Standardmäßig sind die Werte zwar genullt, aber schaden tuts nicht.
-    DASHBOARD loop_vars = { {0, 0, 0}, 0, 0, 0, 0, 0 };
+    DASHBOARD_VARS loop_vars = { {0, 0, 0}, 0, 0, 0, 0, 0 };
 
     loop_vars.totalBalancesInEUR = [calculator calculate:fiatCurrencies[0]];
     loop_vars.initialBalancesInEUR = [calculator calculateWithRatings:initialRatings currency:fiatCurrencies[0]];
@@ -612,7 +612,7 @@ typedef struct DASHBOARD {
     [self markGainers];
     [self markLoosers];
 
-    [self updateTicker:@"Dashboard"];
+    [self updateTicker:DASHBOARD];
 }
 
 /**
@@ -637,7 +637,7 @@ typedef struct DASHBOARD {
     // Aktualisiere den Kurs des Tabs - falls einer gesetzt ist
     [self rateInputAction:self];
 
-    if ([label isEqualToString:@"Dashboard"]) {
+    if ([label isEqualToString:DASHBOARD]) {
         [self updateOverview];
 
         return;
@@ -766,11 +766,21 @@ typedef struct DASHBOARD {
 - (IBAction)walletAction:(id)sender {
     NSString *title = self.headlineLabel.stringValue;
 
-    if ([title isEqualToString:@"Dashboard"]) {
+    if ([title isEqualToString:DASHBOARD]) {
         [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:self.vendorURL]];
         return;
     }
 
+    // Synchronisiere zur Sicherheit die Applications
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    applications = [[defaults objectForKey:@"applications"] mutableCopy];
+
+    if ([applications[title] isEqualToString:@""]) {
+        [Helper messageText:NSLocalizedString(@"std_app_not_configured", @"Standard App nicht konfiguriert") info:NSLocalizedString(@"check_preferences", @"Überprüfen Sie die Einstellungen.")];
+
+        return;
+    }
+    
     if (![[NSWorkspace sharedWorkspace] launchApplication:applications[title]]) {
         NSAlert *msg = [[NSAlert alloc] init];
         [msg setAlertStyle:NSWarningAlertStyle];
@@ -819,7 +829,7 @@ typedef struct DASHBOARD {
     NSString *tabTitle = labels[self.headlineLabel.stringValue];
     NSString *withAsset = tabs[tabTitle][0];
 
-    if ([withAsset isEqualToString:@"Dashboard"]) {
+    if ([withAsset isEqualToString:DASHBOARD]) {
         withAsset = NSLocalizedString(@"all_charts", @"alle Kurse");
     }
 
@@ -882,7 +892,7 @@ typedef struct DASHBOARD {
  */
 - (IBAction)cryptoAction:(id)sender {
     NSString *tabTitle = self.headlineLabel.stringValue;
-    if ([tabTitle isEqualToString:@"Dashboard"]) {
+    if ([tabTitle isEqualToString:DASHBOARD]) {
         return;
     }
 
@@ -917,7 +927,7 @@ typedef struct DASHBOARD {
 - (IBAction)rateInputAction:(id)sender {
     NSString *tabTitle = self.headlineLabel.stringValue;
 
-    NSString *cAsset = ([tabTitle isEqualToString:@"Dashboard"] ? fiatCurrencies[1] : labels[tabTitle]);
+    NSString *cAsset = ([tabTitle isEqualToString:DASHBOARD] ? fiatCurrencies[1] : labels[tabTitle]);
     NSString *exchangeUnit = self.exchangeSelection.selectedItem.title;
 
     // Aktualisierte Ratings besorgen

@@ -17,6 +17,18 @@
 #define STR @"STR"
 #define DOGE @"DOGE"
 
+#define DASHBOARD @"Dashboard"
+#define BITCOIN @"Bitcoin"
+#define ZCASH @"ZCash"
+#define ETHEREUM @"Ethereum"
+#define MONERO @"Monero"
+#define LITECOIN @"Litecoin"
+#define GAMECOIN @"Gamecoin"
+#define RIPPLE @"Ripple"
+#define SAFEMAID @"Safe Maid Coin"
+#define STELLAR @"Stellar Lumens"
+#define DOGECOIN @"Dogecoin"
+
 #define EUR @"EUR"
 #define USD @"USD"
 
