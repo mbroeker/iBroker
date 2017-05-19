@@ -4,6 +4,7 @@
 //
 
 #import "Calculator.h"
+#import "Helper.h"
 
 /**
  * Berechnungklasse für Crypto-Währungen
@@ -64,7 +65,7 @@
 
         fiatCurrencies = currencies;
 
-        if (currentSaldo == NULL) {
+        if (currentSaldo == nil) {
             currentSaldo = [@{
                 BTC: @0.0,
                 ZEC: @0.0,
@@ -83,7 +84,7 @@
 
         saldoUrls = [[defaults objectForKey:KEY_SALDO_URLS] mutableCopy];
 
-        if (saldoUrls == NULL) {
+        if (saldoUrls == nil) {
             saldoUrls = [@{
                 DASHBOARD: @"https://poloniex.com/exchange#btc_xmr",
                 BITCOIN: @"https://blockchain.info/",
@@ -280,7 +281,7 @@
     double str = [currentSaldo[STR] doubleValue] / [ratings[STR] doubleValue];
     double doge = [currentSaldo[DOGE] doubleValue] / [ratings[DOGE] doubleValue];
 
-    double sum = btc + zec + eth + ltc + xmr + + game + xrp + maid + str + doge;
+    double sum = btc + zec + eth + ltc + xmr + game + xrp + maid + str + doge;
 
     if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;
@@ -300,38 +301,59 @@
 }
 
 /**
- * Besorge die Kurse von cryptocompare per JSON-Request und speichere Sie in den App-Einstellungen
+ * Besorge die Kurse von Poloniex per JSON-Request und speichere Sie in den App-Einstellungen
  */
 - (void)unsynchronizedUpdateRatings {
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *tickerDictionary = [Brokerage poloniexTicker:fiatCurrencies];
 
-    if (tickerDictionary != NULL) {
-        ticker = [tickerDictionary mutableCopy];
+    if (tickerDictionary == nil) {
 
-        double btcValue = 1 / [tickerDictionary[@"BTC_EUR"][POLONIEX_LAST] doubleValue];
+        // Kein Netzwerk, liefere gespeicherte Werte...
+        initialRatings = [defaults objectForKey:KEY_INITIAL_RATINGS];
 
-        currentRatings = [[NSMutableDictionary alloc] init];
+        if (initialRatings == nil) {
+            NSLog(@"SERVICE UNAVAILABLE DURING INITIAL START");
 
-        currentRatings[BTC] = @(btcValue);
-        currentRatings[fiatCurrencies[1]] = tickerDictionary[fiatCurrencies[1]];
+            [Helper messageText:NSLocalizedString(@"no_internet_connection", @"NO INTERNET CONNECTION")
+                info:NSLocalizedString(@"internet_connection_required", @"Internet Connection required")
+            ];
 
-        for (id key in tickerKeys) {
-            double assetValue = btcValue;
-
-            if (![key isEqualToString:BTC]) {
-                assetValue /= [tickerDictionary[tickerKeys[key]][POLONIEX_LAST] doubleValue];
-            }
-
-            currentRatings[key] = @(assetValue);
+            return;
         }
 
-        initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
-
-        if (initialRatings == NULL) {
-            [self initialRatingsWithDictionary:currentRatings];
+        // falls es noch keine aktuellen Ratings gibt, liefere Initiale...
+        if (currentRatings == nil) {
+            currentRatings = initialRatings;
         }
+
+        return;
+    }
+
+    ticker = [tickerDictionary mutableCopy];
+
+    double btcValue = 1 / [tickerDictionary[@"BTC_EUR"][POLONIEX_LAST] doubleValue];
+
+    currentRatings = [[NSMutableDictionary alloc] init];
+
+    currentRatings[BTC] = @(btcValue);
+    currentRatings[fiatCurrencies[1]] = tickerDictionary[fiatCurrencies[1]];
+
+    for (id key in tickerKeys) {
+        double assetValue = btcValue;
+
+        if (![key isEqualToString:BTC]) {
+            assetValue /= [tickerDictionary[tickerKeys[key]][POLONIEX_LAST] doubleValue];
+        }
+
+        currentRatings[key] = @(assetValue);
+    }
+
+    initialRatings = [[defaults objectForKey:KEY_INITIAL_RATINGS] mutableCopy];
+
+    if (initialRatings == nil) {
+        [self initialRatingsWithDictionary:currentRatings];
     }
 
     [defaults synchronize];

@@ -7,6 +7,7 @@
 //
 
 #import "Brokerage.h"
+#include <SystemConfiguration/SystemConfiguration.h>
 
 @implementation Brokerage
 
@@ -18,6 +19,10 @@
  * @return NSDictionary*
  */
 + (NSDictionary*)jsonRequest:(NSString*)jsonURL {
+
+    if (![Brokerage isInternetConnection]) {
+        return nil;
+    }
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:jsonURL]];
@@ -60,10 +65,12 @@
 
     if (!ticker[@"BTC_XMR"]) {
         NSLog(@"API-ERROR: Cannot retrieve ticker data");
+
+        return nil;
     }
 
     ticker[@"BTC_EUR"] = [Brokerage bitstampBTCTicker:fiatCurrencies[0]];
-    ticker[fiatCurrencies[1]] = @([Brokerage fiatExchangeRate:fiatCurrencies]);
+    ticker[fiatCurrencies[1]] = @([[Brokerage fiatExchangeRate:fiatCurrencies] doubleValue]);
 
     return ticker;
 }
@@ -73,9 +80,9 @@
  * 
  * @param fiatCurrencies
  *
- * @return double
+ * @return NSNumber*
  */
-+ (double)fiatExchangeRate:(NSArray*)fiatCurrencies {
++ (NSNumber*)fiatExchangeRate:(NSArray*)fiatCurrencies {
     NSString *jsonURL =
         [NSString stringWithFormat:@"https://min-api.cryptocompare.com/data/pricemulti?fsyms=%@&tsyms=%@&extraParams=de.4customers.iBroker", fiatCurrencies[0], fiatCurrencies[1]];
 
@@ -83,9 +90,11 @@
 
     if (!data[fiatCurrencies[0]]) {
         NSLog(@"API-ERROR: Cannot retrieve exchange rates for %@/%@", fiatCurrencies[0], fiatCurrencies[1]);
+
+        return nil;
     }
 
-    return [data[fiatCurrencies[0]][fiatCurrencies[1]] doubleValue];
+    return @([data[fiatCurrencies[0]][fiatCurrencies[1]] doubleValue]);
 }
 
 /**
@@ -102,6 +111,8 @@
 
     if (!theirData[@"last"]) {
         NSLog(@"API-ERROR: Cannot retrieve exchange rates for BTC/%@", asset);
+
+        return nil;
     }
 
     // aktuelle Anfragen und Käufe
@@ -140,6 +151,36 @@
  */
 + (void)safeSleep:(NSTimeInterval)timeout {
     [NSThread sleepForTimeInterval:timeout];
+}
+
+/**
+ * Prüfe, ob es überhaupt eine Netzwerkverbindung gibt
+ *
+ * @return BOOL
+ */
++ (BOOL) isInternetConnection {
+    BOOL returnValue = NO;
+
+    struct sockaddr zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sa_len = sizeof(zeroAddress);
+    zeroAddress.sa_family = AF_INET;
+
+    SCNetworkReachabilityRef reachabilityRef = SCNetworkReachabilityCreateWithAddress(NULL, (const struct sockaddr*)&zeroAddress);
+
+    if (reachabilityRef != NULL) {
+        SCNetworkReachabilityFlags flags;
+
+        if(SCNetworkReachabilityGetFlags(reachabilityRef, &flags)) {
+            BOOL isReachable = ((flags & kSCNetworkFlagsReachable) != 0);
+            BOOL connectionRequired = ((flags & kSCNetworkFlagsConnectionRequired) != 0);
+            returnValue = isReachable && !connectionRequired;
+        }
+
+        CFRelease(reachabilityRef);
+    }
+
+    return returnValue;
 }
 
 @end

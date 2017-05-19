@@ -168,7 +168,7 @@ typedef struct DASHBOARD_VARS {
 
     applications = [[defaults objectForKey:@"applications"] mutableCopy];
 
-    if (applications == NULL) {
+    if (applications == nil) {
         applications = [@{
             BITCOIN: @"/Applications/Electrum.App",
             ZCASH: @"",
@@ -187,7 +187,7 @@ typedef struct DASHBOARD_VARS {
 
     traders = [defaults objectForKey:@"traders"];
 
-    if (traders == NULL) {
+    if (traders == nil) {
         traders = [@{
             @"homepage": @"https://www.4customers.de/ibroker/",
             @"trader1": @"https://www.shapeshift.io",
@@ -456,6 +456,17 @@ typedef struct DASHBOARD_VARS {
     NSDictionary *keys = [calculator tickerKeys];
 
     NSDictionary *ticker = [calculator ticker];
+
+    if (ticker == nil) {
+        self.lastField.stringValue = @"---";
+        self.highField.stringValue = @"---";
+        self.changeField.stringValue = @"---";
+        self.high24Field.stringValue = @"---";
+        self.low24Field.stringValue = @"---";
+
+        return;
+    }
+
     NSDictionary *tickerData = ticker[keys[label]];
 
     double factor = [tabs[label][1] doubleValue];
@@ -501,7 +512,7 @@ typedef struct DASHBOARD_VARS {
     [self resetColors];
 
 #ifdef DEBUG
-    NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+    NSLog(@"%4s %20s | %20s | %14s | %14s | %14s | %12s | %20s | %12s |\n",
         [@"####" UTF8String],
         [@"BALANCE" UTF8String],
         [@"BALANCE IN EUR" UTF8String],
@@ -544,7 +555,7 @@ typedef struct DASHBOARD_VARS {
         double diffInPercent = (amount >= 0) ? [checkpoint[KEY_PERCENT] doubleValue] : 0;
 
         #ifdef DEBUG
-        NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+        NSLog(@"%4s %20s | %20s | %14s | %14s | %14s | %12s | %20s | %12s |\n",
             [asset UTF8String],
             [[Helper double2German:amount min:8 max:8] UTF8String],
             [[Helper double2German:balanceInEUR min:2 max:2] UTF8String],
@@ -565,7 +576,7 @@ typedef struct DASHBOARD_VARS {
     }
 
 #ifdef DEBUG
-    NSLog(@"%4s %14s | %14s | %14s | %14s | %14s | %10s | %11s | %9s |\n",
+    NSLog(@"%4s %20s | %20s | %14s | %14s | %14s | %12s | %20s | %12s |\n",
         [@"ALL" UTF8String],
         [@"   ---   " UTF8String],
         [[Helper double2German:loop_vars.balancesInEUR min:2 max:2] UTF8String],
