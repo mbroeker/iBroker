@@ -213,7 +213,7 @@
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    if ([asset isEqualToString:@"ALL"]) {
+    if ([asset isEqualToString:DASHBOARD]) {
         initialRatings = [currentRatings mutableCopy];
     } else {
         // aktualisiere den Kurs der Währung
