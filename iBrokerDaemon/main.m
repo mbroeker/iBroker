@@ -48,9 +48,9 @@ const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
     NSString *theHeadLine = [
         NSString stringWithFormat:format,
           asset,
-          [checkpoint[KEY_INITIAL_PRICE] doubleValue],
-          [checkpoint[KEY_CURRENT_PRICE] doubleValue],
-          [checkpoint[KEY_PERCENT] doubleValue]
+          [checkpoint[CP_INITIAL_PRICE] doubleValue],
+          [checkpoint[CP_CURRENT_PRICE] doubleValue],
+          [checkpoint[CP_PERCENT] doubleValue]
     ];
 
     return [theHeadLine UTF8String];
@@ -66,10 +66,10 @@ const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
  * @return
  */
 const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *currentRatings, double btcPercent) {
-    double effectivePercent = [checkpoint[KEY_PERCENT] doubleValue];
+    double effectivePercent = [checkpoint[CP_PERCENT] doubleValue];
     if (![asset isEqualToString:BTC]) effectivePercent -= btcPercent;
 
-    double currentPrice = [checkpoint[KEY_CURRENT_PRICE] doubleValue];
+    double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
     double currentPriceInBTC = [currentRatings[BTC] doubleValue] / [currentRatings[asset] doubleValue];
 
     NSString *theString = [
@@ -102,7 +102,7 @@ void brokerRun(CONFIG config) {
         NSDictionary *ltcCheckpoint = [calculator checkpointForAsset:LTC];
         NSDictionary *dogCheckpoint = [calculator checkpointForAsset:DOGE];
 
-        double btcPercent = [btcCheckpoint[KEY_PERCENT] doubleValue];
+        double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
 
         if ((counter++ % config.rows) == 0) {
             printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
@@ -197,9 +197,9 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
             for (id asset in [[dictionary allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
                 NSDictionary *ratings = [calculator checkpointForAsset:asset];
 
-                double initialPrice = [ratings[@"initialPrice"] doubleValue];
-                double currentPrice = [ratings[@"currentPrice"] doubleValue];
-                double percent = [ratings[KEY_PERCENT] doubleValue];
+                double initialPrice = [ratings[CP_INITIAL_PRICE] doubleValue];
+                double currentPrice = [ratings[CP_CURRENT_PRICE] doubleValue];
+                double percent = [ratings[CP_PERCENT] doubleValue];
 
                 printf("%4s: %12s | %11s | %11s | %6s\n",
                     [asset UTF8String],
