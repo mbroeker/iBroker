@@ -17,6 +17,7 @@
 // Umrechnungsmethoden für Crypto-Währungen
 - (double)calculate:(NSString*)currency;
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency;
+- (NSDictionary*)realPrices;
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
 - (void)updateRatings;

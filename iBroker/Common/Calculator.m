@@ -291,6 +291,46 @@
 }
 
 /**
+ * Berechnet die realen Preise anhand des Handelsvolumens auf Poloniex
+ */
+- (NSDictionary*)realPrices {
+    NSMutableDictionary *volumes = [[NSMutableDictionary alloc] init];
+
+    for (id key in tickerKeys) {
+        double base = [ticker[tickerKeys[key]][POLONIEX_BASE_VOLUME] doubleValue];
+        double quote = [ticker[tickerKeys[key]][POLONIEX_QUOTE_VOLUME] doubleValue];
+
+        volumes[key] = @{
+            @"in": @(base),
+            @"out": @(quote)
+        };
+    }
+
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+
+    for (id key in volumes) {
+        if ([key isEqualToString:BTC]) {
+            continue;
+        }
+
+        double v1 = [volumes[key][@"in"] doubleValue];
+        double v2 = [volumes[key][@"out"] doubleValue];
+
+        double realPrice = v1 / v2;
+        double price = [currentRatings[BTC] doubleValue] / [currentRatings[key] doubleValue];
+        double percentChange = ((realPrice / price) - 1) * 100.0;
+
+        result[key] = @{
+            RP_REALPRICE: @(realPrice),
+            RP_PRICE: @(price),
+            RP_CHANGE: @(percentChange)
+        };
+    }
+
+    return result;
+}
+
+/**
  * synchronisierter Block, der garantiert, dass es nur ein Update gibt
  */
 - (void)updateRatings {

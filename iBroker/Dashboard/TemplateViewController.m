@@ -498,6 +498,29 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
+ * Zeige Differenzen zwischen dem gehandelten und dem berechneten Preis
+ *
+ * @param asset
+ */
+- (void)highlightVolumeMismatch:(NSString*)asset {
+    // Differenzen größer oder kleiner als -2 Prozent sind relevant
+    double RANGE = 2.0;
+
+    NSDictionary *realPrices = [calculator realPrices];
+    double estimatedPercentChange = [realPrices[asset][RP_CHANGE] doubleValue];
+
+    if (estimatedPercentChange > RANGE) {
+        self.iBrokerLabel.stringValue = [Helper double2GermanPercent:estimatedPercentChange fractions:2];
+        self.iBrokerLabel.textColor = defaultGainColor;
+    }
+
+    if (estimatedPercentChange < -RANGE) {
+        self.iBrokerLabel.stringValue = [Helper double2GermanPercent:estimatedPercentChange fractions:2];
+        self.iBrokerLabel.textColor = defaultLooseColor;
+    }
+}
+
+/**
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
@@ -752,6 +775,11 @@ typedef struct DASHBOARD_VARS {
     [self markLoosers];
 
     [self updateTicker:label];
+
+    // meine privaten Plugins
+    if ([NSUserName() isEqualToString:@"mbroeker"]) {
+        [self highlightVolumeMismatch:asset];
+    }
 }
 
 /**
