@@ -242,10 +242,10 @@
     double percent = 100.0 * ((currentPrice / initialPrice) - 1);
 
     return @{
-        KEY_INITIAL_PRICE: @(initialPrice),
-        KEY_CURRENT_PRICE: @(currentPrice),
-        KEY_PERCENT: @(percent),
-        KEY_EFFECTIVE_PRICE: @((1 + percent / 100.0) * currentPrice)
+        CP_INITIAL_PRICE: @(initialPrice),
+        CP_CURRENT_PRICE: @(currentPrice),
+        CP_PERCENT: @(percent),
+        CP_EFFECTIVE_PRICE: @((1 + percent / 100.0) * currentPrice)
     };
 }
 

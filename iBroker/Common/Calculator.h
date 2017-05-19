@@ -5,41 +5,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Brokerage.h"
-
-#define BTC @"BTC"
-#define ZEC @"ZEC"
-#define ETH @"ETH"
-#define XMR @"XMR"
-#define LTC @"LTC"
-#define GAME @"GAME"
-#define XRP @"XRP"
-#define MAID @"MAID"
-#define STR @"STR"
-#define DOGE @"DOGE"
-
-#define DASHBOARD @"Dashboard"
-#define BITCOIN @"Bitcoin"
-#define ZCASH @"ZCash"
-#define ETHEREUM @"Ethereum"
-#define MONERO @"Monero"
-#define LITECOIN @"Litecoin"
-#define GAMECOIN @"Gamecoin"
-#define RIPPLE @"Ripple"
-#define SAFEMAID @"Safe Maid Coin"
-#define STELLAR @"Stellar Lumens"
-#define DOGECOIN @"Dogecoin"
-
-#define EUR @"EUR"
-#define USD @"USD"
-
-#define KEY_INITIAL_RATINGS @"initialRatings"
-#define KEY_CURRENT_SALDO @"currentSaldo"
-#define KEY_SALDO_URLS @"saldoUrls"
-
-#define KEY_INITIAL_PRICE @"initialPrice"
-#define KEY_CURRENT_PRICE @"currentPrice"
-#define KEY_EFFECTIVE_PRICE @"effectivePrice"
-#define KEY_PERCENT @"percent"
+#import "CalculatorConstants.h"
 
 @interface Calculator : NSObject
 

@@ -75,8 +75,8 @@
     if ([Helper messageText:NSLocalizedString(@"application_reset", @"Anwendungs-Reset") info:NSLocalizedString(@"wanna_reset_to_app_defaults", @"Möchten Sie auf die Standard-Einstellungen zurück setzen?")] == NSAlertFirstButtonReturn) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-        [defaults removeObjectForKey:@"applications"];
-        [defaults removeObjectForKey:@"traders"];
+        [defaults removeObjectForKey:TV_APPLICATIONS];
+        [defaults removeObjectForKey:TV_TRADERS];
         [defaults removeObjectForKey:KEY_SALDO_URLS];
         [defaults removeObjectForKey:KEY_CURRENT_SALDO];
         [defaults removeObjectForKey:KEY_INITIAL_RATINGS];

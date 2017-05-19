@@ -5,9 +5,9 @@
 //  Created by Markus Bröker on 04.04.17.
 //  Copyright © 2017 Markus Bröker. All rights reserved.
 //
-#ifndef DEBUG
-#define DEBUG 1
-#endif
+#import "TemplateViewController.h"
+#import "Helper.h"
+#import "Calculator.h"
 
 const double CHECKPOINT_PERCENTAGE = 5.0;
 
@@ -26,10 +26,6 @@ typedef struct DASHBOARD_VARS {
     double balancesInBTC;
     double shares;
 } DASHBOARD_VARS;
-
-#import "TemplateViewController.h"
-#import "Helper.h"
-#import "Calculator.h"
 
 @implementation TemplateViewController {
 @private
@@ -117,7 +113,7 @@ typedef struct DASHBOARD_VARS {
     // Liste der Fiat-Währungen
     fiatCurrencies = [calculator fiatCurrencies];
 
-    if ([fiatCurrencies[0] isEqualToString:@"EUR"]) {
+    if ([fiatCurrencies[0] isEqualToString:EUR]) {
         fiatCurrencySymbol = @"€";
     } else {
         fiatCurrencySymbol = @"$";
@@ -166,7 +162,7 @@ typedef struct DASHBOARD_VARS {
         DOGE: [NSImage imageNamed:DOGE]
     };
 
-    applications = [[defaults objectForKey:@"applications"] mutableCopy];
+    applications = [[defaults objectForKey:TV_APPLICATIONS] mutableCopy];
 
     if (applications == nil) {
         applications = [@{
@@ -182,19 +178,19 @@ typedef struct DASHBOARD_VARS {
             DOGECOIN: @"/Applications/MultiDoge.App",
         } mutableCopy];
 
-        [defaults setObject:applications forKey:@"applications"];
+        [defaults setObject:applications forKey:TV_APPLICATIONS];
     }
 
-    traders = [defaults objectForKey:@"traders"];
+    traders = [defaults objectForKey:TV_TRADERS];
 
     if (traders == nil) {
         traders = [@{
-            @"homepage": @"https://www.4customers.de/ibroker/",
-            @"trader1": @"https://www.shapeshift.io",
-            @"trader2": @"https://www.blocktrades.us",
+            TV_HOMEPAGE: @"https://www.4customers.de/ibroker/",
+            TV_TRADER1: @"https://www.shapeshift.io",
+            TV_TRADER2: @"https://www.blocktrades.us",
         } mutableCopy];
 
-        [defaults setObject:traders forKey:@"traders"];
+        [defaults setObject:traders forKey:TV_TRADERS];
     }
 
     // Ich brauche den Placeholder Text eigentlich nur in Xcode zum Finden des Labels
@@ -260,7 +256,7 @@ typedef struct DASHBOARD_VARS {
 
     if (mustUpdate) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setObject:applications forKey:@"applications"];
+        [defaults setObject:applications forKey:TV_APPLICATIONS];
         NSLog(@"Migrating applications");
 
         [defaults synchronize];
@@ -310,7 +306,7 @@ typedef struct DASHBOARD_VARS {
     for (id cAsset in currentRatings) {
         NSDictionary *aCheckpoint = [calculator checkpointForAsset:cAsset];
 
-        double cPercent = [aCheckpoint[KEY_PERCENT] doubleValue];
+        double cPercent = [aCheckpoint[CP_PERCENT] doubleValue];
 
         if ([cAsset isEqualToString:BTC] && cPercent > 0) self.currency1Field.backgroundColor = defaultHigherColor;
         if ([cAsset isEqualToString:ZEC] && cPercent > 0) self.currency2Field.backgroundColor = defaultHigherColor;
@@ -373,7 +369,7 @@ typedef struct DASHBOARD_VARS {
     for (id cAsset in currentRatings) {
         NSDictionary *aCheckpoint = [calculator checkpointForAsset:cAsset];
 
-        double cPercent = [aCheckpoint[KEY_PERCENT] doubleValue];
+        double cPercent = [aCheckpoint[CP_PERCENT] doubleValue];
 
         if ([cAsset isEqualToString:BTC] && cPercent < 0) self.currency1Field.backgroundColor = defaultLowerColor;
         if ([cAsset isEqualToString:ZEC] && cPercent < 0) self.currency2Field.backgroundColor = defaultLowerColor;
@@ -458,11 +454,11 @@ typedef struct DASHBOARD_VARS {
     NSDictionary *ticker = [calculator ticker];
 
     if (ticker == nil) {
-        self.lastField.stringValue = @"---";
-        self.highField.stringValue = @"---";
-        self.changeField.stringValue = @"---";
-        self.high24Field.stringValue = @"---";
-        self.low24Field.stringValue = @"---";
+        self.lastField.stringValue = TV_TICKER_PLACEHOLDER;
+        self.highField.stringValue = TV_TICKER_PLACEHOLDER;
+        self.changeField.stringValue = TV_TICKER_PLACEHOLDER;
+        self.high24Field.stringValue = TV_TICKER_PLACEHOLDER;
+        self.low24Field.stringValue = TV_TICKER_PLACEHOLDER;
 
         return;
     }
@@ -539,8 +535,8 @@ typedef struct DASHBOARD_VARS {
     for (id asset in [[currentSaldo allKeys] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)]) {
         NSDictionary *checkpoint = [calculator checkpointForAsset:asset];
 
-        double initialPrice = [checkpoint[KEY_INITIAL_PRICE] doubleValue];
-        double currentPrice = [checkpoint[KEY_CURRENT_PRICE] doubleValue];
+        double initialPrice = [checkpoint[CP_INITIAL_PRICE] doubleValue];
+        double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
         double btcPrice = [asset isEqualToString:BTC] ? 1 : [currentRatings[BTC] doubleValue] / [currentRatings[asset] doubleValue];
 
         double amount = [currentSaldo[asset] doubleValue];
@@ -552,7 +548,7 @@ typedef struct DASHBOARD_VARS {
         if (loop_vars.totalBalancesInEUR != 0) share = (balanceInEUR / loop_vars.totalBalancesInEUR) * 100.0;
 
         double diffInEuro = ((currentPrice / initialPrice) * balanceInEUR) - balanceInEUR;
-        double diffInPercent = (amount >= 0) ? [checkpoint[KEY_PERCENT] doubleValue] : 0;
+        double diffInPercent = (amount >= 0) ? [checkpoint[CP_PERCENT] doubleValue] : 0;
 
         #ifdef DEBUG
         NSLog(@"%4s %20s | %20s | %14s | %14s | %14s | %12s | %20s | %12s |\n",
@@ -668,8 +664,8 @@ typedef struct DASHBOARD_VARS {
     NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
-    double percent = [checkpoint[KEY_PERCENT] doubleValue];
-    double btcPercent = [btcCheckpoint[KEY_PERCENT] doubleValue];
+    double percent = [checkpoint[CP_PERCENT] doubleValue];
+    double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
 
     double assetRating = [currentRatings[asset] doubleValue];
     double saldo = [calculator currentSaldo:asset];
@@ -764,7 +760,7 @@ typedef struct DASHBOARD_VARS {
  * @param sender
  */
 - (IBAction)homepageAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[@"homepage"]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[TV_HOMEPAGE]]];
 }
 
 /**
@@ -782,7 +778,7 @@ typedef struct DASHBOARD_VARS {
 
     // Synchronisiere zur Sicherheit die Applications
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    applications = [[defaults objectForKey:@"applications"] mutableCopy];
+    applications = [[defaults objectForKey:TV_APPLICATIONS] mutableCopy];
 
     if ([applications[title] isEqualToString:@""]) {
         [Helper messageText:NSLocalizedString(@"std_app_not_configured", @"Standard App nicht konfiguriert") info:NSLocalizedString(@"check_preferences", @"Überprüfen Sie die Einstellungen.")];
@@ -817,7 +813,7 @@ typedef struct DASHBOARD_VARS {
  * @param sender
  */
 - (IBAction)leftAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[@"trader1"]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[TV_TRADER1]]];
 }
 
 /**
@@ -826,7 +822,7 @@ typedef struct DASHBOARD_VARS {
  * @param sender
  */
 - (IBAction)rightAction:(id)sender {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[@"trader2"]]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:traders[TV_TRADER2]]];
 }
 
 /**

@@ -67,6 +67,7 @@
 		B25A9FD81ECA257F0020555E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
+		B2D3C8501ECF8328005D8CE6 /* CalculatorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorConstants.h; sourceTree = "<group>"; };
 		B2EE3EF61EC4A7C900D71791 /* Brokerage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brokerage.h; sourceTree = "<group>"; };
 		B2EE3EF71EC4A7C900D71791 /* Brokerage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brokerage.m; sourceTree = "<group>"; };
 		B2EF257A1EC5B2E000C79B2E /* Algorithm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Algorithm.h; sourceTree = "<group>"; };
@@ -235,6 +236,7 @@
 				B2FF15F21EB038A900F65E6B /* TabView.m */,
 				43D6F713419AF161FD0FB69C /* Calculator.m */,
 				43D6FAB9704D5BBC4D376F07 /* Calculator.h */,
+				B2D3C8501ECF8328005D8CE6 /* CalculatorConstants.h */,
 			);
 			path = Common;
 			sourceTree = "<group>";
