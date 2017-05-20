@@ -318,7 +318,7 @@
 
         double realPrice = v1 / v2;
         double price = [currentRatings[BTC] doubleValue] / [currentRatings[key] doubleValue];
-        double percentChange = ((realPrice / price) - 1) * 100.0;
+        double percentChange = ((price / realPrice) - 1) * 100.0;
 
         result[key] = @{
             RP_REALPRICE: @(realPrice),
