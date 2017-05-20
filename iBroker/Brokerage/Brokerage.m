@@ -39,9 +39,9 @@
         NSError *jsonError;
 
         result = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&jsonError];
-        if (jsonError) {
+        if (jsonError && !RELEASE_BUILD) {
             // Fehlermeldung wird angezeigt
-            NSLog(@"%@", [jsonError description]);
+            NSLog(@"JSON-ERROR for URL %@\n%@", jsonURL, [jsonError description]);
         }
 
         hasFinished = true;

@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+#define RELEASE_BUILD 1
+
 #define POLONIEX_ASK @"lowestAsk"
 #define POLONIEX_BID @"highestBid"
 #define POLONIEX_LOW24 @"low24hr"
