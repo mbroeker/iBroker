@@ -452,17 +452,17 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 1
         if ([lowestKey isEqualToString:BTC]) [self alterFieldColors:self.currency1Field withBackgroundColor:defaultLooseColor];
-        if ([lowestKey isEqualToString:ZEC]) [self alterFieldColors:self.currency2Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:ETH]) [self alterFieldColors:self.currency3Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:XMR]) [self alterFieldColors:self.currency4Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:LTC]) [self alterFieldColors:self.currency5Field withBackgroundColor:defaultLowestColor];
+        if ([lowestKey isEqualToString:ZEC]) [self alterFieldColors:self.currency2Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:ETH]) [self alterFieldColors:self.currency3Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:XMR]) [self alterFieldColors:self.currency4Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:LTC]) [self alterFieldColors:self.currency5Field withBackgroundColor:defaultLooseColor];
 
         // Chart Leiste 2
-        if ([lowestKey isEqualToString:GAME]) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:XRP]) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:MAID]) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:STR]) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLowestColor];
-        if ([lowestKey isEqualToString:DOGE]) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultLowestColor];
+        if ([lowestKey isEqualToString:GAME]) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:XRP]) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:MAID]) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:STR]) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:DOGE]) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultLooseColor];
     }
 }
 
