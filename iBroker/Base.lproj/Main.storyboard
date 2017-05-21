@@ -71,8 +71,7 @@
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Maximieren" id="R4o-n2-Eq4">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Maximieren" keyEquivalent="M" id="R4o-n2-Eq4">
                                             <connections>
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
                                             </connections>
@@ -458,18 +457,42 @@
                                     <font key="font" size="18" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <menu key="menu" id="DE0-0d-oDd">
                                         <items>
-                                            <menuItem title="BTC" keyEquivalent="b" id="M9j-Q9-xhP"/>
-                                            <menuItem title="ZEC" keyEquivalent="z" id="IH5-cJ-lY0"/>
-                                            <menuItem title="ETH" keyEquivalent="t" id="Kzw-Ya-M9S"/>
-                                            <menuItem title="XMR" keyEquivalent="x" id="OsJ-v1-9gS"/>
-                                            <menuItem title="LTC" keyEquivalent="l" id="Z6u-mu-Fv9"/>
-                                            <menuItem title="GAME" keyEquivalent="g" id="3wO-MX-Z0o"/>
-                                            <menuItem title="EMC2" keyEquivalent="r" id="fJH-dY-dZy"/>
-                                            <menuItem title="MAID" keyEquivalent="m" id="dbm-ua-9hY"/>
-                                            <menuItem title="SC" keyEquivalent="s" id="hz2-LI-dyb"/>
-                                            <menuItem title="DOGE" keyEquivalent="d" id="Bxm-K1-uLk"/>
-                                            <menuItem title="EUR" state="on" keyEquivalent="e" id="V0C-0w-ftI"/>
-                                            <menuItem title="USD" keyEquivalent="u" id="Trz-bG-51a"/>
+                                            <menuItem title="BTC" keyEquivalent="b" id="M9j-Q9-xhP">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="ZEC" keyEquivalent="z" id="IH5-cJ-lY0">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="ETH" keyEquivalent="t" id="Kzw-Ya-M9S">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="XMR" keyEquivalent="x" id="OsJ-v1-9gS">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="LTC" keyEquivalent="l" id="Z6u-mu-Fv9">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="GAME" keyEquivalent="g" id="3wO-MX-Z0o">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="EMC2" keyEquivalent="r" id="fJH-dY-dZy">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="MAID" keyEquivalent="m" id="dbm-ua-9hY">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="SC" keyEquivalent="s" id="hz2-LI-dyb">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="DOGE" keyEquivalent="d" id="Bxm-K1-uLk">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="EUR" state="on" keyEquivalent="e" id="V0C-0w-ftI">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
+                                            <menuItem title="USD" keyEquivalent="u" id="Trz-bG-51a">
+                                                <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                            </menuItem>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
