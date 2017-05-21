@@ -48,6 +48,8 @@ body {
 .text-right { text-align: right; }
 .text-center { text-align: center; }
 
+.underline { text-decoration: underline; }
+
 .blau { color: blue; }
 .magenta { color: magenta; }
 .grün { color: green; }
