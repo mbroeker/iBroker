@@ -69,8 +69,20 @@
         return nil;
     }
 
-    ticker[@"BTC_EUR"] = [Brokerage bitstampBTCTicker:fiatCurrencies[0]];
-    ticker[fiatCurrencies[1]] = @([[Brokerage fiatExchangeRate:fiatCurrencies] doubleValue]);
+    NSDictionary *btcTicker = [Brokerage bitstampBTCTicker:fiatCurrencies[0]];
+
+    if (!btcTicker) {
+        return nil;
+    }
+
+    NSNumber *exchangeRate = [Brokerage fiatExchangeRate:fiatCurrencies];
+
+    if (!exchangeRate) {
+        return nil;
+    }
+
+    ticker[@"BTC_EUR"] = btcTicker;
+    ticker[fiatCurrencies[1]] = @([exchangeRate doubleValue]);
 
     return ticker;
 }
