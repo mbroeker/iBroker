@@ -15,7 +15,7 @@
 @synthesize window = _window;
 
 - (void)applicationWillFinishLaunching:(NSNotification *)notification {
-    _window = [[[NSApplication sharedApplication] windows] objectAtIndex:0];
+    _window = [[NSApplication sharedApplication] windows][0];
 }
 
 /**
@@ -25,7 +25,7 @@
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *state = [defaults valueForKey:@"menubar"];
+    NSNumber *state = [defaults valueForKey:OPTIONS_MENUBAR];
 
     self.menubarItem.state = state.integerValue;
 }
@@ -60,9 +60,9 @@
     item.state = !item.state;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSNumber *state = [NSNumber numberWithInteger:item.state];
+    NSNumber *state = @(item.state);
 
-    [defaults setValue:state forKey: @"menubar"];
+    [defaults setValue:state forKey: OPTIONS_MENUBAR];
     [defaults synchronize];
 }
 

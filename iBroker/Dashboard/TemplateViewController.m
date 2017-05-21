@@ -144,9 +144,9 @@ typedef struct DASHBOARD_VARS {
         XMR: @[MONERO, @1],
         LTC: @[LITECOIN, @1],
         GAME: @[GAMECOIN, @1],
-        XRP: @[RIPPLE, @1],
+        EMC2: @[EINSTEINIUM, @1],
         MAID: @[SAFEMAID, @1],
-        STR: @[STELLAR, @1],
+        SC: @[SIACOIN, @1],
         DOGE: @[DOGECOIN, @1],
     };
 
@@ -158,9 +158,9 @@ typedef struct DASHBOARD_VARS {
         MONERO: XMR,
         LITECOIN: LTC,
         GAMECOIN: GAME,
-        RIPPLE: XRP,
+        EINSTEINIUM: EMC2,
         SAFEMAID: MAID,
-        STELLAR: STR,
+        SIACOIN: SC,
         DOGECOIN: DOGE
     };
 
@@ -173,9 +173,9 @@ typedef struct DASHBOARD_VARS {
         XMR: [NSImage imageNamed:XMR],
         LTC: [NSImage imageNamed:LTC],
         GAME: [NSImage imageNamed:GAME],
-        XRP: [NSImage imageNamed:XRP],
+        EMC2: [NSImage imageNamed:EMC2],
         MAID: [NSImage imageNamed:MAID],
-        STR: [NSImage imageNamed:STR],
+        SC: [NSImage imageNamed:SC],
         DOGE: [NSImage imageNamed:DOGE]
     };
 
@@ -189,9 +189,9 @@ typedef struct DASHBOARD_VARS {
             MONERO: @"/Applications/monero-wallet-gui.App",
             LITECOIN: @"/Applications/Electrum-LTC.App",
             GAMECOIN: @"",
-            RIPPLE: @"",
+            EINSTEINIUM: @"",
             SAFEMAID: @"",
-            STELLAR: @"",
+            SIACOIN: @"",
             DOGECOIN: @"/Applications/MultiDoge.App",
         } mutableCopy];
 
@@ -234,9 +234,7 @@ typedef struct DASHBOARD_VARS {
     [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
 
     // Migration älterer Installationen
-    if (!applications[ZCASH]) {
-        [self updateAssistant];
-    }
+    [self updateAssistant];
 }
 
 /**
@@ -256,8 +254,8 @@ typedef struct DASHBOARD_VARS {
         mustUpdate = true;
     }
 
-    if (!applications[RIPPLE]) {
-        applications[RIPPLE] = @"";
+    if (!applications[EINSTEINIUM]) {
+        applications[EINSTEINIUM] = @"";
         mustUpdate = true;
     }
 
@@ -266,15 +264,22 @@ typedef struct DASHBOARD_VARS {
         mustUpdate = true;
     }
 
-    if (!applications[STELLAR]) {
-        applications[STELLAR] = @"";
+    if (!applications[SIACOIN]) {
+        applications[SIACOIN] = @"";
+        mustUpdate = true;
+    }
+
+    if (applications[@"Stellar Lumens"]) {
+        [applications removeObjectForKey:@"Stellar Lumens"];
+
         mustUpdate = true;
     }
 
     if (mustUpdate) {
+        NSLog(@"Migrating applications...");
+        
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:applications forKey:TV_APPLICATIONS];
-        NSLog(@"Migrating applications");
 
         [defaults synchronize];
     }
@@ -336,9 +341,9 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 2
         if ([cAsset isEqualToString:GAME] && cPercent > 0) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultHigherColor];
-        if ([cAsset isEqualToString:XRP] && cPercent > 0) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultHigherColor];
+        if ([cAsset isEqualToString:EMC2] && cPercent > 0) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultHigherColor];
         if ([cAsset isEqualToString:MAID] && cPercent > 0) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultHigherColor];
-        if ([cAsset isEqualToString:STR] && cPercent > 0) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultHigherColor];
+        if ([cAsset isEqualToString:SC] && cPercent > 0) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultHigherColor];
         if ([cAsset isEqualToString:DOGE] && cPercent > 0) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultHigherColor];
 
         /* Highest Checkpoint Block */
@@ -352,9 +357,9 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 2
         if ([cAsset isEqualToString:GAME] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultHighestColor];
-        if ([cAsset isEqualToString:XRP] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultHighestColor];
+        if ([cAsset isEqualToString:EMC2] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultHighestColor];
         if ([cAsset isEqualToString:MAID] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultHighestColor];
-        if ([cAsset isEqualToString:STR] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultHighestColor];
+        if ([cAsset isEqualToString:SC] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultHighestColor];
         if ([cAsset isEqualToString:DOGE] && cPercent > CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultHighestColor];
 
         // Bilde die Differenz aus BTC und der jeweiligen Cryptowährung, falls es sich nicht um BTC handelt.
@@ -381,9 +386,9 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 2
         if ([highestKey isEqualToString:GAME]) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultGainColor];
-        if ([highestKey isEqualToString:XRP]) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultGainColor];
+        if ([highestKey isEqualToString:EMC2]) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultGainColor];
         if ([highestKey isEqualToString:MAID]) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultGainColor];
-        if ([highestKey isEqualToString:STR]) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultGainColor];
+        if ([highestKey isEqualToString:SC]) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultGainColor];
         if ([highestKey isEqualToString:DOGE]) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultGainColor];
     }
 }
@@ -414,9 +419,9 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 2
         if ([cAsset isEqualToString:GAME] && cPercent < 0) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultLowerColor];
-        if ([cAsset isEqualToString:XRP] && cPercent < 0) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLowerColor];
+        if ([cAsset isEqualToString:EMC2] && cPercent < 0) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLowerColor];
         if ([cAsset isEqualToString:MAID] && cPercent < 0) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultLowerColor];
-        if ([cAsset isEqualToString:STR] && cPercent < 0) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLowerColor];
+        if ([cAsset isEqualToString:SC] && cPercent < 0) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLowerColor];
         if ([cAsset isEqualToString:DOGE] && cPercent < 0) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultLowerColor];
 
         /* Lowest Checkpoint Block */
@@ -430,9 +435,9 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 2
         if ([cAsset isEqualToString:GAME] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultLowestColor];
-        if ([cAsset isEqualToString:XRP] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLowestColor];
+        if ([cAsset isEqualToString:EMC2] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLowestColor];
         if ([cAsset isEqualToString:MAID] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultLowestColor];
-        if ([cAsset isEqualToString:STR] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLowestColor];
+        if ([cAsset isEqualToString:SC] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLowestColor];
         if ([cAsset isEqualToString:DOGE] && cPercent < -CHECKPOINT_PERCENTAGE) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultLowestColor];
 
         // Bilde die Differenz aus BTC und der jeweiligen Cryptowährung, falls es sich nicht um BTC handelt.
@@ -459,9 +464,9 @@ typedef struct DASHBOARD_VARS {
 
         // Chart Leiste 2
         if ([lowestKey isEqualToString:GAME]) [self alterFieldColors:self.currency6Field withBackgroundColor:defaultLooseColor];
-        if ([lowestKey isEqualToString:XRP]) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:EMC2]) [self alterFieldColors:self.currency7Field withBackgroundColor:defaultLooseColor];
         if ([lowestKey isEqualToString:MAID]) [self alterFieldColors:self.currency8Field withBackgroundColor:defaultLooseColor];
-        if ([lowestKey isEqualToString:STR]) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLooseColor];
+        if ([lowestKey isEqualToString:SC]) [self alterFieldColors:self.currency9Field withBackgroundColor:defaultLooseColor];
         if ([lowestKey isEqualToString:DOGE]) [self alterFieldColors:self.currency10Field withBackgroundColor:defaultLooseColor];
     }
 }
@@ -679,9 +684,9 @@ typedef struct DASHBOARD_VARS {
 
     // Chart Leiste 2
     self.currency6Field.stringValue = [Helper double2German:1 / [currentRatings[GAME] doubleValue] min:2 max:4];
-    self.currency7Field.stringValue = [Helper double2German:1 / [currentRatings[XRP] doubleValue] min:2 max:4];
+    self.currency7Field.stringValue = [Helper double2German:1 / [currentRatings[EMC2] doubleValue] min:2 max:4];
     self.currency8Field.stringValue = [Helper double2German:1 / [currentRatings[MAID] doubleValue] min:2 max:4];
-    self.currency9Field.stringValue = [Helper double2German:1 / [currentRatings[STR] doubleValue] min:2 max:4];
+    self.currency9Field.stringValue = [Helper double2German:1 / [currentRatings[SC] doubleValue] min:2 max:4];
     self.currency10Field.stringValue = [Helper double2German:1 / [currentRatings[DOGE] doubleValue] min:2 max:4];
 
     [self markGainers];
@@ -785,9 +790,9 @@ typedef struct DASHBOARD_VARS {
         XMR: @([currentRatings[XMR] doubleValue] / assetRating),
         LTC: @([currentRatings[LTC] doubleValue] / assetRating),
         GAME: @([currentRatings[GAME] doubleValue] / assetRating),
-        XRP: @([currentRatings[XRP] doubleValue] / assetRating),
+        EMC2: @([currentRatings[EMC2] doubleValue] / assetRating),
         MAID: @([currentRatings[MAID] doubleValue] / assetRating),
-        STR: @([currentRatings[STR] doubleValue] / assetRating),
+        SC: @([currentRatings[SC] doubleValue] / assetRating),
         DOGE: @([currentRatings[DOGE] doubleValue] / assetRating)
     };
 
@@ -802,9 +807,9 @@ typedef struct DASHBOARD_VARS {
     fractions = ([label isEqualToString:BTC]) ? 4 : 6;
 
     self.currency6Field.stringValue = [Helper double2German: [currentPriceInUnits[GAME] doubleValue] min:fractions max:fractions];
-    self.currency7Field.stringValue = [Helper double2German: [currentPriceInUnits[XRP] doubleValue] min:fractions max:fractions];
+    self.currency7Field.stringValue = [Helper double2German: [currentPriceInUnits[EMC2] doubleValue] min:fractions max:fractions];
     self.currency8Field.stringValue = [Helper double2German: [currentPriceInUnits[MAID] doubleValue] min:fractions max:fractions];
-    self.currency9Field.stringValue = [Helper double2German: [currentPriceInUnits[STR] doubleValue] min:fractions max:fractions];
+    self.currency9Field.stringValue = [Helper double2German: [currentPriceInUnits[SC] doubleValue] min:fractions max:fractions];
 
     fractions = ([label isEqualToString:BTC]) ? 2 : 4;
 
@@ -819,9 +824,9 @@ typedef struct DASHBOARD_VARS {
 
     // Chart Leiste 2
     if ([asset isEqualToString:GAME]) self.currency6Field.stringValue = @"1";
-    if ([asset isEqualToString:XRP]) self.currency7Field.stringValue = @"1";
+    if ([asset isEqualToString:EMC2]) self.currency7Field.stringValue = @"1";
     if ([asset isEqualToString:MAID]) self.currency8Field.stringValue = @"1";
-    if ([asset isEqualToString:STR]) self.currency9Field.stringValue = @"1";
+    if ([asset isEqualToString:SC]) self.currency9Field.stringValue = @"1";
     if ([asset isEqualToString:DOGE]) self.currency10Field.stringValue = @"1";
 
     [self markGainers];
@@ -947,14 +952,14 @@ typedef struct DASHBOARD_VARS {
         @([calculator calculateWithRatings:currentRatings currency:XMR]),
         @([calculator calculateWithRatings:currentRatings currency:LTC]),
         @([calculator calculateWithRatings:currentRatings currency:GAME]),
-        @([calculator calculateWithRatings:currentRatings currency:XRP]),
+        @([calculator calculateWithRatings:currentRatings currency:EMC2]),
         @([calculator calculateWithRatings:currentRatings currency:MAID]),
-        @([calculator calculateWithRatings:currentRatings currency:STR]),
+        @([calculator calculateWithRatings:currentRatings currency:SC]),
         @([calculator calculateWithRatings:currentRatings currency:DOGE]),
         @([calculator calculateWithRatings:currentRatings currency:USD])
     ];
 
-    text = [NSString stringWithFormat:@"%@ BTC\n%@ ZEC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ GAME\n%@ XRP\n%@ MAID\n%@ STR\n%@ DOGE\n%@ USD",
+    text = [NSString stringWithFormat:@"%@ BTC\n%@ ZEC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ GAME\n%@ EMC2\n%@ MAID\n%@ SC\n%@ DOGE\n%@ USD",
           [Helper double2German:[data[0] doubleValue] min:4 max:8],
           [Helper double2German:[data[1] doubleValue] min:4 max:8],
           [Helper double2German:[data[2] doubleValue] min:4 max:8],

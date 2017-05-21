@@ -16,9 +16,9 @@
 #define XMR @"XMR"
 #define LTC @"LTC"
 #define GAME @"GAME"
-#define XRP @"XRP"
+#define EMC2 @"EMC2"
 #define MAID @"MAID"
-#define STR @"STR"
+#define SC @"SC"
 #define DOGE @"DOGE"
 
 // ASSET DESCRIPTION KEYS
@@ -29,9 +29,9 @@
 #define MONERO @"Monero"
 #define LITECOIN @"Litecoin"
 #define GAMECOIN @"Gamecoin"
-#define RIPPLE @"Ripple"
+#define EINSTEINIUM @"Einsteinium"
 #define SAFEMAID @"Safe Maid Coin"
-#define STELLAR @"Stellar Lumens"
+#define SIACOIN @"Siacoin"
 #define DOGECOIN @"Dogecoin"
 
 // FIAT CURRENCY KEYS
@@ -63,5 +63,6 @@
 #define TV_TRADER2 @"trader2"
 
 #define TV_TICKER_PLACEHOLDER @"---"
+#define OPTIONS_MENUBAR @"menubar"
 
 #endif /* Constants_h */

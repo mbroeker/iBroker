@@ -144,9 +144,15 @@ void usage(const char *name) {
     printf("  --list\n\n");
 
     printf("  --btc ANZAHL\t\tSetze den aktuellen Saldo für Bitcoins\n");
+    printf("  --zec ANZAHL\t\tSetze den aktuellen Saldo für ZCash\n");
     printf("  --eth ANZAHL\t\tSetze den aktuellen Saldo für Ethereum\n");
     printf("  --xmr ANZAHL\t\tSetze den aktuellen Saldo für Monero\n");
     printf("  --ltc ANZAHL\t\tSetze den aktuellen Saldo für Lightcoins\n");
+
+    printf("  --game ANZAHL\t\tSetze den aktuellen Saldo für Gamecoins\n");
+    printf("  --emc2 ANZAHL\t\tSetze den aktuellen Saldo für Einsteinium\n");
+    printf("  --maid ANZAHL\t\tSetze den aktuellen Saldo für Safe Maid Coins\n");
+    printf("  --sc ANZAHL\t\tSetze den aktuellen Saldo für SIA Coins\n");
     printf("  --doge ANZAHL\t\tSetze den aktuellen Saldo für Dogecoins\n\n");
 
     printf("ANZAHL im amerikanische Dezimalformat (0.5 anstatt 0,5)\n\n");
@@ -222,6 +228,13 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
             update = true;
         }
 
+        if (!strcmp(argv[i], "--zec")) {
+            value = atof(argv[i + 1]);
+            [calculator currentSaldo:ZEC withDouble:value];
+            [calculator updateCheckpointForAsset:ZEC withBTCUpdate:false];
+            update = true;
+        }
+
         if (!strcmp(argv[i], "--eth")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:ETH withDouble:value];
@@ -240,6 +253,34 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:LTC withDouble:value];
             [calculator updateCheckpointForAsset:LTC withBTCUpdate:false];
+            update = true;
+        }
+
+        if (!strcmp(argv[i], "--game")) {
+            value = atof(argv[i + 1]);
+            [calculator currentSaldo:GAME withDouble:value];
+            [calculator updateCheckpointForAsset:GAME withBTCUpdate:false];
+            update = true;
+        }
+
+        if (!strcmp(argv[i], "--emc2")) {
+            value = atof(argv[i + 1]);
+            [calculator currentSaldo:EMC2 withDouble:value];
+            [calculator updateCheckpointForAsset:EMC2 withBTCUpdate:false];
+            update = true;
+        }
+
+        if (!strcmp(argv[i], "--maid")) {
+            value = atof(argv[i + 1]);
+            [calculator currentSaldo:MAID withDouble:value];
+            [calculator updateCheckpointForAsset:MAID withBTCUpdate:false];
+            update = true;
+        }
+
+        if (!strcmp(argv[i], "--sc")) {
+            value = atof(argv[i + 1]);
+            [calculator currentSaldo:SC withDouble:value];
+            [calculator updateCheckpointForAsset:SC withBTCUpdate:false];
             update = true;
         }
 

@@ -161,14 +161,14 @@
                         <tabViewItem label="XMR" id="u2t-8g-r97"/>
                         <tabViewItem label="LTC" id="CsD-Nb-58b"/>
                         <tabViewItem label="GAME" id="2nA-jM-YaE"/>
-                        <tabViewItem label="XRP" id="365-uC-kDT"/>
+                        <tabViewItem label="EMC2" id="365-uC-kDT"/>
                         <tabViewItem label="MAID" id="XBF-ls-CU9"/>
-                        <tabViewItem label="STR" id="fyY-hI-3wQ"/>
+                        <tabViewItem label="SC" id="fyY-hI-3wQ"/>
                         <tabViewItem label="DOGE" id="crd-Yr-PwP"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" wantsLayer="YES" type="noTabsNoBorder" id="RqZ-3s-feC">
-                        <rect key="frame" x="0.0" y="0.0" width="653" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="739" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <shadow key="shadow">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -191,7 +191,7 @@
                     </connections>
                 </tabViewController>
             </objects>
-            <point key="canvasLocation" x="-1133.5" y="-470"/>
+            <point key="canvasLocation" x="-1082.5" y="-529"/>
         </scene>
         <!--Dash-->
         <scene sceneID="2XX-Xf-dCL">
@@ -464,9 +464,9 @@
                                             <menuItem title="XMR" keyEquivalent="x" id="OsJ-v1-9gS"/>
                                             <menuItem title="LTC" keyEquivalent="l" id="Z6u-mu-Fv9"/>
                                             <menuItem title="GAME" keyEquivalent="g" id="3wO-MX-Z0o"/>
-                                            <menuItem title="XRP" keyEquivalent="r" id="fJH-dY-dZy"/>
+                                            <menuItem title="EMC2" keyEquivalent="r" id="fJH-dY-dZy"/>
                                             <menuItem title="MAID" keyEquivalent="m" id="dbm-ua-9hY"/>
-                                            <menuItem title="STR" keyEquivalent="s" id="hz2-LI-dyb"/>
+                                            <menuItem title="SC" keyEquivalent="s" id="hz2-LI-dyb"/>
                                             <menuItem title="DOGE" keyEquivalent="d" id="Bxm-K1-uLk"/>
                                             <menuItem title="EUR" state="on" keyEquivalent="e" id="V0C-0w-ftI"/>
                                             <menuItem title="USD" keyEquivalent="u" id="Trz-bG-51a"/>
@@ -616,7 +616,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-a5-QlD">
                                 <rect key="frame" x="139" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="XRP" id="ZZE-y3-oSn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="EMC2" id="ZZE-y3-oSn">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -635,7 +635,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
                                 <rect key="frame" x="377" y="337" width="120" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="STR" id="boE-Qp-w9B">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="SC" id="boE-Qp-w9B">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

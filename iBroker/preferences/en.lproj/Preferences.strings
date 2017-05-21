@@ -1,12 +1,12 @@
 
-/* Class = "NSTextFieldCell"; placeholderString = "Stellar Lumens App"; ObjectID = "4k1-rI-Zsg"; */
-"4k1-rI-Zsg.placeholderString" = "Stellar Lumens App";
+/* Class = "NSTextFieldCell"; placeholderString = "Siacoin App"; ObjectID = "4k1-rI-Zsg"; */
+"4k1-rI-Zsg.placeholderString" = "Siacoin App";
 
 /* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "6ml-ZP-eQr"; */
 "6ml-ZP-eQr.title" = "Save";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Ripple App"; ObjectID = "Bfj-Ty-Lk2"; */
-"Bfj-Ty-Lk2.placeholderString" = "Ripple App";
+/* Class = "NSTextFieldCell"; placeholderString = "Einsteinium App"; ObjectID = "Bfj-Ty-Lk2"; */
+"Bfj-Ty-Lk2.placeholderString" = "Einsteinium App";
 
 /* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "GHP-k3-BVj"; */
 "GHP-k3-BVj.title" = "Save";

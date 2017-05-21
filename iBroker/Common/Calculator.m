@@ -73,9 +73,9 @@
                 LTC: @0.0,
                 XMR: @0.0,
                 GAME: @0.0,
-                XRP: @0.0,
+                EMC2: @0.0,
                 MAID: @0.0,
-                STR: @0.0,
+                SC: @0.0,
                 DOGE: @0.0,
             } mutableCopy];
 
@@ -93,9 +93,9 @@
                 LITECOIN: @"https://chainz.cryptoid.info/ltc/",
                 MONERO: @"https://moneroblocks.info",
                 GAMECOIN: @"https://blockexplorer.gamecredits.com",
-                RIPPLE: @"https://charts.ripple.com/",
+                EINSTEINIUM: @"https://prohashing.com/explorer/Einsteinium/",
                 SAFEMAID: @"https://maidsafe.net/features.html",
-                STELLAR: @"https://stellarchain.io",
+                SIACOIN: @"https://explore.sia.tech",
                 DOGECOIN: @"https://dogechain.info"
             } mutableCopy];
 
@@ -109,18 +109,16 @@
             XMR: @"BTC_XMR",
             LTC: @"BTC_LTC",
             GAME: @"BTC_GAME",
-            XRP: @"BTC_XRP",
+            EMC2: @"BTC_EMC2",
             MAID: @"BTC_MAID",
-            STR: @"BTC_STR",
+            SC: @"BTC_SC",
             DOGE: @"BTC_DOGE"
         };
 
         [defaults synchronize];
 
         // Migration älterer Installationen
-        if (!saldoUrls[ZCASH]) {
-            [self upgradeAssistant];
-        }
+        [self upgradeAssistant];
 
         [self updateRatings];
     }
@@ -161,26 +159,48 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[RIPPLE]) {
-        saldoUrls[RIPPLE] = @"https://charts.ripple.com/";
+    if (!saldoUrls[EINSTEINIUM]) {
+        saldoUrls[EINSTEINIUM] = @"https://prohashing.com/explorer/Einsteinium/";
 
-        currentSaldo[XRP] = @0.0;
-        initialRatings[XRP] = @0.0;
+        currentSaldo[EMC2] = @0.0;
+        initialRatings[EMC2] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!saldoUrls[STELLAR]) {
-        saldoUrls[STELLAR] = @"https://stellarchain.io";
+    if (!saldoUrls[SIACOIN]) {
+        saldoUrls[SIACOIN] = @"https://explore.sia.tech";
 
-        currentSaldo[STR] = @0.0;
-        initialRatings[STR] = @0.0;
+        currentSaldo[SC] = @0.0;
+        initialRatings[SC] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für Ripple
+    if (saldoUrls[@"Ripple"]) {
+        [saldoUrls removeObjectForKey:@"Ripple"];
+
+        [currentSaldo removeObjectForKey:@"XRP"];
+        [initialRatings removeObjectForKey:@"XRP"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für Stellar Lumens
+    if (saldoUrls[@"Stellar Lumens"]) {
+        [saldoUrls removeObjectForKey:@"Stellar Lumens"];
+
+        [currentSaldo removeObjectForKey:@"STR"];
+        [initialRatings removeObjectForKey:@"STR"];
 
         mustUpdate = true;
     }
 
     if (mustUpdate) {
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+        NSLog(@"Migrating Calculator settings...");
 
         [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
         [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
@@ -276,12 +296,12 @@
     double ltc = [currentSaldo[LTC] doubleValue] / [ratings[LTC] doubleValue];
     double xmr = [currentSaldo[XMR] doubleValue] / [ratings[XMR] doubleValue];
     double game = [currentSaldo[GAME] doubleValue] / [ratings[GAME] doubleValue];
-    double xrp = [currentSaldo[XRP] doubleValue] / [ratings[XRP] doubleValue];
+    double emc2 = [currentSaldo[EMC2] doubleValue] / [ratings[EMC2] doubleValue];
     double maid = [currentSaldo[MAID] doubleValue] / [ratings[MAID] doubleValue];
-    double str = [currentSaldo[STR] doubleValue] / [ratings[STR] doubleValue];
+    double sc = [currentSaldo[SC] doubleValue] / [ratings[SC] doubleValue];
     double doge = [currentSaldo[DOGE] doubleValue] / [ratings[DOGE] doubleValue];
 
-    double sum = btc + zec + eth + ltc + xmr + game + xrp + maid + str + doge;
+    double sum = btc + zec + eth + ltc + xmr + game + emc2 + maid + sc + doge;
 
     if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;

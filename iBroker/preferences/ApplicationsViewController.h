@@ -17,9 +17,9 @@
 @property (strong) IBOutlet NSTextField *xmrField;
 @property (strong) IBOutlet NSTextField *ltcField;
 @property (strong) IBOutlet NSTextField *gameField;
+@property (strong) IBOutlet NSTextField *emc2Field;
 @property (strong) IBOutlet NSTextField *maidField;
-@property (strong) IBOutlet NSTextField *xrpField;
-@property (strong) IBOutlet NSTextField *strField;
+@property (strong) IBOutlet NSTextField *scField;
 @property (strong) IBOutlet NSTextField *dogeField;
 
 // Action Handler

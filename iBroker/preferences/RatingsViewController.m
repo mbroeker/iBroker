@@ -40,7 +40,7 @@
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.xrpField.formatter;
+    formatter  = self.emc2Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
@@ -48,7 +48,7 @@
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.strField.formatter;
+    formatter  = self.scField.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
@@ -76,9 +76,9 @@
     self.xmrField.doubleValue = 1 / [ratings[XMR] doubleValue];
     self.ltcField.doubleValue = 1 / [ratings[LTC] doubleValue];
     self.gameField.doubleValue = 1 / [ratings[GAME] doubleValue];
-    self.xrpField.doubleValue = 1 / [ratings[XRP] doubleValue];
+    self.emc2Field.doubleValue = 1 / [ratings[EMC2] doubleValue];
     self.maidField.doubleValue = 1 / [ratings[MAID] doubleValue];
-    self.strField.doubleValue = 1 / [ratings[STR] doubleValue];
+    self.scField.doubleValue = 1 / [ratings[SC] doubleValue];
     self.dogeField.doubleValue = 1 / [ratings[DOGE] doubleValue];
     self.usdField.doubleValue = 1 / [ratings[USD] doubleValue];
 }
@@ -104,9 +104,9 @@
     double xmr = 1 / self.xmrField.doubleValue;
     double ltc = 1 / self.ltcField.doubleValue;
     double game = 1 / self.gameField.doubleValue;
-    double xrp = 1 / self.xrpField.doubleValue;
+    double xrp = 1 / self.emc2Field.doubleValue;
     double maid = 1 / self.maidField.doubleValue;
-    double str = 1 / self.strField.doubleValue;
+    double str = 1 / self.scField.doubleValue;
     double doge = 1 / self.dogeField.doubleValue;
     double dollar = 1 / self.usdField.doubleValue;
 
@@ -116,9 +116,9 @@
     initialRatings[XMR] = @(xmr);
     initialRatings[LTC] = @(ltc);
     initialRatings[GAME] = @(game);
-    initialRatings[XRP] = @(xrp);
+    initialRatings[EMC2] = @(xrp);
     initialRatings[MAID] = @(maid);
-    initialRatings[STR] = @(str);
+    initialRatings[SC] = @(str);
     initialRatings[DOGE] = @(doge);
     initialRatings[USD] = @(dollar);
 
