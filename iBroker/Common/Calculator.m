@@ -132,11 +132,47 @@
 - (void)upgradeAssistant {
     BOOL mustUpdate = false;
 
+    if (!saldoUrls[BITCOIN]) {
+        saldoUrls[BITCOIN] = @"https://blockchain.info/";
+
+        currentSaldo[BTC] = @0.0;
+        initialRatings[BTC] = @0.0;
+
+        mustUpdate = true;
+    }
+
     if (!saldoUrls[ZCASH]) {
         saldoUrls[ZCASH] = @"https://explorer.zcha.in";
 
         currentSaldo[ZEC] = @0.0;
         initialRatings[ZEC] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[ETHEREUM]) {
+        saldoUrls[ETHEREUM] = @"https://etherscan.io/";
+
+        currentSaldo[ETH] = @0.0;
+        initialRatings[ETH] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[MONERO]) {
+        saldoUrls[MONERO] = @"https://moneroblocks.info";
+
+        currentSaldo[XMR] = @0.0;
+        initialRatings[XMR] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[LITECOIN]) {
+        saldoUrls[LITECOIN] = @"https://chainz.cryptoid.info/ltc/";
+
+        currentSaldo[LTC] = @0.0;
+        initialRatings[LTC] = @0.0;
 
         mustUpdate = true;
     }
@@ -173,6 +209,15 @@
 
         currentSaldo[SC] = @0.0;
         initialRatings[SC] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[DOGECOIN]) {
+        saldoUrls[DOGECOIN] = @"https://dogechain.info";
+
+        currentSaldo[GAME] = @0.0;
+        initialRatings[GAME] = @0.0;
 
         mustUpdate = true;
     }

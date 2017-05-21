@@ -232,9 +232,6 @@ typedef struct DASHBOARD_VARS {
 
     // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
     [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
-
-    // Migration älterer Installationen
-    [self updateAssistant];
 }
 
 /**
@@ -244,8 +241,28 @@ typedef struct DASHBOARD_VARS {
 
     BOOL mustUpdate = false;
 
+    if (!applications[BITCOIN]) {
+        applications[BITCOIN] = @"/Applications/Electrum.App";
+        mustUpdate = true;
+    }
+
     if (!applications[ZCASH]) {
-        applications[ZCASH] = @"https://explorer.zcha.in";
+        applications[ZCASH] = @"";
+        mustUpdate = true;
+    }
+
+    if (!applications[ETHEREUM]) {
+        applications[ETHEREUM] = @"/Applications/Ethereum Wallet.App";
+        mustUpdate = true;
+    }
+
+    if (!applications[MONERO]) {
+        applications[MONERO] = @"/Applications/monero-wallet-gui.App";
+        mustUpdate = true;
+    }
+
+    if (!applications[LITECOIN]) {
+        applications[LITECOIN] = @"/Applications/Electrum-LTC.App";
         mustUpdate = true;
     }
 
@@ -266,6 +283,17 @@ typedef struct DASHBOARD_VARS {
 
     if (!applications[SIACOIN]) {
         applications[SIACOIN] = @"";
+        mustUpdate = true;
+    }
+
+    if (!applications[DOGECOIN]) {
+        applications[DOGECOIN] = @"/Applications/MultiDoge.App";
+        mustUpdate = true;
+    }
+
+    if (applications[@"Ripple"]) {
+        [applications removeObjectForKey:@"Ripple"];
+
         mustUpdate = true;
     }
 

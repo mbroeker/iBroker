@@ -112,6 +112,7 @@
 
 // Methoden zum Einrichten der Datenstrukturen
 - (void)initializeWithDefaults;
+- (void)updateAssistant;
 - (void)resetColors;
 
 @end

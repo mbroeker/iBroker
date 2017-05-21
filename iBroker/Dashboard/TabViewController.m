@@ -21,6 +21,7 @@
     self.tabView.delegate = self;
 
     controller = (TemplateViewController*)self.tabViewItems.firstObject.viewController;
+    [controller updateAssistant];
 
     // Startseite aufrufen
     [controller updateOverview];
