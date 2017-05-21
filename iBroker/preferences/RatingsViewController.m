@@ -104,9 +104,9 @@
     double xmr = 1 / self.xmrField.doubleValue;
     double ltc = 1 / self.ltcField.doubleValue;
     double game = 1 / self.gameField.doubleValue;
-    double xrp = 1 / self.emc2Field.doubleValue;
+    double emc2 = 1 / self.emc2Field.doubleValue;
     double maid = 1 / self.maidField.doubleValue;
-    double str = 1 / self.scField.doubleValue;
+    double sc = 1 / self.scField.doubleValue;
     double doge = 1 / self.dogeField.doubleValue;
     double dollar = 1 / self.usdField.doubleValue;
 
@@ -116,9 +116,9 @@
     initialRatings[XMR] = @(xmr);
     initialRatings[LTC] = @(ltc);
     initialRatings[GAME] = @(game);
-    initialRatings[EMC2] = @(xrp);
+    initialRatings[EMC2] = @(emc2);
     initialRatings[MAID] = @(maid);
-    initialRatings[SC] = @(str);
+    initialRatings[SC] = @(sc);
     initialRatings[DOGE] = @(doge);
     initialRatings[USD] = @(dollar);
 
