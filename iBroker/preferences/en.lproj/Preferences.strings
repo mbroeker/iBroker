@@ -1,4 +1,10 @@
 
+/* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "49C-4j-sAM"; */
+"49C-4j-sAM.title" = "Save";
+
+/* Class = "NSViewController"; title = "Bestand"; ObjectID = "4CC-Z0-rPL"; */
+"4CC-Z0-rPL.title" = "Saldo";
+
 /* Class = "NSTextFieldCell"; placeholderString = "Siacoin App"; ObjectID = "4k1-rI-Zsg"; */
 "4k1-rI-Zsg.placeholderString" = "Siacoin App";
 
@@ -23,14 +29,11 @@
 /* Class = "NSTextFieldCell"; placeholderString = "Dogecoin App"; ObjectID = "Kb6-TM-NP1"; */
 "Kb6-TM-NP1.placeholderString" = "Dogecoin App";
 
-/* Class = "NSTextFieldCell"; title = "iBroker"; ObjectID = "Nra-bG-YMm"; */
-"Nra-bG-YMm.title" = "iBroker";
-
 /* Class = "NSViewController"; title = "Kurse"; ObjectID = "Txn-YE-STf"; */
 "Txn-YE-STf.title" = "Charts";
 
 /* Class = "NSTextFieldCell"; title = "Ihre initialen Kurse (EUR)"; ObjectID = "Ukn-PJ-ZoR"; */
-"Ukn-PJ-ZoR.title" = "Your initial charts (EUR)";
+"Ukn-PJ-ZoR.title" = "Your initial Charts (EUR)";
 
 /* Class = "NSTextFieldCell"; title = "Ihre Anwendungen"; ObjectID = "WEN-8p-MCk"; */
 "WEN-8p-MCk.title" = "Your Applications";
@@ -40,9 +43,6 @@
 
 /* Class = "NSViewController"; title = "Anwendungen"; ObjectID = "aKY-JE-DW7"; */
 "aKY-JE-DW7.title" = "Applications";
-
-/* Class = "NSTextFieldCell"; title = "iBroker"; ObjectID = "abW-U1-wWA"; */
-"abW-U1-wWA.title" = "iBroker";
 
 /* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "fds-XU-PTr"; */
 "fds-XU-PTr.title" = "Save";
@@ -56,8 +56,8 @@
 /* Class = "NSTextFieldCell"; title = "Ihre Kurse"; ObjectID = "oQE-oM-Odg"; */
 "oQE-oM-Odg.title" = "Your Charts";
 
-/* Class = "NSTextFieldCell"; title = "iBroker"; ObjectID = "pBo-fx-OI8"; */
-"pBo-fx-OI8.title" = "iBroker";
+/* Class = "NSTextFieldCell"; title = "Aktueller Bestand (EUR)"; ObjectID = "sTj-bR-Idz"; */
+"sTj-bR-Idz.title" = "Current Saldo (EUR)";
 
 /* Class = "NSTabViewController"; title = "Einstellungen"; ObjectID = "u0k-Ex-xGQ"; */
 "u0k-Ex-xGQ.title" = "Preferences";

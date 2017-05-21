@@ -18,6 +18,7 @@
 		B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A9FD41ECA10050020555E /* ApplicationsViewController.m */; };
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
+		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
 		B2EE3EF81EC4A7C900D71791 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EE3EF71EC4A7C900D71791 /* Brokerage.m */; };
 		B2EF257C1EC5B2E000C79B2E /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EF257B1EC5B2E000C79B2E /* Algorithm.m */; };
 		B2FA69351E93F2A300C47199 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FA69341E93F2A300C47199 /* main.m */; };
@@ -67,6 +68,8 @@
 		B25A9FD81ECA257F0020555E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
+		B2CAA3B71ED1E06200C9D4BC /* SaldoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaldoViewController.h; path = preferences/SaldoViewController.h; sourceTree = "<group>"; };
+		B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SaldoViewController.m; path = preferences/SaldoViewController.m; sourceTree = "<group>"; };
 		B2D3C8501ECF8328005D8CE6 /* CalculatorConstants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalculatorConstants.h; sourceTree = "<group>"; };
 		B2EE3EF61EC4A7C900D71791 /* Brokerage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brokerage.h; sourceTree = "<group>"; };
 		B2EE3EF71EC4A7C900D71791 /* Brokerage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brokerage.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */,
 				B25A9FD31ECA10050020555E /* ApplicationsViewController.h */,
 				B25A9FD41ECA10050020555E /* ApplicationsViewController.m */,
+				B2CAA3B71ED1E06200C9D4BC /* SaldoViewController.h */,
+				B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -365,6 +370,7 @@
 				B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */,
 				B2EF257C1EC5B2E000C79B2E /* Algorithm.m in Sources */,
 				B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */,
+				B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */,
 				B2FF15D01EB034E400F65E6B /* AddressViewController.m in Sources */,
 				B2FA69351E93F2A300C47199 /* main.m in Sources */,
 				B2EE3EF81EC4A7C900D71791 /* Brokerage.m in Sources */,
