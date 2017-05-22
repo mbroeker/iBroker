@@ -57,7 +57,7 @@
 "oQE-oM-Odg.title" = "Your Charts";
 
 /* Class = "NSTextFieldCell"; title = "Aktueller Bestand (EUR)"; ObjectID = "sTj-bR-Idz"; */
-"sTj-bR-Idz.title" = "Current Saldo (EUR)";
+"sTj-bR-Idz.title" = "Current Saldo";
 
 /* Class = "NSTabViewController"; title = "Einstellungen"; ObjectID = "u0k-Ex-xGQ"; */
 "u0k-Ex-xGQ.title" = "Preferences";
