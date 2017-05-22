@@ -316,18 +316,27 @@ typedef struct DASHBOARD_VARS {
 
 /**
  * Setzen der Formatierungsregeln für die Eingabefelder
+ *
+ * @param fractions
+ * @param assetFractions
  */
-- (void)viewWillAppear {
+- (void)stdNumberFormatter:(NSUInteger)fractions forAsset:(NSUInteger)assetFractions {
     // Währungsformat mit 2 Nachkommastellen
     NSNumberFormatter *currencyFormatter = [self.currencyUnits formatter];
-    [currencyFormatter setMinimumFractionDigits:2];
-    [currencyFormatter setMaximumFractionDigits:2];
+    [currencyFormatter setMinimumFractionDigits:fractions];
+    [currencyFormatter setMaximumFractionDigits:fractions];
 
     // Crypto-Währungsformat mit 4-8 Nachkommastellen
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
-    [cryptoFormatter setMinimumFractionDigits:8];
-    [cryptoFormatter setMaximumFractionDigits:8];
+    [cryptoFormatter setMinimumFractionDigits:assetFractions];
+    [cryptoFormatter setMaximumFractionDigits:assetFractions];
+}
 
+
+/**
+ * Setzen des Actions Buttons per Code, da es keinen Sinn macht, dass pro Tab in XCode einzurichten...
+ */
+- (void)viewWillAppear {
     [_cryptoUnits setTarget:self];
     [_cryptoUnits setAction:@selector(cryptoAction:)];
 }
@@ -590,12 +599,12 @@ typedef struct DASHBOARD_VARS {
     double estimatedPercentChange = [realPrices[asset][RP_CHANGE] doubleValue];
 
     if (estimatedPercentChange > RANGE) {
-        self.iBrokerLabel.stringValue = [Helper double2GermanPercent:estimatedPercentChange fractions:2];
+        self.iBrokerLabel.stringValue = [NSString stringWithFormat:@"BR: %@", [Helper double2GermanPercent:estimatedPercentChange fractions:2]];
         self.iBrokerLabel.textColor = defaultGainColor;
     }
 
     if (estimatedPercentChange < -RANGE) {
-        self.iBrokerLabel.stringValue = [Helper double2GermanPercent:estimatedPercentChange fractions:2];
+        self.iBrokerLabel.stringValue = [NSString stringWithFormat:@"VR: %@", [Helper double2GermanPercent:estimatedPercentChange fractions:2]];
         self.iBrokerLabel.textColor = defaultLooseColor;
     }
 }
@@ -694,6 +703,9 @@ typedef struct DASHBOARD_VARS {
 
     [self markDockLabels:loop_vars.coinchange];
 
+    // Übersicht mit 2/4 Nachkommastellen für EUR/USD
+    [self stdNumberFormatter:2 forAsset:4];
+
     [self.currencyButton setImage:images[fiatCurrencies[0]]];
     self.currencyUnits.doubleValue = [calculator calculate:fiatCurrencies[0]];
 
@@ -784,10 +796,14 @@ typedef struct DASHBOARD_VARS {
         diffPercent -= btcPercent;
     }
 
-    NSString *infoPercentString = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"exchange", @"Tausch"), [Helper double2GermanPercent:diffPercent fractions:2]];
+    // Die obligatorische Exchange-Rate
+    NSString *infoPercentString = [NSString stringWithFormat:@"ER: %@", [Helper double2GermanPercent:diffPercent fractions:2]];
 
     self.percentLabel.stringValue = [Helper double2GermanPercent:percent fractions:2];
     self.infoLabel.stringValue = infoPercentString;
+
+    // Übersicht mit 2/8 Nachkommastellen für EUR/ASSET
+    [self stdNumberFormatter:2 forAsset:8];
 
     self.currencyUnits.doubleValue = priceInEuro;
     self.cryptoUnits.doubleValue = saldo;
@@ -862,10 +878,8 @@ typedef struct DASHBOARD_VARS {
 
     [self updateTicker:label];
 
-    // meine privaten Plugins
-    if ([NSUserName() isEqualToString:@"mbroeker"]) {
-        [self highlightVolumeMismatch:asset];
-    }
+    // Der streng geheime BR-Faktor
+    [self highlightVolumeMismatch:asset];
 }
 
 /**
