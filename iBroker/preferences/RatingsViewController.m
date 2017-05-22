@@ -17,48 +17,48 @@
     NSNumberFormatter *formatter;
     
     formatter  = self.btcField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.zecField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.ethField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.xmrField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.ltcField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.gameField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.emc2Field.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.maidField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.scField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.dogeField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 
     formatter  = self.usdField.formatter;
-    [formatter setMinimumFractionDigits:8];
-    [formatter setMaximumFractionDigits:8];
+    [formatter setMinimumFractionDigits:4];
+    [formatter setMaximumFractionDigits:4];
 }
 
 /**
