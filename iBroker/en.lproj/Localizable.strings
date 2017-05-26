@@ -23,3 +23,15 @@ update_saldo_with_asset = "Update your saldo for %@";
 wanna_update_current_saldo = "Do you want to update your current Saldo?";
 wanna_update_with_asset = "Do you want to update your current checkpoint for %@?";
 wanna_reset_to_app_defaults = "Do you want to reset the application to default settings and quit?";
+not_enough_btc = "Not enough BTC";
+not_enough_btc_long = "You have not enough BTC to buy";
+not_enough_asset_param = "Not enough %@";
+not_enough_asset_param_long = "You have not enough %@ for this trade.";
+legal_notice = "
+  Inserting the API KEY from POLONIEX is done
+  on your own desire. You are aware of the personal
+  risks, fully minded and confirm by utilizing this
+  feature, that you are an adult, business-aware and
+  clear in mind.\n
+  Use this feature at your own risk.
+  If you do not agree, use another software!";

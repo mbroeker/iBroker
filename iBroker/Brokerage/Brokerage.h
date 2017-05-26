@@ -21,7 +21,12 @@
 
 @interface Brokerage : NSObject
 + (NSDictionary*)jsonRequest:(NSString*)jsonURL;
++ (NSDictionary*)jsonRequest:(NSString*)jsonURL withPayload:(NSDictionary*)payload;
++ (NSDictionary*)jsonRequest:(NSString*)jsonURL withPayload:(NSDictionary*)payload andHeader:(NSDictionary*)header;
 + (NSDictionary*)poloniexTicker:(NSArray*)fiatCurrencies;
++ (NSDictionary*)balance:(NSDictionary*)apikey withSecret:(NSString*)secret;
++ (NSDictionary*)buy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount;
++ (NSDictionary*)sell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount;
 
 + (void)safeSleep:(NSTimeInterval)timeout;
 @end

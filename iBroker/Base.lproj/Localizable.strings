@@ -23,3 +23,16 @@ update_saldo_with_asset = "%@ Bestand aktualisieren";
 wanna_update_current_saldo = "Möchten Sie Ihren aktuellen Bestand aktualisieren?";
 wanna_update_with_asset = "Möchten Sie den Checkpoint für %@ aktualisieren?";
 wanna_reset_to_app_defaults = "Möchten Sie auf die Standard-Einstellungen zurück setzen und beenden?";
+not_enough_btc = "Sie haben nicht genug BTC";
+not_enough_btc_long = "Sie haben nicht genug BTC für diesen Kauf";
+not_enough_asset_param = "Sie haben nicht genug %@";
+not_enough_asset_long_param = "Sie haben nicht genug %@ für diesen Verkauf";
+legal_notice = "
+  Das Einfügen des API-KEYS von Poloniex geschieht
+  auf Ihren eigenen Wunsch. Sie sind sich der persönlichen
+  Gefahren voll bewusst und bestätigen durch das Nutzen
+  dieses Features, dass Sie volljährig, geschäftsfähig und
+  klar im Kopf sind. Die Nutzung dieses Features geschieht
+  auf eigene Gefahr und eigenes Risiko.\n
+  Sollten Sie damit nicht einverstanden sein, nutzen Sie
+  eine andere Software.";

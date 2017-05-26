@@ -67,6 +67,7 @@ typedef struct DASHBOARD_VARS {
 - (void)updateCurrentView:(BOOL)withRatings {
     if (withRatings) {
         [calculator updateRatings];
+        [self updateBalances];
     }
 
     // View aktualisieren
@@ -232,6 +233,9 @@ typedef struct DASHBOARD_VARS {
 
     // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
     [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
+
+    // deaktiviere das Instant Trading
+    self.instantTrading.enabled = false;
 }
 
 /**
@@ -599,20 +603,208 @@ typedef struct DASHBOARD_VARS {
     double estimatedPercentChange = [realPrices[asset][RP_CHANGE] doubleValue];
 
     if (estimatedPercentChange > RANGE) {
-        self.iBrokerLabel.stringValue = [NSString stringWithFormat:@"BR: %@", [Helper double2GermanPercent:estimatedPercentChange fractions:2]];
+        self.iBrokerLabel.stringValue = [NSString stringWithFormat:@"IR: %@", [Helper double2GermanPercent:estimatedPercentChange fractions:2]];
         self.iBrokerLabel.textColor = defaultGainColor;
     }
 
     if (estimatedPercentChange < -RANGE) {
-        self.iBrokerLabel.stringValue = [NSString stringWithFormat:@"VR: %@", [Helper double2GermanPercent:estimatedPercentChange fractions:2]];
+        self.iBrokerLabel.stringValue = [NSString stringWithFormat:@"IR: %@", [Helper double2GermanPercent:estimatedPercentChange fractions:2]];
         self.iBrokerLabel.textColor = defaultLooseColor;
     }
+}
+
+/**
+ * Verkaufe Altcoins, die im Wert um "profit" Euro gestiegen sind...
+ *
+ * @param currencyUnits
+ * @param profit
+ */
+- (void)sellWithProfit:(double)profit {
+    NSDictionary *currentRatings = [calculator currentRatings];
+    NSDictionary *currencyUnits = [calculator checkpointChanges];
+
+    for (id key in tabs) {
+
+        if ([key isEqualToString:@"Dashboard"]) continue;
+        if ([key isEqualToString:BTC]) continue;
+
+        double assetPrice = 1 / [currentRatings[key] doubleValue];
+        double amount = [calculator currentSaldo:key];
+        double percent = [currencyUnits[key] doubleValue];
+        double gain = amount * assetPrice * percent / 100.0;
+
+        if (gain > profit) {
+            [self autoSellAll:key];
+        }
+    }
+}
+
+/**
+ * Automatisches Kaufen...
+ *
+ * @param cAsset
+ * @param wantedAmount
+ */
+- (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    // Temp Taschenrechner
+    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
+    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
+
+    if (ak == nil || sk == nil) {
+        return;
+    }
+
+    NSDictionary *currentRatings = [calculator currentRatings];
+
+    double amount = [calculator currentSaldo:cAsset];
+    double amountBTC = [calculator currentSaldo:BTC];
+
+    double btcPrice = [currentRatings[BTC] doubleValue];
+    double assetPrice = [currentRatings[cAsset] doubleValue];
+
+    if (wantedAmount > 0) {
+        amount = wantedAmount;
+    }
+
+    if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
+        // Illegale Kombination BTC_(cAsset)
+        return;
+    }
+
+    if (amountBTC < (btcPrice * amount)) {
+        NSString *mText = NSLocalizedString(@"not_enough_btc", @"Zu wenig BTC");
+        NSString *iText = NSLocalizedString(@"not_enough_btc_long", @"Sie haben zu wenig BTC zum Kauf");
+        [Helper messageText:mText info:iText];
+        return;
+    }
+
+    NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
+    double cRate = btcPrice / assetPrice;
+
+    if (amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {
+        NSLog(@"Nicht genug BTC zum Kaufen von %.8f %@", amount, cAsset);
+        return;
+    }
+
+    NSString *text = [NSString stringWithFormat:@"Kaufe %.4f %@ für %.8f das Stück", amount, cAsset, cRate];
+
+    if (wantedAmount > 0) {
+        if ([Helper messageText:@"Kaufbestätigung" info:text] != NSAlertFirstButtonReturn) {
+            // Abort Buy
+            return;
+        }
+    }
+
+    NSLog(@"%@", text);
+    [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
+    [calculator updateCheckpointForAsset:cAsset withBTCUpdate:false];
+}
+
+/**
+ * Automatisches Kaufen...
+ *
+ * @param cAsset
+ * @param wantedAmount
+ */
+- (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    // Temp Taschenrechner
+    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
+    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
+
+    if (ak == nil || sk == nil) {
+        return;
+    }
+
+    NSDictionary *currentRatings = [calculator currentRatings];
+
+    double amount = [calculator currentSaldo:cAsset];
+    double btcPrice = [currentRatings[BTC] doubleValue];
+    double assetPrice = [currentRatings[cAsset] doubleValue];
+
+    if (wantedAmount > 0 && wantedAmount <= amount) {
+        amount = wantedAmount;
+    }
+
+    if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
+        // Illegale Kombination BTC_(cAsset)
+        return;
+    }
+
+    NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
+    double cRate = btcPrice / assetPrice;
+
+    if (amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {
+        NSString *mText = [NSString stringWithFormat: NSLocalizedString(@"not_enough_asset_param", @"Zu wenig %@"), tabs[cAsset][0]];
+        NSString *iText = [NSString stringWithFormat: NSLocalizedString(@"not_enough_asset_long_param", @"Zu wenig %@ zum Verkaufen"), tabs[cAsset][0]];
+        [Helper messageText:mText info:iText];
+        return;
+    }
+
+    NSString *text = [NSString stringWithFormat:@"Verkaufe %.4f %@ für %.8f das Stück", amount, cAsset, cRate];
+
+    if (wantedAmount > 0) {
+        if ([Helper messageText:@"Verkaufsbestätigung" info:text] != NSAlertFirstButtonReturn) {
+            // Abort Sell
+            return;
+        }
+    }
+
+    NSLog(@"%@", text);
+    [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
+    [calculator updateCheckpointForAsset:BTC withBTCUpdate:false];
+}
+
+/**
+ * Automatisches Kaufen...
+ *
+ * @param cAsset
+ */
+- (void)autoBuyAll:(NSString*)cAsset {
+    [self autoBuy:cAsset amount:-1];
+}
+
+/**
+ * Automatisches Verkaufen...
+ *
+ * @param cAsset
+ */
+- (void)autoSellAll:(NSString*)cAsset {
+    [self autoSell:cAsset amount:-1];
+}
+
+/**
+ * @ Aktualisieren des Bestands per POLONIEX KEY
+ */
+- (void)updateBalances {
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
+    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
+
+    if (ak == nil || sk == nil) {
+        return;
+    }
+
+    NSDictionary *currentBalance = [Brokerage balance:ak withSecret:sk];
+
+    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+    for (id key in [calculator currentSaldo]) {
+        dictionary[key] = currentBalance[key];
+    }
+
+    [calculator currentSaldoForDictionary:dictionary];
 }
 
 /**
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
+
     // Aktualisiere die URL für den HOME-Button
     homeURL = [calculator saldoUrlForLabel:DASHBOARD];
 
@@ -762,6 +954,9 @@ typedef struct DASHBOARD_VARS {
 
         return;
     }
+
+    // Aktiviere InstantTrading für alle Assets
+    self.instantTrading.enabled = true;
     
     // Aktiviere die Eingabe für die Crypto-Einheiten
     self.cryptoUnits.editable = true;
@@ -1001,18 +1196,18 @@ typedef struct DASHBOARD_VARS {
         @([calculator calculateWithRatings:currentRatings currency:USD])
     ];
 
-    text = [NSString stringWithFormat:@"%@ BTC\n%@ ZEC\n%@ ETH\n%@ XMR\n%@ LTC\n%@ GAME\n%@ EMC2\n%@ MAID\n%@ SC\n%@ DOGE\n%@ USD",
-          [Helper double2German:[data[0] doubleValue] min:4 max:8],
-          [Helper double2German:[data[1] doubleValue] min:4 max:8],
-          [Helper double2German:[data[2] doubleValue] min:4 max:8],
-          [Helper double2German:[data[3] doubleValue] min:4 max:8],
-          [Helper double2German:[data[4] doubleValue] min:4 max:8],
-          [Helper double2German:[data[5] doubleValue] min:4 max:8],
-          [Helper double2German:[data[6] doubleValue] min:4 max:8],
-          [Helper double2German:[data[7] doubleValue] min:4 max:8],
-          [Helper double2German:[data[8] doubleValue] min:4 max:8],
-          [Helper double2German:[data[9] doubleValue] min:4 max:8],
-          [Helper double2German:[data[10] doubleValue] min:4 max:8]
+    text = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@",
+          [Helper double2German:[data[0] doubleValue] min:4 max:8], BTC,
+          [Helper double2German:[data[1] doubleValue] min:4 max:8], ZEC,
+          [Helper double2German:[data[2] doubleValue] min:4 max:8], ETH,
+          [Helper double2German:[data[3] doubleValue] min:4 max:8], XMR,
+          [Helper double2German:[data[4] doubleValue] min:4 max:8], LTC,
+          [Helper double2German:[data[5] doubleValue] min:4 max:8], GAME,
+          [Helper double2German:[data[6] doubleValue] min:4 max:8], EMC2,
+          [Helper double2German:[data[7] doubleValue] min:4 max:8], MAID,
+          [Helper double2German:[data[8] doubleValue] min:4 max:8], SC,
+          [Helper double2German:[data[9] doubleValue] min:4 max:8], DOGE,
+          [Helper double2German:[data[10] doubleValue] min:4 max:8], USD
     ];
 
     [Helper messageText:NSLocalizedString(@"total_saldo", @"Gesamtbestand umgerechnet:") info:text];
@@ -1078,6 +1273,33 @@ typedef struct DASHBOARD_VARS {
     double result = amount / [currentRatings[cAsset] doubleValue] * exchangeFactor;
 
     self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:4]];
+
+    // EUR / USD - das kann nicht direkt gehandelt werden
+    if ([exchangeUnit isEqualToString:USD] || [exchangeUnit isEqualToString:EUR]) {
+        return;
+    }
+
+    // Dashboard Tab: USD kann nicht direkt gehandelt werden...
+    if ([cAsset isEqualToString:USD]) {
+        return;
+    }
+
+    //  Verkaufe BTC auf dem BTC Tab nach (exchangeUnit)
+    if ([cAsset isEqualToString:BTC]) {
+        // Die Leute können mit (BTC) (cAsset) kaufen
+        if (self.instantTrading.state == NSOnState)  {
+            [self autoBuy:exchangeUnit amount:amount];
+            self.exchangeSelection.title = @"EUR";
+        }
+    } else {
+        // Die Leute können Ihre (cAsset)s nach (BTC) verkaufen
+        if ([exchangeUnit isEqualToString:BTC]) {
+            if (self.instantTrading.state == NSOnState)  {
+                [self autoSell:cAsset amount:amount];
+                self.exchangeSelection.title = @"EUR";
+            }
+        }
+    }
 }
 
 /**

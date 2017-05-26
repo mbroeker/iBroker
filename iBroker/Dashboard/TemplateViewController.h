@@ -82,6 +82,7 @@
 @property (strong) IBOutlet NSTextField *low24Field;
 
 @property (strong) IBOutlet NSPopUpButton *exchangeSelection;
+@property (strong) IBOutlet NSButton *instantTrading;
 
 // Definition der Button-Actions
 - (IBAction)homeAction:(id)sender;

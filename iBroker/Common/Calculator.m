@@ -315,6 +315,24 @@
 }
 
 /**
+ * Liefert die aktuellen Veränderungen in Prozent
+ *
+ * @return NSDictionary
+ */
+- (NSDictionary*)checkpointChanges {
+    NSMutableDictionary *checkpointChanges = [[NSMutableDictionary alloc] init];
+
+    for (id cAsset in currentRatings) {
+        NSDictionary *aCheckpoint = [self checkpointForAsset:cAsset];
+        double cPercent = [aCheckpoint[CP_PERCENT] doubleValue];
+
+        checkpointChanges[cAsset] = @(cPercent);
+    }
+
+    return checkpointChanges;
+}
+
+/**
  * Berechne den Gesamtwert der Geldbörsen in Euro oder Dollar...
  *
  * @param currency
@@ -497,12 +515,20 @@
 }
 
 /**
- * Ersetzt die aktuellen Saldo mit den Werten aus dem Dictionary
+ * Ersetzt die aktuellen Saldi mit den Werten aus dem Dictionary
  *
  * @param dictionary
  */
 - (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if ([dictionary count] == 0) {
+        if (!RELEASE_BUILD) {
+            NSLog(@"EMPTY ARRAY - NOT INSERTING");
+        }
+
+        return;
+    }
 
     [defaults setObject:dictionary forKey:KEY_CURRENT_SALDO];
     [defaults synchronize];

@@ -73,3 +73,9 @@
 
 /* Class = "NSTextFieldCell"; placeholderString = "Monero App"; ObjectID = "zXb-Yy-man"; */
 "zXb-Yy-man.placeholderString" = "Monero App";
+
+/* Class = "NSButtonCell"; title = "Bestätigen und Speichern"; ObjectID = "uID-7H-x92"; */
+"uID-7H-x92.title" = "I agree and save the key";
+
+/* Class = "NSButtonCell"; title = "KEY LÖSCHEN"; ObjectID = "ibU-TP-Ip6"; */
+"ibU-TP-Ip6.title" = "ERASE KEY FROM DISK";

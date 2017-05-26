@@ -805,6 +805,13 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0dk-gD-aHF">
+                                <rect key="frame" x="341" y="66" width="180" height="18"/>
+                                <buttonCell key="cell" type="check" title="Instant Trading" bezelStyle="regularSquare" imagePosition="left" inset="2" id="O7G-e9-1bH">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="VrK-PC-fjo" secondAttribute="trailing" constant="-2" id="0UM-86-Y1p"/>
@@ -987,6 +994,7 @@
                         <outlet property="iBrokerLabel" destination="g6T-5O-fao" id="YeY-vv-d7l"/>
                         <outlet property="infoButton" destination="36w-6A-NbZ" id="crK-Xi-naI"/>
                         <outlet property="infoLabel" destination="m8T-Bw-tnd" id="Em2-ZB-Jkz"/>
+                        <outlet property="instantTrading" destination="0dk-gD-aHF" id="gij-fy-5c3"/>
                         <outlet property="lastField" destination="F2G-3h-NaD" id="JYM-CM-rzy"/>
                         <outlet property="lastLabel" destination="3Og-Gw-jnu" id="tkI-7e-MJL"/>
                         <outlet property="leftButton" destination="Yti-eZ-CdL" id="OBw-L5-E9U"/>

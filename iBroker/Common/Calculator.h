@@ -32,6 +32,7 @@
 
 // Setter für die jeweiligen Dictionaries
 - (NSDictionary*)checkpointForAsset:(NSString*)asset;
+- (NSDictionary*)checkpointChanges;
 - (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary;
 - (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary;
 - (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary;
