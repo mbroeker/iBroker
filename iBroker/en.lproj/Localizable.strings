@@ -35,3 +35,8 @@ legal_notice = "
   clear in mind.\n
   Use this feature at your own risk.
   If you do not agree, use another software!";
+
+buy_confirmation = "Purchaise Confirmation";
+sell_confirmation = "Order Confirmation";
+buy_with_amount_asset_and_rate = "Buying %.4f %@ for %.8f each";
+sell_with_amount_asset_and_rate = "Selling %.4f %@ for %.8f each";
