@@ -616,7 +616,6 @@ typedef struct DASHBOARD_VARS {
 /**
  * Verkaufe Altcoins, die im Wert um "profit" Euro gestiegen sind...
  *
- * @param currencyUnits
  * @param profit
  */
 - (void)sellWithProfit:(double)profit {
@@ -636,6 +635,21 @@ typedef struct DASHBOARD_VARS {
         if (gain > profit) {
             [self autoSellAll:key];
         }
+    }
+}
+
+/**
+ * BuyTheWorst and make lots of ... profit or more deficit...
+ *
+ */
+- (void)buyTheWorst {
+    NSDictionary *currencyUnits = [calculator checkpointChanges];
+
+    NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
+
+    if (lowest != nil) {
+        NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
+        [self autoBuyAll:lowestKey];
     }
 }
 
@@ -674,6 +688,12 @@ typedef struct DASHBOARD_VARS {
 
     if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
         // Illegale Kombination BTC_(cAsset)
+        return;
+    }
+
+    // Es müssen mindestens 10 Cent (derzeit) umgesetzt werden...
+    if (amount < 0.00005) {
+        // Rundungsfehler in BTC zählen nicht
         return;
     }
 
