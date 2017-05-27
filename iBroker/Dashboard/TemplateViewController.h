@@ -108,6 +108,7 @@
 
 // Trading API
 - (void)sellWithProfit:(double)profit;
+- (void)buyTheBest;
 - (void)buyTheWorst;
 - (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount;
 - (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount;

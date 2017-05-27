@@ -639,7 +639,22 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
- * BuyTheWorst and make lots of ... profit or more deficit...
+ * BuyTheBest and go on rally
+ *
+ */
+- (void)buyTheBest {
+    NSDictionary *currencyUnits = [calculator checkpointChanges];
+
+    NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
+
+    if (highest != nil) {
+        NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
+        [self autoBuyAll:highestKey];
+    }
+}
+
+/**
+ * BuyTheWorst and become a longterm trader
  *
  */
 - (void)buyTheWorst {
@@ -692,8 +707,7 @@ typedef struct DASHBOARD_VARS {
     }
 
     // Es müssen mindestens 10 Cent (derzeit) umgesetzt werden...
-    if (amount < 0.00005) {
-        // Rundungsfehler in BTC zählen nicht
+    if ((amount * cRate) < 0.00005) {
         return;
     }
 

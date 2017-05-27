@@ -35,7 +35,7 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 [controller updateCurrentView:true];
                 [controller sellWithProfit:0.75];
-                [controller buyTheWorst];
+                [controller buyTheBest];
             });
         }
 
