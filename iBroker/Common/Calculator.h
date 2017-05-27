@@ -14,6 +14,16 @@
 
 + (void)reset;
 
+// Trading API
+- (void)sellWithProfit:(double)profit;
+- (void)buyTheBest;
+- (void)buyTheWorst;
+- (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount;
+- (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount;
+- (void)autoBuyAll:(NSString*)cAsset;
+- (void)autoSellAll:(NSString*)cAsset;
+- (void)updateBalances;
+
 // Umrechnungsmethoden für Crypto-Währungen
 - (double)calculate:(NSString*)currency;
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency;

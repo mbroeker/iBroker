@@ -67,7 +67,10 @@ typedef struct DASHBOARD_VARS {
 - (void)updateCurrentView:(BOOL)withRatings {
     if (withRatings) {
         [calculator updateRatings];
-        [self updateBalances];
+        [calculator updateBalances];
+
+        // Automatisches Verkaufen von Assets mit 5% Kursgewinn...
+        [calculator sellWithProfit:5];
     }
 
     // View aktualisieren
@@ -614,233 +617,6 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
- * Verkaufe Altcoins, die im Wert um "profit" Euro gestiegen sind...
- *
- * @param profit
- */
-- (void)sellWithProfit:(double)profit {
-    NSDictionary *currentRatings = [calculator currentRatings];
-    NSDictionary *currencyUnits = [calculator checkpointChanges];
-
-    for (id key in tabs) {
-
-        if ([key isEqualToString:@"Dashboard"]) continue;
-        if ([key isEqualToString:BTC]) continue;
-
-        double assetPrice = 1 / [currentRatings[key] doubleValue];
-        double amount = [calculator currentSaldo:key];
-        double percent = [currencyUnits[key] doubleValue];
-        double gain = amount * assetPrice * percent / 100.0;
-
-        if (gain > profit) {
-            [self autoSellAll:key];
-        }
-    }
-}
-
-/**
- * BuyTheBest and go on rally
- *
- */
-- (void)buyTheBest {
-    NSDictionary *currencyUnits = [calculator checkpointChanges];
-
-    NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
-
-    if (highest != nil) {
-        NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
-        [self autoBuyAll:highestKey];
-    }
-}
-
-/**
- * BuyTheWorst and become a longterm trader
- *
- */
-- (void)buyTheWorst {
-    NSDictionary *currencyUnits = [calculator checkpointChanges];
-
-    NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
-
-    if (lowest != nil) {
-        NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
-        [self autoBuyAll:lowestKey];
-    }
-}
-
-/**
- * Automatisches Kaufen...
- *
- * @param cAsset
- * @param wantedAmount
- */
-- (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    // Temp Taschenrechner
-    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
-    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
-
-    if (ak == nil || sk == nil) {
-        return;
-    }
-
-    NSDictionary *currentRatings = [calculator currentRatings];
-
-    double btcPrice = [currentRatings[BTC] doubleValue];
-    double assetPrice = [currentRatings[cAsset] doubleValue];
-
-    NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
-    double cRate = btcPrice / assetPrice;
-
-    // Bestimme die maximale Anzahl an BTC's, die verkauft werden können...
-    double amountMax = [calculator currentSaldo:BTC] / cRate;
-    double amount = amountMax;
-
-    if (wantedAmount > 0) {
-        amount = wantedAmount;
-    }
-
-    if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
-        // Illegale Kombination BTC_(cAsset)
-        return;
-    }
-
-    // Es müssen mindestens 10 Cent (derzeit) umgesetzt werden...
-    if ((amount * cRate) < 0.00005) {
-        return;
-    }
-
-    // Es kann maximal amountMax vertickt werden.
-    if (amount > amountMax) {
-        NSString *mText = NSLocalizedString(@"not_enough_btc", @"Zu wenig BTC");
-        NSString *iText = NSLocalizedString(@"not_enough_btc_long", @"Sie haben zu wenig BTC zum Kauf");
-        [Helper messageText:mText info:iText];
-        return;
-    }
-
-    if (amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {
-        NSString *mText = NSLocalizedString(@"not_enough_btc", @"Zu wenig BTC");
-        NSString *iText = NSLocalizedString(@"not_enough_btc_long", @"Sie haben zu wenig BTC zum Kauf");
-        [Helper messageText:mText info:iText];
-        return;
-    }
-
-    NSString *text = [NSString stringWithFormat:NSLocalizedString(@"buy_with_amount_asset_and_rate", @"Kaufe %.4f %@ für %.8f das Stück"), amount, cAsset, cRate];
-
-    // Bei 0 gibts eine Kaufbestätigung, bei < 0 wird instant gekauft
-    if (wantedAmount >= 0) {
-        if ([Helper messageText:NSLocalizedString(@"buy_confirmation", "Kaufbestätigung") info:text] != NSAlertFirstButtonReturn) {
-            // Abort Buy
-            return;
-        }
-    }
-
-    [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
-    [calculator updateCheckpointForAsset:cAsset withBTCUpdate:false];
-}
-
-/**
- * Automatisches Kaufen...
- *
- * @param cAsset
- * @param wantedAmount
- */
-- (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    // Temp Taschenrechner
-    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
-    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
-
-    if (ak == nil || sk == nil) {
-        return;
-    }
-
-    NSDictionary *currentRatings = [calculator currentRatings];
-
-    double amountMax = [calculator currentSaldo:cAsset];
-    double amount = amountMax;
-
-    double btcPrice = [currentRatings[BTC] doubleValue];
-    double assetPrice = [currentRatings[cAsset] doubleValue];
-
-    if (wantedAmount > 0) {
-        amount = wantedAmount;
-    }
-
-    if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
-        // Illegale Kombination BTC_(cAsset)
-        return;
-    }
-
-    NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
-    double cRate = btcPrice / assetPrice;
-
-    if (amount > amountMax || amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {
-        NSString *mText = [NSString stringWithFormat: NSLocalizedString(@"not_enough_asset_param", @"Zu wenig %@"), tabs[cAsset][0]];
-        NSString *iText = [NSString stringWithFormat: NSLocalizedString(@"not_enough_asset_long_param", @"Zu wenig %@ zum Verkaufen"), tabs[cAsset][0]];
-        [Helper messageText:mText info:iText];
-        return;
-    }
-
-    NSString *text = [NSString stringWithFormat:NSLocalizedString(@"sell_with_amount_asset_and_rate", @"Verkaufe %.4f %@ für %.8f das Stück"), amount, cAsset, cRate];
-
-    // Bei 0 gibts eine Verkaufsbestätigung, bei < 0 wird instant gekauft
-    if (wantedAmount >= 0) {
-        if ([Helper messageText:NSLocalizedString(@"sell_confirmation", @"Verkaufsbestätigung") info:text] != NSAlertFirstButtonReturn) {
-            // Abort Sell
-            return;
-        }
-    }
-
-    [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
-    [calculator updateCheckpointForAsset:BTC withBTCUpdate:false];
-}
-
-/**
- * Automatisches Kaufen...
- *
- * @param cAsset
- */
-- (void)autoBuyAll:(NSString*)cAsset {
-    [self autoBuy:cAsset amount:-1];
-}
-
-/**
- * Automatisches Verkaufen...
- *
- * @param cAsset
- */
-- (void)autoSellAll:(NSString*)cAsset {
-    [self autoSell:cAsset amount:-1];
-}
-
-/**
- * @ Aktualisieren des Bestands per POLONIEX KEY
- */
-- (void)updateBalances {
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
-    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
-
-    if (ak == nil || sk == nil) {
-        return;
-    }
-
-    NSDictionary *currentBalance = [Brokerage balance:ak withSecret:sk];
-
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    for (id key in [calculator currentSaldo]) {
-        dictionary[key] = currentBalance[key];
-    }
-
-    [calculator currentSaldoForDictionary:dictionary];
-}
-
-/**
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
@@ -1327,14 +1103,14 @@ typedef struct DASHBOARD_VARS {
     if ([cAsset isEqualToString:BTC]) {
         // Die Leute können mit (BTC) (cAsset) kaufen
         if (self.instantTrading.state == NSOnState)  {
-            [self autoBuy:exchangeUnit amount:amount];
+            [calculator autoBuy:exchangeUnit amount:amount];
             self.exchangeSelection.title = @"EUR";
         }
     } else {
         // Die Leute können Ihre (cAsset)s nach (BTC) verkaufen
         if ([exchangeUnit isEqualToString:BTC]) {
             if (self.instantTrading.state == NSOnState)  {
-                [self autoSell:cAsset amount:amount];
+                [calculator autoSell:cAsset amount:amount];
                 self.exchangeSelection.title = @"EUR";
             }
         }

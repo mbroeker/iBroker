@@ -106,16 +106,6 @@
 - (NSDictionary*) images;
 - (NSString*) homeURL;
 
-// Trading API
-- (void)sellWithProfit:(double)profit;
-- (void)buyTheBest;
-- (void)buyTheWorst;
-- (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount;
-- (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount;
-- (void)autoBuyAll:(NSString*)cAsset;
-- (void)autoSellAll:(NSString*)cAsset;
-- (void)updateBalances;
-
 // Methoden zum Aktualisieren der Ansichten
 - (void)updateOverview;
 - (void)updateTemplateView:(NSString*)label;
