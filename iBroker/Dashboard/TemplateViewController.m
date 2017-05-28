@@ -69,8 +69,13 @@ typedef struct DASHBOARD_VARS {
         [calculator updateRatings];
         [calculator updateBalances];
 
-        // Automatisches Verkaufen von Assets mit 5% Kursgewinn...
-        [calculator sellWithProfit:5];
+        if (calculator.automatedTrading) {
+            // Automatisches Verkaufen von Assets mit 3.0% Kursgewinn...
+            [calculator sellWithProfit:3.0];
+
+            // Automatisches Kaufen auf Grundlage der Investments
+            [calculator buyByInvestors];
+        }
     }
 
     // View aktualisieren
@@ -620,7 +625,6 @@ typedef struct DASHBOARD_VARS {
  * Übersicht mit richtigen Live-Werten
  */
 - (void)updateOverview {
-
     // Aktualisiere die URL für den HOME-Button
     homeURL = [calculator saldoUrlForLabel:DASHBOARD];
 
@@ -749,6 +753,9 @@ typedef struct DASHBOARD_VARS {
  * @param label
  */
 - (void)updateTemplateView:(NSString *)label {
+
+    // Es sind mehrere Buttons, die so synchronisiert gehalten werden...
+    self.automatedTradingButton.state = (calculator.automatedTrading) ? NSOnState : NSOffState;
 
     // Farben zurück setzen
     [self resetColors];
@@ -935,6 +942,20 @@ typedef struct DASHBOARD_VARS {
 
         [msg runModal];
     }
+}
+
+/**
+ * Action-Handler zum Aktivieren des automatisierten Handelns
+ *
+ * @param sender
+ */
+- (IBAction)automatedTradingAction:(id)sender {
+    NSString *infoText = (!calculator.automatedTrading) ? NSLocalizedString(@"automated_trading_on", @"activated") : NSLocalizedString(@"automated_trading_off", @"deactivated");
+    if ([Helper messageText:@"AUTOMATED TRADING" info:infoText] == NSAlertFirstButtonReturn) {
+        calculator.automatedTrading = !calculator.automatedTrading;
+    }
+
+    self.automatedTradingButton.state = (calculator.automatedTrading) ? NSOnState : NSOffState;
 }
 
 /**

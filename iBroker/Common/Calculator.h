@@ -14,8 +14,12 @@
 
 + (void)reset;
 
+// Simpler Schalter zum Aktivieren und Deaktivieren der Trading API
+@property BOOL automatedTrading;
+
 // Trading API
 - (void)sellWithProfit:(double)profit;
+- (void)buyByInvestors;
 - (void)buyTheBest;
 - (void)buyTheWorst;
 - (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount;

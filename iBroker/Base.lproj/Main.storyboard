@@ -698,7 +698,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yti-eZ-CdL">
-                                            <rect key="frame" x="49" y="5" width="24" height="24"/>
+                                            <rect key="frame" x="50" y="5" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="yhS-iq-4PR"/>
                                             </constraints>
@@ -711,7 +711,7 @@
                                             </connections>
                                         </button>
                                         <button translatesAutoresizingMaskIntoConstraints="NO" id="I8c-Qp-8Ez">
-                                            <rect key="frame" x="106" y="5" width="24" height="24"/>
+                                            <rect key="frame" x="110" y="5" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="anX-oD-7eo"/>
                                             </constraints>
@@ -724,7 +724,7 @@
                                             </connections>
                                         </button>
                                         <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="af1-Jr-cka">
-                                            <rect key="frame" x="78" y="5" width="24" height="24"/>
+                                            <rect key="frame" x="80" y="5" width="24" height="24"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="24" id="LNZ-mC-CaO"/>
                                             </constraints>
@@ -749,6 +749,16 @@
                                                 <action selector="homepageAction:" target="2wC-py-DJR" id="Mbh-vt-gZF"/>
                                             </connections>
                                         </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HEn-sv-lYa">
+                                            <rect key="frame" x="140" y="5" width="24" height="24"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSNetwork" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="VyI-GY-HdN">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="automatedTradingAction:" target="2wC-py-DJR" id="Wnh-y1-vhv"/>
+                                            </connections>
+                                        </button>
                                         <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xMq-92-SOU">
                                             <rect key="frame" x="20" y="5" width="24" height="24"/>
                                             <constraints>
@@ -770,13 +780,13 @@
                                         <constraint firstItem="Yti-eZ-CdL" firstAttribute="baseline" secondItem="xMq-92-SOU" secondAttribute="baseline" id="EKB-jH-bRS"/>
                                         <constraint firstItem="af1-Jr-cka" firstAttribute="baseline" secondItem="I8c-Qp-8Ez" secondAttribute="baseline" id="ICx-Fn-oXm"/>
                                         <constraint firstItem="xMq-92-SOU" firstAttribute="leading" secondItem="gea-GI-YQj" secondAttribute="leading" constant="20" symbolic="YES" id="JeB-wO-gpB"/>
-                                        <constraint firstItem="I8c-Qp-8Ez" firstAttribute="leading" secondItem="af1-Jr-cka" secondAttribute="trailing" constant="4" id="KfV-YA-8uj"/>
+                                        <constraint firstItem="I8c-Qp-8Ez" firstAttribute="leading" secondItem="af1-Jr-cka" secondAttribute="trailing" constant="6" id="KfV-YA-8uj"/>
                                         <constraint firstItem="xMq-92-SOU" firstAttribute="top" secondItem="gea-GI-YQj" secondAttribute="top" constant="6" id="OKb-1S-7Et"/>
-                                        <constraint firstItem="Yti-eZ-CdL" firstAttribute="leading" secondItem="xMq-92-SOU" secondAttribute="trailing" constant="5" id="cWB-NV-oNX"/>
+                                        <constraint firstItem="Yti-eZ-CdL" firstAttribute="leading" secondItem="xMq-92-SOU" secondAttribute="trailing" constant="6" id="cWB-NV-oNX"/>
                                         <constraint firstItem="Yti-eZ-CdL" firstAttribute="centerY" secondItem="gea-GI-YQj" secondAttribute="centerY" id="fSO-DC-N8K"/>
                                         <constraint firstAttribute="trailing" secondItem="jF1-eZ-tYZ" secondAttribute="trailing" constant="20" symbolic="YES" id="h8z-2i-bOq"/>
                                         <constraint firstItem="Yti-eZ-CdL" firstAttribute="top" secondItem="xMq-92-SOU" secondAttribute="top" id="jpj-BG-rz9"/>
-                                        <constraint firstItem="af1-Jr-cka" firstAttribute="leading" secondItem="Yti-eZ-CdL" secondAttribute="trailing" constant="5" id="oMn-mR-Nev"/>
+                                        <constraint firstItem="af1-Jr-cka" firstAttribute="leading" secondItem="Yti-eZ-CdL" secondAttribute="trailing" constant="6" id="oMn-mR-Nev"/>
                                         <constraint firstItem="af1-Jr-cka" firstAttribute="baseline" secondItem="Yti-eZ-CdL" secondAttribute="baseline" id="p5v-Ym-zdO"/>
                                         <constraint firstItem="Yti-eZ-CdL" firstAttribute="top" secondItem="af1-Jr-cka" secondAttribute="top" id="vkv-40-dut"/>
                                     </constraints>
@@ -957,6 +967,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="automatedTradingButton" destination="HEn-sv-lYa" id="4Z9-JJ-vGS"/>
                         <outlet property="changeField" destination="A3i-ei-83a" id="Igz-NQ-SyE"/>
                         <outlet property="changeLabel" destination="ZiE-3P-piF" id="IZb-OO-xnw"/>
                         <outlet property="cryptoButton" destination="Jlk-75-vTn" id="EOC-QS-cy6"/>
@@ -1021,6 +1032,7 @@
         <image name="NSGoLeftTemplate" width="9" height="12"/>
         <image name="NSGoRightTemplate" width="9" height="12"/>
         <image name="NSInfo" width="32" height="32"/>
+        <image name="NSNetwork" width="32" height="32"/>
         <image name="NSShareTemplate" width="11" height="16"/>
         <image name="NSUser" width="32" height="32"/>
         <image name="USD" width="102.40000152587891" height="102.40000152587891"/>

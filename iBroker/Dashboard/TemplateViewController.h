@@ -18,6 +18,7 @@
 @property (weak) IBOutlet NSButton *leftButton;
 @property (weak) IBOutlet NSButton *rightButton;
 @property (weak) IBOutlet NSButton *walletButton;
+@property (strong) IBOutlet NSButton *automatedTradingButton;
 
 @property (weak) IBOutlet NSButton *homepageButton;
 
@@ -84,14 +85,16 @@
 @property (strong) IBOutlet NSPopUpButton *exchangeSelection;
 @property (strong) IBOutlet NSButton *instantTrading;
 
-// Definition der Button-Actions
+// Definition der Button-Actions in der Leiste
 - (IBAction)homeAction:(id)sender;
 - (IBAction)leftAction:(id)sender;
 - (IBAction)rightAction:(id)sender;
 - (IBAction)walletAction:(id)sender;
-- (IBAction)infoAction:(id)sender;
-
+- (IBAction)automatedTradingAction:(id)sender;
 - (IBAction)homepageAction:(id)sender;
+
+// Info-Icon Action
+- (IBAction)infoAction:(id)sender;
 
 // Währungssymbole
 - (IBAction)currencyAction:(id)sender;

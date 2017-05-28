@@ -278,6 +278,12 @@
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+    if (currentRatings == nil) {
+        NSLog(@"updateCheckPointForAsset: NO DATA");
+
+        return;
+    }
+
     if ([asset isEqualToString:DASHBOARD]) {
         initialRatings = [currentRatings mutableCopy];
     } else {
@@ -414,6 +420,20 @@
 }
 
 /**
+ * Simple Changes
+ */
+- (NSDictionary*)realChanges {
+    NSDictionary *realPrices = [self realPrices];
+    NSMutableDictionary *changes = [[NSMutableDictionary alloc] init];
+
+    for (id key in realPrices) {
+        changes[key] = [realPrices[key] objectForKey:RP_CHANGE];
+    }
+
+    return changes;
+}
+
+/**
  * Automatisches Kaufen...
  *
  * @param cAsset
@@ -478,8 +498,11 @@
     }
 
     NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
-    [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
-    [self updateCheckpointForAsset:cAsset withBTCUpdate:false];
+    NSDictionary *order = [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
+
+    if (order[@"orderNumber"]) {
+        [self updateCheckpointForAsset:cAsset withBTCUpdate:false];
+    }
 }
 
 /**
@@ -534,8 +557,11 @@
     }
 
     NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
-    [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
-    [self updateCheckpointForAsset:BTC withBTCUpdate:false];
+    NSDictionary *order = [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
+
+    if (order[@"orderNumber"]) {
+        [self updateCheckpointForAsset:BTC withBTCUpdate:false];
+    }
 }
 
 /**
@@ -579,6 +605,21 @@
 }
 
 /**
+ * Buy the Asset with the Highest Investor Rate...
+ *
+ */
+- (void)buyByInvestors {
+    NSDictionary *currencyUnits = [self realChanges];
+
+    NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
+
+    if (highest != nil) {
+        NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
+        [self autoBuyAll:highestKey];
+    }
+}
+
+/**
  * BuyTheBest and go on rally
  *
  */
@@ -598,7 +639,10 @@
  *
  */
 - (void)buyTheWorst {
-    NSDictionary *currencyUnits = [self checkpointChanges];
+    NSMutableDictionary *currencyUnits = [[self checkpointChanges] mutableCopy];
+
+    // EMC2 ist on Hold...
+    [currencyUnits removeObjectForKey:EMC2];
 
     NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
 
@@ -609,7 +653,10 @@
 }
 
 /**
- * @ Aktualisieren des Bestands per POLONIEX KEY
+ * @ Aktualsiert den Bestand mit dem Poloniex-Key
+ *
+ * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
+ * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
  */
 - (void)updateBalances {
 
@@ -624,9 +671,16 @@
 
     NSDictionary *currentBalance = [Brokerage balance:ak withSecret:sk];
 
+    if (currentBalance[@"error"]) {
+        [Helper messageText:currentBalance[@"error"] info:@"CHECK https://poloniex.com/apiKeys"];
+    }
+
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     for (id key in currentSaldo) {
-        dictionary[key] = currentBalance[key];
+        double sum = [[currentBalance[key] objectForKey:@"available"] doubleValue];
+        if (!self.automatedTrading) sum += [[currentBalance[key] objectForKey:@"onOrders"] doubleValue];
+
+        dictionary[key] = @(sum);
     }
 
     [self currentSaldoForDictionary:dictionary];
@@ -741,6 +795,7 @@
 - (void)currentSaldoForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+    if (dictionary == nil) return;
     if ([dictionary count] == 0) {
         if (!RELEASE_BUILD) {
             NSLog(@"EMPTY ARRAY - NOT INSERTING");
@@ -763,6 +818,15 @@
 - (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+    if (dictionary == nil) return;
+    if ([dictionary count] == 0) {
+        if (!RELEASE_BUILD) {
+            NSLog(@"EMPTY ARRAY - NOT INSERTING");
+        }
+
+        return;
+    }
+
     [defaults setObject:dictionary forKey:KEY_SALDO_URLS];
     [defaults synchronize];
 
@@ -776,6 +840,15 @@
  */
 - (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    if (dictionary == nil) return;
+    if ([dictionary count] == 0) {
+        if (!RELEASE_BUILD) {
+            NSLog(@"EMPTY ARRAY - NOT INSERTING");
+        }
+
+        return;
+    }
 
     [defaults setObject:dictionary forKey:KEY_INITIAL_RATINGS];
     [defaults synchronize];

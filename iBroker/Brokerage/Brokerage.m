@@ -142,7 +142,7 @@
 
     time_t t = 1975.0 * time(NULL);
 
-    payload[@"command"] = @"returnBalances";
+    payload[@"command"] = @"returnCompleteBalances";
     payload[@"nonce"] = [NSString stringWithFormat:@"%ld", t];
 
     header[@"Sign"] = [Brokerage hmac:[Brokerage urlEncode:payload] withSecret:secret];
