@@ -619,6 +619,7 @@
 - (void)sellWithProfitInEuro:(double)wantedEuros {
     for (id key in currentSaldo) {
         if ([key isEqualToString:BTC]) continue;
+        if ([key isEqualToString:USD]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
 
@@ -642,17 +643,17 @@
  * @param wantedPercent
  */
 - (void)sellWithProfitInPercent:(double)wantedPercent {
-    NSDictionary *percentualChanges = [self checkpointChanges];
-
-    for (id key in percentualChanges) {
+    for (id key in currentSaldo) {
+        if ([key isEqualToString:BTC]) continue;
+        if ([key isEqualToString:USD]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
 
         double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
-        double percent = [percentualChanges[key] doubleValue];
+        double percent = [checkpoint[CP_PERCENT] doubleValue];
         double balance = currentPrice * [self currentSaldo:key];
 
-        if (percent > wantedPercent && balance > 5.0) {
+        if ((percent > wantedPercent) && (balance > 5.0)) {
             [self autoSellAll:key];
         }
     }
@@ -669,9 +670,10 @@
 
     if (highest != nil) {
         NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
+        double investorsRate = [currencyUnits[highestKey] doubleValue];
 
         // Kaufe auf Grundlage der aktuellen Investoren-Rate
-        if ([currencyUnits[highestKey] doubleValue] > 2.0) {
+        if (investorsRate > 2.0) {
             if (![highestKey isEqualToString:EMC2]) [self autoBuyAll:highestKey];
         }
     }
@@ -742,6 +744,7 @@
 
     if (currentBalance[@"error"]) {
         [Helper messageText:currentBalance[@"error"] info:@"CHECK https://poloniex.com/apiKeys"];
+        return;
     }
 
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
