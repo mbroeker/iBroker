@@ -65,8 +65,8 @@
 /* Class = "NSTextFieldCell"; placeholderString = "Ethereum App"; ObjectID = "wLD-vL-gqh"; */
 "wLD-vL-gqh.placeholderString" = "Ethereum App";
 
-/* Class = "NSTextFieldCell"; placeholderString = "Gamecoin App"; ObjectID = "xee-Df-Fat"; */
-"xee-Df-Fat.placeholderString" = "Gamecoin App";
+/* Class = "NSTextFieldCell"; placeholderString = "GameCredits App"; ObjectID = "xee-Df-Fat"; */
+"xee-Df-Fat.placeholderString" = "GameCredits App";
 
 /* Class = "NSViewController"; title = "Adressen"; ObjectID = "yX1-xt-20W"; */
 "yX1-xt-20W.title" = "Addresses";

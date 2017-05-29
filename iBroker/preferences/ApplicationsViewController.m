@@ -32,7 +32,7 @@
     self.ethField.stringValue = applications[ETHEREUM];
     self.xmrField.stringValue = applications[MONERO];
     self.ltcField.stringValue = applications[LITECOIN];
-    self.gameField.stringValue = applications[GAMECOIN];
+    self.gameField.stringValue = applications[GAMECREDITS];
     self.emc2Field.stringValue = applications[EINSTEINIUM];
     self.maidField.stringValue = applications[SAFEMAID];
     self.scField.stringValue = applications[SIACOIN];
@@ -55,7 +55,7 @@
     applications[ETHEREUM] = self.ethField.stringValue;
     applications[MONERO] = self.xmrField.stringValue;
     applications[LITECOIN] = self.ltcField.stringValue;
-    applications[GAMECOIN] = self.gameField.stringValue;
+    applications[GAMECREDITS] = self.gameField.stringValue;
     applications[EINSTEINIUM] = self.emc2Field.stringValue;
     applications[SAFEMAID] = self.maidField.stringValue;
     applications[SIACOIN] = self.scField.stringValue;

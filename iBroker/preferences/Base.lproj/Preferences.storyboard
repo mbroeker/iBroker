@@ -212,7 +212,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="fi9-h4-0Qh"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Gamecoin" drawsBackground="YES" usesSingleLineMode="YES" id="RP5-Jd-HMa">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="GameCredits" drawsBackground="YES" usesSingleLineMode="YES" id="RP5-Jd-HMa">
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -752,7 +752,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="DG7-XM-L8z"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Gamecoin" drawsBackground="YES" usesSingleLineMode="YES" id="oKV-9R-d0T">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="GameCredits" drawsBackground="YES" usesSingleLineMode="YES" id="oKV-9R-d0T">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Cgy-mR-5NS"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1556,7 +1556,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Pgh-ez-2EL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Gamecoin App" drawsBackground="YES" id="xee-Df-Fat">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="GameCredits App" drawsBackground="YES" id="xee-Df-Fat">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1768,7 +1768,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hPT-u2-9Df"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Gamecoin" drawsBackground="YES" usesSingleLineMode="YES" id="R9X-gl-LZK">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="GameCredits" drawsBackground="YES" usesSingleLineMode="YES" id="R9X-gl-LZK">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="S9Y-Ba-pdl"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>

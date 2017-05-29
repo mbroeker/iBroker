@@ -28,7 +28,7 @@
 #define ETHEREUM @"Ethereum"
 #define MONERO @"Monero"
 #define LITECOIN @"Litecoin"
-#define GAMECOIN @"Gamecoin"
+#define GAMECREDITS @"GameCredits"
 #define EINSTEINIUM @"Einsteinium"
 #define SAFEMAID @"Safe Maid Coin"
 #define SIACOIN @"Siacoin"

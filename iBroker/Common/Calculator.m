@@ -92,7 +92,7 @@
                 ETHEREUM: @"https://etherscan.io/",
                 LITECOIN: @"https://chainz.cryptoid.info/ltc/",
                 MONERO: @"https://moneroblocks.info",
-                GAMECOIN: @"https://blockexplorer.gamecredits.com",
+                GAMECREDITS: @"https://blockexplorer.gamecredits.com",
                 EINSTEINIUM: @"https://prohashing.com/explorer/Einsteinium/",
                 SAFEMAID: @"https://maidsafe.net/features.html",
                 SIACOIN: @"https://explore.sia.tech",
@@ -177,8 +177,8 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[GAMECOIN]) {
-        saldoUrls[GAMECOIN] = @"https://blockexplorer.gamecredits.com";
+    if (!saldoUrls[GAMECREDITS]) {
+        saldoUrls[GAMECREDITS] = @"https://blockexplorer.gamecredits.com";
 
         currentSaldo[GAME] = @0.0;
         initialRatings[GAME] = @0.0;

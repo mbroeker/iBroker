@@ -154,7 +154,7 @@ typedef struct DASHBOARD_VARS {
         ETH: @[ETHEREUM, @1],
         XMR: @[MONERO, @1],
         LTC: @[LITECOIN, @1],
-        GAME: @[GAMECOIN, @1],
+        GAME: @[GAMECREDITS, @1],
         EMC2: @[EINSTEINIUM, @1],
         MAID: @[SAFEMAID, @1],
         SC: @[SIACOIN, @1],
@@ -168,7 +168,7 @@ typedef struct DASHBOARD_VARS {
         ETHEREUM: ETH,
         MONERO: XMR,
         LITECOIN: LTC,
-        GAMECOIN: GAME,
+        GAMECREDITS: GAME,
         EINSTEINIUM: EMC2,
         SAFEMAID: MAID,
         SIACOIN: SC,
@@ -199,10 +199,10 @@ typedef struct DASHBOARD_VARS {
             ETHEREUM: @"/Applications/Ethereum Wallet.App",
             MONERO: @"/Applications/monero-wallet-gui.App",
             LITECOIN: @"/Applications/Electrum-LTC.App",
-            GAMECOIN: @"",
+            GAMECREDITS: @"",
             EINSTEINIUM: @"",
             SAFEMAID: @"",
-            SIACOIN: @"",
+            SIACOIN: @"/Applications/Sia-UI.app",
             DOGECOIN: @"/Applications/MultiDoge.App",
         } mutableCopy];
 
@@ -280,8 +280,8 @@ typedef struct DASHBOARD_VARS {
         mustUpdate = true;
     }
 
-    if (!applications[GAMECOIN]) {
-        applications[GAMECOIN] = @"";
+    if (!applications[GAMECREDITS]) {
+        applications[GAMECREDITS] = @"";
         mustUpdate = true;
     }
 

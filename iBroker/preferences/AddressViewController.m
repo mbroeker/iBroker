@@ -33,7 +33,7 @@
     self.ethField.stringValue = saldoUrls[ETHEREUM];
     self.xmrField.stringValue = saldoUrls[MONERO];
     self.ltcField.stringValue = saldoUrls[LITECOIN];
-    self.gameField.stringValue = saldoUrls[GAMECOIN];
+    self.gameField.stringValue = saldoUrls[GAMECREDITS];
     self.emc2Field.stringValue = saldoUrls[EINSTEINIUM];
     self.maidField.stringValue = saldoUrls[SAFEMAID];
     self.scField.stringValue = saldoUrls[SIACOIN];
@@ -56,7 +56,7 @@
     saldoUrls[ETHEREUM] = self.ethField.stringValue;
     saldoUrls[MONERO] = self.xmrField.stringValue;
     saldoUrls[LITECOIN] = self.ltcField.stringValue;
-    saldoUrls[GAMECOIN] = self.gameField.stringValue;
+    saldoUrls[GAMECREDITS] = self.gameField.stringValue;
     saldoUrls[EINSTEINIUM] = self.emc2Field.stringValue;
     saldoUrls[SAFEMAID] = self.maidField.stringValue;
     saldoUrls[SIACOIN] = self.scField.stringValue;
