@@ -307,8 +307,15 @@
  * @return NSDictionary*
  */
 - (NSDictionary*)checkpointForAsset:(NSString*)asset {
-    double initialPrice = 1.0 / [initialRatings[asset] doubleValue];
-    double currentPrice = 1.0 / [currentRatings[asset] doubleValue];
+    double initialAssetRating = [initialRatings[asset] doubleValue];
+    double currentAssetRating = [currentRatings[asset] doubleValue];
+
+    if (initialAssetRating == 0 || currentAssetRating == 0) {
+        return nil;
+    }
+
+    double initialPrice = 1.0 / initialAssetRating;
+    double currentPrice = 1.0 / currentAssetRating;
 
     double percent = 100.0 * ((currentPrice / initialPrice) - 1);
 
@@ -316,7 +323,7 @@
         CP_INITIAL_PRICE: @(initialPrice),
         CP_CURRENT_PRICE: @(currentPrice),
         CP_PERCENT: @(percent),
-        CP_EFFECTIVE_PRICE: @((1 + percent / 100.0) * currentPrice)
+        CP_EFFECTIVE_PRICE: @((1 + (percent / 100.0)) * currentPrice)
     };
 }
 
@@ -329,6 +336,8 @@
     NSMutableDictionary *checkpointChanges = [[NSMutableDictionary alloc] init];
 
     for (id cAsset in currentRatings) {
+        if ([cAsset isEqualToString:USD]) continue;
+
         NSDictionary *aCheckpoint = [self checkpointForAsset:cAsset];
         double cPercent = [aCheckpoint[CP_PERCENT] doubleValue];
 
@@ -356,19 +365,37 @@
  * @return double
  */
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    currentSaldo = [[defaults objectForKey:KEY_CURRENT_SALDO] mutableCopy];
 
-    double btc = [currentSaldo[BTC] doubleValue] / [ratings[BTC] doubleValue];
-    double zec = [currentSaldo[ZEC] doubleValue] / [ratings[ZEC] doubleValue];
-    double eth = [currentSaldo[ETH] doubleValue] / [ratings[ETH] doubleValue];
-    double ltc = [currentSaldo[LTC] doubleValue] / [ratings[LTC] doubleValue];
-    double xmr = [currentSaldo[XMR] doubleValue] / [ratings[XMR] doubleValue];
-    double game = [currentSaldo[GAME] doubleValue] / [ratings[GAME] doubleValue];
-    double emc2 = [currentSaldo[EMC2] doubleValue] / [ratings[EMC2] doubleValue];
-    double maid = [currentSaldo[MAID] doubleValue] / [ratings[MAID] doubleValue];
-    double sc = [currentSaldo[SC] doubleValue] / [ratings[SC] doubleValue];
-    double doge = [currentSaldo[DOGE] doubleValue] / [ratings[DOGE] doubleValue];
+    for (id key in ratings) {
+        if ([ratings[key] doubleValue] == 0.0) {
+            NSLog(@"ERROR IN CALCULATOR: DIVISION BY ZERO");
+            return 0;
+        }
+    }
+
+    double btcRating = [ratings[BTC] doubleValue];
+    double zecRating = [ratings[ZEC] doubleValue];
+    double ethRating = [ratings[ETH] doubleValue];
+    double xmrRating = [ratings[XMR] doubleValue];
+    double ltcRating = [ratings[LTC] doubleValue];
+
+    double gameRating = [ratings[GAME] doubleValue];
+    double emc2Rating = [ratings[EMC2] doubleValue];
+    double maidRating = [ratings[MAID] doubleValue];
+    double scRating = [ratings[SC] doubleValue];
+    double dogeRating = [ratings[DOGE] doubleValue];
+
+    double btc = [currentSaldo[BTC] doubleValue] / btcRating;
+    double zec = [currentSaldo[ZEC] doubleValue] / zecRating;
+    double eth = [currentSaldo[ETH] doubleValue] / ethRating;
+    double ltc = [currentSaldo[LTC] doubleValue] / ltcRating;
+    double xmr = [currentSaldo[XMR] doubleValue] / xmrRating;
+
+    double game = [currentSaldo[GAME] doubleValue] / gameRating;
+    double emc2 = [currentSaldo[EMC2] doubleValue] / emc2Rating;
+    double maid = [currentSaldo[MAID] doubleValue] / maidRating;
+    double sc = [currentSaldo[SC] doubleValue] / scRating;
+    double doge = [currentSaldo[DOGE] doubleValue] / dogeRating;
 
     double sum = btc + zec + eth + ltc + xmr + game + emc2 + maid + sc + doge;
 
@@ -442,7 +469,7 @@
 - (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    //
+    // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
     NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
     NSString *sk = [defaults objectForKey:@"POLO_SEC"];
 
@@ -472,7 +499,7 @@
         return;
     }
 
-    // Es kann maximal amountMax vertickt werden.
+    // Es kann maximal für amountMax gekauft werden...
     if (amount > amountMax) {
         NSString *mText = NSLocalizedString(@"not_enough_btc", @"Zu wenig BTC");
         NSString *iText = NSLocalizedString(@"not_enough_btc_long", @"Sie haben zu wenig BTC zum Kauf");
@@ -480,6 +507,7 @@
         return;
     }
 
+    // Sollte einer dieser Beträge negativ sein, wird die Transaktion verhindert
     if (amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {
         NSString *mText = NSLocalizedString(@"not_enough_btc", @"Zu wenig BTC");
         NSString *iText = NSLocalizedString(@"not_enough_btc_long", @"Sie haben zu wenig BTC zum Kauf");
@@ -514,7 +542,7 @@
 - (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    // Temp Taschenrechner
+    // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
     NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
     NSString *sk = [defaults objectForKey:@"POLO_SEC"];
 
@@ -539,6 +567,7 @@
 
     double cRate = btcPrice / assetPrice;
 
+    // Sollte einer dieser Beträge negativ sein, wird die Transaktion verhindert
     if (amount > amountMax || amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {
         NSString *mText = [NSString stringWithFormat: NSLocalizedString(@"not_enough_asset_param", @"Zu wenig %@"), cAsset];
         NSString *iText = [NSString stringWithFormat: NSLocalizedString(@"not_enough_asset_long_param", @"Zu wenig %@ zum Verkaufen"), cAsset];
@@ -583,29 +612,54 @@
 }
 
 /**
- * Verkaufe Altcoins, die im Wert um "profit" Prozent gestiegen sind...
+ * Verkaufe Altcoins, die im Wert um "wantedEuros" gestiegen sind
  *
- * @param profit
+ * @param wantedEuros
  */
-- (void)sellWithProfit:(double)profit {
-    NSDictionary *currencyUnits = [self checkpointChanges];
-
-    for (id key in currencyUnits) {
+- (void)sellWithProfitInEuro:(double)wantedEuros {
+    for (id key in currentSaldo) {
         if ([key isEqualToString:BTC]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
-        double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
-        double balanceEUR = currentPrice * [self currentSaldo:key];
-        double percent = [currencyUnits[key] doubleValue];
 
-        if ((percent > profit) && (balanceEUR > 0.5)) {
+        double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
+        double effectivePrice = [checkpoint[CP_EFFECTIVE_PRICE] doubleValue];
+
+        double currentBalanceInEUR = currentPrice * [self currentSaldo:key];
+        double effectiveBalanceInEUR = effectivePrice * [self currentSaldo:key];
+
+        double gain = effectiveBalanceInEUR - currentBalanceInEUR;
+
+        if (gain > wantedEuros) {
             [self autoSellAll:key];
         }
     }
 }
 
 /**
- * Buy the Asset with the Highest Investor Rate...
+ * Verkaufe Altcoins mit mindestens 5 Euro im Bestand, die im Wert um "wantedPercent" Prozent gestiegen sind...
+ *
+ * @param wantedPercent
+ */
+- (void)sellWithProfitInPercent:(double)wantedPercent {
+    NSDictionary *percentualChanges = [self checkpointChanges];
+
+    for (id key in percentualChanges) {
+
+        NSDictionary *checkpoint = [self checkpointForAsset:key];
+
+        double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
+        double percent = [percentualChanges[key] doubleValue];
+        double balance = currentPrice * [self currentSaldo:key];
+
+        if (percent > wantedPercent && balance > 5.0) {
+            [self autoSellAll:key];
+        }
+    }
+}
+
+/**
+ * Kaufe Assets mit einer Investor-Rate von 2.0% oder mehr...
  *
  */
 - (void)buyByInvestors {
@@ -615,12 +669,16 @@
 
     if (highest != nil) {
         NSString *highestKey = [currencyUnits allKeysForObject:highest][0];
-        [self autoBuyAll:highestKey];
+
+        // Kaufe auf Grundlage der aktuellen Investoren-Rate
+        if ([currencyUnits[highestKey] doubleValue] > 2.0) {
+            if (![highestKey isEqualToString:EMC2]) [self autoBuyAll:highestKey];
+        }
     }
 }
 
 /**
- * BuyTheBest and go on rally
+ * buyTheBest: Kaufe blind die am höchsten bewertete Asset
  *
  */
 - (void)buyTheBest {
@@ -635,14 +693,11 @@
 }
 
 /**
- * BuyTheWorst and become a longterm trader
+ * buyTheWorst: Kaufe blind die am niedrigsten bewertete Asset
  *
  */
 - (void)buyTheWorst {
     NSMutableDictionary *currencyUnits = [[self checkpointChanges] mutableCopy];
-
-    // EMC2 ist on Hold...
-    [currencyUnits removeObjectForKey:EMC2];
 
     NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
 
@@ -653,15 +708,29 @@
 }
 
 /**
- * @ Aktualsiert den Bestand mit dem Poloniex-Key
+ * @ Aktualsiert den Bestand (synchronisiert und thread-safe)
  *
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
  */
 - (void)updateBalances {
 
+    @synchronized (self) {
+        [self unsynchronizedUpdateBalances];
+    }
+}
+
+/**
+ * @ Aktualsiert den Bestand mit dem Poloniex-Key
+ *
+ * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
+ * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
+ */
+- (void)unsynchronizedUpdateBalances {
+
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+    // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
     NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
     NSString *sk = [defaults objectForKey:@"POLO_SEC"];
 
@@ -729,7 +798,7 @@
 
     ticker = [tickerDictionary mutableCopy];
 
-    double btcValue = 1 / [tickerDictionary[@"BTC_EUR"][POLONIEX_LAST] doubleValue];
+    double btcValue = 1.0 / [tickerDictionary[@"BTC_EUR"][POLONIEX_LAST] doubleValue];
 
     currentRatings = [[NSMutableDictionary alloc] init];
 

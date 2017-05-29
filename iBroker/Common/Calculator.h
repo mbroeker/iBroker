@@ -18,7 +18,8 @@
 @property BOOL automatedTrading;
 
 // Trading API
-- (void)sellWithProfit:(double)profit;
+- (void)sellWithProfitInEuro:(double)wantedEuros;
+- (void)sellWithProfitInPercent:(double)wantedPercent;
 - (void)buyByInvestors;
 - (void)buyTheBest;
 - (void)buyTheWorst;

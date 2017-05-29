@@ -62,7 +62,7 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
- * AKtualsiert das aktive Tab
+ * Aktualisiert das aktive Tab
  */
 - (void)updateCurrentView:(BOOL)withRatings {
     if (withRatings) {
@@ -70,11 +70,13 @@ typedef struct DASHBOARD_VARS {
         [calculator updateBalances];
 
         if (calculator.automatedTrading) {
-            // Automatisches Verkaufen von Assets mit 3.0% Kursgewinn...
-            [calculator sellWithProfit:3.0];
+
+            // Automatisches Verkaufen von Assets mit mehr als 5% Gewinn
+            [calculator sellWithProfitInPercent:5.0];
 
             // Automatisches Kaufen auf Grundlage der Investments
             [calculator buyByInvestors];
+
         }
     }
 
