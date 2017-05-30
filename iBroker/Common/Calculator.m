@@ -664,10 +664,11 @@
 }
 
 /**
- * Kaufe Assets mit einer Investor-Rate von 2.0% oder mehr...
+ * Kaufe Assets mit einer Investor-Rate von "rate"% oder mehr...
  *
+ * @param rate
  */
-- (void)buyByInvestors {
+- (void)buyByInvestors:(double)rate {
     NSDictionary *currencyUnits = [self realChanges];
 
     NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
@@ -677,7 +678,7 @@
         double investorsRate = [currencyUnits[highestKey] doubleValue];
 
         // Kaufe auf Grundlage der aktuellen Investoren-Rate
-        if (investorsRate > 2.0) {
+        if (investorsRate > rate) {
             if (![highestKey isEqualToString:EMC2]) [self autoBuyAll:highestKey];
         }
     }

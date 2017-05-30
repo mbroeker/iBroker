@@ -20,7 +20,7 @@
 // Trading API
 - (void)sellWithProfitInEuro:(double)wantedEuros;
 - (void)sellWithProfitInPercent:(double)wantedPercent;
-- (void)buyByInvestors;
+- (void)buyByInvestors:(double)rate;
 - (void)buyTheBest;
 - (void)buyTheWorst;
 - (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount;

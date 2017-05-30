@@ -75,7 +75,7 @@ typedef struct DASHBOARD_VARS {
             [calculator sellWithProfitInPercent:3.0];
 
             // Automatisches Kaufen auf Grundlage der Investments
-            [calculator buyByInvestors];
+            [calculator buyByInvestors:6.0];
 
         }
     }
