@@ -71,8 +71,8 @@ typedef struct DASHBOARD_VARS {
 
         if (calculator.automatedTrading) {
 
-            // Automatisches Verkaufen von Assets mit mehr als 5% Gewinn
-            [calculator sellWithProfitInPercent:5.0];
+            // Automatisches Verkaufen von Assets mit mehr als 3% Gewinn
+            [calculator sellWithProfitInPercent:3.0];
 
             // Automatisches Kaufen auf Grundlage der Investments
             [calculator buyByInvestors];

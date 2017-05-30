@@ -278,7 +278,7 @@
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    if (currentRatings == nil) {
+    if (currentRatings == nil || initialRatings == nil) {
         NSLog(@"updateCheckPointForAsset: NO DATA");
 
         return;
@@ -638,7 +638,7 @@
 }
 
 /**
- * Verkaufe Altcoins mit mindestens 5 Euro im Bestand, die im Wert um "wantedPercent" Prozent gestiegen sind...
+ * Verkaufe Altcoins mit mindestens 1 Euro im Bestand, deren Exchange-Rate um "wantedPercent" Prozent gestiegen sind...
  *
  * @param wantedPercent
  */
@@ -648,12 +648,16 @@
         if ([key isEqualToString:USD]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
+        NSDictionary *btcCheckpoint = [self checkpointForAsset:BTC];
 
         double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
+        double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
         double percent = [checkpoint[CP_PERCENT] doubleValue];
+
+        double effectivePercent = percent - btcPercent;
         double balance = currentPrice * [self currentSaldo:key];
 
-        if ((percent > wantedPercent) && (balance > 5.0)) {
+        if ((effectivePercent > wantedPercent) && (balance > 1.0)) {
             [self autoSellAll:key];
         }
     }
