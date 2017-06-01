@@ -576,12 +576,20 @@ typedef struct DASHBOARD_VARS {
         fractions = 2;
     }
 
+    NSString *sign = @"";
+    if ([label isEqualToString:DASHBOARD] || [label isEqualToString:BTC]) {
+        sign = fiatCurrencySymbol;
+    }
+
+    NSDictionary *checkpoint = [calculator checkpointForAsset:label];
+    double lastCheckpoint = [checkpoint[CP_INITIAL_PRICE] doubleValue];
+
     double changeInPercent = 100 * [tickerData[POLONIEX_PERCENT] doubleValue];
-    self.lastField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:fractions max:fractions];
-    self.highField.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_BID] doubleValue] min:fractions max:fractions];
+    self.lastField.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:factor * [tickerData[POLONIEX_LAST] doubleValue] min:fractions max:fractions], sign];
+    self.highField.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:lastCheckpoint min:fractions max:4], fiatCurrencySymbol];
     self.changeField.stringValue = [Helper double2GermanPercent:changeInPercent fractions:2];
-    self.high24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:fractions max:fractions];
-    self.low24Field.stringValue = [Helper double2German:factor * [tickerData[POLONIEX_LOW24] doubleValue] min:fractions max:fractions];
+    self.high24Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:factor * [tickerData[POLONIEX_HIGH24] doubleValue] min:fractions max:fractions], sign];
+    self.low24Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:factor * [tickerData[POLONIEX_LOW24] doubleValue] min:fractions max:fractions], sign];
 
     if (changeInPercent < 0) {
         self.changeField.backgroundColor = defaultLowerColor;
@@ -730,18 +738,18 @@ typedef struct DASHBOARD_VARS {
     self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:1.0f / [currentRatings[fiatCurrencies[1]] doubleValue] min:2 max:4]];
 
     // Chart Leiste 1
-    self.currency1Field.stringValue = [Helper double2German:1 / [currentRatings[BTC] doubleValue] min:2 max:4];
-    self.currency2Field.stringValue = [Helper double2German:1 / [currentRatings[ZEC] doubleValue] min:2 max:4];
-    self.currency3Field.stringValue = [Helper double2German:1 / [currentRatings[ETH] doubleValue] min:2 max:4];
-    self.currency4Field.stringValue = [Helper double2German:1 / [currentRatings[XMR] doubleValue] min:2 max:4];
-    self.currency5Field.stringValue = [Helper double2German:1 / [currentRatings[LTC] doubleValue] min:2 max:4];
+    self.currency1Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[BTC] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency2Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[ZEC] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency3Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[ETH] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency4Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[XMR] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency5Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[LTC] doubleValue] min:2 max:4], fiatCurrencySymbol];
 
     // Chart Leiste 2
-    self.currency6Field.stringValue = [Helper double2German:1 / [currentRatings[GAME] doubleValue] min:2 max:4];
-    self.currency7Field.stringValue = [Helper double2German:1 / [currentRatings[EMC2] doubleValue] min:2 max:4];
-    self.currency8Field.stringValue = [Helper double2German:1 / [currentRatings[MAID] doubleValue] min:2 max:4];
-    self.currency9Field.stringValue = [Helper double2German:1 / [currentRatings[SC] doubleValue] min:2 max:4];
-    self.currency10Field.stringValue = [Helper double2German:1 / [currentRatings[DOGE] doubleValue] min:2 max:4];
+    self.currency6Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[GAME] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency7Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[EMC2] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency8Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[MAID] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency9Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[SC] doubleValue] min:2 max:4], fiatCurrencySymbol];
+    self.currency10Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[DOGE] doubleValue] min:2 max:4], fiatCurrencySymbol];
 
     [self markGainers];
     [self markLoosers];
