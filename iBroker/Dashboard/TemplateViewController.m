@@ -1144,14 +1144,14 @@ typedef struct DASHBOARD_VARS {
     }
 
     // Dashboard Tab: USD kann nicht direkt gehandelt werden...
-    if ([cAsset isEqualToString:USD]) {
+    if ([cAsset isEqualToString:fiatCurrencies[1]]) {
         return;
     }
 
     if ([cAsset isEqualToString:BTC]) {
         // Die Leute können mit (BTC) (cAsset) kaufen
         if (self.instantTrading.state == NSOnState)  {
-            [calculator autoBuy:exchangeUnit amount:amount];
+            [calculator autoBuy:exchangeUnit amount:result];
             self.exchangeSelection.title = @"EUR";
         }
     } else {
