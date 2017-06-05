@@ -78,4 +78,21 @@
     
 }
 
+/**
+ * Restart App
+ *
+ * @param seconds
+ */
++ (void)relaunchAfterDelay:(float)seconds {
+	NSTask *task = [[NSTask alloc] init];
+	NSMutableArray *args = [NSMutableArray array];
+	[args addObject:@"-c"];
+	[args addObject:[NSString stringWithFormat:@"sleep %f; open \"%@\"", seconds, [[NSBundle mainBundle] bundlePath]]];
+	[task setLaunchPath:@"/bin/sh"];
+	[task setArguments:args];
+	[task launch];
+	
+	[NSApp terminate:nil];
+}
+
 @end
