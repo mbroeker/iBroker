@@ -28,6 +28,8 @@
     NSNumber *state = [defaults valueForKey:OPTIONS_MENUBAR];
 
     self.menubarItem.state = state.integerValue;
+
+    [self checkFiatMenuState];
 }
 
 /**
@@ -47,6 +49,54 @@
  */
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return true;
+}
+
+/**
+ * Aktivierung nur einer Fiatwährung erzwingen
+ *
+ */
+- (void)checkFiatMenuState {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSArray *fiatCurrencies = [defaults objectForKey:@"fiatCurrencies"];
+
+    // alle deaktivieren
+    self.eurUSDItem.state = NSOffState;
+    self.usdEURItem.state = NSOffState;
+
+    // und dann den einzelnen selektierens
+    if ([fiatCurrencies[0] isEqualToString:EUR] &&
+        [fiatCurrencies[1] isEqualToString:USD]) self.eurUSDItem.state = NSOnState;
+
+    if ([fiatCurrencies[0] isEqualToString:USD] &&
+        [fiatCurrencies[1] isEqualToString:EUR]) self.usdEURItem.state = NSOnState;
+}
+
+/**
+ * EUR / USD
+ *
+ * @param sender
+ */
+- (IBAction)fiatEURUSDAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:@[EUR, USD] forKey:@"fiatCurrencies"];
+    [defaults synchronize];
+
+    [Helper relaunchAfterDelay:0];
+}
+
+/**
+ * USD / EUR
+ *
+ * @param sender
+ */
+- (IBAction)fiatUSDEURAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:@[USD, EUR] forKey:@"fiatCurrencies"];
+    [defaults synchronize];
+
+    [Helper relaunchAfterDelay:0];
 }
 
 /**
@@ -81,9 +131,12 @@
         [defaults removeObjectForKey:KEY_CURRENT_SALDO];
         [defaults removeObjectForKey:KEY_INITIAL_RATINGS];
 
+        [defaults removeObjectForKey:KEY_FIAT_CURRENCIES];
+        [defaults removeObjectForKey:KEY_DEFAULT_EXCHANGE];
+
         [defaults synchronize];
 
-        [NSApp terminate: self];
+        [Helper relaunchAfterDelay:0];
     }
 }
 

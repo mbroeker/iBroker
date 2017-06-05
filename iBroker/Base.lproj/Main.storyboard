@@ -62,6 +62,26 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Fiat" id="FSx-9d-yIX">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Fiat" id="leJ-tq-CnI">
+                                    <items>
+                                        <menuItem title="EUR/USD" id="VL6-TP-Srq">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fiatEURUSDAction:" target="Voe-Tx-rLC" id="aQj-nE-UP3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="USD/EUR" id="k28-GY-y1j">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fiatUSDEURAction:" target="Voe-Tx-rLC" id="4Ee-AX-eC2"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Xmc-2a-jp0"/>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Fenster" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Fenster" systemMenu="window" id="Td7-aD-5lo">
@@ -120,7 +140,9 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
                     <connections>
+                        <outlet property="eurUSDItem" destination="VL6-TP-Srq" id="lda-dR-a7g"/>
                         <outlet property="menubarItem" destination="7GE-rs-aAs" id="m3T-qM-zjP"/>
+                        <outlet property="usdEURItem" destination="k28-GY-y1j" id="2zp-dB-4GN"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -11,5 +11,6 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 @property (weak) IBOutlet NSWindow *window;
 @property (weak) IBOutlet NSMenuItem *menubarItem;
-
+@property (weak) IBOutlet NSMenuItem *eurUSDItem;
+@property (weak) IBOutlet NSMenuItem *usdEURItem;
 @end

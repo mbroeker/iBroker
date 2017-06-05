@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43D6F9651A12E3B7440D164B /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F713419AF161FD0FB69C /* Calculator.m */; };
+		B20AEE251EE54F960015BC17 /* BittrexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20AEE241EE54F960015BC17 /* BittrexViewController.m */; };
 		B224E8311EC8F4840039A911 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B224E8331EC8F4840039A911 /* Localizable.strings */; };
 		B224E83A1EC92C790039A911 /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B224E8371EC92C790039A911 /* Algorithm.m */; };
 		B224E83B1EC92C790039A911 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B224E8391EC92C790039A911 /* Brokerage.m */; };
@@ -49,6 +50,8 @@
 /* Begin PBXFileReference section */
 		43D6F713419AF161FD0FB69C /* Calculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Calculator.m; sourceTree = "<group>"; };
 		43D6FAB9704D5BBC4D376F07 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
+		B20AEE231EE54F960015BC17 /* BittrexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BittrexViewController.h; path = preferences/BittrexViewController.h; sourceTree = "<group>"; };
+		B20AEE241EE54F960015BC17 /* BittrexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BittrexViewController.m; path = preferences/BittrexViewController.m; sourceTree = "<group>"; };
 		B224E8251EC8E8F30039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B224E8321EC8F4840039A911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B224E8341EC8F48A0039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -143,6 +146,8 @@
 				B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */,
 				B22F901F1ED8BABC007FE910 /* PoloniexViewController.h */,
 				B22F90201ED8BABC007FE910 /* PoloniexViewController.m */,
+				B20AEE231EE54F960015BC17 /* BittrexViewController.h */,
+				B20AEE241EE54F960015BC17 /* BittrexViewController.m */,
 			);
 			name = Preferences;
 			sourceTree = "<group>";
@@ -372,6 +377,7 @@
 				B2FF15EC1EB0384300F65E6B /* TabViewController.m in Sources */,
 				B22F90211ED8BABC007FE910 /* PoloniexViewController.m in Sources */,
 				B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */,
+				B20AEE251EE54F960015BC17 /* BittrexViewController.m in Sources */,
 				B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */,
 				B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */,
 				B2EF257C1EC5B2E000C79B2E /* Algorithm.m in Sources */,

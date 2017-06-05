@@ -71,8 +71,8 @@ typedef struct DASHBOARD_VARS {
 
         if (calculator.automatedTrading) {
 
-            // Automatisches Verkaufen von Assets mit mehr als 3% Gewinn
-            [calculator sellWithProfitInPercent:3.0];
+            // Automatisches Verkaufen von Assets mit mehr als 1.5% Gewinn
+            [calculator sellWithProfitInPercent:1.5];
 
             // Automatisches Kaufen auf Grundlage der Investments
             [calculator buyByInvestors:6.0];
@@ -136,14 +136,26 @@ typedef struct DASHBOARD_VARS {
 - (void)initializeWithDefaults {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    calculator = [Calculator instance];
-
     // Liste der Fiat-Währungen
-    fiatCurrencies = [calculator fiatCurrencies];
+    fiatCurrencies = [defaults objectForKey:@"fiatCurrencies"];
+
+    if (fiatCurrencies == nil) {
+        fiatCurrencies = @[EUR, USD];
+
+        [defaults setObject:fiatCurrencies forKey:@"fiatCurrencies"];
+    }
+
+    calculator = [Calculator instance:fiatCurrencies];
 
     if ([fiatCurrencies[0] isEqualToString:EUR]) {
         fiatCurrencySymbol = @"€";
-    } else {
+    }
+
+    if ([fiatCurrencies[0] isEqualToString:GBP]) {
+        fiatCurrencySymbol = @"£";
+    }
+
+    if ([fiatCurrencies[0] isEqualToString:USD]) {
         fiatCurrencySymbol = @"$";
     }
 

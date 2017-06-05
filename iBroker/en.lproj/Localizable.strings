@@ -28,7 +28,7 @@ not_enough_btc_long = "You have not enough BTC to buy";
 not_enough_asset_param = "Not enough %@";
 not_enough_asset_param_long = "You have not enough %@ for this trade.";
 legal_notice = "
-  Inserting the API KEY from POLONIEX is done
+  Inserting the API KEY from %@ is done
   on your own desire. You are aware of the personal
   risks, fully minded and confirm by utilizing this
   feature, that you are an adult, business-aware and

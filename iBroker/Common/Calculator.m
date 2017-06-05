@@ -19,16 +19,24 @@
     NSMutableDictionary *currentRatings;
     NSMutableDictionary *ticker;
 
+    // Die wählbare Fiatwährung
     NSArray *fiatCurrencies;
 
+    // Die dynamischen TickerKeys
     NSDictionary *tickerKeys;
+
+    // Die standardmäßige Börse
+    NSString *defaultExchange;
 }
 
 /**
  * Der öffentliche Konstruktor mit Vorbelegung EUR/USD
  */
 + (id)instance {
-    return [self instance:@[EUR, USD]];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSArray *fc = [defaults objectForKey:KEY_FIAT_CURRENCIES];
+    return [self instance:fc];
 }
 
 /**
@@ -46,7 +54,7 @@
 }
 
 /**
- * Der Standard Konstruktor
+ * Der Standard Konstruktor mit Vorbelegung EUR/USD
  */
 - (id)init {
     return [self initWithFiatCurrencies:@[EUR, USD]];
@@ -114,6 +122,14 @@
             SC: @"BTC_SC",
             DOGE: @"BTC_DOGE"
         };
+
+        defaultExchange = [defaults objectForKey:@"defaultExchange"];
+
+        if (defaultExchange == nil) {
+            defaultExchange = EXCHANGE_POLONIEX;
+
+            [defaults setObject:defaultExchange forKey:@"defaultExchange"];
+        }
 
         [defaults synchronize];
 
@@ -526,7 +542,7 @@
     }
 
     NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
-    NSDictionary *order = [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
+    NSDictionary *order = [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount onExchange:defaultExchange];
 
     if (order[@"orderNumber"]) {
         [self updateCheckpointForAsset:cAsset withBTCUpdate:false];
@@ -586,7 +602,7 @@
     }
 
     NSString *cPair = [NSString stringWithFormat:@"BTC_%@", cAsset];
-    NSDictionary *order = [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount];
+    NSDictionary *order = [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount onExchange:defaultExchange];
 
     if (order[@"orderNumber"]) {
         [self updateCheckpointForAsset:BTC withBTCUpdate:false];
@@ -599,7 +615,15 @@
  * @param cAsset
  */
 - (void)autoBuyAll:(NSString*)cAsset {
-    [self autoBuy:cAsset amount:-1];
+    static NSString *lastBoughtAsset = @"";
+
+    double ask = -1;
+    if ([cAsset isEqualToString:lastBoughtAsset]) {
+        ask = 0;
+    }
+
+    [self autoBuy:cAsset amount:ask];
+    lastBoughtAsset = cAsset;
 }
 
 /**
@@ -737,15 +761,26 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
-    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
-    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
+    NSDictionary *ak = nil;
+    NSString *sk = nil;
+
+    if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) {
+        // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
+        ak = [defaults objectForKey:@"POLO_KEY"];
+        sk = [defaults objectForKey:@"POLO_SEC"];
+    }
+
+    if ([defaultExchange isEqualToString:EXCHANGE_BITTREX]) {
+        // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
+        ak = [defaults objectForKey:@"BITTREX_KEY"];
+        sk = [defaults objectForKey:@"BITTREX_SEC"];
+    }
 
     if (ak == nil || sk == nil) {
         return;
     }
 
-    NSDictionary *currentBalance = [Brokerage balance:ak withSecret:sk];
+    NSDictionary *currentBalance = [Brokerage balance:ak withSecret:sk forExchange:defaultExchange];
 
     if (currentBalance[@"error"]) {
         [Helper messageText:currentBalance[@"error"] info:@"CHECK https://poloniex.com/apiKeys"];
@@ -774,12 +809,15 @@
 }
 
 /**
- * Besorge die Kurse von Poloniex per JSON-Request und speichere Sie in den App-Einstellungen
+ * Besorge die Kurse von der Börse per JSON-Request und speichere Sie in den App-Einstellungen
  */
 - (void)unsynchronizedUpdateRatings {
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *tickerDictionary = [Brokerage poloniexTicker:fiatCurrencies];
+    NSDictionary *tickerDictionary;
+
+    if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) tickerDictionary = [Brokerage poloniexTicker:fiatCurrencies];
+    if ([defaultExchange isEqualToString:EXCHANGE_BITTREX]) tickerDictionary = [Brokerage bittrexTicker:fiatCurrencies forCurrencyPairs:[currentSaldo allKeys]];
 
     if (tickerDictionary == nil) {
 

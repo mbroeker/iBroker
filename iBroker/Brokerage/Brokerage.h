@@ -10,6 +10,10 @@
 
 #define RELEASE_BUILD 1
 
+// Definition der verfügbaren Börsen
+#define EXCHANGE_POLONIEX @"POLONIEX_EXCHANGE"
+#define EXCHANGE_BITTREX @"BITTREX_EXCHANGE"
+
 #define POLONIEX_ASK @"lowestAsk"
 #define POLONIEX_BID @"highestBid"
 #define POLONIEX_LOW24 @"low24hr"
@@ -24,9 +28,10 @@
 + (NSDictionary*)jsonRequest:(NSString*)jsonURL withPayload:(NSDictionary*)payload;
 + (NSDictionary*)jsonRequest:(NSString*)jsonURL withPayload:(NSDictionary*)payload andHeader:(NSDictionary*)header;
 + (NSDictionary*)poloniexTicker:(NSArray*)fiatCurrencies;
-+ (NSDictionary*)balance:(NSDictionary*)apikey withSecret:(NSString*)secret;
-+ (NSDictionary*)buy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount;
-+ (NSDictionary*)sell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount;
++ (NSDictionary*)bittrexTicker:(NSArray*)fiatCurrencies forCurrencyPairs:(NSArray*)currencyPairs;
++ (NSDictionary*)balance:(NSDictionary*)apikey withSecret:(NSString*)secret forExchange:(NSString*)exchange;
++ (NSDictionary*)buy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString*)exchange;
++ (NSDictionary*)sell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString*)exchange;
 
 + (void)safeSleep:(NSTimeInterval)timeout;
 @end

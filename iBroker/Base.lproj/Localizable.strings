@@ -28,7 +28,7 @@ not_enough_btc_long = "Sie haben nicht genug BTC für diesen Kauf";
 not_enough_asset_param = "Sie haben nicht genug %@";
 not_enough_asset_long_param = "Sie haben nicht genug %@ für diesen Verkauf";
 legal_notice = "
-  Das Einfügen des API-KEYS von Poloniex geschieht
+  Das Einfügen des API-KEYS von %@ geschieht
   auf Ihren eigenen Wunsch. Sie sind sich der persönlichen
   Gefahren voll bewusst und bestätigen durch das Nutzen
   dieses Features, dass Sie volljährig, geschäftsfähig und

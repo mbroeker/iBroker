@@ -84,17 +84,19 @@
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
-    [request setHTTPMethod:@"POST"];
+    [request setHTTPMethod:(payload == nil) ? @"GET" : @"POST"];
     [request setURL:[NSURL URLWithString:jsonURL]];
 
     for (id field in header) {
         [request setValue:header[field] forHTTPHeaderField:field];
     }
 
-    NSString *payloadAsString = [Brokerage urlEncode:payload];
-    NSData *data = [payloadAsString dataUsingEncoding:NSASCIIStringEncoding];
+    if (payload != nil) {
+        NSString *payloadAsString = [Brokerage urlEncode:payload];
+        NSData *data = [payloadAsString dataUsingEncoding:NSASCIIStringEncoding];
 
-    [request setHTTPBody:data];
+        [request setHTTPBody:data];
+    }
 
     __block NSMutableDictionary *result;
     __block BOOL hasFinished = false;
@@ -124,13 +126,78 @@
 }
 
 /**
+ * Request the balance via API-Key
+ *
+ * @param apikey
+ * @param secret
+ * returns NSDictionary*
+ */
++ (NSDictionary*)balance:(NSDictionary*)apikey withSecret:(NSString*)secret forExchange:(NSString*)exchange {
+    if ([exchange isEqualToString:EXCHANGE_POLONIEX]) {
+        return [Brokerage poloniexBalance:apikey withSecret:secret];
+    }
+
+    if ([exchange isEqualToString:EXCHANGE_BITTREX]) {
+        return [Brokerage bittrexBalance:apikey withSecret:secret];
+    }
+
+    return nil;
+}
+
+/**
+ * BUY via API-KEY
+ *
+ * @param apikey
+ * @param secret
+ * @param currencyPair
+ * @param rate
+ * @param amount
+ * @param exchange
+ * returns NSDictionary*
+ */
++ (NSDictionary*)buy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString*)exchange {
+    if ([exchange isEqualToString:EXCHANGE_POLONIEX]) {
+        return [Brokerage poloniexBuy:apikey withSecret:secret currencyPair:currencyPair rate:rate amount:amount];
+    }
+
+    if ([exchange isEqualToString:EXCHANGE_BITTREX]) {
+        return [Brokerage bittrexBuy:apikey withSecret:secret currencyPair:currencyPair rate:rate amount:amount];
+    }
+
+    return nil;
+}
+
+/**
+ * SELL via API-KEY
+ *
+ * @param apikey
+ * @param secret
+ * @param currencyPair
+ * @param rate
+ * @param amount
+ * @param exchange
+ * returns NSDictionary*
+ */
++ (NSDictionary*)sell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString*)exchange {
+    if ([exchange isEqualToString:EXCHANGE_POLONIEX]) {
+        return [Brokerage poloniexSell:apikey withSecret:secret currencyPair:currencyPair rate:rate amount:amount];
+    }
+
+    if ([exchange isEqualToString:EXCHANGE_POLONIEX]) {
+        return [Brokerage bittrexSell:apikey withSecret:secret currencyPair:currencyPair rate:rate amount:amount];
+    }
+
+    return nil;
+}
+
+/**
  * Request the balance from poloniex via API-Key
  *
  * @param apikey
  * @param secret
  * returns NSDictionary*
  */
-+ (NSDictionary*)balance:(NSDictionary*)apikey withSecret:(NSString*)secret {
++ (NSDictionary*)poloniexBalance:(NSDictionary*)apikey withSecret:(NSString*)secret {
     NSString *jsonURL = @"https://poloniex.com/tradingApi";
 
     if ([secret isEqualToString:@""]) {
@@ -151,6 +218,46 @@
 }
 
 /**
+ * Request the balance from Bittrex via API-Key
+ *
+ * @param apikey
+ * @param secret
+ * returns NSDictionary*
+ */
++ (NSDictionary*)bittrexBalance:(NSDictionary*)apikey withSecret:(NSString*)secret {
+
+    time_t t = 1000 * time(NULL);
+    NSString *nonce = [NSString stringWithFormat:@"%ld", t];
+
+    NSString *jsonURL = [NSString stringWithFormat:@"https://bittrex.com/api/v1.1/account/getbalances?apikey=%@&nonce=%@", apikey[@"Key"], nonce];
+
+    if ([secret isEqualToString:@""]) {
+        return nil;
+    }
+
+    NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
+    header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
+
+    NSDictionary *data = [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+    NSArray *dataRows = data[@"result"];
+
+    NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+    for (NSDictionary *row in dataRows) {
+        NSString *asset = row[@"Currency"];
+
+        double available = [row[@"Available"] doubleValue];
+        double onOrders = [row[@"Pending"] doubleValue];
+
+        result[asset] = @{
+            @"available": @(available),
+            @"onOrders": @(onOrders)
+        };
+    }
+
+    return result;
+}
+
+/**
  * BUY via API-KEY
  *
  * @param apikey
@@ -160,7 +267,7 @@
  * @param amount
  * returns NSDictionary*
  */
-+ (NSDictionary*)buy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount {
++ (NSDictionary*)poloniexBuy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount {
     NSString *jsonURL = @"https://poloniex.com/tradingApi";
 
     if ([secret isEqualToString:@""]) {
@@ -193,7 +300,7 @@
  * @param amount
  * returns NSDictionary*
  */
-+ (NSDictionary*)sell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount {
++ (NSDictionary*)poloniexSell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount {
     NSString *jsonURL = @"https://poloniex.com/tradingApi";
 
     if ([secret isEqualToString:@""]) {
@@ -214,6 +321,78 @@
     header[@"Sign"] = [Brokerage hmac:[Brokerage urlEncode:payload] withSecret:secret];
 
     return [Brokerage jsonRequest:jsonURL withPayload:payload andHeader:header];
+}
+
+/**
+ * BUY via API-KEY
+ *
+ * @param apikey
+ * @param secret
+ * @param currencyPair
+ * @param rate
+ * @param amount
+ * returns NSDictionary*
+ */
++ (NSDictionary*)bittrexBuy:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount {
+
+    if ([apikey[@"Key"] isEqualToString:@""]) {
+        return nil;
+    }
+
+    NSString *bittrexCurrencyPair = [currencyPair stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
+    NSNumber *bittrexRate = [NSNumber numberWithDouble:rate];
+    NSNumber *bittrexAmount = [NSNumber numberWithDouble:amount];
+
+    time_t t = time(NULL);
+    NSString *nonce = [NSString stringWithFormat:@"%ld", t];
+    NSString *jsonURL = [NSString stringWithFormat:@"https://bittrex.com/api/v1.1/market/buylimit?apikey=%@&market=%@&quantity=%@&rate=%@&nonce=%@",
+        apikey[@"Key"],
+        bittrexCurrencyPair,
+        bittrexAmount,
+        bittrexRate,
+        nonce
+    ];
+
+    NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
+    header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
+
+    return [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+}
+
+/**
+ * SELL via API-KEY
+ *
+ * @param apikey
+ * @param secret
+ * @param currencyPair
+ * @param rate
+ * @param amount
+ * returns NSDictionary*
+ */
++ (NSDictionary*)bittrexSell:(NSDictionary*)apikey withSecret:(NSString*)secret currencyPair:(NSString*)currencyPair rate:(double)rate amount:(double)amount {
+
+    if ([apikey[@"Key"] isEqualToString:@""]) {
+        return nil;
+    }
+
+    NSString *bittrexCurrencyPair = [currencyPair stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
+    NSNumber *bittrexRate = [NSNumber numberWithDouble:rate];
+    NSNumber *bittrexAmount = [NSNumber numberWithDouble:amount];
+
+    time_t t = time(NULL);
+    NSString *nonce = [NSString stringWithFormat:@"%ld", t];
+    NSString *jsonURL = [NSString stringWithFormat:@"https://bittrex.com/api/v1.1/market/selllimit?apikey=%@&market=%@&quantity=%@&rate=%@&nonce=%@",
+        apikey[@"Key"],
+        bittrexCurrencyPair,
+        bittrexAmount,
+        bittrexRate,
+        nonce
+    ];
+
+    NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
+    header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
+
+    return [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
 }
 
 /**
@@ -263,6 +442,15 @@
 }
 
 /**
+ * Simpler Text Encoder
+ *
+ * @param string
+ */
++ (NSString*) urlStringEncode:(NSString*)string {
+    return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
+
+/**
  * Simpler URL-Encoder
  *
  * @param payload
@@ -294,9 +482,74 @@
     NSMutableDictionary *ticker = [[Brokerage jsonRequest:jsonURL] mutableCopy];
 
     if (!ticker[@"BTC_XMR"]) {
-        NSLog(@"API-ERROR: Cannot retrieve ticker data");
+        NSLog(@"API-ERROR: Cannot retrieve ticker data from poloniex");
 
         return nil;
+    }
+
+    NSDictionary *btcTicker = [Brokerage bitstampBTCTicker:fiatCurrencies[0]];
+
+    if (!btcTicker) {
+        return nil;
+    }
+
+    NSNumber *exchangeRate = [Brokerage fiatExchangeRate:fiatCurrencies];
+
+    if (!exchangeRate) {
+        return nil;
+    }
+
+    ticker[@"BTC_EUR"] = btcTicker;
+    ticker[fiatCurrencies[1]] = @([exchangeRate doubleValue]);
+
+    return ticker;
+}
+
+/**
+ * Besorge den Ticker von Bittrex
+ *
+ * @param fiatCurrencies
+ * @return NSDictionary*
+ */
++ (NSDictionary*)bittrexTicker:(NSArray*)fiatCurrencies forCurrencyPairs:(NSArray*)currencyPairs {
+
+    NSMutableDictionary *ticker = [[NSMutableDictionary alloc] init];
+    for (id key in currencyPairs) {
+        if ([key isEqualToString:@"BTC"]) continue;
+
+        NSString *pair = [NSString stringWithFormat:@"btc-%@", [key lowercaseString]];
+        NSString *jsonURL = [NSString stringWithFormat:@"https://bittrex.com/api/v1.1/public/getmarketsummary?market=%@", pair];
+
+        NSMutableDictionary *innerTicker = [[Brokerage jsonRequest:jsonURL] mutableCopy];
+
+        if (!innerTicker[@"result"]) {
+            NSLog(@"API-ERROR: Cannot retrieve ticker data from bittrex");
+
+            return nil;
+        }
+
+        NSDictionary *data = innerTicker[@"result"][0];
+
+        if (!data[@"MarketName"]) {
+            return nil;
+        }
+
+        NSString *marketName = data[@"MarketName"];
+
+        marketName = [marketName stringByReplacingOccurrencesOfString:@"-" withString:@"_"];
+
+        double percent = ([data[@"Last"] doubleValue] / [data[@"PrevDay"] doubleValue]) -1;
+
+        ticker[marketName] = @{
+            POLONIEX_HIGH24: data[@"High"],
+            POLONIEX_LOW24: data[@"Low"],
+            POLONIEX_ASK: data[@"Ask"],
+            POLONIEX_BID: data[@"Bid"],
+            POLONIEX_LAST: data[@"Last"],
+            POLONIEX_BASE_VOLUME: data[@"BaseVolume"],
+            POLONIEX_QUOTE_VOLUME: data[@"Volume"],
+            POLONIEX_PERCENT: @(percent)
+        };
     }
 
     NSDictionary *btcTicker = [Brokerage bitstampBTCTicker:fiatCurrencies[0]];
