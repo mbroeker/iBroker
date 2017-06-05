@@ -356,6 +356,11 @@ typedef struct DASHBOARD_VARS {
     NSNumberFormatter *cryptoFormatter = [self.cryptoUnits formatter];
     [cryptoFormatter setMinimumFractionDigits:assetFractions];
     [cryptoFormatter setMaximumFractionDigits:assetFractions];
+
+    // Rate-Währungsformat mit 4-8 Nachkommastellen
+    NSNumberFormatter *rateFormatter = [self.rateInputLabel formatter];
+    [rateFormatter setMinimumFractionDigits:0];
+    [rateFormatter setMaximumFractionDigits:assetFractions];
 }
 
 
@@ -1131,7 +1136,7 @@ typedef struct DASHBOARD_VARS {
     double amount = self.rateInputLabel.doubleValue;
     double result = amount / [currentRatings[cAsset] doubleValue] * exchangeFactor;
 
-    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:4]];
+    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:8]];
 
     // EUR / USD - das kann nicht direkt gehandelt werden
     if ([exchangeUnit isEqualToString:USD] || [exchangeUnit isEqualToString:EUR]) {
