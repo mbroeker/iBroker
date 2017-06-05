@@ -353,8 +353,6 @@
         nonce
     ];
 
-    NSLog(@"URL: %@", jsonURL);
-
     NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
     header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
 
