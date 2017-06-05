@@ -485,9 +485,18 @@
 - (void)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
-    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
-    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
+    NSDictionary *ak;
+    NSString *sk;
+
+    if ([defaultExchange isEqualToString:@"POLONIEX_EXCHANGE"]) {
+        ak = [defaults objectForKey:@"POLO_KEY"];
+        sk = [defaults objectForKey:@"POLO_SEC"];
+    }
+
+    if ([defaultExchange isEqualToString:@"BITTREX_EXCHANGE"]) {
+        ak = [defaults objectForKey:@"BITTREX_KEY"];
+        sk = [defaults objectForKey:@"BITTREX_SEC"];
+    }
 
     if (ak == nil || sk == nil) {
         return;
@@ -558,9 +567,18 @@
 - (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
-    NSDictionary *ak = [defaults objectForKey:@"POLO_KEY"];
-    NSString *sk = [defaults objectForKey:@"POLO_SEC"];
+    NSDictionary *ak;
+    NSString *sk;
+
+    if ([defaultExchange isEqualToString:@"POLONIEX_EXCHANGE"]) {
+        ak = [defaults objectForKey:@"POLO_KEY"];
+        sk = [defaults objectForKey:@"POLO_SEC"];
+    }
+
+    if ([defaultExchange isEqualToString:@"BITTREX_EXCHANGE"]) {
+        ak = [defaults objectForKey:@"BITTREX_KEY"];
+        sk = [defaults objectForKey:@"BITTREX_SEC"];
+    }
 
     if (ak == nil || sk == nil) {
         return;

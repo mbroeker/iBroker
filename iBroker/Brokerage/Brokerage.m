@@ -183,7 +183,7 @@
         return [Brokerage poloniexSell:apikey withSecret:secret currencyPair:currencyPair rate:rate amount:amount];
     }
 
-    if ([exchange isEqualToString:EXCHANGE_POLONIEX]) {
+    if ([exchange isEqualToString:EXCHANGE_BITTREX]) {
         return [Brokerage bittrexSell:apikey withSecret:secret currencyPair:currencyPair rate:rate amount:amount];
     }
 
@@ -340,8 +340,8 @@
     }
 
     NSString *bittrexCurrencyPair = [currencyPair stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
-    NSNumber *bittrexRate = [NSNumber numberWithDouble:rate];
-    NSNumber *bittrexAmount = [NSNumber numberWithDouble:amount];
+    NSString *bittrexRate = [NSString stringWithFormat:@"%.8f", rate];
+    NSString *bittrexAmount = [NSString stringWithFormat:@"%.4f", amount];
 
     time_t t = time(NULL);
     NSString *nonce = [NSString stringWithFormat:@"%ld", t];
@@ -353,10 +353,24 @@
         nonce
     ];
 
+    NSLog(@"URL: %@", jsonURL);
+
     NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
     header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
 
-    return [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+    NSDictionary *response = [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+
+    if ([response[@"success"] integerValue] == 1) {
+        NSDictionary *result = response[@"result"];
+
+        return @{
+            @"ordnerNumber": result[@"uuid"]
+        };
+    } else {
+        NSLog(@"Buy-LIMIT: %@", response[@"message"]);
+    }
+
+    return nil;
 }
 
 /**
@@ -376,8 +390,8 @@
     }
 
     NSString *bittrexCurrencyPair = [currencyPair stringByReplacingOccurrencesOfString:@"_" withString:@"-"];
-    NSNumber *bittrexRate = [NSNumber numberWithDouble:rate];
-    NSNumber *bittrexAmount = [NSNumber numberWithDouble:amount];
+    NSString *bittrexRate = [NSString stringWithFormat:@"%.8f", rate];
+    NSString *bittrexAmount = [NSString stringWithFormat:@"%.8f", amount];
 
     time_t t = time(NULL);
     NSString *nonce = [NSString stringWithFormat:@"%ld", t];
@@ -392,7 +406,19 @@
     NSMutableDictionary *header = [[NSMutableDictionary alloc] init];
     header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
 
-    return [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+    NSDictionary *response = [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+
+    if ([response[@"success"] integerValue] == 1) {
+        NSDictionary *result = response[@"result"];
+
+        return @{
+            @"ordnerNumber": result[@"uuid"]
+        };
+    } else {
+        NSLog(@"SELL-LIMIT: %@", response[@"message"]);
+    }
+
+    return nil;
 }
 
 /**
