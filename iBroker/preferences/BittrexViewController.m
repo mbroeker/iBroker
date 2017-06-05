@@ -1,15 +1,15 @@
 //
-//  PoloniexController.m
+//  BittrexViewController.m
 //  iBroker
 //
 //  Created by Markus Bröker on 26.05.17.
 //  Copyright © 2017 Markus Bröker. All rights reserved.
 //
 
-#import "PoloniexViewController.h"
+#import "BittrexViewController.h"
 #import "CalculatorConstants.h"
 
-@implementation PoloniexViewController
+@implementation BittrexViewController
 
 - (void)awakeFromNib {
     NSColor *color = [NSColor whiteColor];
@@ -28,25 +28,25 @@
 - (void)updateView {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSDictionary *apiKey = [defaults objectForKey:@"POLO_KEY"];
-    NSString *secret = [defaults objectForKey:@"POLO_SEC"];
+    NSDictionary *apiKey = [defaults objectForKey:@"BITTREX_KEY"];
+    NSString *secret = [defaults objectForKey:@"BITTREX_SEC"];
 
     NSString *defaultExchange = [defaults objectForKey:KEY_DEFAULT_EXCHANGE];
 
-    if ([defaultExchange isEqualToString:@"POLONIEX_EXCHANGE"]) {
+    if ([defaultExchange isEqualToString:@"BITTREX_EXCHANGE"]) {
         self.standardExchangeButton.state = NSOnState;
     }
 
     self.apikeyField.stringValue = (apiKey != nil) ? apiKey[@"Key"] : @"";
     self.secretField.stringValue = (secret != nil) ? secret : @"";
 
-    self.legalNoticeLabel.stringValue = [NSString stringWithFormat:NSLocalizedString(@"legal_notice", @"legal_notice"), @"Poloniex"];
+    self.legalNoticeLabel.stringValue = [NSString stringWithFormat:NSLocalizedString(@"legal_notice", @"legal_notice"), @"Bittrex"];
 }
 
 - (IBAction)standardExchangeAction:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults setObject:@"POLONIEX_EXCHANGE" forKey:KEY_DEFAULT_EXCHANGE];
+    [defaults setObject:@"BITTREX_EXCHANGE" forKey:KEY_DEFAULT_EXCHANGE];
     [defaults synchronize];
 
     [self updateView];
@@ -60,8 +60,8 @@
     NSString *secret = self.secretField.stringValue;
     apiKey[@"Key"] = self.apikeyField.stringValue;
 
-    [defaults setObject:apiKey forKey:@"POLO_KEY"];
-    [defaults setObject:secret forKey:@"POLO_SEC"];
+    [defaults setObject:apiKey forKey:@"BITTREX_KEY"];
+    [defaults setObject:secret forKey:@"BITTREX_SEC"];
 
     [defaults synchronize];
 
@@ -71,8 +71,8 @@
 - (IBAction)keyEraseAction:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults removeObjectForKey:@"POLO_KEY"];
-    [defaults removeObjectForKey:@"POLO_SEC"];
+    [defaults removeObjectForKey:@"BITTREX_KEY"];
+    [defaults removeObjectForKey:@"BITTREX_SEC"];
 
     [defaults synchronize];
 

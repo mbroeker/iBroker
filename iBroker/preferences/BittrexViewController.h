@@ -1,5 +1,5 @@
 //
-//  PoloniexViewController.h
+//  BittrexViewController.h
 //  iBroker
 //
 //  Created by Markus Bröker on 26.05.17.
@@ -8,7 +8,7 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface PoloniexViewController : NSViewController
+@interface BittrexViewController : NSViewController
 
 @property (strong) IBOutlet NSTextField *apikeyField;
 @property (strong) IBOutlet NSSecureTextField *secretField;
