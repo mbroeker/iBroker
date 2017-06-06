@@ -90,7 +90,6 @@ const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *
 void brokerRun(CONFIG config) {
 
     static unsigned long counter = 0;
-
     Calculator *calculator = [Calculator instance];
 
     for (;;) {

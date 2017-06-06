@@ -36,6 +36,12 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     NSArray *fc = [defaults objectForKey:KEY_FIAT_CURRENCIES];
+
+    // Vorbelegung mit EUR/USD
+    if (fc == nil) {
+        fc = @[EUR, USD];
+    }
+
     return [self instance:fc];
 }
 
