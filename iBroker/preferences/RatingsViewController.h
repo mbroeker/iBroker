@@ -21,7 +21,6 @@
 @property (strong) IBOutlet NSTextField *maidField;
 @property (strong) IBOutlet NSTextField *scField;
 @property (strong) IBOutlet NSTextField *dogeField;
-@property (strong) IBOutlet NSTextField *usdField;
 
 // Action Handler
 - (IBAction)saveAction:(id)sender;

@@ -55,10 +55,6 @@
     formatter  = self.dogeField.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
-
-    formatter  = self.usdField.formatter;
-    [formatter setMinimumFractionDigits:4];
-    [formatter setMaximumFractionDigits:4];
 }
 
 /**
@@ -80,7 +76,6 @@
     self.maidField.doubleValue = 1 / [ratings[MAID] doubleValue];
     self.scField.doubleValue = 1 / [ratings[SC] doubleValue];
     self.dogeField.doubleValue = 1 / [ratings[DOGE] doubleValue];
-    self.usdField.doubleValue = 1 / [ratings[USD] doubleValue];
 }
 
 - (void)viewDidLoad {
@@ -108,7 +103,6 @@
     double maid = 1 / self.maidField.doubleValue;
     double sc = 1 / self.scField.doubleValue;
     double doge = 1 / self.dogeField.doubleValue;
-    double dollar = 1 / self.usdField.doubleValue;
 
     initialRatings[BTC] = @(btc);
     initialRatings[ZEC] = @(zec);
@@ -120,7 +114,6 @@
     initialRatings[MAID] = @(maid);
     initialRatings[SC] = @(sc);
     initialRatings[DOGE] = @(doge);
-    initialRatings[USD] = @(dollar);
 
     [calculator initialRatingsWithDictionary:initialRatings];
 
