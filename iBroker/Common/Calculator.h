@@ -52,6 +52,9 @@
 - (void)saldoUrlsForDictionary:(NSMutableDictionary*)dictionary;
 - (void)initialRatingsWithDictionary:(NSMutableDictionary*)dictionary;
 
+// Setzten der Standardbörse
+- (void)defaultExchange:(NSString*)exchange;
+
 // die aktuellen Fiat-Währungen
 - (NSArray*)fiatCurrencies;
 

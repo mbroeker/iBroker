@@ -996,6 +996,20 @@
 }
 
 /**
+ * Aktualisieren der Standardbörse ermöglichen
+ *
+ * @param exchange
+ */
+- (void)defaultExchange:(NSString*)exchange {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:exchange forKey:KEY_DEFAULT_EXCHANGE];
+    [defaults synchronize];
+
+    defaultExchange = exchange;
+}
+
+/**
  * Liefert die aktuellen Fiat-Währungen
  *
  * @return NSString*

@@ -7,7 +7,7 @@
 //
 
 #import "BittrexViewController.h"
-#import "CalculatorConstants.h"
+#import "Calculator.h"
 
 @implementation BittrexViewController
 
@@ -33,6 +33,7 @@
 
     NSString *defaultExchange = [defaults objectForKey:KEY_DEFAULT_EXCHANGE];
 
+    self.standardExchangeButton.state = NSOffState;
     if ([defaultExchange isEqualToString:@"BITTREX_EXCHANGE"]) {
         self.standardExchangeButton.state = NSOnState;
     }
@@ -44,10 +45,8 @@
 }
 
 - (IBAction)standardExchangeAction:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    [defaults setObject:@"BITTREX_EXCHANGE" forKey:KEY_DEFAULT_EXCHANGE];
-    [defaults synchronize];
+    Calculator *calculator = [Calculator instance];
+    [calculator defaultExchange:@"BITTREX_EXCHANGE"];
 
     [self updateView];
 }
