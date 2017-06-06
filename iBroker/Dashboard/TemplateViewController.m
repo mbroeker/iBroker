@@ -662,12 +662,12 @@ typedef struct DASHBOARD_VARS {
     NSLog(@"%4s %20s | %20s | %14s | %14s | %14s | %12s | %20s | %12s |\n",
         [@"####" UTF8String],
         [@"BALANCE" UTF8String],
-        [@"BALANCE IN EUR" UTF8String],
+        [[NSString stringWithFormat:@"BALANCE IN %@", fiatCurrencies[0]] UTF8String],
         [@"BALANCE IN BTC" UTF8String],
-        [@"INITIAL IN EUR" UTF8String],
-        [@"CURRENT IN EUR" UTF8String],
+        [[NSString stringWithFormat:@"INITIAL IN %@", fiatCurrencies[0]] UTF8String],
+        [[NSString stringWithFormat:@"CURRENT IN %@", fiatCurrencies[0]] UTF8String],
         [@"SHARE IN %" UTF8String],
-        [@"DIFF IN EUR" UTF8String],
+        [[NSString stringWithFormat:@"DIFF IN %@", fiatCurrencies[0]] UTF8String],
         [@"DIFF IN %" UTF8String]
     );
 #endif
@@ -1057,7 +1057,7 @@ typedef struct DASHBOARD_VARS {
         @([calculator calculateWithRatings:currentRatings currency:MAID]),
         @([calculator calculateWithRatings:currentRatings currency:SC]),
         @([calculator calculateWithRatings:currentRatings currency:DOGE]),
-        @([calculator calculateWithRatings:currentRatings currency:USD])
+        @([calculator calculateWithRatings:currentRatings currency:fiatCurrencies[1]])
     ];
 
     text = [NSString stringWithFormat:@"%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@\n%@ %@",
@@ -1071,7 +1071,7 @@ typedef struct DASHBOARD_VARS {
           [Helper double2German:[data[7] doubleValue] min:4 max:8], MAID,
           [Helper double2German:[data[8] doubleValue] min:4 max:8], SC,
           [Helper double2German:[data[9] doubleValue] min:4 max:8], DOGE,
-          [Helper double2German:[data[10] doubleValue] min:4 max:8], USD
+          [Helper double2German:[data[10] doubleValue] min:4 max:8], fiatCurrencies[1]
     ];
 
     [Helper messageText:NSLocalizedString(@"total_saldo", @"Gesamtbestand umgerechnet:") info:text];
@@ -1152,14 +1152,14 @@ typedef struct DASHBOARD_VARS {
         // Die Leute können mit (BTC) (cAsset) kaufen
         if (self.instantTrading.state == NSOnState)  {
             [calculator autoBuy:exchangeUnit amount:result];
-            self.exchangeSelection.title = @"EUR";
+            self.exchangeSelection.title = fiatCurrencies[0];
         }
     } else {
         // Die Leute können Ihre (cAsset)s nach (BTC) verkaufen
         if ([exchangeUnit isEqualToString:BTC]) {
             if (self.instantTrading.state == NSOnState)  {
                 [calculator autoSell:cAsset amount:amount];
-                self.exchangeSelection.title = @"EUR";
+                self.exchangeSelection.title = fiatCurrencies[0];
             }
         }
     }
