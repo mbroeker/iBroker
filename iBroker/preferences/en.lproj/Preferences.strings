@@ -33,7 +33,7 @@
 "Txn-YE-STf.title" = "Charts";
 
 /* Class = "NSTextFieldCell"; title = "Ihre initialen Kurse (EUR)"; ObjectID = "Ukn-PJ-ZoR"; */
-"Ukn-PJ-ZoR.title" = "Your initial Charts (EUR)";
+"Ukn-PJ-ZoR.title" = "Your initial Charts";
 
 /* Class = "NSTextFieldCell"; title = "Ihre Anwendungen"; ObjectID = "WEN-8p-MCk"; */
 "WEN-8p-MCk.title" = "Your Applications";
