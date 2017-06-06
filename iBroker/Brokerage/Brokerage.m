@@ -239,9 +239,17 @@
     header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
 
     NSDictionary *data = [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+
+    if ([data[@"success"] intValue] == 0) {
+        return @{
+            @"error": data[@"message"]
+        };
+    }
+
     NSArray *dataRows = data[@"result"];
 
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
+
     for (NSDictionary *row in dataRows) {
         NSString *asset = row[@"Currency"];
 

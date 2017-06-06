@@ -801,7 +801,7 @@
     NSDictionary *currentBalance = [Brokerage balance:ak withSecret:sk forExchange:defaultExchange];
 
     if (currentBalance[@"error"]) {
-        [Helper messageText:currentBalance[@"error"] info:@"CHECK https://poloniex.com/apiKeys"];
+        [Helper messageText:currentBalance[@"error"] info:@"CHECK API-KEY RESTRICTIONS"];
         return;
     }
 
