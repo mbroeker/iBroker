@@ -493,6 +493,7 @@
 
     NSDictionary *ak;
     NSString *sk;
+    double feeAsFactor = 1.0;
 
     if ([defaultExchange isEqualToString:@"POLONIEX_EXCHANGE"]) {
         ak = [defaults objectForKey:@"POLO_KEY"];
@@ -502,6 +503,7 @@
     if ([defaultExchange isEqualToString:@"BITTREX_EXCHANGE"]) {
         ak = [defaults objectForKey:@"BITTREX_KEY"];
         sk = [defaults objectForKey:@"BITTREX_SEC"];
+        feeAsFactor = 0.9975;
     }
 
     if (ak == nil || sk == nil) {
@@ -513,7 +515,7 @@
     double cRate = btcPrice / assetPrice;
 
     // Bestimme die maximale Anzahl an BTC's, die verkauft werden können...
-    double amountMax = [self currentSaldo:BTC] / cRate;
+    double amountMax = feeAsFactor * ([self currentSaldo:BTC] / cRate);
     double amount = amountMax;
 
     if (wantedAmount > 0) {
@@ -575,6 +577,7 @@
 
     NSDictionary *ak;
     NSString *sk;
+    double feeAsFactor = 1.0;
 
     if ([defaultExchange isEqualToString:@"POLONIEX_EXCHANGE"]) {
         ak = [defaults objectForKey:@"POLO_KEY"];
@@ -584,13 +587,14 @@
     if ([defaultExchange isEqualToString:@"BITTREX_EXCHANGE"]) {
         ak = [defaults objectForKey:@"BITTREX_KEY"];
         sk = [defaults objectForKey:@"BITTREX_SEC"];
+        feeAsFactor = 0.9975;
     }
 
     if (ak == nil || sk == nil) {
         return;
     }
 
-    double amountMax = [self currentSaldo:cAsset];
+    double amountMax = feeAsFactor * [self currentSaldo:cAsset];
     double amount = amountMax;
 
     double btcPrice = [currentRatings[BTC] doubleValue];
@@ -660,14 +664,15 @@
 }
 
 /**
- * Verkaufe Altcoins, die im Wert um "wantedEuros" gestiegen sind
+ * Verkaufe Altcoins, die im Wert um "wantedEuros" gestiegen ist
  *
  * @param wantedEuros
  */
 - (void)sellWithProfitInEuro:(double)wantedEuros {
     for (id key in currentSaldo) {
         if ([key isEqualToString:BTC]) continue;
-        if ([key isEqualToString:USD]) continue;
+        if ([key isEqualToString:fiatCurrencies[0]]) continue;
+        if ([key isEqualToString:fiatCurrencies[1]]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
 
@@ -686,14 +691,15 @@
 }
 
 /**
- * Verkaufe Altcoins mit mindestens 1 Euro im Bestand, deren Exchange-Rate um "wantedPercent" Prozent gestiegen sind...
+ * Verkaufe Altcoins mit mindestens 1 Euro im Bestand, deren Exchange-Rate um "wantedPercent" Prozent gestiegen ist...
  *
  * @param wantedPercent
  */
 - (void)sellWithProfitInPercent:(double)wantedPercent {
     for (id key in currentSaldo) {
         if ([key isEqualToString:BTC]) continue;
-        if ([key isEqualToString:USD]) continue;
+        if ([key isEqualToString:fiatCurrencies[0]]) continue;
+        if ([key isEqualToString:fiatCurrencies[1]]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
         NSDictionary *btcCheckpoint = [self checkpointForAsset:BTC];
@@ -707,6 +713,40 @@
 
         if ((effectivePercent > wantedPercent) && (balance > 1.0)) {
             [self autoSellAll:key];
+        }
+    }
+}
+
+/**
+ * Kaufe Altcoins, deren Exchange-Rate um "wantedPercent" Prozent gestiegen ist...
+ *
+ * @param wantedPercent
+ */
+- (void)buyWithProfitInPercent:(double)wantedPercent {
+    double balance = [self currentSaldo:BTC];
+
+    if (balance < 0.0001) return;
+
+    for (id key in currentSaldo) {
+        if ([key isEqualToString:BTC]) continue;
+        if ([key isEqualToString:fiatCurrencies[0]]) continue;
+        if ([key isEqualToString:fiatCurrencies[1]]) continue;
+
+        NSDictionary *checkpoint = [self checkpointForAsset:key];
+        NSDictionary *btcCheckpoint = [self checkpointForAsset:BTC];
+
+        double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
+        double percent = [checkpoint[CP_PERCENT] doubleValue];
+
+        double effectivePercent = btcPercent - percent;
+
+        // Security Feature: We want more, not less
+        if (effectivePercent < 0) {
+            continue;
+        }
+
+        if (effectivePercent > wantedPercent) {
+            [self autoBuyAll:key];
         }
     }
 }

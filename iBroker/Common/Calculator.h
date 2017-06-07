@@ -20,6 +20,7 @@
 // Trading API
 - (void)sellWithProfitInEuro:(double)wantedEuros;
 - (void)sellWithProfitInPercent:(double)wantedPercent;
+- (void)buyWithProfitInPercent:(double)wantedPercent;
 - (void)buyByInvestors:(double)rate;
 - (void)buyTheBest;
 - (void)buyTheWorst;
