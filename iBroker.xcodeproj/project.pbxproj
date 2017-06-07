@@ -61,6 +61,7 @@
 		B224E8391EC92C790039A911 /* Brokerage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Brokerage.m; sourceTree = "<group>"; };
 		B22F901F1ED8BABC007FE910 /* PoloniexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoloniexViewController.h; path = preferences/PoloniexViewController.h; sourceTree = "<group>"; };
 		B22F90201ED8BABC007FE910 /* PoloniexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoloniexViewController.m; path = preferences/PoloniexViewController.m; sourceTree = "<group>"; };
+		B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iBroker.entitlements; sourceTree = "<group>"; };
 		B25106D21EB734A80092D911 /* iBrokerDaemon */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iBrokerDaemon; sourceTree = BUILT_PRODUCTS_DIR; };
 		B25106D41EB734A80092D911 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B25106DA1EB7356F0092D911 /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
@@ -209,6 +210,7 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
+				B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */,
 				B275C33A1EC3F4AF00147099 /* Brokerage */,
 				B2FF15F51EB038F900F65E6B /* AppDelegate */,
 				B2FF15EE1EB038A900F65E6B /* Common */,
@@ -317,6 +319,11 @@
 					B2FA692C1E93F2A300C47199 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = NS52DCTHFQ;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -523,6 +530,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iBroker/iBroker.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -538,6 +546,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iBroker/iBroker.entitlements;
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
