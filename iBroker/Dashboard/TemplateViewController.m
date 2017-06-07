@@ -873,16 +873,16 @@ typedef struct DASHBOARD_VARS {
     [self markDockLabels:coinchange];
 
     NSDictionary *currentPriceInUnits = @{
-        BTC: @([currentRatings[BTC] doubleValue] / assetRating),
-        ZEC: @([currentRatings[ZEC] doubleValue] / assetRating),
-        ETH: @([currentRatings[ETH] doubleValue] / assetRating),
-        XMR: @([currentRatings[XMR] doubleValue] / assetRating),
-        LTC: @([currentRatings[LTC] doubleValue] / assetRating),
-        GAME: @([currentRatings[GAME] doubleValue] / assetRating),
-        EMC2: @([currentRatings[EMC2] doubleValue] / assetRating),
-        MAID: @([currentRatings[MAID] doubleValue] / assetRating),
-        SC: @([currentRatings[SC] doubleValue] / assetRating),
-        DOGE: @([currentRatings[DOGE] doubleValue] / assetRating)
+        BTC: @([calculator factorForAsset:BTC inRelationTo:asset]),
+        ZEC: @([calculator factorForAsset:ZEC inRelationTo:asset]),
+        ETH: @([calculator factorForAsset:ETH inRelationTo:asset]),
+        XMR: @([calculator factorForAsset:XMR inRelationTo:asset]),
+        LTC: @([calculator factorForAsset:LTC inRelationTo:asset]),
+        GAME: @([calculator factorForAsset:GAME inRelationTo:asset]),
+        EMC2: @([calculator factorForAsset:EMC2 inRelationTo:asset]),
+        MAID: @([calculator factorForAsset:MAID inRelationTo:asset]),
+        SC: @([calculator factorForAsset:SC inRelationTo:asset]),
+        DOGE: @([calculator factorForAsset:DOGE inRelationTo:asset])
     };
 
     NSUInteger fractions = ([label isEqualToString:BTC]) ? 4 : 8;

@@ -34,6 +34,9 @@
 - (double)calculate:(NSString*)currency;
 - (double)calculateWithRatings:(NSDictionary*)ratings currency:(NSString *)currency;
 - (NSDictionary*)realPrices;
+- (double)btcPriceForAsset:(NSString*)asset;
+- (double)fiatPriceForAsset:(NSString*)asset;
+- (double)factorForAsset:(NSString*)asset inRelationTo:(NSString*)baseAsset;
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
 - (void)updateRatings;

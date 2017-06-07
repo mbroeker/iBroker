@@ -350,6 +350,38 @@
 }
 
 /**
+ * Berechne den BTC-Preis
+ *
+ * @param asset
+ */
+- (double)btcPriceForAsset:(NSString*)asset {
+    double btcRating = [currentRatings[BTC] doubleValue];
+    double assetRating = [currentRatings[asset] doubleValue];
+
+    double btcPrice = btcRating / assetRating;
+    return btcPrice;
+}
+
+/**
+ * Berechne den Umrechnungsfaktor
+ *
+ * @param asset
+ * @param baseAsset
+ */
+- (double)factorForAsset:(NSString*)asset inRelationTo:(NSString*)baseAsset {
+    return [self btcPriceForAsset:baseAsset] / [self btcPriceForAsset:asset];
+}
+
+/**
+ * Berechne den Fiat-Preis
+ *
+ * @param asset
+ */
+- (double)fiatPriceForAsset:(NSString*)asset {
+    return (1 / [self btcPriceForAsset:asset]);
+}
+
+/**
  * Liefert die aktuellen Veränderungen in Prozent
  *
  * @return NSDictionary
