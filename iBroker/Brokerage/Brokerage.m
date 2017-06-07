@@ -370,7 +370,7 @@
         NSDictionary *result = response[@"result"];
 
         return @{
-            @"ordnerNumber": result[@"uuid"]
+            @"orderNumber": result[@"uuid"]
         };
     } else {
         NSLog(@"Buy-LIMIT: %@", response[@"message"]);
