@@ -842,9 +842,11 @@
  */
 - (void)updateBalances {
 
-    @synchronized (self) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         [self unsynchronizedUpdateBalances];
-    }
+    });
+
 }
 
 /**
@@ -899,9 +901,11 @@
  */
 - (void)updateRatings {
 
-    @synchronized (self) {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
         [self unsynchronizedUpdateRatings];
-    }
+    });
+
 }
 
 /**
