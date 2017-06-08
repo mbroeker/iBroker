@@ -842,8 +842,8 @@
  */
 - (void)updateBalances {
 
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_queue_t queue = dispatch_queue_create("de.4customers.iBroker.updateBalances", NULL);
+    dispatch_sync(queue, ^{
         [self unsynchronizedUpdateBalances];
     });
 
@@ -901,8 +901,8 @@
  */
 - (void)updateRatings {
 
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_queue_t queue = dispatch_queue_create("de.4customers.iBroker.updateRatings", NULL);
+    dispatch_sync(queue, ^{
         [self unsynchronizedUpdateRatings];
     });
 
@@ -912,7 +912,6 @@
  * Besorge die Kurse von der Börse per JSON-Request und speichere Sie in den App-Einstellungen
  */
 - (void)unsynchronizedUpdateRatings {
-
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSDictionary *tickerDictionary;
 
