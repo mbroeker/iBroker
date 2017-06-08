@@ -121,7 +121,7 @@ void brokerRun(CONFIG config) {
             makeString(dogCheckpoint, DOGE, currentRatings, btcPercent)
         );
 
-        [calculator updateRatings];
+        [calculator updateRatings:false];
         safeSleep(config.timeout);
     }
 }

@@ -113,6 +113,7 @@
 - (void)updateOverview;
 - (void)updateTemplateView:(NSString*)label;
 - (void)updateCurrentView:(BOOL)withRatings;
+- (void)updateBalanceAndRatings;
 
 // Methoden zum Einrichten der Datenstrukturen
 - (void)initializeWithDefaults;

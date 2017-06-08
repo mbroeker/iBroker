@@ -153,7 +153,7 @@
         // Migration älterer Installationen
         [self upgradeAssistant];
 
-        [self updateRatings];
+        [self updateRatings:true];
     }
 
     return self;
@@ -852,12 +852,19 @@
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
  */
-- (void)updateBalances {
+- (void)updateBalances:(BOOL)synchronized {
 
     dispatch_queue_t queue = dispatch_queue_create("de.4customers.iBroker.updateBalances", NULL);
-    dispatch_sync(queue, ^{
-        [self unsynchronizedUpdateBalances];
-    });
+
+    if (synchronized) {
+        dispatch_sync(queue, ^{
+            [self unsynchronizedUpdateBalances];
+        });
+    } else {
+        dispatch_async(queue, ^{
+            [self unsynchronizedUpdateBalances];
+        });
+    }
 
 }
 
@@ -911,12 +918,19 @@
 /**
  * synchronisierter Block, der garantiert, dass es nur ein Update gibt
  */
-- (void)updateRatings {
+- (void)updateRatings:(BOOL)synchronized {
 
     dispatch_queue_t queue = dispatch_queue_create("de.4customers.iBroker.updateRatings", NULL);
-    dispatch_sync(queue, ^{
-        [self unsynchronizedUpdateRatings];
-    });
+
+    if (synchronized) {
+        dispatch_sync(queue, ^{
+            [self unsynchronizedUpdateRatings];
+        });
+    } else {
+        dispatch_async(queue, ^{
+            [self unsynchronizedUpdateRatings];
+        });
+    }
 
 }
 

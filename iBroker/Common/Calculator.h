@@ -28,7 +28,7 @@
 - (void)autoSell:(NSString*)cAsset amount:(double)wantedAmount;
 - (void)autoBuyAll:(NSString*)cAsset;
 - (void)autoSellAll:(NSString*)cAsset;
-- (void)updateBalances;
+- (void)updateBalances:(BOOL)synchronized;
 
 // Umrechnungsmethoden für Crypto-Währungen
 - (double)calculate:(NSString*)currency;
@@ -39,7 +39,7 @@
 - (double)factorForAsset:(NSString*)asset inRelationTo:(NSString*)baseAsset;
 
 // Methoden fürs Aktualisieren der Wechselkurse und zum Updaten dieser
-- (void)updateRatings;
+- (void)updateRatings:(BOOL)synchronized;
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate;
 
 // Methoden für das Aktualisieren des Saldos

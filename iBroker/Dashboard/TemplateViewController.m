@@ -62,13 +62,18 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
+ * Aktualisierung der Nutzdaten(Kurse und Kontostände)
+ */
+- (void)updateBalanceAndRatings {
+    [calculator updateRatings:false];
+    [calculator updateBalances:false];
+}
+
+/**
  * Aktualisiert das aktive Tab
  */
 - (void)updateCurrentView:(BOOL)withRatings {
     if (withRatings) {
-        [calculator updateRatings];
-        [calculator updateBalances];
-
         if (calculator.automatedTrading) {
 
             // Automatisches Verkaufen von Assets mit mehr als 2.0% Gewinn

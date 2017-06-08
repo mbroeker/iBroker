@@ -26,12 +26,13 @@
     // Startseite aufrufen
     [controller updateOverview];
 
-    dispatch_queue_t autoRefreshQueue = dispatch_queue_create("Auto-Refresh",NULL);
+    dispatch_queue_t autoRefreshQueue = dispatch_queue_create("de.4customers.iBroker.autoRefresh", NULL);
     dispatch_async(autoRefreshQueue, ^{
 
         while(true) {
             [NSThread sleepForTimeInterval:DEFAULT_TIMEOUT];
 
+            [controller updateBalanceAndRatings];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [controller updateCurrentView:true];
             });
