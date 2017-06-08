@@ -65,8 +65,8 @@ typedef struct DASHBOARD_VARS {
  * Aktualisierung der Nutzdaten(Kurse und Kontostände)
  */
 - (void)updateBalanceAndRatings {
-    [calculator updateRatings:false];
-    [calculator updateBalances:false];
+    [calculator updateRatings:true];
+    [calculator updateBalances:true];
 }
 
 /**
