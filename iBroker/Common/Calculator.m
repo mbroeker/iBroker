@@ -27,6 +27,9 @@
 
     // Die standardmäßige Börse
     NSString *defaultExchange;
+
+    // Mit oder ohne Abfrage
+    NSNumber *tradingWithConfirmation;
 }
 
 /**
@@ -135,6 +138,14 @@
             defaultExchange = EXCHANGE_POLONIEX;
 
             [defaults setObject:defaultExchange forKey:@"defaultExchange"];
+        }
+
+        tradingWithConfirmation = [defaults objectForKey:@"tradingWithConfirmation"];
+
+        if (tradingWithConfirmation == nil) {
+            tradingWithConfirmation = [NSNumber numberWithBool:true];
+
+            [defaults setObject:tradingWithConfirmation forKey:@"tradingWithConfirmation"];
         }
 
         [defaults synchronize];
@@ -677,7 +688,7 @@
 - (void)autoBuyAll:(NSString*)cAsset {
     static NSString *lastBoughtAsset = @"";
 
-    double ask = -1;
+    double ask = (tradingWithConfirmation) ? 0 : -1;
     if ([cAsset isEqualToString:lastBoughtAsset]) {
         ask = 0;
     }
@@ -692,7 +703,8 @@
  * @param cAsset
  */
 - (void)autoSellAll:(NSString*)cAsset {
-    [self autoSell:cAsset amount:-1];
+    double ask = (tradingWithConfirmation) ? 0 : -1;
+    [self autoSell:cAsset amount:ask];
 }
 
 /**
