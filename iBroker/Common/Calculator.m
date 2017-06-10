@@ -688,7 +688,7 @@
 - (void)autoBuyAll:(NSString*)cAsset {
     static NSString *lastBoughtAsset = @"";
 
-    double ask = (tradingWithConfirmation) ? 0 : -1;
+    double ask = ([tradingWithConfirmation boolValue]) ? 0 : -1;
     if ([cAsset isEqualToString:lastBoughtAsset]) {
         ask = 0;
     }
@@ -703,7 +703,7 @@
  * @param cAsset
  */
 - (void)autoSellAll:(NSString*)cAsset {
-    double ask = (tradingWithConfirmation) ? 0 : -1;
+    double ask = ([tradingWithConfirmation boolValue]) ? 0 : -1;
     [self autoSell:cAsset amount:ask];
 }
 
@@ -757,6 +757,32 @@
 
         if ((effectivePercent > wantedPercent) && (balance > 1.0)) {
             [self autoSellAll:key];
+        }
+    }
+}
+
+/**
+ * Verkaufe Assets mit einer Investor-Rate von "rate"% oder mehr...
+ *
+ * @param rate
+ */
+- (void)sellByInvestors:(double)rate {
+    NSDictionary *currencyUnits = [self realChanges];
+
+    NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
+
+    if (lowest != nil) {
+        NSString *lowestKey = [currencyUnits allKeysForObject:lowest][0];
+        double investorsRate = [currencyUnits[lowestKey] doubleValue];
+
+        double price = [currentSaldo[lowestKey] doubleValue] * [self btcPriceForAsset:lowestKey];
+
+        // Wir verkaufen keinen Sternenstaub...
+        if (price < 0.0001) return;
+
+        // Kaufe auf Grundlage der aktuellen Investoren-Rate
+        if (investorsRate < rate) {
+            if (![lowestKey isEqualToString:EMC2]) [self autoSellAll:lowestKey];
         }
     }
 }
