@@ -34,10 +34,10 @@
     self.xmrField.stringValue = saldoUrls[MONERO];
     self.ltcField.stringValue = saldoUrls[LITECOIN];
     self.gameField.stringValue = saldoUrls[GAMECREDITS];
-    self.emc2Field.stringValue = saldoUrls[EINSTEINIUM];
+    self.emc2Field.stringValue = saldoUrls[STEEMCOIN];
     self.maidField.stringValue = saldoUrls[SAFEMAID];
+    self.btsField.stringValue = saldoUrls[BITSHARES];
     self.scField.stringValue = saldoUrls[SIACOIN];
-    self.dogeField.stringValue = saldoUrls[DOGECOIN];
     
     self.dashboardField.stringValue = saldoUrls[DASHBOARD];
 }
@@ -57,10 +57,10 @@
     saldoUrls[MONERO] = self.xmrField.stringValue;
     saldoUrls[LITECOIN] = self.ltcField.stringValue;
     saldoUrls[GAMECREDITS] = self.gameField.stringValue;
-    saldoUrls[EINSTEINIUM] = self.emc2Field.stringValue;
+    saldoUrls[STEEMCOIN] = self.emc2Field.stringValue;
     saldoUrls[SAFEMAID] = self.maidField.stringValue;
+    saldoUrls[BITSHARES] = self.btsField.stringValue;
     saldoUrls[SIACOIN] = self.scField.stringValue;
-    saldoUrls[DOGECOIN] = self.dogeField.stringValue;
     saldoUrls[DASHBOARD] = self.dashboardField.stringValue;
     
     [calculator saldoUrlsForDictionary:saldoUrls];

@@ -52,7 +52,7 @@
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.dogeField.formatter;
+    formatter  = self.btsField.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 }
@@ -72,10 +72,10 @@
     self.xmrField.doubleValue = 1 / [ratings[XMR] doubleValue];
     self.ltcField.doubleValue = 1 / [ratings[LTC] doubleValue];
     self.gameField.doubleValue = 1 / [ratings[GAME] doubleValue];
-    self.emc2Field.doubleValue = 1 / [ratings[EMC2] doubleValue];
+    self.emc2Field.doubleValue = 1 / [ratings[STEEM] doubleValue];
     self.maidField.doubleValue = 1 / [ratings[MAID] doubleValue];
+    self.btsField.doubleValue = 1 / [ratings[BTS] doubleValue];
     self.scField.doubleValue = 1 / [ratings[SC] doubleValue];
-    self.dogeField.doubleValue = 1 / [ratings[DOGE] doubleValue];
 }
 
 - (void)viewDidLoad {
@@ -101,8 +101,8 @@
     double game = 1 / self.gameField.doubleValue;
     double emc2 = 1 / self.emc2Field.doubleValue;
     double maid = 1 / self.maidField.doubleValue;
+    double bts = 1 / self.btsField.doubleValue;
     double sc = 1 / self.scField.doubleValue;
-    double doge = 1 / self.dogeField.doubleValue;
 
     initialRatings[BTC] = @(btc);
     initialRatings[ZEC] = @(zec);
@@ -110,10 +110,10 @@
     initialRatings[XMR] = @(xmr);
     initialRatings[LTC] = @(ltc);
     initialRatings[GAME] = @(game);
-    initialRatings[EMC2] = @(emc2);
+    initialRatings[STEEM] = @(emc2);
     initialRatings[MAID] = @(maid);
+    initialRatings[BTS] = @(bts);
     initialRatings[SC] = @(sc);
-    initialRatings[DOGE] = @(doge);
 
     [calculator initialRatingsWithDictionary:initialRatings];
 

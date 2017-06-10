@@ -112,7 +112,7 @@
 // Methoden zum Aktualisieren der Ansichten
 - (void)updateOverview;
 - (void)updateTemplateView:(NSString*)label;
-- (void)updateCurrentView:(BOOL)withRatings;
+- (void)updateCurrentView:(BOOL)withTrading;
 - (void)updateBalanceAndRatings;
 
 // Methoden zum Einrichten der Datenstrukturen

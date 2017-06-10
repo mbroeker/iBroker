@@ -16,10 +16,10 @@
 #define XMR @"XMR"
 #define LTC @"LTC"
 #define GAME @"GAME"
-#define EMC2 @"EMC2"
+#define STEEM @"STEEM"
 #define MAID @"MAID"
+#define BTS @"BTS"
 #define SC @"SC"
-#define DOGE @"DOGE"
 
 // ASSET DESCRIPTION KEYS
 #define DASHBOARD @"Dashboard"
@@ -29,10 +29,10 @@
 #define MONERO @"Monero"
 #define LITECOIN @"Litecoin"
 #define GAMECREDITS @"GameCredits"
-#define EINSTEINIUM @"Einsteinium"
+#define STEEMCOIN @"Steem"
 #define SAFEMAID @"Safe Maid Coin"
+#define BITSHARES @"BitShares"
 #define SIACOIN @"Siacoin"
-#define DOGECOIN @"Dogecoin"
 
 // FIAT CURRENCY KEYS
 #define EUR @"EUR"

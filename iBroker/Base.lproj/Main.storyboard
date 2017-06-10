@@ -182,14 +182,14 @@
                         <tabViewItem label="XMR" id="u2t-8g-r97"/>
                         <tabViewItem label="LTC" id="CsD-Nb-58b"/>
                         <tabViewItem label="GAME" id="2nA-jM-YaE"/>
-                        <tabViewItem label="EMC2" id="365-uC-kDT"/>
+                        <tabViewItem label="STEEM" id="365-uC-kDT"/>
                         <tabViewItem label="MAID" id="XBF-ls-CU9"/>
+                        <tabViewItem label="BTS" id="crd-Yr-PwP"/>
                         <tabViewItem label="SC" id="fyY-hI-3wQ"/>
-                        <tabViewItem label="DOGE" id="crd-Yr-PwP"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" wantsLayer="YES" type="noTabsNoBorder" id="RqZ-3s-feC">
-                        <rect key="frame" x="0.0" y="0.0" width="739" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="686" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <shadow key="shadow">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -207,12 +207,12 @@
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="dmo-JG-wLs"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="bsX-5h-FPw"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="E2r-w8-iCK"/>
-                        <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="W3S-9J-Q2P"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="B00-nu-fZu"/>
+                        <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="W3S-9J-Q2P"/>
                     </connections>
                 </tabViewController>
             </objects>
-            <point key="canvasLocation" x="-1082.5" y="-529"/>
+            <point key="canvasLocation" x="-1024" y="-608"/>
         </scene>
         <!--Dash-->
         <scene sceneID="2XX-Xf-dCL">
@@ -661,7 +661,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-a5-QlD">
                                 <rect key="frame" x="139" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="EMC2" id="ZZE-y3-oSn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="STEEM" id="ZZE-y3-oSn">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -678,14 +678,6 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
-                                <rect key="frame" x="377" y="337" width="120" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="SC" id="boE-Qp-w9B">
-                                    <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
-                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-ah-ZxK">
                                 <rect key="frame" x="18" y="337" width="117" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="GAME" id="OCr-RY-wwn">
@@ -696,7 +688,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-Am-VQE">
                                 <rect key="frame" x="500" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="DOGE" id="pcz-BA-oQv">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="SC" id="pcz-BA-oQv">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -844,6 +836,14 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
+                                <rect key="frame" x="377" y="337" width="120" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="BTS" id="boE-Qp-w9B">
+                                    <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="VrK-PC-fjo" secondAttribute="trailing" constant="-2" id="0UM-86-Y1p"/>

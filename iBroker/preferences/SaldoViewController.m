@@ -48,11 +48,11 @@
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.scField.formatter;
+    formatter  = self.btsField.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.dogeField.formatter;
+    formatter  = self.scField.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 }
@@ -72,10 +72,10 @@
     self.xmrField.doubleValue = [currentSaldo[XMR] doubleValue];
     self.ltcField.doubleValue = [currentSaldo[LTC] doubleValue];
     self.gameField.doubleValue = [currentSaldo[GAME] doubleValue];
-    self.emc2Field.doubleValue = [currentSaldo[EMC2] doubleValue];
+    self.emc2Field.doubleValue = [currentSaldo[STEEM] doubleValue];
     self.maidField.doubleValue = [currentSaldo[MAID] doubleValue];
+    self.btsField.doubleValue = [currentSaldo[BTS] doubleValue];
     self.scField.doubleValue = [currentSaldo[SC] doubleValue];
-    self.dogeField.doubleValue = [currentSaldo[DOGE] doubleValue];
 }
 
 - (void)viewDidLoad {
@@ -101,8 +101,8 @@
     double game = self.gameField.doubleValue;
     double emc2 = self.emc2Field.doubleValue;
     double maid = self.maidField.doubleValue;
+    double bts = self.btsField.doubleValue;
     double sc = self.scField.doubleValue;
-    double doge = self.dogeField.doubleValue;
 
     currentSaldo[BTC] = @(btc);
     currentSaldo[ZEC] = @(zec);
@@ -110,10 +110,10 @@
     currentSaldo[XMR] = @(xmr);
     currentSaldo[LTC] = @(ltc);
     currentSaldo[GAME] = @(game);
-    currentSaldo[EMC2] = @(emc2);
+    currentSaldo[STEEM] = @(emc2);
     currentSaldo[MAID] = @(maid);
+    currentSaldo[BTS] = @(bts);
     currentSaldo[SC] = @(sc);
-    currentSaldo[DOGE] = @(doge);
 
     [calculator currentSaldoForDictionary:currentSaldo];
 

@@ -18,8 +18,8 @@
 @property (strong) IBOutlet NSTextField *gameField;
 @property (strong) IBOutlet NSTextField *emc2Field;
 @property (strong) IBOutlet NSTextField *maidField;
+@property (strong) IBOutlet NSTextField *btsField;
 @property (strong) IBOutlet NSTextField *scField;
-@property (strong) IBOutlet NSTextField *dogeField;
 @property (strong) IBOutlet NSTextField *dashboardField;
 
 - (IBAction)saveAction:(id)sender;

@@ -90,10 +90,10 @@
                 LTC: @0.0,
                 XMR: @0.0,
                 GAME: @0.0,
-                EMC2: @0.0,
+                STEEM: @0.0,
                 MAID: @0.0,
                 SC: @0.0,
-                DOGE: @0.0,
+                BTS: @0.0,
             } mutableCopy];
 
             [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
@@ -110,10 +110,10 @@
                 LITECOIN: @"https://chainz.cryptoid.info/ltc/",
                 MONERO: @"https://moneroblocks.info",
                 GAMECREDITS: @"https://blockexplorer.gamecredits.com",
-                EINSTEINIUM: @"https://prohashing.com/explorer/Einsteinium/",
+                STEEMCOIN: @"https://steem.io",
                 SAFEMAID: @"https://maidsafe.net/features.html",
+                BITSHARES: @"https://www.cryptofresh.com",
                 SIACOIN: @"https://explore.sia.tech",
-                DOGECOIN: @"https://dogechain.info"
             } mutableCopy];
 
             [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
@@ -126,10 +126,10 @@
             XMR: @"BTC_XMR",
             LTC: @"BTC_LTC",
             GAME: @"BTC_GAME",
-            EMC2: @"BTC_EMC2",
+            STEEM: @"BTC_STEEM",
             MAID: @"BTC_MAID",
             SC: @"BTC_SC",
-            DOGE: @"BTC_DOGE"
+            BTS: @"BTC_BTS"
         };
 
         defaultExchange = [defaults objectForKey:@"defaultExchange"];
@@ -228,11 +228,20 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[EINSTEINIUM]) {
-        saldoUrls[EINSTEINIUM] = @"https://prohashing.com/explorer/Einsteinium/";
+    if (!saldoUrls[STEEMCOIN]) {
+        saldoUrls[STEEMCOIN] = @"https://steem.io";
 
-        currentSaldo[EMC2] = @0.0;
-        initialRatings[EMC2] = @0.0;
+        currentSaldo[STEEM] = @0.0;
+        initialRatings[STEEM] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[BITSHARES]) {
+        saldoUrls[BITSHARES] = @"https://www.cryptofresh.com";
+
+        currentSaldo[BTS] = @0.0;
+        initialRatings[BTS] = @0.0;
 
         mustUpdate = true;
     }
@@ -242,15 +251,6 @@
 
         currentSaldo[SC] = @0.0;
         initialRatings[SC] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[DOGECOIN]) {
-        saldoUrls[DOGECOIN] = @"https://dogechain.info";
-
-        currentSaldo[GAME] = @0.0;
-        initialRatings[GAME] = @0.0;
 
         mustUpdate = true;
     }
@@ -271,6 +271,26 @@
 
         [currentSaldo removeObjectForKey:@"STR"];
         [initialRatings removeObjectForKey:@"STR"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für Einsteinium
+    if (saldoUrls[@"Einsteinium"]) {
+        [saldoUrls removeObjectForKey:@"Einsteinium"];
+
+        [currentSaldo removeObjectForKey:@"EMC2"];
+        [initialRatings removeObjectForKey:@"EMC2"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für Dogecoin
+    if (saldoUrls[@"Dogecoin"]) {
+        [saldoUrls removeObjectForKey:@"Dogecoin"];
+
+        [currentSaldo removeObjectForKey:@"DOGE"];
+        [initialRatings removeObjectForKey:@"DOGE"];
 
         mustUpdate = true;
     }
@@ -445,10 +465,10 @@
     double ltcRating = [ratings[LTC] doubleValue];
 
     double gameRating = [ratings[GAME] doubleValue];
-    double emc2Rating = [ratings[EMC2] doubleValue];
+    double emc2Rating = [ratings[STEEM] doubleValue];
     double maidRating = [ratings[MAID] doubleValue];
     double scRating = [ratings[SC] doubleValue];
-    double dogeRating = [ratings[DOGE] doubleValue];
+    double dogeRating = [ratings[BTS] doubleValue];
 
     double btc = [currentSaldo[BTC] doubleValue] / btcRating;
     double zec = [currentSaldo[ZEC] doubleValue] / zecRating;
@@ -457,10 +477,10 @@
     double xmr = [currentSaldo[XMR] doubleValue] / xmrRating;
 
     double game = [currentSaldo[GAME] doubleValue] / gameRating;
-    double emc2 = [currentSaldo[EMC2] doubleValue] / emc2Rating;
+    double emc2 = [currentSaldo[STEEM] doubleValue] / emc2Rating;
     double maid = [currentSaldo[MAID] doubleValue] / maidRating;
     double sc = [currentSaldo[SC] doubleValue] / scRating;
-    double doge = [currentSaldo[DOGE] doubleValue] / dogeRating;
+    double doge = [currentSaldo[BTS] doubleValue] / dogeRating;
 
     double sum = btc + zec + eth + ltc + xmr + game + emc2 + maid + sc + doge;
 
@@ -780,9 +800,9 @@
         // Wir verkaufen keinen Sternenstaub...
         if (price < 0.0001) return;
 
-        // Kaufe auf Grundlage der aktuellen Investoren-Rate
+        // Verkaufe auf Grundlage der aktuellen Investoren-Rate
         if (investorsRate < rate) {
-            if (![lowestKey isEqualToString:EMC2]) [self autoSellAll:lowestKey];
+            [self autoSellAll:lowestKey];
         }
     }
 }
@@ -837,7 +857,7 @@
 
         // Kaufe auf Grundlage der aktuellen Investoren-Rate
         if (investorsRate > rate) {
-            if (![highestKey isEqualToString:EMC2]) [self autoBuyAll:highestKey];
+            [self autoBuyAll:highestKey];
         }
     }
 }

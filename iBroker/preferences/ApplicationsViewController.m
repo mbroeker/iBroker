@@ -33,10 +33,10 @@
     self.xmrField.stringValue = applications[MONERO];
     self.ltcField.stringValue = applications[LITECOIN];
     self.gameField.stringValue = applications[GAMECREDITS];
-    self.emc2Field.stringValue = applications[EINSTEINIUM];
+    self.emc2Field.stringValue = applications[STEEMCOIN];
     self.maidField.stringValue = applications[SAFEMAID];
+    self.btsField.stringValue = applications[BITSHARES];
     self.scField.stringValue = applications[SIACOIN];
-    self.dogeField.stringValue = applications[DOGECOIN];
 }
 
 /**
@@ -56,10 +56,10 @@
     applications[MONERO] = self.xmrField.stringValue;
     applications[LITECOIN] = self.ltcField.stringValue;
     applications[GAMECREDITS] = self.gameField.stringValue;
-    applications[EINSTEINIUM] = self.emc2Field.stringValue;
+    applications[STEEMCOIN] = self.emc2Field.stringValue;
     applications[SAFEMAID] = self.maidField.stringValue;
+    applications[BITSHARES] = self.btsField.stringValue;    
     applications[SIACOIN] = self.scField.stringValue;
-    applications[DOGECOIN] = self.dogeField.stringValue;
 
     [defaults setObject:applications forKey:TV_APPLICATIONS];
     [defaults synchronize];

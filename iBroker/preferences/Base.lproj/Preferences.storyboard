@@ -266,7 +266,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-5P-rIV">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EMC2" id="KWp-m3-43w"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STEEM" id="KWp-m3-43w"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -316,7 +316,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="y0c-0i-3ge"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="Uhf-W1-koj">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BitShares" drawsBackground="YES" usesSingleLineMode="YES" id="Uhf-W1-koj">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -330,7 +330,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SQe-CY-G5k">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="HuL-uU-Y9K"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="HuL-uU-Y9K"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -386,7 +386,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z7p-ee-322">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DOGE" id="l4f-sP-XUe"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="l4f-sP-XUe"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -412,7 +412,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="piF-Lr-mLL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dogecoin" drawsBackground="YES" usesSingleLineMode="YES" id="RuW-Ud-lfO">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="RuW-Ud-lfO">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -590,17 +590,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-ab-HuL">
-                                <rect key="frame" x="20" y="300" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="54v-r3-Iwz"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Einsteinium" drawsBackground="YES" usesSingleLineMode="YES" id="UNd-C9-6ou">
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <box wantsLayer="YES" borderWidth="0.0" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-YM-eKC">
                                 <rect key="frame" x="0.0" y="0.0" width="705" height="45"/>
                                 <view key="contentView" id="fB6-dG-Wae">
@@ -641,6 +630,17 @@
                                 <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-ab-HuL">
+                                <rect key="frame" x="20" y="300" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="54v-r3-Iwz"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Steem" drawsBackground="YES" usesSingleLineMode="YES" id="UNd-C9-6ou">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="xvj-1p-yVX" firstAttribute="top" secondItem="dGH-LL-YhM" secondAttribute="bottom" constant="10" id="0yv-6V-iCz"/>
@@ -730,14 +730,14 @@
                     </view>
                     <connections>
                         <outlet property="btcField" destination="xvj-1p-yVX" id="GEc-3m-A8f"/>
+                        <outlet property="btsField" destination="mW1-ga-dFP" id="FzE-XZ-b8O"/>
                         <outlet property="dashboardField" destination="3nA-6O-iNu" id="Tbf-Mw-F8T"/>
-                        <outlet property="dogeField" destination="ucN-pb-9NK" id="qSf-jJ-Tc4"/>
                         <outlet property="emc2Field" destination="IkW-ab-HuL" id="F1r-ow-R87"/>
                         <outlet property="ethField" destination="ruI-L5-pq4" id="kWS-FN-p5R"/>
                         <outlet property="gameField" destination="dZZ-6D-56N" id="ur2-cZ-Xsz"/>
                         <outlet property="ltcField" destination="iyj-d6-v9r" id="lw7-TT-ZTK"/>
                         <outlet property="maidField" destination="uHG-Id-HcW" id="gU0-gy-Hua"/>
-                        <outlet property="scField" destination="mW1-ga-dFP" id="Xaa-pr-P5y"/>
+                        <outlet property="scField" destination="ucN-pb-9NK" id="R4n-Ji-YdJ"/>
                         <outlet property="xmrField" destination="9aT-kr-vUE" id="dOy-go-kpL"/>
                         <outlet property="zecField" destination="yP4-Jx-rRV" id="rEW-Zo-EZo"/>
                     </connections>
@@ -759,7 +759,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="7NC-2w-wq8"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Einsteinium" drawsBackground="YES" usesSingleLineMode="YES" id="tHE-AU-2Wn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Steem" drawsBackground="YES" usesSingleLineMode="YES" id="tHE-AU-2Wn">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="zI9-oj-wS8"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -807,7 +807,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3zs-Ji-zjm">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EMC2" id="nDg-O9-OC2"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STEEM" id="nDg-O9-OC2"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -849,7 +849,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPQ-NM-jU4">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="zbR-ie-Kw7"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="zbR-ie-Kw7"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -870,7 +870,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pIm-f9-BlA">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DOGE" id="kQa-Kv-fto"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="kQa-Kv-fto"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -888,7 +888,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="ndx-8p-gD0"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dogecoin" drawsBackground="YES" usesSingleLineMode="YES" id="HP9-jd-nTC">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="HP9-jd-nTC">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="jY0-MD-Fqt"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1089,7 +1089,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="07K-xJ-uGL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="Ebk-ZE-ra6">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BitShares" drawsBackground="YES" usesSingleLineMode="YES" id="Ebk-ZE-ra6">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="bFj-TD-bod"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1218,13 +1218,13 @@
                     </view>
                     <connections>
                         <outlet property="btcField" destination="fy7-af-oLA" id="CPH-9S-1Vb"/>
-                        <outlet property="dogeField" destination="rKp-ig-gie" id="qMA-3E-khQ"/>
+                        <outlet property="btsField" destination="JG7-CR-7MV" id="dAf-zG-H3Y"/>
                         <outlet property="emc2Field" destination="GkJ-GG-YA5" id="K5c-TF-VEy"/>
                         <outlet property="ethField" destination="FD5-DL-R1y" id="7Qj-Ps-lAn"/>
                         <outlet property="gameField" destination="3Lg-51-dyL" id="S6i-Ts-BD6"/>
                         <outlet property="ltcField" destination="p2n-vP-0sd" id="ECt-e6-XbV"/>
                         <outlet property="maidField" destination="Ww1-Iu-XjU" id="dvN-Ln-KfQ"/>
-                        <outlet property="scField" destination="JG7-CR-7MV" id="Mrh-xq-eur"/>
+                        <outlet property="scField" destination="rKp-ig-gie" id="3rc-T6-pHt"/>
                         <outlet property="xmrField" destination="RVK-kD-OcZ" id="1UJ-sm-1oM"/>
                         <outlet property="zecField" destination="BoR-Xm-fIP" id="OOW-Kh-i1m"/>
                     </connections>
@@ -1442,7 +1442,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JZ6-UC-Q6q">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EMC2" id="tQ1-dq-t8V"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STEEM" id="tQ1-dq-t8V"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1484,7 +1484,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-se-ea2">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="KcX-Q8-2S1"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="KcX-Q8-2S1"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1505,7 +1505,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-TR-kKe">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DOGE" id="vs5-cG-EiY"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="vs5-cG-EiY"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1540,23 +1540,12 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PsG-dv-QDi">
-                                <rect key="frame" x="20" y="61" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="9y5-ch-XKF"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Dogecoin App" drawsBackground="YES" id="Kb6-TM-NP1">
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nrS-2H-i8b">
                                 <rect key="frame" x="20" y="241" width="606" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="V2R-UH-b0D"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Einsteinium App" drawsBackground="YES" id="Bfj-Ty-Lk2">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Steem App" drawsBackground="YES" id="Bfj-Ty-Lk2">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1567,7 +1556,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Rjk-39-Vdw"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Siacoin App" drawsBackground="YES" id="4k1-rI-Zsg">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="BitShares App" drawsBackground="YES" id="4k1-rI-Zsg">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1613,6 +1602,17 @@
                                 <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PsG-dv-QDi">
+                                <rect key="frame" x="20" y="61" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="9y5-ch-XKF"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Siacoin App" drawsBackground="YES" id="Kb6-TM-NP1">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vVx-1t-URd" firstAttribute="top" secondItem="u5r-VG-KIJ" secondAttribute="bottom" constant="12" id="06t-hm-czC"/>
@@ -1695,13 +1695,13 @@
                     </view>
                     <connections>
                         <outlet property="btcField" destination="Exz-54-M6E" id="921-le-u4S"/>
-                        <outlet property="dogeField" destination="PsG-dv-QDi" id="pSe-Kf-FB4"/>
+                        <outlet property="btsField" destination="IJE-uT-ieN" id="ayw-5i-Skc"/>
                         <outlet property="emc2Field" destination="nrS-2H-i8b" id="S8R-bX-9e1"/>
                         <outlet property="ethField" destination="vVx-1t-URd" id="i23-tL-owW"/>
                         <outlet property="gameField" destination="aqF-eP-74d" id="bhk-dr-ZT6"/>
                         <outlet property="ltcField" destination="yYF-oR-cOk" id="eCI-Oc-VN3"/>
                         <outlet property="maidField" destination="Mmf-9A-X0f" id="XZJ-eX-Fv2"/>
-                        <outlet property="scField" destination="IJE-uT-ieN" id="Vby-lY-jhb"/>
+                        <outlet property="scField" destination="PsG-dv-QDi" id="CCe-AV-T3B"/>
                         <outlet property="xmrField" destination="bB1-5L-d7D" id="oCZ-DE-6HX"/>
                         <outlet property="zecField" destination="u5r-VG-KIJ" id="GP5-LI-yFF"/>
                     </connections>
@@ -1723,7 +1723,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0KP-4p-lFT"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Einsteinium" drawsBackground="YES" usesSingleLineMode="YES" id="x9d-Pv-IbW">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Steem" drawsBackground="YES" usesSingleLineMode="YES" id="x9d-Pv-IbW">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="cre-4k-7AJ"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1771,7 +1771,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Hi-9t-dBr">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EMC2" id="YxG-PI-AIf"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STEEM" id="YxG-PI-AIf"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1813,7 +1813,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J85-ds-syd">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="xkE-dM-DJq"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="xkE-dM-DJq"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1834,7 +1834,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r3V-Qw-D4O">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DOGE" id="6uK-2R-nR1"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="6uK-2R-nR1"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1852,7 +1852,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="TrW-mT-RfY"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dogecoin" drawsBackground="YES" usesSingleLineMode="YES" id="hV8-iR-9BS">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="hV8-iR-9BS">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Tl1-bL-24J"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2053,7 +2053,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="g55-b4-fra"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="Vtk-eA-CZd">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BitShares" drawsBackground="YES" usesSingleLineMode="YES" id="Vtk-eA-CZd">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="RSj-2j-5Hu"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2182,13 +2182,13 @@
                     </view>
                     <connections>
                         <outlet property="btcField" destination="nD9-iI-Zcw" id="Bye-g5-9Vq"/>
-                        <outlet property="dogeField" destination="vWl-Us-NZV" id="d1A-KF-HfU"/>
+                        <outlet property="btsField" destination="zuk-HX-7A6" id="QLm-rc-Dgq"/>
                         <outlet property="emc2Field" destination="zXz-6L-44P" id="a2G-R5-gBe"/>
                         <outlet property="ethField" destination="sdu-oF-aRl" id="yUh-zp-D5b"/>
                         <outlet property="gameField" destination="cXF-SE-Sgc" id="KaD-fA-TzX"/>
                         <outlet property="ltcField" destination="PXY-IU-PGB" id="cwB-OX-Mwf"/>
                         <outlet property="maidField" destination="Whe-aw-uUD" id="bPc-g4-pgc"/>
-                        <outlet property="scField" destination="zuk-HX-7A6" id="yPm-fH-2SN"/>
+                        <outlet property="scField" destination="vWl-Us-NZV" id="ODk-3g-brZ"/>
                         <outlet property="xmrField" destination="Ye8-ic-IKd" id="wf0-Z8-tdG"/>
                         <outlet property="zecField" destination="BEe-ey-eAH" id="6fx-eO-sVo"/>
                     </connections>
@@ -2378,13 +2378,13 @@
     </scenes>
     <resources>
         <image name="BTC" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="DOGE" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="EMC2" width="181.60000610351562" height="181.60000610351562"/>
+        <image name="BTS" width="102.40000152587891" height="102.40000152587891"/>
         <image name="ETH" width="102.40000152587891" height="102.40000152587891"/>
         <image name="GAME" width="128" height="128"/>
         <image name="LTC" width="102.40000152587891" height="102.40000152587891"/>
         <image name="MAID" width="181.60000610351562" height="181.60000610351562"/>
         <image name="SC" width="181.60000610351562" height="181.60000610351562"/>
+        <image name="STEEM" width="102.40000152587891" height="102.40000152587891"/>
         <image name="USD" width="102.40000152587891" height="102.40000152587891"/>
         <image name="XMR" width="102.40000152587891" height="102.40000152587891"/>
         <image name="ZEC" width="227" height="227"/>
