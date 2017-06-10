@@ -214,7 +214,15 @@
 
     header[@"Sign"] = [Brokerage hmac:[Brokerage urlEncode:payload] withSecret:secret];
 
-    return [Brokerage jsonRequest:jsonURL withPayload:payload andHeader:header];
+    NSDictionary *data = [Brokerage jsonRequest:jsonURL withPayload:payload andHeader:header];
+
+    if (data == nil) {
+        return @{
+            @"error": @"API-ERROR: Cannot fetch Data from Poloniex"
+        };
+    }
+
+    return data;
 }
 
 /**
@@ -239,6 +247,12 @@
     header[@"apisign"] = [Brokerage hmac:[Brokerage urlStringEncode:jsonURL] withSecret:secret];
 
     NSDictionary *data = [Brokerage jsonRequest:jsonURL withPayload:nil andHeader:header];
+
+    if (data == nil) {
+        return @{
+            @"error": @"API-ERROR: Cannot fetch Data from Bittrex"
+        };
+    }
 
     if ([data[@"success"] intValue] == 0) {
         return @{
