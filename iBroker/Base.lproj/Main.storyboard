@@ -474,7 +474,7 @@
                                     <constraint firstAttribute="height" constant="22" id="CK1-Qv-uyD"/>
                                     <constraint firstAttribute="width" constant="80" id="di1-tq-muX"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="bevel" title="EUR" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="V0C-0w-ftI" id="5aw-EO-k6d">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" id="5aw-EO-k6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="18" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <menu key="menu" id="DE0-0d-oDd">
@@ -497,19 +497,19 @@
                                             <menuItem title="GAME" keyEquivalent="g" id="3wO-MX-Z0o">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="EMC2" keyEquivalent="r" id="fJH-dY-dZy">
+                                            <menuItem title="STEEM" keyEquivalent="d" id="fJH-dY-dZy">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
                                             <menuItem title="MAID" keyEquivalent="m" id="dbm-ua-9hY">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="SC" keyEquivalent="s" id="hz2-LI-dyb">
+                                            <menuItem title="BTS" keyEquivalent="i" id="hz2-LI-dyb">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="DOGE" keyEquivalent="d" id="Bxm-K1-uLk">
+                                            <menuItem title="SC" keyEquivalent="s" id="Bxm-K1-uLk">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="EUR" state="on" keyEquivalent="e" id="V0C-0w-ftI">
+                                            <menuItem title="EUR" keyEquivalent="e" id="V0C-0w-ftI">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
                                             <menuItem title="USD" keyEquivalent="u" id="Trz-bG-51a">

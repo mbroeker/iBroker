@@ -87,9 +87,6 @@ typedef struct DASHBOARD_VARS {
             // Automatisches Kaufen von Assets mit einer Investment-Rate von 3.0% oder mehr
             [calculator buyByInvestors:3.0];
 
-            // Automatisches Kaufen von Assets mit einer Exchange-Rate von 2.5% oder mehr
-            [calculator buyWithProfitInPercent:2.5];
-
         }
     }
 
@@ -1148,17 +1145,28 @@ typedef struct DASHBOARD_VARS {
     NSMutableDictionary *currentRatings = [calculator currentRatings];
 
     double exchangeFactor = ([exchangeUnit isEqualToString:fiatCurrencies[0]]) ? 1 : [currentRatings[exchangeUnit] doubleValue];
+    double amount = self.rateInputLabel.doubleValue;
 
     if ([self.rateInputLabel.stringValue isEqualToString:@""]) {
-        // keine Eingabe, reaktiviere den Placeholder!
-        self.rateOutputLabel.stringValue = @"";
-        return;
+        amount = 1;
     }
 
-    double amount = self.rateInputLabel.doubleValue;
     double result = amount / [currentRatings[cAsset] doubleValue] * exchangeFactor;
 
-    self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:8]];
+    if ([self.rateInputLabel.stringValue isEqualToString:@""]) {
+
+        // Lösche den Text
+        self.rateOutputLabel.stringValue = @"";
+
+        // Aktualisiere den Placeholder
+        self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:8]];
+
+        // und fertig
+        return;
+
+    } else {
+        self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:8]];
+    }
 
     // EUR / USD - das kann nicht direkt gehandelt werden
     if ([exchangeUnit isEqualToString:USD] || [exchangeUnit isEqualToString:EUR]) {
