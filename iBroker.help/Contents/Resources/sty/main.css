@@ -61,7 +61,9 @@ body {
 }
 
 table.colors,
-table.colors tr {
+table.colors tr,
+table.status,
+table.status tr {
   width: 70%;
 }
 
@@ -134,11 +136,13 @@ table.colors tr {
   font-weight: bold;
 }
 
-table.colors {
+table.colors,
+table.status {
   font-weight: bold;
 }
 
-table.colors tr td {
+table.colors tr td,
+ table.status tr td {
   background-color: white;
 
   padding: 10px;
