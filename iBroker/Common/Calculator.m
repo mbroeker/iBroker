@@ -328,7 +328,7 @@
  * @param asset
  * @param btcUpdate
  */
-- (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL) btcUpdate {
+- (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL)btcUpdate {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     if (currentRatings == nil || initialRatings == nil) {
@@ -625,12 +625,12 @@
     NSDictionary *order = [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount onExchange:defaultExchange];
 
     if (order[@"orderNumber"]) {
-        [self updateCheckpointForAsset:cAsset withBTCUpdate:false];
+        [self updateCheckpointForAsset:cAsset withBTCUpdate:true];
     }
 }
 
 /**
- * Automatisches Kaufen...
+ * Automatisches Verkaufen...
  *
  * @param cAsset
  * @param wantedAmount

@@ -1179,7 +1179,7 @@ typedef struct DASHBOARD_VARS {
     }
 
     if ([cAsset isEqualToString:BTC]) {
-        // Die Leute können mit (BTC) (cAsset) kaufen
+        // Die Leute können mit (BTC) (exchangeUnit) kaufen
         if (self.instantTrading.state == NSOnState)  {
             [calculator autoBuy:exchangeUnit amount:result];
             self.exchangeSelection.title = fiatCurrencies[0];
