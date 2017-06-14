@@ -62,6 +62,11 @@
     // alle deaktivieren
     self.eurUSDItem.state = NSOffState;
     self.usdEURItem.state = NSOffState;
+    self.eurGBPItem.state = NSOffState;
+
+    self.usdGBPItem.state = NSOffState;
+    self.usdCNYItem.state = NSOffState;
+    self.usdJPYItem.state = NSOffState;
 
     // und dann den einzelnen selektierens
     if ([fiatCurrencies[0] isEqualToString:EUR] &&
@@ -69,6 +74,20 @@
 
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:EUR]) self.usdEURItem.state = NSOnState;
+
+    // und dann den einzelnen selektierens
+    if ([fiatCurrencies[0] isEqualToString:EUR] &&
+        [fiatCurrencies[1] isEqualToString:GBP]) self.eurGBPItem.state = NSOnState;
+
+    if ([fiatCurrencies[0] isEqualToString:USD] &&
+        [fiatCurrencies[1] isEqualToString:GBP]) self.usdGBPItem.state = NSOnState;
+
+    // und dann den einzelnen selektierens
+    if ([fiatCurrencies[0] isEqualToString:USD] &&
+        [fiatCurrencies[1] isEqualToString:CNY]) self.usdCNYItem.state = NSOnState;
+
+    if ([fiatCurrencies[0] isEqualToString:USD] &&
+        [fiatCurrencies[1] isEqualToString:JPY]) self.usdJPYItem.state = NSOnState;
 }
 
 /**
@@ -94,6 +113,63 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults setObject:@[USD, EUR] forKey:@"fiatCurrencies"];
+    [defaults synchronize];
+
+    [Helper relaunchAfterDelay:0];
+}
+
+
+/**
+ * EUR / GBP
+ *
+ * @param sender
+ */
+- (IBAction)fiateurGBPAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:@[EUR, GBP] forKey:@"fiatCurrencies"];
+    [defaults synchronize];
+
+    [Helper relaunchAfterDelay:0];
+}
+
+/**
+ * USD / GBP
+ *
+ * @param sender
+ */
+- (IBAction)fiatusdGBPAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:@[USD, GBP] forKey:@"fiatCurrencies"];
+    [defaults synchronize];
+
+    [Helper relaunchAfterDelay:0];
+}
+
+/**
+ * USD / CNY
+ *
+ * @param sender
+ */
+- (IBAction)fiatusdCNYAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:@[USD, CNY] forKey:@"fiatCurrencies"];
+    [defaults synchronize];
+
+    [Helper relaunchAfterDelay:0];
+}
+
+/**
+ * USD / JPY
+ *
+ * @param sender
+ */
+- (IBAction)fiatusdJPYAction:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults setObject:@[USD, JPY] forKey:@"fiatCurrencies"];
     [defaults synchronize];
 
     [Helper relaunchAfterDelay:0];

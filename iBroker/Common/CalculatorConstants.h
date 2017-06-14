@@ -38,6 +38,8 @@
 #define EUR @"EUR"
 #define USD @"USD"
 #define GBP @"GBP"
+#define JPY @"JPY"
+#define CNY @"CNY"
 
 // SHARED USER DEFAULTS KEYS
 #define KEY_INITIAL_RATINGS @"initialRatings"

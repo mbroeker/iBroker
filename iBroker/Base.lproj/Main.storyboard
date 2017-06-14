@@ -78,7 +78,32 @@
                                                 <action selector="fiatUSDEURAction:" target="Voe-Tx-rLC" id="4Ee-AX-eC2"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="Xmc-2a-jp0"/>
+                                        <menuItem isSeparatorItem="YES" id="p1n-jf-Pu6"/>
+                                        <menuItem title="EUR/GBP" id="wq8-fJ-wXt">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fiateurGBPAction:" target="Voe-Tx-rLC" id="ZTC-nZ-9St"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="USD/GBP" id="WIR-F9-nF3">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fiatusdGBPAction:" target="Voe-Tx-rLC" id="vU8-QI-Uxb"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="D36-yh-2vN"/>
+                                        <menuItem title="USD/CNY" id="LLJ-aE-aag">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fiatusdCNYAction:" target="Voe-Tx-rLC" id="HuX-MG-xW0"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="USD/JPY" id="TT0-CZ-tlH">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="fiatusdJPYAction:" target="Voe-Tx-rLC" id="DqH-CQ-cda"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -140,9 +165,12 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
                     <connections>
+                        <outlet property="eurGBPItem" destination="wq8-fJ-wXt" id="YDm-kc-g3t"/>
                         <outlet property="eurUSDItem" destination="VL6-TP-Srq" id="lda-dR-a7g"/>
                         <outlet property="menubarItem" destination="7GE-rs-aAs" id="m3T-qM-zjP"/>
+                        <outlet property="usdCNYItem" destination="LLJ-aE-aag" id="OSE-tT-B7Z"/>
                         <outlet property="usdEURItem" destination="k28-GY-y1j" id="2zp-dB-4GN"/>
+                        <outlet property="usdGBPItem" destination="WIR-F9-nF3" id="h3F-6v-6U1"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

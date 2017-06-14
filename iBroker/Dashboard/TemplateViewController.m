@@ -200,6 +200,9 @@ typedef struct DASHBOARD_VARS {
     images = @{
         EUR: [NSImage imageNamed:EUR],
         USD: [NSImage imageNamed:USD],
+        GBP: [NSImage imageNamed:GBP],
+        CNY: [NSImage imageNamed:CNY],
+        JPY: [NSImage imageNamed:JPY],
         BTC: [NSImage imageNamed:BTC],
         ZEC: [NSImage imageNamed:ZEC],
         ETH: [NSImage imageNamed:ETH],
