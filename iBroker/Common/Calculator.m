@@ -465,10 +465,10 @@
     double ltcRating = [ratings[LTC] doubleValue];
 
     double gameRating = [ratings[GAME] doubleValue];
-    double emc2Rating = [ratings[STEEM] doubleValue];
+    double steemRating = [ratings[STEEM] doubleValue];
     double maidRating = [ratings[MAID] doubleValue];
+    double btsRating = [ratings[BTS] doubleValue];
     double scRating = [ratings[SC] doubleValue];
-    double dogeRating = [ratings[BTS] doubleValue];
 
     double btc = [currentSaldo[BTC] doubleValue] / btcRating;
     double zec = [currentSaldo[ZEC] doubleValue] / zecRating;
@@ -477,12 +477,12 @@
     double xmr = [currentSaldo[XMR] doubleValue] / xmrRating;
 
     double game = [currentSaldo[GAME] doubleValue] / gameRating;
-    double emc2 = [currentSaldo[STEEM] doubleValue] / emc2Rating;
+    double steem = [currentSaldo[STEEM] doubleValue] / steemRating;
     double maid = [currentSaldo[MAID] doubleValue] / maidRating;
+    double bts = [currentSaldo[BTS] doubleValue] / btsRating;
     double sc = [currentSaldo[SC] doubleValue] / scRating;
-    double doge = [currentSaldo[BTS] doubleValue] / dogeRating;
 
-    double sum = btc + zec + eth + ltc + xmr + game + emc2 + maid + sc + doge;
+    double sum = btc + zec + eth + ltc + xmr + game + steem + maid + sc + bts;
 
     if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;
@@ -774,6 +774,11 @@
 
         double effectivePercent = percent - btcPercent;
         double balance = currentPrice * [self currentSaldo:key];
+
+        // Security Feature: We want more, not less
+        if (effectivePercent < 0) {
+            continue;
+        }
 
         if ((effectivePercent > wantedPercent) && (balance > 1.0)) {
             [self autoSellAll:key];
