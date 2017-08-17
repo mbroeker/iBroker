@@ -8,7 +8,7 @@
 
 #import "TabViewController.h"
 
-#define DEFAULT_TIMEOUT 60
+#define DEFAULT_TIMEOUT 30
 
 @implementation TabViewController {
 @private

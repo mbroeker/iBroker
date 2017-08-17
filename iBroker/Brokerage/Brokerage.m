@@ -569,7 +569,7 @@
         NSMutableDictionary *innerTicker = [[Brokerage jsonRequest:jsonURL] mutableCopy];
 
         if (!innerTicker[@"result"]) {
-            NSLog(@"API-ERROR: Cannot retrieve ticker data from bittrex");
+            NSLog(@"API-ERROR: Cannot retrieve ticker data from bittrex for key %@", key);
 
             return nil;
         }

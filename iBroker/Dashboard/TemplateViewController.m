@@ -78,14 +78,14 @@ typedef struct DASHBOARD_VARS {
     if (withTrading) {
         if (calculator.automatedTrading) {
 
-            // Gewinn: Automatisches Verkaufen von Assets mit einer Exchange-Rate von 2.5% oder mehr
-            [calculator sellWithProfitInPercent:2.5];
+            // Gewinn: Automatisches Verkaufen von Assets mit einer Exchange-Rate von 1.25% oder mehr
+            [calculator sellWithProfitInPercent:1.25];
 
-            // Verlust: Automatisches Verkaufen von Assets mit einer Investment-Rate von -1.0% oder weniger
-            [calculator sellByInvestors:-1.0];
+            // Gewinn: Automatisches Kaufen von Assets mit einer Exchange-Rate von 1.25% oder mehr
+            [calculator buyWithProfitInPercent:1.25 andInvestmentRate:0];
 
-            // Automatisches Kaufen von Assets mit einer Investment-Rate von 3.0% oder mehr
-            [calculator buyByInvestors:3.0];
+            // Verlust: Automatisches Verkaufen von Assets mit einer Exchange-Rate von -5.0
+            [calculator sellWithProfitInPercent:-5];
 
         }
     }
@@ -390,7 +390,7 @@ typedef struct DASHBOARD_VARS {
 
 
 /**
- * Setzen des Actions Buttons per Code, da es keinen Sinn macht, dass pro Tab in XCode einzurichten...
+ * Setzen des Action Buttons per Code, da es keinen Sinn macht, dass pro Tab in XCode einzurichten...
  */
 - (void)viewWillAppear {
     [_cryptoUnits setTarget:self];
@@ -408,7 +408,7 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
- * Markieren der Gewinner obersten Leiste
+ * Markieren der Gewinner der obersten Leiste
  */
 - (void)markGainers {
     // Hole die aktualisierten Dictionaries
@@ -657,7 +657,7 @@ typedef struct DASHBOARD_VARS {
  */
 - (void)highlightVolumeMismatch:(NSString*)asset {
     // Differenzen größer oder kleiner als -2 Prozent sind relevant
-    double RANGE = 2.0;
+    double RANGE = 0.0;
 
     NSDictionary *realPrices = [calculator realPrices];
     double estimatedPercentChange = [realPrices[asset][RP_CHANGE] doubleValue];

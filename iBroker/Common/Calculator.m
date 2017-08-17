@@ -121,15 +121,15 @@
 
         tickerKeys = @{
             BTC: @"BTC_EUR",
-            ZEC: @"BTC_ZEC",
-            ETH: @"BTC_ETH",
-            XMR: @"BTC_XMR",
-            LTC: @"BTC_LTC",
-            GAME: @"BTC_GAME",
-            STEEM: @"BTC_STEEM",
-            MAID: @"BTC_MAID",
-            SC: @"BTC_SC",
-            BTS: @"BTC_BTS"
+            ZEC: [NSString stringWithFormat:@"BTC_%@", ZEC],
+            ETH: [NSString stringWithFormat:@"BTC_%@", ETH],
+            XMR: [NSString stringWithFormat:@"BTC_%@", XMR],
+            LTC: [NSString stringWithFormat:@"BTC_%@", LTC],
+            GAME: [NSString stringWithFormat:@"BTC_%@", GAME],
+            STEEM: [NSString stringWithFormat:@"BTC_%@", STEEM],
+            MAID: [NSString stringWithFormat:@"BTC_%@", MAID],
+            BTS: [NSString stringWithFormat:@"BTC_%@", BTS],
+            SC: [NSString stringWithFormat:@"BTC_%@", SC],
         };
 
         defaultExchange = [defaults objectForKey:@"defaultExchange"];
@@ -482,7 +482,7 @@
     double bts = [currentSaldo[BTS] doubleValue] / btsRating;
     double sc = [currentSaldo[SC] doubleValue] / scRating;
 
-    double sum = btc + zec + eth + ltc + xmr + game + steem + maid + sc + bts;
+    double sum = btc + zec + eth + ltc + xmr + game + steem + maid + bts + sc;
 
     if ([currency isEqualToString:fiatCurrencies[0]]) {
         return sum;
@@ -696,7 +696,7 @@
     NSDictionary *order = [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount onExchange:defaultExchange];
 
     if (order[@"orderNumber"]) {
-        [self updateCheckpointForAsset:BTC withBTCUpdate:false];
+        [self updateCheckpointForAsset:cAsset withBTCUpdate:false];
     }
 }
 
@@ -709,12 +709,15 @@
     static NSString *lastBoughtAsset = @"";
 
     double ask = ([tradingWithConfirmation boolValue]) ? 0 : -1;
-    if ([cAsset isEqualToString:lastBoughtAsset]) {
-        ask = 0;
+    if ([cAsset isEqualToString:lastBoughtAsset]) {        
+       // ask = 0;
     }
 
     [self autoBuy:cAsset amount:ask];
     lastBoughtAsset = cAsset;
+
+    // Aktualisiere alle Checkpoints
+    [self updateCheckpointForAsset:DASHBOARD withBTCUpdate:true];
 }
 
 /**
@@ -725,6 +728,9 @@
 - (void)autoSellAll:(NSString*)cAsset {
     double ask = ([tradingWithConfirmation boolValue]) ? 0 : -1;
     [self autoSell:cAsset amount:ask];
+
+    // Aktualisiere alle Checkpoints
+    [self updateCheckpointForAsset:DASHBOARD withBTCUpdate:true];
 }
 
 /**
@@ -760,6 +766,7 @@
  * @param wantedPercent
  */
 - (void)sellWithProfitInPercent:(double)wantedPercent {
+
     for (id key in currentSaldo) {
         if ([key isEqualToString:BTC]) continue;
         if ([key isEqualToString:fiatCurrencies[0]]) continue;
@@ -772,15 +779,15 @@
         double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
         double percent = [checkpoint[CP_PERCENT] doubleValue];
 
-        double effectivePercent = percent - btcPercent;
+        double effectiveBTCPercent = percent - btcPercent;
         double balance = currentPrice * [self currentSaldo:key];
 
         // Security Feature: We want more, not less
-        if (effectivePercent < 0) {
+        if (effectiveBTCPercent < 0) {
             continue;
         }
 
-        if ((effectivePercent > wantedPercent) && (balance > 1.0)) {
+        if ((effectiveBTCPercent > wantedPercent) && (balance > 1.0)) {
             [self autoSellAll:key];
         }
     }
@@ -817,8 +824,9 @@
  *
  * @param wantedPercent
  */
-- (void)buyWithProfitInPercent:(double)wantedPercent {
+- (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double) rate {
     double balance = [self currentSaldo:BTC];
+    NSDictionary *realChanges = [self realChanges];
 
     if (balance < 0.0001) return;
 
@@ -834,14 +842,20 @@
         double percent = [checkpoint[CP_PERCENT] doubleValue];
 
         double effectivePercent = btcPercent - percent;
+        double realChange = [realChanges[key] doubleValue];
 
         // Security Feature: We want more, not less
         if (effectivePercent < 0) {
             continue;
         }
 
+        // Trade only with a higher Price/Volume Ratio
+        if (rate > realChange) {
+            continue;
+        }
+
         if (effectivePercent > wantedPercent) {
-            [self autoBuyAll:key];
+           [self autoBuyAll:key];
         }
     }
 }

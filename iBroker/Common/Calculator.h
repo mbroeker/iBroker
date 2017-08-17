@@ -21,7 +21,7 @@
 - (void)sellWithProfitInEuro:(double)wantedEuros;
 - (void)sellWithProfitInPercent:(double)wantedPercent;
 - (void)sellByInvestors:(double)rate;
-- (void)buyWithProfitInPercent:(double)wantedPercent;
+- (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double) rate;
 - (void)buyByInvestors:(double)rate;
 - (void)buyTheBest;
 - (void)buyTheWorst;
