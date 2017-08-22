@@ -1,5 +1,5 @@
 //
-//  Poloniex.m
+//  Brokerage.m
 //  iBroker
 //
 //  Created by Markus Bröker on 11.05.17.

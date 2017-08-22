@@ -68,21 +68,21 @@
     self.usdCNYItem.state = NSOffState;
     self.usdJPYItem.state = NSOffState;
 
-    // und dann den einzelnen selektierens
+    // und dann den einzelnen selektieren
     if ([fiatCurrencies[0] isEqualToString:EUR] &&
         [fiatCurrencies[1] isEqualToString:USD]) self.eurUSDItem.state = NSOnState;
 
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:EUR]) self.usdEURItem.state = NSOnState;
 
-    // und dann den einzelnen selektierens
+    // und dann den einzelnen selektieren
     if ([fiatCurrencies[0] isEqualToString:EUR] &&
         [fiatCurrencies[1] isEqualToString:GBP]) self.eurGBPItem.state = NSOnState;
 
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:GBP]) self.usdGBPItem.state = NSOnState;
 
-    // und dann den einzelnen selektierens
+    // und dann den einzelnen selektieren
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:CNY]) self.usdCNYItem.state = NSOnState;
 
