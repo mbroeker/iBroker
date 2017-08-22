@@ -85,7 +85,7 @@ typedef struct DASHBOARD_VARS {
             [calculator buyWithProfitInPercent:1.25 andInvestmentRate:0];
 
             // Verlust: Automatisches Verkaufen von Assets mit einer Exchange-Rate von -5.0
-            [calculator sellWithProfitInPercent:-5];
+            //[calculator sellWithProfitInPercent:-5];
 
         }
     }
@@ -338,18 +338,6 @@ typedef struct DASHBOARD_VARS {
 
     if (applications[@"Dogecoin"]) {
         [applications removeObjectForKey:@"Dogecoin"];
-
-        mustUpdate = true;
-    }
-
-    if (applications[@"Ripple"]) {
-        [applications removeObjectForKey:@"Ripple"];
-
-        mustUpdate = true;
-    }
-
-    if (applications[@"Stellar Lumens"]) {
-        [applications removeObjectForKey:@"Stellar Lumens"];
 
         mustUpdate = true;
     }

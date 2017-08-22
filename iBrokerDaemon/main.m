@@ -144,11 +144,11 @@ void usage(const char *name) {
     printf("  --xmr ANZAHL\t\tSetze den aktuellen Saldo für Monero\n");
     printf("  --ltc ANZAHL\t\tSetze den aktuellen Saldo für Lightcoins\n");
 
-    printf("  --game ANZAHL\t\tSetze den aktuellen Saldo für Gamecoins\n");
-    printf("  --steem ANZAHL\tSetze den aktuellen Saldo für Steemcoins\n");
-    printf("  --maid ANZAHL\t\tSetze den aktuellen Saldo für Safe Maid Coins\n");
-    printf("  --bts ANZAHL\t\tSetze den aktuellen Saldo für BitShares\n");
-    printf("  --sc ANZAHL\t\tSetze den aktuellen Saldo für SIA Coins\n\n");
+    printf("  --dash ANZAHL\t\tSetze den aktuellen Saldo für Dash\n");
+    printf("  --dcr ANZAHL\tSetze den aktuellen Saldo für Decred\n");
+    printf("  --xrp ANZAHL\t\tSetze den aktuellen Saldo für Ripple\n");
+    printf("  --strat ANZAHL\t\tSetze den aktuellen Saldo für Stratis\n");
+    printf("  --xem ANZAHL\t\tSetze den aktuellen Saldo für XEM Coins\n\n");
 
     printf("ANZAHL im amerikanische Dezimalformat (0.5 anstatt 0,5)\n\n");
 
@@ -251,35 +251,35 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
             update = true;
         }
 
-        if (!strcmp(argv[i], "--game")) {
+        if (!strcmp(argv[i], "--dash")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:GAME withDouble:value];
             [calculator updateCheckpointForAsset:GAME withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--steem")) {
+        if (!strcmp(argv[i], "--dcr")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:STEEM withDouble:value];
             [calculator updateCheckpointForAsset:STEEM withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--maid")) {
+        if (!strcmp(argv[i], "--xrp")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:MAID withDouble:value];
             [calculator updateCheckpointForAsset:MAID withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--bts")) {
+        if (!strcmp(argv[i], "--strat")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:BTS withDouble:value];
             [calculator updateCheckpointForAsset:BTS withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--sc")) {
+        if (!strcmp(argv[i], "--xem")) {
             value = atof(argv[i + 1]);
             [calculator currentSaldo:SC withDouble:value];
             [calculator updateCheckpointForAsset:SC withBTCUpdate:false];

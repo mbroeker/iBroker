@@ -231,7 +231,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="fi9-h4-0Qh"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="GameCredits" drawsBackground="YES" usesSingleLineMode="YES" id="RP5-Jd-HMa">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dash" drawsBackground="YES" usesSingleLineMode="YES" id="RP5-Jd-HMa">
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -245,7 +245,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="88L-JM-T3s">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="GAME" id="Ceb-9i-PmA"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DASH" id="Ceb-9i-PmA"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -266,7 +266,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1OV-5P-rIV">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="KWp-m3-43w"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DCR" id="KWp-m3-43w"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -287,7 +287,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ksM-sK-uB4">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="Cls-2s-Fxe"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XRP" id="Cls-2s-Fxe"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -316,7 +316,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="y0c-0i-3ge"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BitShares" drawsBackground="YES" usesSingleLineMode="YES" id="Uhf-W1-koj">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="Uhf-W1-koj">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -330,7 +330,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SQe-CY-G5k">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="HuL-uU-Y9K"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="HuL-uU-Y9K"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -386,7 +386,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z7p-ee-322">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="l4f-sP-XUe"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="l4f-sP-XUe"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -412,7 +412,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="piF-Lr-mLL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="RuW-Ud-lfO">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="New Economy" drawsBackground="YES" usesSingleLineMode="YES" id="RuW-Ud-lfO">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -423,7 +423,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="H53-NO-fPO"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Nem" drawsBackground="YES" usesSingleLineMode="YES" id="5YG-lv-agQ">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ripple" drawsBackground="YES" usesSingleLineMode="YES" id="5YG-lv-agQ">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -434,7 +434,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="mnU-Qq-K1G"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="ZCash" drawsBackground="YES" usesSingleLineMode="YES" id="B0y-md-mxm">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BC Cash" drawsBackground="YES" usesSingleLineMode="YES" id="B0y-md-mxm">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -481,7 +481,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="baY-Q2-NGh">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ZEC" id="5ZC-Mn-eS2"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BCC" id="5ZC-Mn-eS2"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -579,17 +579,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ruI-L5-pq4">
-                                <rect key="frame" x="20" y="540" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="XyH-gq-2zO"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ethereum" drawsBackground="YES" usesSingleLineMode="YES" id="tpA-LC-ioP">
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <box wantsLayer="YES" borderWidth="0.0" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Hzl-YM-eKC">
                                 <rect key="frame" x="0.0" y="0.0" width="705" height="45"/>
                                 <view key="contentView" id="fB6-dG-Wae">
@@ -635,7 +624,18 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="54v-r3-Iwz"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="UNd-C9-6ou">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Decred" drawsBackground="YES" usesSingleLineMode="YES" id="UNd-C9-6ou">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ruI-L5-pq4">
+                                <rect key="frame" x="20" y="540" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="XyH-gq-2zO"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ethereum" drawsBackground="YES" usesSingleLineMode="YES" id="tpA-LC-ioP">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -759,7 +759,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="7NC-2w-wq8"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="tHE-AU-2Wn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="DCR" drawsBackground="YES" usesSingleLineMode="YES" id="tHE-AU-2Wn">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="zI9-oj-wS8"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -771,7 +771,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RQn-py-sr6"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="GameCredits" drawsBackground="YES" usesSingleLineMode="YES" id="oKV-9R-d0T">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dash" drawsBackground="YES" usesSingleLineMode="YES" id="oKV-9R-d0T">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Cgy-mR-5NS"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -786,7 +786,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qGI-9B-wJC">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="GAME" id="hUf-qk-Xv8"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DASH" id="hUf-qk-Xv8"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -807,7 +807,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3zs-Ji-zjm">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="nDg-O9-OC2"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DCR" id="nDg-O9-OC2"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -828,7 +828,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fpb-bS-vhE">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="Pdb-sK-Eff"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XRP" id="Pdb-sK-Eff"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -849,7 +849,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPQ-NM-jU4">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="zbR-ie-Kw7"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="zbR-ie-Kw7"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -870,7 +870,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pIm-f9-BlA">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="kQa-Kv-fto"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="kQa-Kv-fto"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -888,7 +888,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="ndx-8p-gD0"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="HP9-jd-nTC">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="New Economy" drawsBackground="YES" usesSingleLineMode="YES" id="HP9-jd-nTC">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="jY0-MD-Fqt"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -900,7 +900,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="zoZ-lc-OhD"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Nem" drawsBackground="YES" usesSingleLineMode="YES" id="erx-8a-Za1">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ripple" drawsBackground="YES" usesSingleLineMode="YES" id="erx-8a-Za1">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="fkU-1h-DRw"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -936,7 +936,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="75Y-cr-pfh">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ZEC" id="bcP-nS-M0n"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BCC" id="bcP-nS-M0n"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1053,7 +1053,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="c3Q-sS-zfy"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="ZCash" drawsBackground="YES" usesSingleLineMode="YES" id="hBo-3e-OUY">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BC Cash" drawsBackground="YES" usesSingleLineMode="YES" id="hBo-3e-OUY">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="qAr-ph-GnL"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1082,18 +1082,6 @@
                                     <font key="font" size="20" name="Krungthep"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JG7-CR-7MV">
-                                <rect key="frame" x="20" y="121" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="07K-xJ-uGL"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BitShares" drawsBackground="YES" usesSingleLineMode="YES" id="Ebk-ZE-ra6">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="bFj-TD-bod"/>
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <box wantsLayer="YES" borderWidth="0.0" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="raU-dA-A2M">
@@ -1136,6 +1124,18 @@
                                 <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JG7-CR-7MV">
+                                <rect key="frame" x="20" y="121" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="07K-xJ-uGL"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="Ebk-ZE-ra6">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="bFj-TD-bod"/>
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="Ww1-Iu-XjU" firstAttribute="bottom" secondItem="w77-QV-0zR" secondAttribute="bottom" id="1W4-xb-hzP"/>
@@ -1270,7 +1270,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W3e-M9-7fm">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ZEC" id="oRS-Od-tZZ"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BCC" id="oRS-Od-tZZ"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1374,7 +1374,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="j5m-Fy-Ikp"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="ZCash App" drawsBackground="YES" id="aDi-3m-noU">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="BC Cash App" drawsBackground="YES" id="aDi-3m-noU">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1421,7 +1421,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-s2-ANT">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="GAME" id="cTZ-5G-8PJ"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DASH" id="cTZ-5G-8PJ"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1442,7 +1442,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JZ6-UC-Q6q">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="tQ1-dq-t8V"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DCR" id="tQ1-dq-t8V"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1463,7 +1463,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="okq-zu-YZZ">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="tJO-AL-ptg"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XRP" id="tJO-AL-ptg"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1484,7 +1484,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-se-ea2">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="KcX-Q8-2S1"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="KcX-Q8-2S1"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1505,7 +1505,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-TR-kKe">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="vs5-cG-EiY"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="vs5-cG-EiY"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1523,7 +1523,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Pgh-ez-2EL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="GameCredits App" drawsBackground="YES" id="xee-Df-Fat">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Dash App" drawsBackground="YES" id="xee-Df-Fat">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1534,7 +1534,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0wT-c3-QUE"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Nem App" drawsBackground="YES" id="Hdy-AC-OGz">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Ripple App" drawsBackground="YES" id="Hdy-AC-OGz">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1545,7 +1545,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="V2R-UH-b0D"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Stratis App" drawsBackground="YES" id="Bfj-Ty-Lk2">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Decred App" drawsBackground="YES" id="Bfj-Ty-Lk2">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1556,7 +1556,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Rjk-39-Vdw"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="BitShares App" drawsBackground="YES" id="4k1-rI-Zsg">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Stratis App" drawsBackground="YES" id="4k1-rI-Zsg">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1607,7 +1607,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="9y5-ch-XKF"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Siacoin App" drawsBackground="YES" id="Kb6-TM-NP1">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="New Economy App" drawsBackground="YES" id="Kb6-TM-NP1">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1723,7 +1723,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0KP-4p-lFT"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="x9d-Pv-IbW">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="DCR" drawsBackground="YES" usesSingleLineMode="YES" id="x9d-Pv-IbW">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="cre-4k-7AJ"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1735,7 +1735,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hPT-u2-9Df"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="GameCredits" drawsBackground="YES" usesSingleLineMode="YES" id="R9X-gl-LZK">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dash" drawsBackground="YES" usesSingleLineMode="YES" id="R9X-gl-LZK">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="S9Y-Ba-pdl"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1750,7 +1750,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="lRv-hh-s4q">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="GAME" id="RSg-c1-ox0"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DASH" id="RSg-c1-ox0"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1771,7 +1771,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6Hi-9t-dBr">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="YxG-PI-AIf"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DCR" id="YxG-PI-AIf"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1792,7 +1792,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dw9-uo-omN">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="mbv-Rf-Kjf"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XRP" id="mbv-Rf-Kjf"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1813,7 +1813,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="J85-ds-syd">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTS" id="xkE-dM-DJq"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="xkE-dM-DJq"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1834,7 +1834,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r3V-Qw-D4O">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="SC" id="6uK-2R-nR1"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="6uK-2R-nR1"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -1852,7 +1852,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="TrW-mT-RfY"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Siacoin" drawsBackground="YES" usesSingleLineMode="YES" id="hV8-iR-9BS">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="New Economy" drawsBackground="YES" usesSingleLineMode="YES" id="hV8-iR-9BS">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Tl1-bL-24J"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1864,7 +1864,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="FFT-Fu-dL0"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Safe Maid Coin" drawsBackground="YES" usesSingleLineMode="YES" id="9QI-UW-gL6">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ripple" drawsBackground="YES" usesSingleLineMode="YES" id="9QI-UW-gL6">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="BWE-RG-meh"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1900,7 +1900,7 @@
                                     <subviews>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WDa-RC-60n">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ZEC" id="LOL-u3-Tkb"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BCC" id="LOL-u3-Tkb"/>
                                         </imageView>
                                     </subviews>
                                     <constraints>
@@ -2017,7 +2017,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="feM-x4-HcM"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="ZCash" drawsBackground="YES" usesSingleLineMode="YES" id="9TR-c9-f1m">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BC Cash" drawsBackground="YES" usesSingleLineMode="YES" id="9TR-c9-f1m">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="ycl-ey-o9V"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2053,7 +2053,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="g55-b4-fra"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BitShares" drawsBackground="YES" usesSingleLineMode="YES" id="Vtk-eA-CZd">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="Vtk-eA-CZd">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="RSj-2j-5Hu"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2377,16 +2377,16 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BCC" width="102.40000152587891" height="102.40000152587891"/>
         <image name="BTC" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="BTS" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="DASH" width="102.40000152587891" height="102.40000152587891"/>
+        <image name="DCR" width="102.40000152587891" height="102.40000152587891"/>
         <image name="ETH" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="GAME" width="128" height="128"/>
         <image name="LTC" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="SC" width="181.60000610351562" height="181.60000610351562"/>
         <image name="STRAT" width="102.40000152587891" height="102.40000152587891"/>
         <image name="USD" width="102.40000152587891" height="102.40000152587891"/>
         <image name="XEM" width="102.40000152587891" height="102.40000152587891"/>
         <image name="XMR" width="102.40000152587891" height="102.40000152587891"/>
-        <image name="ZEC" width="227" height="227"/>
+        <image name="XRP" width="181.60000610351562" height="181.60000610351562"/>
     </resources>
 </document>

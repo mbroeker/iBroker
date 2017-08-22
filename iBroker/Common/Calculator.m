@@ -104,16 +104,16 @@
         if (saldoUrls == nil) {
             saldoUrls = [@{
                 DASHBOARD: @"https://poloniex.com/exchange#btc_xmr",
-                BITCOIN: @"https://blockchain.info/",
-                ZCASH: @"https://explorer.zcha.in",
-                ETHEREUM: @"https://etherscan.io/",
-                LITECOIN: @"https://chainz.cryptoid.info/ltc/",
-                MONERO: @"https://moneroblocks.info",
-                GAMECREDITS: @"https://blockexplorer.gamecredits.com",
-                STEEMCOIN: @"https://steem.io",
-                SAFEMAID: @"https://maidsafe.net/features.html",
-                BITSHARES: @"https://www.cryptofresh.com",
-                SIACOIN: @"https://explore.sia.tech",
+                BITCOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTC lowercaseString]],
+                ZCASH: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ZEC lowercaseString]],
+                ETHEREUM: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ETH lowercaseString]],
+                LITECOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [LTC lowercaseString]],
+                MONERO:[NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [XMR lowercaseString]],
+                GAMECREDITS: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [GAME lowercaseString]],
+                STEEMCOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [STEEM lowercaseString]],
+                SAFEMAID: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [MAID lowercaseString]],
+                BITSHARES: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTS lowercaseString]],
+                SIACOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [SC lowercaseString]],
             } mutableCopy];
 
             [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
@@ -135,7 +135,7 @@
         defaultExchange = [defaults objectForKey:@"defaultExchange"];
 
         if (defaultExchange == nil) {
-            defaultExchange = EXCHANGE_POLONIEX;
+            defaultExchange = EXCHANGE_BITTREX;
 
             [defaults setObject:defaultExchange forKey:@"defaultExchange"];
         }
@@ -165,8 +165,14 @@
 - (void)upgradeAssistant {
     BOOL mustUpdate = false;
 
+    if (!saldoUrls[DASHBOARD]) {
+        saldoUrls[DASHBOARD] = @"";
+
+        mustUpdate = true;
+    }
+
     if (!saldoUrls[BITCOIN]) {
-        saldoUrls[BITCOIN] = @"https://blockchain.info/";
+        saldoUrls[BITCOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTC lowercaseString]];
 
         currentSaldo[BTC] = @0.0;
         initialRatings[BTC] = @0.0;
@@ -175,7 +181,7 @@
     }
 
     if (!saldoUrls[ZCASH]) {
-        saldoUrls[ZCASH] = @"https://explorer.zcha.in";
+        saldoUrls[ZCASH] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ZEC lowercaseString]];
 
         currentSaldo[ZEC] = @0.0;
         initialRatings[ZEC] = @0.0;
@@ -184,7 +190,7 @@
     }
 
     if (!saldoUrls[ETHEREUM]) {
-        saldoUrls[ETHEREUM] = @"https://etherscan.io/";
+        saldoUrls[ETHEREUM] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ETH lowercaseString]];
 
         currentSaldo[ETH] = @0.0;
         initialRatings[ETH] = @0.0;
@@ -193,7 +199,7 @@
     }
 
     if (!saldoUrls[MONERO]) {
-        saldoUrls[MONERO] = @"https://moneroblocks.info";
+        saldoUrls[MONERO] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [XMR lowercaseString]];
 
         currentSaldo[XMR] = @0.0;
         initialRatings[XMR] = @0.0;
@@ -202,7 +208,7 @@
     }
 
     if (!saldoUrls[LITECOIN]) {
-        saldoUrls[LITECOIN] = @"https://chainz.cryptoid.info/ltc/";
+        saldoUrls[LITECOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [LTC lowercaseString]];
 
         currentSaldo[LTC] = @0.0;
         initialRatings[LTC] = @0.0;
@@ -211,7 +217,7 @@
     }
 
     if (!saldoUrls[GAMECREDITS]) {
-        saldoUrls[GAMECREDITS] = @"https://blockexplorer.gamecredits.com";
+        saldoUrls[GAMECREDITS] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [GAME lowercaseString]];
 
         currentSaldo[GAME] = @0.0;
         initialRatings[GAME] = @0.0;
@@ -220,7 +226,7 @@
     }
 
     if (!saldoUrls[SAFEMAID]) {
-        saldoUrls[SAFEMAID] = @"https://maidsafe.net/features.html";
+        saldoUrls[SAFEMAID] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [MAID lowercaseString]];
 
         currentSaldo[MAID] = @0.0;
         initialRatings[MAID] = @0.0;
@@ -229,7 +235,7 @@
     }
 
     if (!saldoUrls[STEEMCOIN]) {
-        saldoUrls[STEEMCOIN] = @"https://steem.io";
+        saldoUrls[STEEMCOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [STEEM lowercaseString]];
 
         currentSaldo[STEEM] = @0.0;
         initialRatings[STEEM] = @0.0;
@@ -238,7 +244,7 @@
     }
 
     if (!saldoUrls[BITSHARES]) {
-        saldoUrls[BITSHARES] = @"https://www.cryptofresh.com";
+        saldoUrls[BITSHARES] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTS lowercaseString]];
 
         currentSaldo[BTS] = @0.0;
         initialRatings[BTS] = @0.0;
@@ -247,30 +253,10 @@
     }
 
     if (!saldoUrls[SIACOIN]) {
-        saldoUrls[SIACOIN] = @"https://explore.sia.tech";
+        saldoUrls[SIACOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [SC lowercaseString]];
 
         currentSaldo[SC] = @0.0;
         initialRatings[SC] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    // Lösche die alten Schlüssel für Ripple
-    if (saldoUrls[@"Ripple"]) {
-        [saldoUrls removeObjectForKey:@"Ripple"];
-
-        [currentSaldo removeObjectForKey:@"XRP"];
-        [initialRatings removeObjectForKey:@"XRP"];
-
-        mustUpdate = true;
-    }
-
-    // Lösche die alten Schlüssel für Stellar Lumens
-    if (saldoUrls[@"Stellar Lumens"]) {
-        [saldoUrls removeObjectForKey:@"Stellar Lumens"];
-
-        [currentSaldo removeObjectForKey:@"STR"];
-        [initialRatings removeObjectForKey:@"STR"];
 
         mustUpdate = true;
     }
@@ -291,6 +277,46 @@
 
         [currentSaldo removeObjectForKey:@"DOGE"];
         [initialRatings removeObjectForKey:@"DOGE"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für ZCash
+    if (saldoUrls[@"ZCash"]) {
+        [saldoUrls removeObjectForKey:@"Zcash"];
+
+        [currentSaldo removeObjectForKey:@"ZCASH"];
+        [initialRatings removeObjectForKey:@"ZCASH"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für GameCredits
+    if (saldoUrls[@"GameCredits"]) {
+        [saldoUrls removeObjectForKey:@"GameCredits"];
+
+        [currentSaldo removeObjectForKey:@"GAME"];
+        [initialRatings removeObjectForKey:@"GAME"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für SafeMaid
+    if (saldoUrls[@"Safe Maid Coin"]) {
+        [saldoUrls removeObjectForKey:@"Safe Maid Coin"];
+
+        [currentSaldo removeObjectForKey:@"MAID"];
+        [initialRatings removeObjectForKey:@"MAID"];
+
+        mustUpdate = true;
+    }
+
+    // Lösche die alten Schlüssel für BitShares
+    if (saldoUrls[@"BitShares"]) {
+        [saldoUrls removeObjectForKey:@"BitShares"];
+
+        [currentSaldo removeObjectForKey:@"BTS"];
+        [initialRatings removeObjectForKey:@"BTS"];
 
         mustUpdate = true;
     }

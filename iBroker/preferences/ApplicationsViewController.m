@@ -26,7 +26,7 @@
 
     // aktualisierten Saldo besorgen
     NSMutableDictionary *applications = [[defaults objectForKey:TV_APPLICATIONS] mutableCopy];
-    
+
     self.btcField.stringValue = applications[BITCOIN];
     self.zecField.stringValue = applications[ZCASH];
     self.ethField.stringValue = applications[ETHEREUM];

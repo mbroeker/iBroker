@@ -205,19 +205,19 @@
                     <tabViewItems>
                         <tabViewItem label="Dashboard" id="35g-m1-hvR"/>
                         <tabViewItem label="BTC" id="ops-d6-6mK"/>
-                        <tabViewItem label="ZEC" id="G0r-Ws-uLf"/>
+                        <tabViewItem label="BCC" id="G0r-Ws-uLf"/>
                         <tabViewItem label="ETH" id="Iy3-lG-c43"/>
                         <tabViewItem label="XMR" id="u2t-8g-r97"/>
                         <tabViewItem label="LTC" id="CsD-Nb-58b"/>
-                        <tabViewItem label="NEO" id="2nA-jM-YaE"/>
-                        <tabViewItem label="STRAT" id="365-uC-kDT"/>
-                        <tabViewItem label="OMG" id="XBF-ls-CU9"/>
-                        <tabViewItem label="ADX" id="crd-Yr-PwP"/>
-                        <tabViewItem label="ARK" id="fyY-hI-3wQ"/>
+                        <tabViewItem label="DASH" id="2nA-jM-YaE"/>
+                        <tabViewItem label="DCR" id="365-uC-kDT"/>
+                        <tabViewItem label="XRP" id="XBF-ls-CU9"/>
+                        <tabViewItem label="STRAT" id="crd-Yr-PwP"/>
+                        <tabViewItem label="XEM" id="fyY-hI-3wQ"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" wantsLayer="YES" type="noTabsNoBorder" id="RqZ-3s-feC">
-                        <rect key="frame" x="0.0" y="0.0" width="806" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="658" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <shadow key="shadow">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -240,7 +240,7 @@
                     </connections>
                 </tabViewController>
             </objects>
-            <point key="canvasLocation" x="-694" y="-688"/>
+            <point key="canvasLocation" x="-167" y="-688"/>
         </scene>
         <!--Dash-->
         <scene sceneID="2XX-Xf-dCL">
@@ -502,7 +502,7 @@
                                     <constraint firstAttribute="height" constant="22" id="CK1-Qv-uyD"/>
                                     <constraint firstAttribute="width" constant="80" id="di1-tq-muX"/>
                                 </constraints>
-                                <popUpButtonCell key="cell" type="bevel" title="STRAT" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="fJH-dY-dZy" id="5aw-EO-k6d">
+                                <popUpButtonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" id="5aw-EO-k6d">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="18" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <menu key="menu" id="DE0-0d-oDd">
@@ -510,7 +510,7 @@
                                             <menuItem title="BTC" keyEquivalent="b" id="M9j-Q9-xhP">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="ZEC" keyEquivalent="z" id="IH5-cJ-lY0">
+                                            <menuItem title="BCC" keyEquivalent="z" id="IH5-cJ-lY0">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
                                             <menuItem title="ETH" keyEquivalent="t" id="Kzw-Ya-M9S">
@@ -522,19 +522,19 @@
                                             <menuItem title="LTC" keyEquivalent="l" id="Z6u-mu-Fv9">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="NEO" keyEquivalent="g" id="3wO-MX-Z0o" userLabel="NEO">
+                                            <menuItem title="DASH" keyEquivalent="g" id="3wO-MX-Z0o">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="STRAT" state="on" keyEquivalent="d" id="fJH-dY-dZy">
+                                            <menuItem title="DCR" keyEquivalent="d" id="fJH-dY-dZy">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="OMG" keyEquivalent="m" id="dbm-ua-9hY" userLabel="OMG">
+                                            <menuItem title="XRP" keyEquivalent="m" id="dbm-ua-9hY">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="ADX" keyEquivalent="i" id="hz2-LI-dyb" userLabel="ADX">
+                                            <menuItem title="STRAT" keyEquivalent="i" id="hz2-LI-dyb">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="ARK" keyEquivalent="s" id="Bxm-K1-uLk" userLabel="ARK">
+                                            <menuItem title="XEM" keyEquivalent="s" id="Bxm-K1-uLk">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
                                             <menuItem title="EUR" keyEquivalent="e" id="V0C-0w-ftI">
@@ -595,7 +595,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C2o-zH-Xcs">
                                 <rect key="frame" x="139" y="397" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ZEC" id="Jhy-T7-mq2">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="BCC" id="Jhy-T7-mq2">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -689,7 +689,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-a5-QlD">
                                 <rect key="frame" x="139" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="STRAT" id="ZZE-y3-oSn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="DCR" id="ZZE-y3-oSn">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -700,7 +700,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="mLv-Q5-wBE"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="OMG" id="ayJ-T3-etM">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="XRP" id="ayJ-T3-etM">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -708,15 +708,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-ah-ZxK">
                                 <rect key="frame" x="18" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="NEO" id="OCr-RY-wwn">
-                                    <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
-                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-Am-VQE">
-                                <rect key="frame" x="500" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ARK" id="pcz-BA-oQv">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="DASH" id="OCr-RY-wwn">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -866,7 +858,15 @@
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
                                 <rect key="frame" x="377" y="337" width="120" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ADX" id="boE-Qp-w9B">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="STRAT" id="boE-Qp-w9B">
+                                    <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-Am-VQE">
+                                <rect key="frame" x="500" y="337" width="117" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="XEM" id="pcz-BA-oQv">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

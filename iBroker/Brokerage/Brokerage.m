@@ -296,6 +296,11 @@
         return nil;
     }
 
+    // Bitcoin Cash heißt BCH auf Poloniex
+    if ([currencyPair isEqualToString:@"BTC_BCC"]) {
+        currencyPair = @"BTC_BCH";
+    }
+
     NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *header = [apikey mutableCopy];
 
@@ -327,6 +332,11 @@
 
     if ([secret isEqualToString:@""]) {
         return nil;
+    }
+
+    // Bitcoin Cash heißt BCH auf Poloniex
+    if ([currencyPair isEqualToString:@"BTC_BCC"]) {
+        currencyPair = @"BTC_BCH";
     }
 
     NSMutableDictionary *payload = [[NSMutableDictionary alloc] init];
@@ -547,6 +557,8 @@
 
     ticker[@"BTC_EUR"] = btcTicker;
     ticker[fiatCurrencies[1]] = @([exchangeRate doubleValue]);
+
+    ticker[@"BTC_BCC"] = ticker[@"BTC_BCH"];
 
     return ticker;
 }
