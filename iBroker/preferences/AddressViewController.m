@@ -16,6 +16,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.asset1Field.placeholderString = ASSET1_DESC;
+    self.asset2Field.placeholderString = ASSET2_DESC;
+    self.asset3Field.placeholderString = ASSET3_DESC;
+    self.asset4Field.placeholderString = ASSET4_DESC;
+    self.asset5Field.placeholderString = ASSET5_DESC;
+
+    self.asset6Field.placeholderString = ASSET6_DESC;
+    self.asset7Field.placeholderString = ASSET7_DESC;
+    self.asset8Field.placeholderString = ASSET8_DESC;
+    self.asset9Field.placeholderString = ASSET9_DESC;
+    self.asset10Field.placeholderString = ASSET10_DESC;
+
     [self updateView];
 }
 
@@ -28,16 +40,16 @@
     // aktualisierten Saldo besorgen
     NSMutableDictionary *saldoUrls = [calculator saldoUrls];
     
-    self.btcField.stringValue = saldoUrls[BITCOIN];
-    self.zecField.stringValue = saldoUrls[ZCASH];
-    self.ethField.stringValue = saldoUrls[ETHEREUM];
-    self.xmrField.stringValue = saldoUrls[MONERO];
-    self.ltcField.stringValue = saldoUrls[LITECOIN];
-    self.gameField.stringValue = saldoUrls[GAMECREDITS];
-    self.emc2Field.stringValue = saldoUrls[STEEMCOIN];
-    self.maidField.stringValue = saldoUrls[SAFEMAID];
-    self.btsField.stringValue = saldoUrls[BITSHARES];
-    self.scField.stringValue = saldoUrls[SIACOIN];
+    self.asset1Field.stringValue = saldoUrls[ASSET1_DESC];
+    self.asset2Field.stringValue = saldoUrls[ASSET2_DESC];
+    self.asset3Field.stringValue = saldoUrls[ASSET3_DESC];
+    self.asset4Field.stringValue = saldoUrls[ASSET4_DESC];
+    self.asset5Field.stringValue = saldoUrls[ASSET5_DESC];
+    self.asset6Field.stringValue = saldoUrls[ASSET6_DESC];
+    self.asset8Field.stringValue = saldoUrls[ASSET7_DESC];
+    self.asset7Field.stringValue = saldoUrls[ASSET8_DESC];
+    self.asset9Field.stringValue = saldoUrls[ASSET9_DESC];
+    self.asset10Field.stringValue = saldoUrls[ASSET10_DESC];
     
     self.dashboardField.stringValue = saldoUrls[DASHBOARD];
 }
@@ -51,16 +63,16 @@
     // aktualisierten Saldo besorgen
     NSMutableDictionary *saldoUrls = [calculator saldoUrls];
 
-    saldoUrls[BITCOIN] = self.btcField.stringValue;
-    saldoUrls[ZCASH] = self.zecField.stringValue;
-    saldoUrls[ETHEREUM] = self.ethField.stringValue;
-    saldoUrls[MONERO] = self.xmrField.stringValue;
-    saldoUrls[LITECOIN] = self.ltcField.stringValue;
-    saldoUrls[GAMECREDITS] = self.gameField.stringValue;
-    saldoUrls[STEEMCOIN] = self.emc2Field.stringValue;
-    saldoUrls[SAFEMAID] = self.maidField.stringValue;
-    saldoUrls[BITSHARES] = self.btsField.stringValue;
-    saldoUrls[SIACOIN] = self.scField.stringValue;
+    saldoUrls[ASSET1_DESC] = self.asset1Field.stringValue;
+    saldoUrls[ASSET2_DESC] = self.asset2Field.stringValue;
+    saldoUrls[ASSET3_DESC] = self.asset3Field.stringValue;
+    saldoUrls[ASSET4_DESC] = self.asset4Field.stringValue;
+    saldoUrls[ASSET5_DESC] = self.asset5Field.stringValue;
+    saldoUrls[ASSET6_DESC] = self.asset6Field.stringValue;
+    saldoUrls[ASSET7_DESC] = self.asset8Field.stringValue;
+    saldoUrls[ASSET8_DESC] = self.asset7Field.stringValue;
+    saldoUrls[ASSET9_DESC] = self.asset9Field.stringValue;
+    saldoUrls[ASSET10_DESC] = self.asset10Field.stringValue;
     saldoUrls[DASHBOARD] = self.dashboardField.stringValue;
     
     [calculator saldoUrlsForDictionary:saldoUrls];

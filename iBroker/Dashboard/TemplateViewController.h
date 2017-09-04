@@ -85,6 +85,21 @@
 @property (strong) IBOutlet NSPopUpButton *exchangeSelection;
 @property (strong) IBOutlet NSButton *instantTrading;
 
+// Definition der Menüpunkte
+@property (strong) IBOutlet NSMenuItem *asset1MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset2MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset3MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset4MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset5MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset6MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset7MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset8MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset9MenuItem;
+@property (strong) IBOutlet NSMenuItem *asset10MenuItem;
+
+@property (strong) IBOutlet NSMenuItem *fiatAsset1MenuItem;
+@property (strong) IBOutlet NSMenuItem *fiatAsset2MenuItem;
+
 // Definition der Button-Actions in der Leiste
 - (IBAction)homeAction:(id)sender;
 - (IBAction)leftAction:(id)sender;

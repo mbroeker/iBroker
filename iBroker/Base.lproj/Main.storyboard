@@ -204,20 +204,20 @@
                 <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" id="a8c-k7-XWD" customClass="TabViewController" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Dashboard" id="35g-m1-hvR"/>
-                        <tabViewItem label="BTC" id="ops-d6-6mK"/>
-                        <tabViewItem label="BCC" id="G0r-Ws-uLf"/>
-                        <tabViewItem label="ETH" id="Iy3-lG-c43"/>
-                        <tabViewItem label="XMR" id="u2t-8g-r97"/>
-                        <tabViewItem label="LTC" id="CsD-Nb-58b"/>
-                        <tabViewItem label="DASH" id="2nA-jM-YaE"/>
-                        <tabViewItem label="DCR" id="365-uC-kDT"/>
-                        <tabViewItem label="XRP" id="XBF-ls-CU9"/>
-                        <tabViewItem label="STRAT" id="crd-Yr-PwP"/>
-                        <tabViewItem label="XEM" id="fyY-hI-3wQ"/>
+                        <tabViewItem label="A01" id="ops-d6-6mK"/>
+                        <tabViewItem label="A02" id="G0r-Ws-uLf"/>
+                        <tabViewItem label="A03" id="Iy3-lG-c43"/>
+                        <tabViewItem label="A04" id="u2t-8g-r97"/>
+                        <tabViewItem label="A05" id="CsD-Nb-58b"/>
+                        <tabViewItem label="A06" id="2nA-jM-YaE"/>
+                        <tabViewItem label="A07" id="365-uC-kDT"/>
+                        <tabViewItem label="A08" id="XBF-ls-CU9"/>
+                        <tabViewItem label="A09" id="crd-Yr-PwP"/>
+                        <tabViewItem label="A10" id="fyY-hI-3wQ"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" wantsLayer="YES" type="noTabsNoBorder" id="RqZ-3s-feC">
-                        <rect key="frame" x="0.0" y="0.0" width="658" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="586" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <shadow key="shadow">
                             <color key="color" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,6 +226,16 @@
                         <tabViewItems/>
                     </tabView>
                     <connections>
+                        <outlet property="asset10TabViewItem" destination="fyY-hI-3wQ" id="2vw-lE-90A"/>
+                        <outlet property="asset1TabViewItem" destination="ops-d6-6mK" id="5AX-GI-9Ei"/>
+                        <outlet property="asset2TabViewItem" destination="G0r-Ws-uLf" id="eHR-yI-3qC"/>
+                        <outlet property="asset3TabViewItem" destination="Iy3-lG-c43" id="xeY-c3-RkS"/>
+                        <outlet property="asset4TabViewItem" destination="u2t-8g-r97" id="k3P-Jd-4Fo"/>
+                        <outlet property="asset5TabViewItem" destination="CsD-Nb-58b" id="71S-iC-Niu"/>
+                        <outlet property="asset6TabViewItem" destination="2nA-jM-YaE" id="xd6-Xd-WSx"/>
+                        <outlet property="asset7TabViewItem" destination="365-uC-kDT" id="OWL-K3-3g8"/>
+                        <outlet property="asset8TabViewItem" destination="XBF-ls-CU9" id="4yS-Xg-vm4"/>
+                        <outlet property="asset9TabViewItem" destination="crd-Yr-PwP" id="fcb-gD-3mB"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="uWH-We-CUG"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="4Tg-dJ-Z1W"/>
                         <segue destination="2wC-py-DJR" kind="relationship" relationship="tabItems" id="dLZ-Tg-Hbb"/>
@@ -240,7 +250,7 @@
                     </connections>
                 </tabViewController>
             </objects>
-            <point key="canvasLocation" x="-167" y="-688"/>
+            <point key="canvasLocation" x="-892" y="-755"/>
         </scene>
         <!--Dash-->
         <scene sceneID="2XX-Xf-dCL">
@@ -507,37 +517,37 @@
                                     <font key="font" size="18" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <menu key="menu" id="DE0-0d-oDd">
                                         <items>
-                                            <menuItem title="BTC" keyEquivalent="b" id="M9j-Q9-xhP">
+                                            <menuItem keyEquivalent="1" id="M9j-Q9-xhP">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="BCC" keyEquivalent="z" id="IH5-cJ-lY0">
+                                            <menuItem keyEquivalent="2" id="IH5-cJ-lY0">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="ETH" keyEquivalent="t" id="Kzw-Ya-M9S">
+                                            <menuItem keyEquivalent="3" id="Kzw-Ya-M9S">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="XMR" keyEquivalent="x" id="OsJ-v1-9gS">
+                                            <menuItem keyEquivalent="4" id="OsJ-v1-9gS">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="LTC" keyEquivalent="l" id="Z6u-mu-Fv9">
+                                            <menuItem keyEquivalent="5" id="Z6u-mu-Fv9">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="DASH" keyEquivalent="g" id="3wO-MX-Z0o">
+                                            <menuItem keyEquivalent="6" id="3wO-MX-Z0o">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="DCR" keyEquivalent="d" id="fJH-dY-dZy">
+                                            <menuItem keyEquivalent="7" id="fJH-dY-dZy">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="XRP" keyEquivalent="m" id="dbm-ua-9hY">
+                                            <menuItem keyEquivalent="8" id="dbm-ua-9hY">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="STRAT" keyEquivalent="i" id="hz2-LI-dyb">
+                                            <menuItem keyEquivalent="9" id="hz2-LI-dyb">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="XEM" keyEquivalent="s" id="Bxm-K1-uLk">
+                                            <menuItem keyEquivalent="0" id="Bxm-K1-uLk">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
-                                            <menuItem title="EUR" keyEquivalent="e" id="V0C-0w-ftI">
+                                            <menuItem title="EUR" state="on" keyEquivalent="e" id="V0C-0w-ftI">
                                                 <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             </menuItem>
                                             <menuItem title="USD" keyEquivalent="u" id="Trz-bG-51a">
@@ -595,7 +605,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C2o-zH-Xcs">
                                 <rect key="frame" x="139" y="397" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="BCC" id="Jhy-T7-mq2">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET2" id="Jhy-T7-mq2">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -606,7 +616,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="27S-AV-bNs"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="ETH" id="2Vk-ZH-fHh">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET3" id="2Vk-ZH-fHh">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -614,7 +624,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b4D-Lk-UKa">
                                 <rect key="frame" x="379" y="397" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="XMR" id="PaQ-vX-qRG">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET4" id="PaQ-vX-qRG">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -622,7 +632,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QoU-al-wUi">
                                 <rect key="frame" x="18" y="397" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="BTC" id="T7K-JM-k8d">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET1" id="T7K-JM-k8d">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -638,7 +648,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="koF-TO-Zbe">
                                 <rect key="frame" x="499" y="397" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="LTC" id="rPX-67-TNi">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET5" id="rPX-67-TNi">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -689,7 +699,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hjC-a5-QlD">
                                 <rect key="frame" x="139" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="DCR" id="ZZE-y3-oSn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET7" id="ZZE-y3-oSn">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -700,7 +710,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="112" id="mLv-Q5-wBE"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="XRP" id="ayJ-T3-etM">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET8" id="ayJ-T3-etM">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -708,7 +718,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fHN-ah-ZxK">
                                 <rect key="frame" x="18" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="DASH" id="OCr-RY-wwn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET6" id="OCr-RY-wwn">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -858,7 +868,7 @@
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
                                 <rect key="frame" x="377" y="337" width="120" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="STRAT" id="boE-Qp-w9B">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET9" id="boE-Qp-w9B">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -866,7 +876,7 @@
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1cY-Am-VQE">
                                 <rect key="frame" x="500" y="337" width="117" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="XEM" id="pcz-BA-oQv">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET10" id="pcz-BA-oQv">
                                     <font key="font" size="13" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1017,6 +1027,16 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="asset10MenuItem" destination="Bxm-K1-uLk" id="RUS-30-XtU"/>
+                        <outlet property="asset1MenuItem" destination="M9j-Q9-xhP" id="pH3-uV-4dt"/>
+                        <outlet property="asset2MenuItem" destination="IH5-cJ-lY0" id="SYN-Tx-Y6C"/>
+                        <outlet property="asset3MenuItem" destination="Kzw-Ya-M9S" id="YSH-k7-foB"/>
+                        <outlet property="asset4MenuItem" destination="OsJ-v1-9gS" id="VLp-vr-peu"/>
+                        <outlet property="asset5MenuItem" destination="Z6u-mu-Fv9" id="OWe-MW-TPz"/>
+                        <outlet property="asset6MenuItem" destination="3wO-MX-Z0o" id="Ild-vs-Aqc"/>
+                        <outlet property="asset7MenuItem" destination="fJH-dY-dZy" id="cuk-Rp-UNv"/>
+                        <outlet property="asset8MenuItem" destination="dbm-ua-9hY" id="03S-ON-OhV"/>
+                        <outlet property="asset9MenuItem" destination="hz2-LI-dyb" id="MYz-yq-ZUA"/>
                         <outlet property="automatedTradingButton" destination="HEn-sv-lYa" id="4Z9-JJ-vGS"/>
                         <outlet property="changeField" destination="A3i-ei-83a" id="Igz-NQ-SyE"/>
                         <outlet property="changeLabel" destination="ZiE-3P-piF" id="IZb-OO-xnw"/>
@@ -1045,6 +1065,8 @@
                         <outlet property="currencyButton" destination="h8R-Ca-f07" id="9ZU-8C-gsh"/>
                         <outlet property="currencyUnits" destination="cPk-Kk-daI" id="o8L-DK-X4b"/>
                         <outlet property="exchangeSelection" destination="Qtu-xX-OW2" id="GuY-0m-7lL"/>
+                        <outlet property="fiatAsset1MenuItem" destination="V0C-0w-ftI" id="eGs-L9-OJy"/>
+                        <outlet property="fiatAsset2MenuItem" destination="Trz-bG-51a" id="9zN-hL-B8U"/>
                         <outlet property="headlineLabel" destination="cqL-ye-zmb" id="8Mh-Ba-mKi"/>
                         <outlet property="high24Field" destination="HtU-az-73v" id="GSO-Ri-IPR"/>
                         <outlet property="high24Label" destination="iKO-oi-Jc4" id="6gs-By-X1a"/>

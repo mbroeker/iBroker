@@ -231,7 +231,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="fi9-h4-0Qh"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dash" drawsBackground="YES" usesSingleLineMode="YES" id="RP5-Jd-HMa">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="RP5-Jd-HMa">
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -316,7 +316,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="y0c-0i-3ge"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="Uhf-W1-koj">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="Uhf-W1-koj">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -401,7 +401,7 @@
                             </box>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3nA-6O-iNu">
                                 <rect key="frame" x="20" y="60" width="606" height="48"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dashboard" drawsBackground="YES" usesSingleLineMode="YES" id="fCM-9N-MQ3">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="fCM-9N-MQ3">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -412,7 +412,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="piF-Lr-mLL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="New Economy" drawsBackground="YES" usesSingleLineMode="YES" id="RuW-Ud-lfO">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="RuW-Ud-lfO">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -423,7 +423,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="H53-NO-fPO"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ripple" drawsBackground="YES" usesSingleLineMode="YES" id="5YG-lv-agQ">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="5YG-lv-agQ">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -434,7 +434,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="mnU-Qq-K1G"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BC Cash" drawsBackground="YES" usesSingleLineMode="YES" id="B0y-md-mxm">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="B0y-md-mxm">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -446,7 +446,7 @@
                                     <constraint firstAttribute="width" constant="606" id="Nfe-Jc-37k"/>
                                     <constraint firstAttribute="height" constant="48" id="xsk-Fh-HPm"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Bitcoin" drawsBackground="YES" usesSingleLineMode="YES" id="UG6-Ta-96e">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="UG6-Ta-96e">
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -520,7 +520,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="eMM-Ri-Wlg"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Monero" drawsBackground="YES" usesSingleLineMode="YES" id="Rs1-ip-Ppm">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="Rs1-ip-Ppm">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -573,7 +573,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="YD8-jc-o2n"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Litecoin" drawsBackground="YES" usesSingleLineMode="YES" id="Bi1-5z-cVv">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="Bi1-5z-cVv">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -619,23 +619,23 @@
                                 <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-ab-HuL">
-                                <rect key="frame" x="20" y="300" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="54v-r3-Iwz"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Decred" drawsBackground="YES" usesSingleLineMode="YES" id="UNd-C9-6ou">
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ruI-L5-pq4">
                                 <rect key="frame" x="20" y="540" width="606" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="XyH-gq-2zO"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ethereum" drawsBackground="YES" usesSingleLineMode="YES" id="tpA-LC-ioP">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="tpA-LC-ioP">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IkW-ab-HuL">
+                                <rect key="frame" x="20" y="300" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="54v-r3-Iwz"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="UNd-C9-6ou">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -729,17 +729,17 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btcField" destination="xvj-1p-yVX" id="GEc-3m-A8f"/>
-                        <outlet property="btsField" destination="mW1-ga-dFP" id="FzE-XZ-b8O"/>
+                        <outlet property="asset10Field" destination="ucN-pb-9NK" id="R4n-Ji-YdJ"/>
+                        <outlet property="asset1Field" destination="xvj-1p-yVX" id="GEc-3m-A8f"/>
+                        <outlet property="asset2Field" destination="yP4-Jx-rRV" id="rEW-Zo-EZo"/>
+                        <outlet property="asset3Field" destination="ruI-L5-pq4" id="kWS-FN-p5R"/>
+                        <outlet property="asset4Field" destination="9aT-kr-vUE" id="dOy-go-kpL"/>
+                        <outlet property="asset5Field" destination="iyj-d6-v9r" id="lw7-TT-ZTK"/>
+                        <outlet property="asset6Field" destination="dZZ-6D-56N" id="ur2-cZ-Xsz"/>
+                        <outlet property="asset7Field" destination="uHG-Id-HcW" id="gU0-gy-Hua"/>
+                        <outlet property="asset8Field" destination="IkW-ab-HuL" id="F1r-ow-R87"/>
+                        <outlet property="asset9Field" destination="mW1-ga-dFP" id="FzE-XZ-b8O"/>
                         <outlet property="dashboardField" destination="3nA-6O-iNu" id="Tbf-Mw-F8T"/>
-                        <outlet property="emc2Field" destination="IkW-ab-HuL" id="F1r-ow-R87"/>
-                        <outlet property="ethField" destination="ruI-L5-pq4" id="kWS-FN-p5R"/>
-                        <outlet property="gameField" destination="dZZ-6D-56N" id="ur2-cZ-Xsz"/>
-                        <outlet property="ltcField" destination="iyj-d6-v9r" id="lw7-TT-ZTK"/>
-                        <outlet property="maidField" destination="uHG-Id-HcW" id="gU0-gy-Hua"/>
-                        <outlet property="scField" destination="ucN-pb-9NK" id="R4n-Ji-YdJ"/>
-                        <outlet property="xmrField" destination="9aT-kr-vUE" id="dOy-go-kpL"/>
-                        <outlet property="zecField" destination="yP4-Jx-rRV" id="rEW-Zo-EZo"/>
                     </connections>
                 </viewController>
                 <customObject id="Bz7-ms-ybZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -759,7 +759,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="7NC-2w-wq8"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="DCR" drawsBackground="YES" usesSingleLineMode="YES" id="tHE-AU-2Wn">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="tHE-AU-2Wn">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="zI9-oj-wS8"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -771,7 +771,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="RQn-py-sr6"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dash" drawsBackground="YES" usesSingleLineMode="YES" id="oKV-9R-d0T">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="oKV-9R-d0T">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Cgy-mR-5NS"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -883,24 +883,12 @@
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rKp-ig-gie">
-                                <rect key="frame" x="20" y="61" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="ndx-8p-gD0"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="New Economy" drawsBackground="YES" usesSingleLineMode="YES" id="HP9-jd-nTC">
-                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="jY0-MD-Fqt"/>
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ww1-Iu-XjU">
                                 <rect key="frame" x="20" y="181" width="606" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="zoZ-lc-OhD"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ripple" drawsBackground="YES" usesSingleLineMode="YES" id="erx-8a-Za1">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="erx-8a-Za1">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="fkU-1h-DRw"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -975,7 +963,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="A9R-aA-sZp"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Monero" drawsBackground="YES" usesSingleLineMode="YES" id="sIc-i1-g2J">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="sIc-i1-g2J">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="9EV-Dm-xLe"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1029,7 +1017,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="4Y8-Yu-eoJ"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Litecoin" drawsBackground="YES" usesSingleLineMode="YES" id="I3R-4m-nfh">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="I3R-4m-nfh">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="OWl-xs-0Mx"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1041,7 +1029,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Gyc-j3-ebU"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ethereum" drawsBackground="YES" usesSingleLineMode="YES" id="hag-oX-9uC">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="hag-oX-9uC">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="n60-Bm-tBN"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1053,7 +1041,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="c3Q-sS-zfy"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BC Cash" drawsBackground="YES" usesSingleLineMode="YES" id="hBo-3e-OUY">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="hBo-3e-OUY">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="qAr-ph-GnL"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1066,7 +1054,7 @@
                                     <constraint firstAttribute="width" constant="606" id="2mN-t1-flE"/>
                                     <constraint firstAttribute="height" constant="48" id="9GL-GI-tNz"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Bitcoin" drawsBackground="YES" usesSingleLineMode="YES" id="oFn-pe-1jA">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="oFn-pe-1jA">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="3hv-fl-fgu"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1129,8 +1117,20 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="07K-xJ-uGL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="Ebk-ZE-ra6">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="Ebk-ZE-ra6">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="bFj-TD-bod"/>
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rKp-ig-gie">
+                                <rect key="frame" x="20" y="61" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="ndx-8p-gD0"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="HP9-jd-nTC">
+                                    <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="jY0-MD-Fqt"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1217,16 +1217,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btcField" destination="fy7-af-oLA" id="CPH-9S-1Vb"/>
-                        <outlet property="btsField" destination="JG7-CR-7MV" id="dAf-zG-H3Y"/>
-                        <outlet property="emc2Field" destination="GkJ-GG-YA5" id="K5c-TF-VEy"/>
-                        <outlet property="ethField" destination="FD5-DL-R1y" id="7Qj-Ps-lAn"/>
-                        <outlet property="gameField" destination="3Lg-51-dyL" id="S6i-Ts-BD6"/>
-                        <outlet property="ltcField" destination="p2n-vP-0sd" id="ECt-e6-XbV"/>
-                        <outlet property="maidField" destination="Ww1-Iu-XjU" id="dvN-Ln-KfQ"/>
-                        <outlet property="scField" destination="rKp-ig-gie" id="3rc-T6-pHt"/>
-                        <outlet property="xmrField" destination="RVK-kD-OcZ" id="1UJ-sm-1oM"/>
-                        <outlet property="zecField" destination="BoR-Xm-fIP" id="OOW-Kh-i1m"/>
+                        <outlet property="asset10Field" destination="rKp-ig-gie" id="3rc-T6-pHt"/>
+                        <outlet property="asset1Field" destination="fy7-af-oLA" id="CPH-9S-1Vb"/>
+                        <outlet property="asset2Field" destination="BoR-Xm-fIP" id="OOW-Kh-i1m"/>
+                        <outlet property="asset3Field" destination="FD5-DL-R1y" id="7Qj-Ps-lAn"/>
+                        <outlet property="asset4Field" destination="RVK-kD-OcZ" id="1UJ-sm-1oM"/>
+                        <outlet property="asset5Field" destination="p2n-vP-0sd" id="ECt-e6-XbV"/>
+                        <outlet property="asset6Field" destination="3Lg-51-dyL" id="S6i-Ts-BD6"/>
+                        <outlet property="asset7Field" destination="GkJ-GG-YA5" id="K5c-TF-VEy"/>
+                        <outlet property="asset8Field" destination="Ww1-Iu-XjU" id="dvN-Ln-KfQ"/>
+                        <outlet property="asset9Field" destination="JG7-CR-7MV" id="dAf-zG-H3Y"/>
                     </connections>
                 </viewController>
                 <customObject id="pzb-FE-CXl" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1363,7 +1363,7 @@
                                     <constraint firstAttribute="height" constant="48" id="3f0-AD-4ES"/>
                                     <constraint firstAttribute="width" constant="606" id="K1e-zw-Nl3"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="BTC App" drawsBackground="YES" id="H7E-SH-aUb">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="H7E-SH-aUb">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1374,7 +1374,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="j5m-Fy-Ikp"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="BC Cash App" drawsBackground="YES" id="aDi-3m-noU">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="aDi-3m-noU">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1385,7 +1385,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="G7k-sa-REw"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Ethereum App" drawsBackground="YES" id="wLD-vL-gqh">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="wLD-vL-gqh">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1396,7 +1396,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="IWD-0e-6oE"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Monero App" drawsBackground="YES" id="zXb-Yy-man">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="zXb-Yy-man">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1407,7 +1407,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Hbl-Rn-cQK"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Litecoin App" drawsBackground="YES" id="lDw-Wg-oCN">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="lDw-Wg-oCN">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1523,7 +1523,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Pgh-ez-2EL"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Dash App" drawsBackground="YES" id="xee-Df-Fat">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="xee-Df-Fat">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1534,7 +1534,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0wT-c3-QUE"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Ripple App" drawsBackground="YES" id="Hdy-AC-OGz">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="Hdy-AC-OGz">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1545,18 +1545,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="V2R-UH-b0D"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Decred App" drawsBackground="YES" id="Bfj-Ty-Lk2">
-                                    <font key="font" metaFont="systemBold" size="20"/>
-                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IJE-uT-ieN">
-                                <rect key="frame" x="20" y="121" width="606" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Rjk-39-Vdw"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="Stratis App" drawsBackground="YES" id="4k1-rI-Zsg">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="Bfj-Ty-Lk2">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1607,7 +1596,18 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="9y5-ch-XKF"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="New Economy App" drawsBackground="YES" id="Kb6-TM-NP1">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="Kb6-TM-NP1">
+                                    <font key="font" metaFont="systemBold" size="20"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IJE-uT-ieN">
+                                <rect key="frame" x="20" y="121" width="606" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="Rjk-39-Vdw"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" placeholderString="" drawsBackground="YES" id="4k1-rI-Zsg">
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1694,16 +1694,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btcField" destination="Exz-54-M6E" id="921-le-u4S"/>
-                        <outlet property="btsField" destination="IJE-uT-ieN" id="ayw-5i-Skc"/>
-                        <outlet property="emc2Field" destination="nrS-2H-i8b" id="S8R-bX-9e1"/>
-                        <outlet property="ethField" destination="vVx-1t-URd" id="i23-tL-owW"/>
-                        <outlet property="gameField" destination="aqF-eP-74d" id="bhk-dr-ZT6"/>
-                        <outlet property="ltcField" destination="yYF-oR-cOk" id="eCI-Oc-VN3"/>
-                        <outlet property="maidField" destination="Mmf-9A-X0f" id="XZJ-eX-Fv2"/>
-                        <outlet property="scField" destination="PsG-dv-QDi" id="CCe-AV-T3B"/>
-                        <outlet property="xmrField" destination="bB1-5L-d7D" id="oCZ-DE-6HX"/>
-                        <outlet property="zecField" destination="u5r-VG-KIJ" id="GP5-LI-yFF"/>
+                        <outlet property="asset10Field" destination="PsG-dv-QDi" id="CCe-AV-T3B"/>
+                        <outlet property="asset1Field" destination="Exz-54-M6E" id="921-le-u4S"/>
+                        <outlet property="asset2Field" destination="u5r-VG-KIJ" id="GP5-LI-yFF"/>
+                        <outlet property="asset3Field" destination="vVx-1t-URd" id="i23-tL-owW"/>
+                        <outlet property="asset4Field" destination="bB1-5L-d7D" id="oCZ-DE-6HX"/>
+                        <outlet property="asset5Field" destination="yYF-oR-cOk" id="eCI-Oc-VN3"/>
+                        <outlet property="asset6Field" destination="aqF-eP-74d" id="bhk-dr-ZT6"/>
+                        <outlet property="asset7Field" destination="nrS-2H-i8b" id="S8R-bX-9e1"/>
+                        <outlet property="asset8Field" destination="Mmf-9A-X0f" id="XZJ-eX-Fv2"/>
+                        <outlet property="asset9Field" destination="IJE-uT-ieN" id="ayw-5i-Skc"/>
                     </connections>
                 </viewController>
                 <customObject id="LsW-if-Gs2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1723,7 +1723,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="0KP-4p-lFT"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="DCR" drawsBackground="YES" usesSingleLineMode="YES" id="x9d-Pv-IbW">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="x9d-Pv-IbW">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="cre-4k-7AJ"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1735,7 +1735,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hPT-u2-9Df"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Dash" drawsBackground="YES" usesSingleLineMode="YES" id="R9X-gl-LZK">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="R9X-gl-LZK">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="S9Y-Ba-pdl"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1852,7 +1852,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="TrW-mT-RfY"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="New Economy" drawsBackground="YES" usesSingleLineMode="YES" id="hV8-iR-9BS">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="hV8-iR-9BS">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Tl1-bL-24J"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1864,7 +1864,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="FFT-Fu-dL0"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ripple" drawsBackground="YES" usesSingleLineMode="YES" id="9QI-UW-gL6">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="9QI-UW-gL6">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="BWE-RG-meh"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1939,7 +1939,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="Yel-BZ-yk5"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Monero" drawsBackground="YES" usesSingleLineMode="YES" id="rWM-Qe-x69">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="rWM-Qe-x69">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="f1H-Kv-Vda"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -1993,7 +1993,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="LVo-dr-t7o"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Litecoin" drawsBackground="YES" usesSingleLineMode="YES" id="fdx-XS-AN8">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="fdx-XS-AN8">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="jbJ-zq-2UF"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2005,7 +2005,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="S2f-7b-EeJ"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Ethereum" drawsBackground="YES" usesSingleLineMode="YES" id="XCu-me-u7R">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="XCu-me-u7R">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="p10-j7-07i"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2017,7 +2017,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="feM-x4-HcM"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="BC Cash" drawsBackground="YES" usesSingleLineMode="YES" id="9TR-c9-f1m">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="9TR-c9-f1m">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="ycl-ey-o9V"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2030,7 +2030,7 @@
                                     <constraint firstAttribute="height" constant="48" id="Ddh-ys-4xO"/>
                                     <constraint firstAttribute="width" constant="606" id="fBm-Zk-ktv"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Bitcoin" drawsBackground="YES" usesSingleLineMode="YES" id="HtO-pr-ZPd">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="HtO-pr-ZPd">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="A05-II-RZf"/>
                                     <font key="font" size="20" name=".HelveticaNeueDeskInterface-Bold"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2053,7 +2053,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="g55-b4-fra"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="Stratis" drawsBackground="YES" usesSingleLineMode="YES" id="Vtk-eA-CZd">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" state="on" placeholderString="" drawsBackground="YES" usesSingleLineMode="YES" id="Vtk-eA-CZd">
                                     <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="RSj-2j-5Hu"/>
                                     <font key="font" metaFont="systemBold" size="20"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -2181,16 +2181,16 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="btcField" destination="nD9-iI-Zcw" id="Bye-g5-9Vq"/>
-                        <outlet property="btsField" destination="zuk-HX-7A6" id="QLm-rc-Dgq"/>
-                        <outlet property="emc2Field" destination="zXz-6L-44P" id="a2G-R5-gBe"/>
-                        <outlet property="ethField" destination="sdu-oF-aRl" id="yUh-zp-D5b"/>
-                        <outlet property="gameField" destination="cXF-SE-Sgc" id="KaD-fA-TzX"/>
-                        <outlet property="ltcField" destination="PXY-IU-PGB" id="cwB-OX-Mwf"/>
-                        <outlet property="maidField" destination="Whe-aw-uUD" id="bPc-g4-pgc"/>
-                        <outlet property="scField" destination="vWl-Us-NZV" id="ODk-3g-brZ"/>
-                        <outlet property="xmrField" destination="Ye8-ic-IKd" id="wf0-Z8-tdG"/>
-                        <outlet property="zecField" destination="BEe-ey-eAH" id="6fx-eO-sVo"/>
+                        <outlet property="asset10Field" destination="vWl-Us-NZV" id="ODk-3g-brZ"/>
+                        <outlet property="asset1Field" destination="nD9-iI-Zcw" id="Bye-g5-9Vq"/>
+                        <outlet property="asset2Field" destination="BEe-ey-eAH" id="6fx-eO-sVo"/>
+                        <outlet property="asset3Field" destination="sdu-oF-aRl" id="yUh-zp-D5b"/>
+                        <outlet property="asset4Field" destination="Ye8-ic-IKd" id="wf0-Z8-tdG"/>
+                        <outlet property="asset5Field" destination="PXY-IU-PGB" id="cwB-OX-Mwf"/>
+                        <outlet property="asset6Field" destination="cXF-SE-Sgc" id="KaD-fA-TzX"/>
+                        <outlet property="asset7Field" destination="zXz-6L-44P" id="a2G-R5-gBe"/>
+                        <outlet property="asset8Field" destination="Whe-aw-uUD" id="bPc-g4-pgc"/>
+                        <outlet property="asset9Field" destination="zuk-HX-7A6" id="QLm-rc-Dgq"/>
                     </connections>
                 </viewController>
                 <customObject id="DIk-Bb-kPN" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

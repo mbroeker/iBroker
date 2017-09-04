@@ -39,7 +39,7 @@ void safeSleep(NSTimeInterval timeout) {
  * @return
  */
 const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
-    NSString *format = format = @"1 %@ : %.2f EUR : %.2f EUR : %.2f%%";
+    NSString *format = @"1 %@ : %.2f EUR : %.2f EUR : %.2f%%";
 
     NSString *theHeadLine = [
         NSString stringWithFormat:format,
@@ -63,10 +63,10 @@ const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
  */
 const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *currentRatings, double btcPercent) {
     double effectivePercent = [checkpoint[CP_PERCENT] doubleValue];
-    if (![asset isEqualToString:BTC]) effectivePercent -= btcPercent;
+    if (![asset isEqualToString:ASSET1]) effectivePercent -= btcPercent;
 
     double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
-    double currentPriceInBTC = [currentRatings[BTC] doubleValue] / [currentRatings[asset] doubleValue];
+    double currentPriceInBTC = [currentRatings[ASSET1] doubleValue] / [currentRatings[asset] doubleValue];
 
     NSString *theString = [
         NSString stringWithFormat:@"%.6f EUR / %.8f BTC / %+.2f%%",
@@ -91,30 +91,30 @@ void brokerRun(CONFIG config) {
     for (;;) {
         NSDictionary *currentRatings = [calculator currentRatings];
 
-        NSDictionary *btcCheckpoint = [calculator checkpointForAsset:BTC];
-        NSDictionary *zecCheckpoint = [calculator checkpointForAsset:ZEC];
-        NSDictionary *ethCheckpoint = [calculator checkpointForAsset:ETH];
-        NSDictionary *xmrCheckpoint = [calculator checkpointForAsset:XMR];
-        NSDictionary *ltcCheckpoint = [calculator checkpointForAsset:LTC];
+        NSDictionary *btcCheckpoint = [calculator checkpointForAsset:ASSET1];
+        NSDictionary *zecCheckpoint = [calculator checkpointForAsset:ASSET2];
+        NSDictionary *ethCheckpoint = [calculator checkpointForAsset:ASSET3];
+        NSDictionary *xmrCheckpoint = [calculator checkpointForAsset:ASSET4];
+        NSDictionary *ltcCheckpoint = [calculator checkpointForAsset:ASSET5];
 
         double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
 
         if ((counter++ % config.rows) == 0) {
             printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
-                makeHeadlineString(btcCheckpoint, BTC),
-                makeHeadlineString(zecCheckpoint, ZEC),
-                makeHeadlineString(ethCheckpoint, ETH),
-                makeHeadlineString(xmrCheckpoint, XMR),
-                makeHeadlineString(ltcCheckpoint, LTC)
+                makeHeadlineString(btcCheckpoint, ASSET1),
+                makeHeadlineString(zecCheckpoint, ASSET2),
+                makeHeadlineString(ethCheckpoint, ASSET3),
+                makeHeadlineString(xmrCheckpoint, ASSET4),
+                makeHeadlineString(ltcCheckpoint, ASSET5)
             );
         }
 
         printf("%%: %-43s | %-43s | %-43s | %-43s | %-43s\n",
-            makeString(btcCheckpoint, BTC, currentRatings, btcPercent),
-            makeString(zecCheckpoint, ZEC, currentRatings, btcPercent),
-            makeString(ethCheckpoint, ETH, currentRatings, btcPercent),
-            makeString(xmrCheckpoint, XMR, currentRatings, btcPercent),
-            makeString(ltcCheckpoint, LTC, currentRatings, btcPercent)
+            makeString(btcCheckpoint, ASSET1, currentRatings, btcPercent),
+            makeString(zecCheckpoint, ASSET2, currentRatings, btcPercent),
+            makeString(ethCheckpoint, ASSET3, currentRatings, btcPercent),
+            makeString(xmrCheckpoint, ASSET4, currentRatings, btcPercent),
+            makeString(ltcCheckpoint, ASSET5, currentRatings, btcPercent)
         );
 
         [calculator updateRatings:false];
@@ -142,7 +142,7 @@ void usage(const char *name) {
     printf("  --zec ANZAHL\t\tSetze den aktuellen Saldo für ZCash\n");
     printf("  --eth ANZAHL\t\tSetze den aktuellen Saldo für Ethereum\n");
     printf("  --xmr ANZAHL\t\tSetze den aktuellen Saldo für Monero\n");
-    printf("  --ltc ANZAHL\t\tSetze den aktuellen Saldo für Lightcoins\n");
+    printf("  --ltc ANZAHL\t\tSetze den aktuellen Saldo für Litecoins\n");
 
     printf("  --dash ANZAHL\t\tSetze den aktuellen Saldo für Dash\n");
     printf("  --dcr ANZAHL\tSetze den aktuellen Saldo für Decred\n");
@@ -216,73 +216,73 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
     }
 
     for (int i = 1; i < argc; i++) {
-        if (!strcmp(argv[i], "--btc")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET1.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:BTC withDouble:value];
-            [calculator updateCheckpointForAsset:BTC withBTCUpdate:false];
+            [calculator currentSaldo:ASSET1 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET1 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--zec")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET2.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:ZEC withDouble:value];
-            [calculator updateCheckpointForAsset:ZEC withBTCUpdate:false];
+            [calculator currentSaldo:ASSET2 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET2 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--eth")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET3.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:ETH withDouble:value];
-            [calculator updateCheckpointForAsset:ETH withBTCUpdate:false];
+            [calculator currentSaldo:ASSET3 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET3 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--xmr")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET4.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:XMR withDouble:value];
-            [calculator updateCheckpointForAsset:XMR withBTCUpdate:false];
+            [calculator currentSaldo:ASSET4 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET4 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--ltc")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET5.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:LTC withDouble:value];
-            [calculator updateCheckpointForAsset:LTC withBTCUpdate:false];
+            [calculator currentSaldo:ASSET5 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET5 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--dash")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET6.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:GAME withDouble:value];
-            [calculator updateCheckpointForAsset:GAME withBTCUpdate:false];
+            [calculator currentSaldo:ASSET6 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET6 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--dcr")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET7.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:STEEM withDouble:value];
-            [calculator updateCheckpointForAsset:STEEM withBTCUpdate:false];
+            [calculator currentSaldo:ASSET7 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET7 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--xrp")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET8.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:MAID withDouble:value];
-            [calculator updateCheckpointForAsset:MAID withBTCUpdate:false];
+            [calculator currentSaldo:ASSET8 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET8 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--strat")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET9.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:BTS withDouble:value];
-            [calculator updateCheckpointForAsset:BTS withBTCUpdate:false];
+            [calculator currentSaldo:ASSET9 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET9 withBTCUpdate:false];
             update = true;
         }
 
-        if (!strcmp(argv[i], "--xem")) {
+        if (!strcmp(argv[i], [[NSString stringWithFormat:@"--%@", ASSET10.lowercaseString] UTF8String])) {
             value = atof(argv[i + 1]);
-            [calculator currentSaldo:SC withDouble:value];
-            [calculator updateCheckpointForAsset:SC withBTCUpdate:false];
+            [calculator currentSaldo:ASSET10 withDouble:value];
+            [calculator updateCheckpointForAsset:ASSET10 withBTCUpdate:false];
             update = true;
         }
 
@@ -292,7 +292,7 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
         }
 
         if (!strcmp(argv[i], "--rows")) {
-            value = atof(argv[i + 1]);
+            value = atoi(argv[i + 1]);
             config->rows = value;
         }
     }

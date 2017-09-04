@@ -84,16 +84,16 @@
 
         if (currentSaldo == nil) {
             currentSaldo = [@{
-                BTC: @0.0,
-                ZEC: @0.0,
-                ETH: @0.0,
-                LTC: @0.0,
-                XMR: @0.0,
-                GAME: @0.0,
-                STEEM: @0.0,
-                MAID: @0.0,
-                SC: @0.0,
-                BTS: @0.0,
+                ASSET1: @0.0,
+                ASSET2: @0.0,
+                ASSET3: @0.0,
+                ASSET5: @0.0,
+                ASSET4: @0.0,
+                ASSET6: @0.0,
+                ASSET7: @0.0,
+                ASSET8: @0.0,
+                ASSET10: @0.0,
+                ASSET9: @0.0,
             } mutableCopy];
 
             [defaults setObject:currentSaldo forKey:KEY_CURRENT_SALDO];
@@ -103,33 +103,33 @@
 
         if (saldoUrls == nil) {
             saldoUrls = [@{
-                DASHBOARD: @"https://poloniex.com/exchange#btc_xmr",
-                BITCOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTC lowercaseString]],
-                ZCASH: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ZEC lowercaseString]],
-                ETHEREUM: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ETH lowercaseString]],
-                LITECOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [LTC lowercaseString]],
-                MONERO:[NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [XMR lowercaseString]],
-                GAMECREDITS: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [GAME lowercaseString]],
-                STEEMCOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [STEEM lowercaseString]],
-                SAFEMAID: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [MAID lowercaseString]],
-                BITSHARES: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTS lowercaseString]],
-                SIACOIN: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [SC lowercaseString]],
+                DASHBOARD: @"https://bittrex.com/Market/Index?MarketName=BTC-LTC",
+                ASSET1_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET1 lowercaseString]],
+                ASSET2_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET2 lowercaseString]],
+                ASSET3_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET3 lowercaseString]],
+                ASSET5_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET5 lowercaseString]],
+                ASSET4_DESC:[NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET4 lowercaseString]],
+                ASSET6_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET6 lowercaseString]],
+                ASSET7_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET7 lowercaseString]],
+                ASSET8_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET8 lowercaseString]],
+                ASSET9_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET9 lowercaseString]],
+                ASSET10_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET10 lowercaseString]],
             } mutableCopy];
 
             [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
         }
 
         tickerKeys = @{
-            BTC: @"BTC_EUR",
-            ZEC: [NSString stringWithFormat:@"BTC_%@", ZEC],
-            ETH: [NSString stringWithFormat:@"BTC_%@", ETH],
-            XMR: [NSString stringWithFormat:@"BTC_%@", XMR],
-            LTC: [NSString stringWithFormat:@"BTC_%@", LTC],
-            GAME: [NSString stringWithFormat:@"BTC_%@", GAME],
-            STEEM: [NSString stringWithFormat:@"BTC_%@", STEEM],
-            MAID: [NSString stringWithFormat:@"BTC_%@", MAID],
-            BTS: [NSString stringWithFormat:@"BTC_%@", BTS],
-            SC: [NSString stringWithFormat:@"BTC_%@", SC],
+            ASSET1: [NSString stringWithFormat:@"%@_%@", ASSET1, EUR],
+            ASSET2: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET2],
+            ASSET3: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET3],
+            ASSET4: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET4],
+            ASSET5: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET5],
+            ASSET6: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET6],
+            ASSET7: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET7],
+            ASSET8: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET8],
+            ASSET9: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET9],
+            ASSET10: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET10],
         };
 
         defaultExchange = [defaults objectForKey:@"defaultExchange"];
@@ -143,7 +143,7 @@
         tradingWithConfirmation = [defaults objectForKey:@"tradingWithConfirmation"];
 
         if (tradingWithConfirmation == nil) {
-            tradingWithConfirmation = [NSNumber numberWithBool:true];
+            tradingWithConfirmation = @true;
 
             [defaults setObject:tradingWithConfirmation forKey:@"tradingWithConfirmation"];
         }
@@ -171,152 +171,92 @@
         mustUpdate = true;
     }
 
-    if (!saldoUrls[BITCOIN]) {
-        saldoUrls[BITCOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTC lowercaseString]];
+    if (!saldoUrls[ASSET1_DESC]) {
+        saldoUrls[ASSET1_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET1 lowercaseString]];
 
-        currentSaldo[BTC] = @0.0;
-        initialRatings[BTC] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ZCASH]) {
-        saldoUrls[ZCASH] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ZEC lowercaseString]];
-
-        currentSaldo[ZEC] = @0.0;
-        initialRatings[ZEC] = @0.0;
+        currentSaldo[ASSET1] = @0.0;
+        initialRatings[ASSET1] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!saldoUrls[ETHEREUM]) {
-        saldoUrls[ETHEREUM] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ETH lowercaseString]];
+    if (!saldoUrls[ASSET2_DESC]) {
+        saldoUrls[ASSET2_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET2 lowercaseString]];
 
-        currentSaldo[ETH] = @0.0;
-        initialRatings[ETH] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[MONERO]) {
-        saldoUrls[MONERO] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [XMR lowercaseString]];
-
-        currentSaldo[XMR] = @0.0;
-        initialRatings[XMR] = @0.0;
+        currentSaldo[ASSET2] = @0.0;
+        initialRatings[ASSET2] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!saldoUrls[LITECOIN]) {
-        saldoUrls[LITECOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [LTC lowercaseString]];
+    if (!saldoUrls[ASSET3_DESC]) {
+        saldoUrls[ASSET3_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET3 lowercaseString]];
 
-        currentSaldo[LTC] = @0.0;
-        initialRatings[LTC] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[GAMECREDITS]) {
-        saldoUrls[GAMECREDITS] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [GAME lowercaseString]];
-
-        currentSaldo[GAME] = @0.0;
-        initialRatings[GAME] = @0.0;
+        currentSaldo[ASSET3] = @0.0;
+        initialRatings[ASSET3] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!saldoUrls[SAFEMAID]) {
-        saldoUrls[SAFEMAID] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [MAID lowercaseString]];
+    if (!saldoUrls[ASSET4_DESC]) {
+        saldoUrls[ASSET4_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET4 lowercaseString]];
 
-        currentSaldo[MAID] = @0.0;
-        initialRatings[MAID] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[STEEMCOIN]) {
-        saldoUrls[STEEMCOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [STEEM lowercaseString]];
-
-        currentSaldo[STEEM] = @0.0;
-        initialRatings[STEEM] = @0.0;
+        currentSaldo[ASSET4] = @0.0;
+        initialRatings[ASSET4] = @0.0;
 
         mustUpdate = true;
     }
 
-    if (!saldoUrls[BITSHARES]) {
-        saldoUrls[BITSHARES] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [BTS lowercaseString]];
+    if (!saldoUrls[ASSET5_DESC]) {
+        saldoUrls[ASSET5_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET5 lowercaseString]];
 
-        currentSaldo[BTS] = @0.0;
-        initialRatings[BTS] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[SIACOIN]) {
-        saldoUrls[SIACOIN] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [SC lowercaseString]];
-
-        currentSaldo[SC] = @0.0;
-        initialRatings[SC] = @0.0;
+        currentSaldo[ASSET5] = @0.0;
+        initialRatings[ASSET5] = @0.0;
 
         mustUpdate = true;
     }
 
-    // Lösche die alten Schlüssel für Einsteinium
-    if (saldoUrls[@"Einsteinium"]) {
-        [saldoUrls removeObjectForKey:@"Einsteinium"];
+    if (!saldoUrls[ASSET6_DESC]) {
+        saldoUrls[ASSET6_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET6 lowercaseString]];
 
-        [currentSaldo removeObjectForKey:@"EMC2"];
-        [initialRatings removeObjectForKey:@"EMC2"];
-
-        mustUpdate = true;
-    }
-
-    // Lösche die alten Schlüssel für Dogecoin
-    if (saldoUrls[@"Dogecoin"]) {
-        [saldoUrls removeObjectForKey:@"Dogecoin"];
-
-        [currentSaldo removeObjectForKey:@"DOGE"];
-        [initialRatings removeObjectForKey:@"DOGE"];
+        currentSaldo[ASSET6] = @0.0;
+        initialRatings[ASSET6] = @0.0;
 
         mustUpdate = true;
     }
 
-    // Lösche die alten Schlüssel für ZCash
-    if (saldoUrls[@"ZCash"]) {
-        [saldoUrls removeObjectForKey:@"Zcash"];
+    if (!saldoUrls[ASSET8_DESC]) {
+        saldoUrls[ASSET8_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET8 lowercaseString]];
 
-        [currentSaldo removeObjectForKey:@"ZCASH"];
-        [initialRatings removeObjectForKey:@"ZCASH"];
-
-        mustUpdate = true;
-    }
-
-    // Lösche die alten Schlüssel für GameCredits
-    if (saldoUrls[@"GameCredits"]) {
-        [saldoUrls removeObjectForKey:@"GameCredits"];
-
-        [currentSaldo removeObjectForKey:@"GAME"];
-        [initialRatings removeObjectForKey:@"GAME"];
+        currentSaldo[ASSET8] = @0.0;
+        initialRatings[ASSET8] = @0.0;
 
         mustUpdate = true;
     }
 
-    // Lösche die alten Schlüssel für SafeMaid
-    if (saldoUrls[@"Safe Maid Coin"]) {
-        [saldoUrls removeObjectForKey:@"Safe Maid Coin"];
+    if (!saldoUrls[ASSET7_DESC]) {
+        saldoUrls[ASSET7_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET7 lowercaseString]];
 
-        [currentSaldo removeObjectForKey:@"MAID"];
-        [initialRatings removeObjectForKey:@"MAID"];
+        currentSaldo[ASSET7] = @0.0;
+        initialRatings[ASSET7] = @0.0;
 
         mustUpdate = true;
     }
 
-    // Lösche die alten Schlüssel für BitShares
-    if (saldoUrls[@"BitShares"]) {
-        [saldoUrls removeObjectForKey:@"BitShares"];
+    if (!saldoUrls[ASSET9_DESC]) {
+        saldoUrls[ASSET9_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET9 lowercaseString]];
 
-        [currentSaldo removeObjectForKey:@"BTS"];
-        [initialRatings removeObjectForKey:@"BTS"];
+        currentSaldo[ASSET9] = @0.0;
+        initialRatings[ASSET9] = @0.0;
+
+        mustUpdate = true;
+    }
+
+    if (!saldoUrls[ASSET10_DESC]) {
+        saldoUrls[ASSET10_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET10 lowercaseString]];
+
+        currentSaldo[ASSET10] = @0.0;
+        initialRatings[ASSET10] = @0.0;
 
         mustUpdate = true;
     }
@@ -369,9 +309,9 @@
         // aktualisiere den Kurs der Währung
         initialRatings[asset] = currentRatings[asset];
 
-        if (![asset isEqualToString:BTC] && btcUpdate) {
+        if (![asset isEqualToString:ASSET1] && btcUpdate) {
             // aktualisiere den BTC Kurs, auf den sich die Transaktion bezog
-            initialRatings[BTC] = currentRatings[BTC];
+            initialRatings[ASSET1] = currentRatings[ASSET1];
         }
     }
 
@@ -412,7 +352,7 @@
  * @param asset
  */
 - (double)btcPriceForAsset:(NSString*)asset {
-    double btcRating = [currentRatings[BTC] doubleValue];
+    double btcRating = [currentRatings[ASSET1] doubleValue];
     double assetRating = [currentRatings[asset] doubleValue];
 
     double btcPrice = btcRating / assetRating;
@@ -484,29 +424,29 @@
         }
     }
 
-    double btcRating = [ratings[BTC] doubleValue];
-    double zecRating = [ratings[ZEC] doubleValue];
-    double ethRating = [ratings[ETH] doubleValue];
-    double xmrRating = [ratings[XMR] doubleValue];
-    double ltcRating = [ratings[LTC] doubleValue];
+    double btcRating = [ratings[ASSET1] doubleValue];
+    double zecRating = [ratings[ASSET2] doubleValue];
+    double ethRating = [ratings[ASSET3] doubleValue];
+    double xmrRating = [ratings[ASSET4] doubleValue];
+    double ltcRating = [ratings[ASSET5] doubleValue];
 
-    double gameRating = [ratings[GAME] doubleValue];
-    double steemRating = [ratings[STEEM] doubleValue];
-    double maidRating = [ratings[MAID] doubleValue];
-    double btsRating = [ratings[BTS] doubleValue];
-    double scRating = [ratings[SC] doubleValue];
+    double gameRating = [ratings[ASSET6] doubleValue];
+    double steemRating = [ratings[ASSET7] doubleValue];
+    double maidRating = [ratings[ASSET8] doubleValue];
+    double btsRating = [ratings[ASSET9] doubleValue];
+    double scRating = [ratings[ASSET10] doubleValue];
 
-    double btc = [currentSaldo[BTC] doubleValue] / btcRating;
-    double zec = [currentSaldo[ZEC] doubleValue] / zecRating;
-    double eth = [currentSaldo[ETH] doubleValue] / ethRating;
-    double ltc = [currentSaldo[LTC] doubleValue] / ltcRating;
-    double xmr = [currentSaldo[XMR] doubleValue] / xmrRating;
+    double btc = [currentSaldo[ASSET1] doubleValue] / btcRating;
+    double zec = [currentSaldo[ASSET2] doubleValue] / zecRating;
+    double eth = [currentSaldo[ASSET3] doubleValue] / ethRating;
+    double ltc = [currentSaldo[ASSET5] doubleValue] / ltcRating;
+    double xmr = [currentSaldo[ASSET4] doubleValue] / xmrRating;
 
-    double game = [currentSaldo[GAME] doubleValue] / gameRating;
-    double steem = [currentSaldo[STEEM] doubleValue] / steemRating;
-    double maid = [currentSaldo[MAID] doubleValue] / maidRating;
-    double bts = [currentSaldo[BTS] doubleValue] / btsRating;
-    double sc = [currentSaldo[SC] doubleValue] / scRating;
+    double game = [currentSaldo[ASSET6] doubleValue] / gameRating;
+    double steem = [currentSaldo[ASSET7] doubleValue] / steemRating;
+    double maid = [currentSaldo[ASSET8] doubleValue] / maidRating;
+    double bts = [currentSaldo[ASSET9] doubleValue] / btsRating;
+    double sc = [currentSaldo[ASSET10] doubleValue] / scRating;
 
     double sum = btc + zec + eth + ltc + xmr + game + steem + maid + bts + sc;
 
@@ -536,7 +476,7 @@
     NSMutableDictionary *result = [[NSMutableDictionary alloc] init];
 
     for (id key in volumes) {
-        if ([key isEqualToString:BTC]) {
+        if ([key isEqualToString:ASSET1]) {
             continue;
         }
 
@@ -544,7 +484,7 @@
         double v2 = [volumes[key][@"out"] doubleValue];
 
         double realPrice = v1 / v2;
-        double price = [currentRatings[BTC] doubleValue] / [currentRatings[key] doubleValue];
+        double price = [currentRatings[ASSET1] doubleValue] / [currentRatings[key] doubleValue];
         double percentChange = ((price / realPrice) - 1) * 100.0;
 
         result[key] = @{
@@ -599,25 +539,20 @@
         return;
     }
 
-    double btcPrice = [currentRatings[BTC] doubleValue];
+    double btcPrice = [currentRatings[ASSET1] doubleValue];
     double assetPrice = [currentRatings[cAsset] doubleValue];
     double cRate = btcPrice / assetPrice;
 
     // Bestimme die maximale Anzahl an BTC's, die verkauft werden können...
-    double amountMax = feeAsFactor * ([self currentSaldo:BTC] / cRate);
+    double amountMax = feeAsFactor * ([self currentSaldo:ASSET1] / cRate);
     double amount = amountMax;
 
     if (wantedAmount > 0) {
         amount = wantedAmount;
     }
 
-    if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
+    if ([cAsset isEqualToString:ASSET1] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
         // Illegale Kombination BTC_(cAsset)
-        return;
-    }
-
-    // Es müssen mindestens 10 Cent (derzeit) umgesetzt werden...
-    if ((amount * cRate) < 0.00005) {
         return;
     }
 
@@ -686,14 +621,14 @@
     double amountMax = feeAsFactor * [self currentSaldo:cAsset];
     double amount = amountMax;
 
-    double btcPrice = [currentRatings[BTC] doubleValue];
+    double btcPrice = [currentRatings[ASSET1] doubleValue];
     double assetPrice = [currentRatings[cAsset] doubleValue];
 
     if (wantedAmount > 0) {
         amount = wantedAmount;
     }
 
-    if ([cAsset isEqualToString:BTC] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
+    if ([cAsset isEqualToString:ASSET1] || [cAsset isEqualToString:USD] || [cAsset isEqualToString:EUR]) {
         // Illegale Kombination BTC_(cAsset)
         return;
     }
@@ -766,7 +701,7 @@
  */
 - (void)sellWithProfitInEuro:(double)wantedEuros {
     for (id key in currentSaldo) {
-        if ([key isEqualToString:BTC]) continue;
+        if ([key isEqualToString:ASSET1]) continue;
         if ([key isEqualToString:fiatCurrencies[0]]) continue;
         if ([key isEqualToString:fiatCurrencies[1]]) continue;
 
@@ -794,12 +729,12 @@
 - (void)sellWithProfitInPercent:(double)wantedPercent {
 
     for (id key in currentSaldo) {
-        if ([key isEqualToString:BTC]) continue;
+        if ([key isEqualToString:ASSET1]) continue;
         if ([key isEqualToString:fiatCurrencies[0]]) continue;
         if ([key isEqualToString:fiatCurrencies[1]]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
-        NSDictionary *btcCheckpoint = [self checkpointForAsset:BTC];
+        NSDictionary *btcCheckpoint = [self checkpointForAsset:ASSET1];
 
         double currentPrice = [checkpoint[CP_CURRENT_PRICE] doubleValue];
         double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
@@ -851,18 +786,18 @@
  * @param wantedPercent
  */
 - (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double) rate {
-    double balance = [self currentSaldo:BTC];
+    double balance = [self currentSaldo:ASSET1];
     NSDictionary *realChanges = [self realChanges];
 
     if (balance < 0.0001) return;
 
     for (id key in currentSaldo) {
-        if ([key isEqualToString:BTC]) continue;
+        if ([key isEqualToString:ASSET1]) continue;
         if ([key isEqualToString:fiatCurrencies[0]]) continue;
         if ([key isEqualToString:fiatCurrencies[1]]) continue;
 
         NSDictionary *checkpoint = [self checkpointForAsset:key];
-        NSDictionary *btcCheckpoint = [self checkpointForAsset:BTC];
+        NSDictionary *btcCheckpoint = [self checkpointForAsset:ASSET1];
 
         double btcPercent = [btcCheckpoint[CP_PERCENT] doubleValue];
         double percent = [checkpoint[CP_PERCENT] doubleValue];
@@ -1064,13 +999,13 @@
 
     currentRatings = [[NSMutableDictionary alloc] init];
 
-    currentRatings[BTC] = @(btcValue);
+    currentRatings[ASSET1] = @(btcValue);
     currentRatings[fiatCurrencies[1]] = tickerDictionary[fiatCurrencies[1]];
 
     for (id key in tickerKeys) {
         double assetValue = btcValue;
 
-        if (![key isEqualToString:BTC]) {
+        if (![key isEqualToString:ASSET1]) {
             assetValue /= [tickerDictionary[tickerKeys[key]][POLONIEX_LAST] doubleValue];
         }
 

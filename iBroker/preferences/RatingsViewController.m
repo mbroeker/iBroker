@@ -16,43 +16,43 @@
 - (void)viewWillAppear {
     NSNumberFormatter *formatter;
     
-    formatter  = self.btcField.formatter;
+    formatter  = self.asset1Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.zecField.formatter;
+    formatter  = self.asset2Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.ethField.formatter;
+    formatter  = self.asset3Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.xmrField.formatter;
+    formatter  = self.asset4Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.ltcField.formatter;
+    formatter  = self.asset5Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.gameField.formatter;
+    formatter  = self.asset6Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.emc2Field.formatter;
+    formatter  = self.asset7Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.maidField.formatter;
+    formatter  = self.asset8Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.scField.formatter;
+    formatter  = self.asset10Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 
-    formatter  = self.btsField.formatter;
+    formatter  = self.asset9Field.formatter;
     [formatter setMinimumFractionDigits:4];
     [formatter setMaximumFractionDigits:4];
 }
@@ -66,22 +66,34 @@
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *ratings = [calculator initialRatings];
 
-    self.btcField.doubleValue = 1 / [ratings[BTC] doubleValue];
-    self.zecField.doubleValue = 1 / [ratings[ZEC] doubleValue];
-    self.ethField.doubleValue = 1 / [ratings[ETH] doubleValue];
-    self.xmrField.doubleValue = 1 / [ratings[XMR] doubleValue];
-    self.ltcField.doubleValue = 1 / [ratings[LTC] doubleValue];
-    self.gameField.doubleValue = 1 / [ratings[GAME] doubleValue];
-    self.emc2Field.doubleValue = 1 / [ratings[STEEM] doubleValue];
-    self.maidField.doubleValue = 1 / [ratings[MAID] doubleValue];
-    self.btsField.doubleValue = 1 / [ratings[BTS] doubleValue];
-    self.scField.doubleValue = 1 / [ratings[SC] doubleValue];
+    self.asset1Field.doubleValue = 1 / [ratings[ASSET1] doubleValue];
+    self.asset2Field.doubleValue = 1 / [ratings[ASSET2] doubleValue];
+    self.asset3Field.doubleValue = 1 / [ratings[ASSET3] doubleValue];
+    self.asset4Field.doubleValue = 1 / [ratings[ASSET4] doubleValue];
+    self.asset5Field.doubleValue = 1 / [ratings[ASSET5] doubleValue];
+    self.asset6Field.doubleValue = 1 / [ratings[ASSET6] doubleValue];
+    self.asset7Field.doubleValue = 1 / [ratings[ASSET7] doubleValue];
+    self.asset8Field.doubleValue = 1 / [ratings[ASSET8] doubleValue];
+    self.asset9Field.doubleValue = 1 / [ratings[ASSET9] doubleValue];
+    self.asset10Field.doubleValue = 1 / [ratings[ASSET10] doubleValue];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self updateView];
+    self.asset1Field.placeholderString = ASSET1_DESC;
+    self.asset2Field.placeholderString = ASSET2_DESC;
+    self.asset3Field.placeholderString = ASSET3_DESC;
+    self.asset4Field.placeholderString = ASSET4_DESC;
+    self.asset5Field.placeholderString = ASSET5_DESC;
+
+    self.asset6Field.placeholderString = ASSET6_DESC;
+    self.asset8Field.placeholderString = ASSET7_DESC;
+    self.asset7Field.placeholderString = ASSET8_DESC;
+    self.asset9Field.placeholderString = ASSET9_DESC;
+    self.asset10Field.placeholderString = ASSET10_DESC;
+
+   [self updateView];
 }
 
 /**
@@ -93,27 +105,27 @@
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *initialRatings = [calculator initialRatings];
 
-    double btc = 1 / self.btcField.doubleValue;
-    double zec = 1 / self.zecField.doubleValue;
-    double eth = 1 / self.ethField.doubleValue;
-    double xmr = 1 / self.xmrField.doubleValue;
-    double ltc = 1 / self.ltcField.doubleValue;
-    double game = 1 / self.gameField.doubleValue;
-    double emc2 = 1 / self.emc2Field.doubleValue;
-    double maid = 1 / self.maidField.doubleValue;
-    double bts = 1 / self.btsField.doubleValue;
-    double sc = 1 / self.scField.doubleValue;
+    double btc = 1 / self.asset1Field.doubleValue;
+    double zec = 1 / self.asset2Field.doubleValue;
+    double eth = 1 / self.asset3Field.doubleValue;
+    double xmr = 1 / self.asset4Field.doubleValue;
+    double ltc = 1 / self.asset5Field.doubleValue;
+    double game = 1 / self.asset6Field.doubleValue;
+    double emc2 = 1 / self.asset7Field.doubleValue;
+    double maid = 1 / self.asset8Field.doubleValue;
+    double bts = 1 / self.asset9Field.doubleValue;
+    double sc = 1 / self.asset10Field.doubleValue;
 
-    initialRatings[BTC] = @(btc);
-    initialRatings[ZEC] = @(zec);
-    initialRatings[ETH] = @(eth);
-    initialRatings[XMR] = @(xmr);
-    initialRatings[LTC] = @(ltc);
-    initialRatings[GAME] = @(game);
-    initialRatings[STEEM] = @(emc2);
-    initialRatings[MAID] = @(maid);
-    initialRatings[BTS] = @(bts);
-    initialRatings[SC] = @(sc);
+    initialRatings[ASSET1] = @(btc);
+    initialRatings[ASSET2] = @(zec);
+    initialRatings[ASSET3] = @(eth);
+    initialRatings[ASSET4] = @(xmr);
+    initialRatings[ASSET5] = @(ltc);
+    initialRatings[ASSET6] = @(game);
+    initialRatings[ASSET7] = @(emc2);
+    initialRatings[ASSET8] = @(maid);
+    initialRatings[ASSET9] = @(bts);
+    initialRatings[ASSET10] = @(sc);
 
     [calculator initialRatingsWithDictionary:initialRatings];
 

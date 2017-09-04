@@ -16,43 +16,43 @@
 - (void)viewWillAppear {
     NSNumberFormatter *formatter;
     
-    formatter  = self.btcField.formatter;
+    formatter  = self.asset1Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.zecField.formatter;
+    formatter  = self.asset2Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.ethField.formatter;
+    formatter  = self.asset3Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.xmrField.formatter;
+    formatter  = self.asset4Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.ltcField.formatter;
+    formatter  = self.asset5Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.gameField.formatter;
+    formatter  = self.asset6Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.emc2Field.formatter;
+    formatter  = self.asset7Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.maidField.formatter;
+    formatter  = self.asset8Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.btsField.formatter;
+    formatter  = self.asset9Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 
-    formatter  = self.scField.formatter;
+    formatter  = self.asset10Field.formatter;
     [formatter setMinimumFractionDigits:8];
     [formatter setMaximumFractionDigits:8];
 }
@@ -66,20 +66,32 @@
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *currentSaldo = [calculator currentSaldo];
 
-    self.btcField.doubleValue = [currentSaldo[BTC] doubleValue];
-    self.zecField.doubleValue = [currentSaldo[ZEC] doubleValue];
-    self.ethField.doubleValue = [currentSaldo[ETH] doubleValue];
-    self.xmrField.doubleValue = [currentSaldo[XMR] doubleValue];
-    self.ltcField.doubleValue = [currentSaldo[LTC] doubleValue];
-    self.gameField.doubleValue = [currentSaldo[GAME] doubleValue];
-    self.emc2Field.doubleValue = [currentSaldo[STEEM] doubleValue];
-    self.maidField.doubleValue = [currentSaldo[MAID] doubleValue];
-    self.btsField.doubleValue = [currentSaldo[BTS] doubleValue];
-    self.scField.doubleValue = [currentSaldo[SC] doubleValue];
+    self.asset1Field.doubleValue = [currentSaldo[ASSET1] doubleValue];
+    self.asset2Field.doubleValue = [currentSaldo[ASSET2] doubleValue];
+    self.asset3Field.doubleValue = [currentSaldo[ASSET3] doubleValue];
+    self.asset4Field.doubleValue = [currentSaldo[ASSET4] doubleValue];
+    self.asset5Field.doubleValue = [currentSaldo[ASSET5] doubleValue];
+    self.asset6Field.doubleValue = [currentSaldo[ASSET6] doubleValue];
+    self.asset7Field.doubleValue = [currentSaldo[ASSET7] doubleValue];
+    self.asset8Field.doubleValue = [currentSaldo[ASSET8] doubleValue];
+    self.asset9Field.doubleValue = [currentSaldo[ASSET9] doubleValue];
+    self.asset10Field.doubleValue = [currentSaldo[ASSET10] doubleValue];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.asset1Field.placeholderString = ASSET1_DESC;
+    self.asset2Field.placeholderString = ASSET2_DESC;
+    self.asset3Field.placeholderString = ASSET3_DESC;
+    self.asset4Field.placeholderString = ASSET4_DESC;
+    self.asset5Field.placeholderString = ASSET5_DESC;
+
+    self.asset6Field.placeholderString = ASSET6_DESC;
+    self.asset8Field.placeholderString = ASSET7_DESC;
+    self.asset7Field.placeholderString = ASSET8_DESC;
+    self.asset9Field.placeholderString = ASSET9_DESC;
+    self.asset10Field.placeholderString = ASSET10_DESC;
 
     [self updateView];
 }
@@ -93,27 +105,27 @@
     // Aktualisierte Ratings besorgen
     NSMutableDictionary *currentSaldo = [calculator currentSaldo];
 
-    double btc = self.btcField.doubleValue;
-    double zec = self.zecField.doubleValue;
-    double eth = self.ethField.doubleValue;
-    double xmr = self.xmrField.doubleValue;
-    double ltc = self.ltcField.doubleValue;
-    double game = self.gameField.doubleValue;
-    double emc2 = self.emc2Field.doubleValue;
-    double maid = self.maidField.doubleValue;
-    double bts = self.btsField.doubleValue;
-    double sc = self.scField.doubleValue;
+    double btc = self.asset1Field.doubleValue;
+    double zec = self.asset2Field.doubleValue;
+    double eth = self.asset3Field.doubleValue;
+    double xmr = self.asset4Field.doubleValue;
+    double ltc = self.asset5Field.doubleValue;
+    double game = self.asset6Field.doubleValue;
+    double emc2 = self.asset7Field.doubleValue;
+    double maid = self.asset8Field.doubleValue;
+    double bts = self.asset9Field.doubleValue;
+    double sc = self.asset10Field.doubleValue;
 
-    currentSaldo[BTC] = @(btc);
-    currentSaldo[ZEC] = @(zec);
-    currentSaldo[ETH] = @(eth);
-    currentSaldo[XMR] = @(xmr);
-    currentSaldo[LTC] = @(ltc);
-    currentSaldo[GAME] = @(game);
-    currentSaldo[STEEM] = @(emc2);
-    currentSaldo[MAID] = @(maid);
-    currentSaldo[BTS] = @(bts);
-    currentSaldo[SC] = @(sc);
+    currentSaldo[ASSET1] = @(btc);
+    currentSaldo[ASSET2] = @(zec);
+    currentSaldo[ASSET3] = @(eth);
+    currentSaldo[ASSET4] = @(xmr);
+    currentSaldo[ASSET5] = @(ltc);
+    currentSaldo[ASSET6] = @(game);
+    currentSaldo[ASSET7] = @(emc2);
+    currentSaldo[ASSET8] = @(maid);
+    currentSaldo[ASSET9] = @(bts);
+    currentSaldo[ASSET10] = @(sc);
 
     [calculator currentSaldoForDictionary:currentSaldo];
 

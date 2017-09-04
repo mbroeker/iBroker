@@ -11,16 +11,16 @@
 @interface SaldoViewController : NSViewController
 
 // Properties List
-@property (strong) IBOutlet NSTextField *btcField;
-@property (strong) IBOutlet NSTextField *zecField;
-@property (strong) IBOutlet NSTextField *ethField;
-@property (strong) IBOutlet NSTextField *xmrField;
-@property (strong) IBOutlet NSTextField *ltcField;
-@property (strong) IBOutlet NSTextField *gameField;
-@property (strong) IBOutlet NSTextField *emc2Field;
-@property (strong) IBOutlet NSTextField *maidField;
-@property (strong) IBOutlet NSTextField *btsField;
-@property (strong) IBOutlet NSTextField *scField;
+@property (strong) IBOutlet NSTextField *asset1Field;
+@property (strong) IBOutlet NSTextField *asset2Field;
+@property (strong) IBOutlet NSTextField *asset3Field;
+@property (strong) IBOutlet NSTextField *asset4Field;
+@property (strong) IBOutlet NSTextField *asset5Field;
+@property (strong) IBOutlet NSTextField *asset6Field;
+@property (strong) IBOutlet NSTextField *asset7Field;
+@property (strong) IBOutlet NSTextField *asset8Field;
+@property (strong) IBOutlet NSTextField *asset9Field;
+@property (strong) IBOutlet NSTextField *asset10Field;
 
 // Action Handler
 - (IBAction)saveAction:(id)sender;
