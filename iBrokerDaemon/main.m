@@ -43,10 +43,10 @@ const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
 
     NSString *theHeadLine = [
         NSString stringWithFormat:format,
-          asset,
-          [checkpoint[CP_INITIAL_PRICE] doubleValue],
-          [checkpoint[CP_CURRENT_PRICE] doubleValue],
-          [checkpoint[CP_PERCENT] doubleValue]
+                                  asset,
+                                  [checkpoint[CP_INITIAL_PRICE] doubleValue],
+                                  [checkpoint[CP_CURRENT_PRICE] doubleValue],
+                                  [checkpoint[CP_PERCENT] doubleValue]
     ];
 
     return [theHeadLine UTF8String];
@@ -70,9 +70,9 @@ const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *
 
     NSString *theString = [
         NSString stringWithFormat:@"%.6f EUR / %.8f BTC / %+.2f%%",
-            currentPrice,
-            currentPriceInBTC,
-            effectivePercent
+                                  currentPrice,
+                                  currentPriceInBTC,
+                                  effectivePercent
     ];
 
     return [theString UTF8String];
@@ -121,6 +121,7 @@ void brokerRun(CONFIG config) {
         safeSleep(config.timeout);
     }
 }
+
 /**
  * Kompakte Übersicht der Funktionen des Daemons
  *
@@ -138,17 +139,17 @@ void usage(const char *name) {
     printf("  --balance\t\tZeige den aktuellen Gesamtsaldo aller Coins an\n");
     printf("  --list\n\n");
 
-    printf("  --btc ANZAHL\t\tSetze den aktuellen Saldo für Bitcoins\n");
-    printf("  --zec ANZAHL\t\tSetze den aktuellen Saldo für ZCash\n");
-    printf("  --eth ANZAHL\t\tSetze den aktuellen Saldo für Ethereum\n");
-    printf("  --xmr ANZAHL\t\tSetze den aktuellen Saldo für Monero\n");
-    printf("  --ltc ANZAHL\t\tSetze den aktuellen Saldo für Litecoins\n");
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET1.lowercaseString] UTF8String], ASSET1_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET2.lowercaseString] UTF8String], ASSET2_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET3.lowercaseString] UTF8String], ASSET3_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET4.lowercaseString] UTF8String], ASSET4_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET5.lowercaseString] UTF8String], ASSET5_DESC.UTF8String);
 
-    printf("  --dash ANZAHL\t\tSetze den aktuellen Saldo für Dash\n");
-    printf("  --dcr ANZAHL\tSetze den aktuellen Saldo für Decred\n");
-    printf("  --xrp ANZAHL\t\tSetze den aktuellen Saldo für Ripple\n");
-    printf("  --strat ANZAHL\t\tSetze den aktuellen Saldo für Stratis\n");
-    printf("  --xem ANZAHL\t\tSetze den aktuellen Saldo für XEM Coins\n\n");
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET6.lowercaseString] UTF8String], ASSET6_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET7.lowercaseString] UTF8String], ASSET7_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET8.lowercaseString] UTF8String], ASSET8_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET9.lowercaseString] UTF8String], ASSET9_DESC.UTF8String);
+    printf("  --%s ANZAHL\t\tSetze den aktuellen Saldo für %s\n", [[NSString stringWithFormat:@"%@", ASSET10.lowercaseString] UTF8String], ASSET10_DESC.UTF8String);
 
     printf("ANZAHL im amerikanische Dezimalformat (0.5 anstatt 0,5)\n\n");
 
@@ -311,7 +312,7 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
  */
 int main(int argc, const char *argv[]) {
     @autoreleasepool {
-        CONFIG config = { DEFAULT_TIMEOUT, DEFAULT_ROWS };
+        CONFIG config = {DEFAULT_TIMEOUT, DEFAULT_ROWS};
 
         if (argc > 1) {
             parseOptions(argc, argv, &config);
