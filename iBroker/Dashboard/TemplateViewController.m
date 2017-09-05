@@ -82,7 +82,7 @@ typedef struct DASHBOARD_VARS {
             [calculator sellWithProfitInPercent:1.25];
 
             // Gewinn: Automatisches Kaufen von Assets mit einer Exchange-Rate von 1.25% oder mehr
-            [calculator buyWithProfitInPercent:1.25 andInvestmentRate:-3.0];
+            [calculator buyWithProfitInPercent:1.25 andInvestmentRate:0];
 
             // Verlust: Automatisches Verkaufen von Assets mit einer Exchange-Rate von -5.0
             //[calculator sellWithProfitInPercent:-5];
