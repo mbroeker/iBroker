@@ -14,7 +14,7 @@ A Portfolio Manager for Poloniex/Bittrex with Bitcoin as its main currency
 
 With "iBroker" you can keep an overview of your assets - act on inflation and exchange your cryptos profitably.
 The old principle that trading profits and losses balance out - this only applies to a limited extent.
-With "Penny Stocks" you have your positions in view and your can log on the respective exchanges and actively generate profits.
+With "iBroker" you have your positions in view and your can log on the respective exchanges and actively generate profits.
 
 ### Website ###
 
