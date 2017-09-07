@@ -103,7 +103,7 @@
 
         if (saldoUrls == nil) {
             saldoUrls = [@{
-                DASHBOARD: @"https://bittrex.com/Market/Index?MarketName=BTC-LTC",
+                DASHBOARD: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-LTC", ASSET1],
                 ASSET1_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET1 lowercaseString]],
                 ASSET2_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET2 lowercaseString]],
                 ASSET3_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", [ASSET3 lowercaseString]],
