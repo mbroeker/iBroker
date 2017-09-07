@@ -7,6 +7,7 @@
 //
 
 #import "Brokerage.h"
+#import "CalculatorConstants.h"
 #import <CommonCrypto/CommonDigest.h>
 #include <CommonCrypto/CommonHMAC.h>
 #include <SystemConfiguration/SystemConfiguration.h>
@@ -555,7 +556,7 @@
         return nil;
     }
 
-    NSString *btcFiat = [NSString stringWithFormat:@"BTC_%@", fiatCurrencies[0]];
+    NSString *btcFiat = [NSString stringWithFormat:@"%@_%@", ASSET1, fiatCurrencies[0]];
     ticker[btcFiat] = btcTicker;
     ticker[fiatCurrencies[1]] = @([exchangeRate doubleValue]);
 
@@ -574,9 +575,9 @@
 
     NSMutableDictionary *ticker = [[NSMutableDictionary alloc] init];
     for (id key in currencyPairs) {
-        if ([key isEqualToString:@"BTC"]) continue;
+        if ([key isEqualToString:ASSET1]) continue;
 
-        NSString *pair = [NSString stringWithFormat:@"btc-%@", [key lowercaseString]];
+        NSString *pair = [NSString stringWithFormat:@"%@-%@", [ASSET1 lowercaseString], [key lowercaseString]];
         NSString *jsonURL = [NSString stringWithFormat:@"https://bittrex.com/api/v1.1/public/getmarketsummary?market=%@", pair];
 
         NSMutableDictionary *innerTicker = [[Brokerage jsonRequest:jsonURL] mutableCopy];
@@ -585,6 +586,11 @@
             NSLog(@"API-ERROR: Cannot retrieve ticker data from bittrex for key %@", key);
 
             return nil;
+        }
+
+        if ([innerTicker[@"message"] isEqualToString:@"INVALID_MARKET"]) {
+            NSLog(@"Invalid Market: %@/%@", ASSET1, key);
+            continue;
         }
 
         NSDictionary *data = innerTicker[@"result"][0];
@@ -623,7 +629,7 @@
         return nil;
     }
 
-    NSString *btcFiat = [NSString stringWithFormat:@"BTC_%@", fiatCurrencies[0]];
+    NSString *btcFiat = [NSString stringWithFormat:@"%@_%@", ASSET1, fiatCurrencies[0]];
     ticker[btcFiat] = btcTicker;
     ticker[fiatCurrencies[1]] = @([exchangeRate doubleValue]);
 
@@ -658,12 +664,12 @@
  * @return NSDictionary*
  */
 + (NSDictionary*)bitstampBTCTicker:(NSString*)asset {
-    NSString *jsonURL = [NSString stringWithFormat:@"https://www.bitstamp.net/api/v2/ticker/btc%@/", [asset lowercaseString]];
+    NSString *jsonURL = [NSString stringWithFormat:@"https://www.bitstamp.net/api/v2/ticker/%@%@/", [ASSET1 lowercaseString], [asset lowercaseString]];
 
     NSDictionary *theirData = [Brokerage jsonRequest:jsonURL];
 
     if (!theirData[@"last"]) {
-        NSLog(@"API-ERROR: Cannot retrieve exchange rates for BTC/%@", asset);
+        NSLog(@"API-ERROR: Cannot retrieve exchange rates for %@/%@", ASSET1, asset);
 
         return nil;
     }
