@@ -1267,17 +1267,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="C1h-OK-Wqu">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CUq-60-8Fu">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BTC" id="MBA-Bu-rra"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="BTC" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="WWJ-yK-QAD">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset1ClickedAction:" target="aKY-JE-DW7" id="XSK-Bh-Yl2"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="C1h-OK-Wqu" firstAttribute="centerY" secondItem="pks-Ph-nrQ" secondAttribute="centerY" id="5hY-i0-bsS"/>
-                                        <constraint firstItem="C1h-OK-Wqu" firstAttribute="centerX" secondItem="pks-Ph-nrQ" secondAttribute="centerX" id="8O7-R2-kYV"/>
-                                        <constraint firstItem="C1h-OK-Wqu" firstAttribute="leading" secondItem="pks-Ph-nrQ" secondAttribute="leading" constant="3" id="iwT-Xq-c0o"/>
-                                        <constraint firstItem="C1h-OK-Wqu" firstAttribute="top" secondItem="pks-Ph-nrQ" secondAttribute="top" constant="3" id="rfr-ja-tE8"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1288,17 +1288,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="W3e-M9-7fm">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cKk-zu-2T2">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="BCC" id="oRS-Od-tZZ"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="BCC" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="0yQ-uD-E1C">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset2ClickedAction:" target="aKY-JE-DW7" id="btb-Ed-uV6"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="W3e-M9-7fm" firstAttribute="centerY" secondItem="s2V-NO-sms" secondAttribute="centerY" id="BWs-2i-Cgf"/>
-                                        <constraint firstItem="W3e-M9-7fm" firstAttribute="centerX" secondItem="s2V-NO-sms" secondAttribute="centerX" id="Kuy-Mj-Y0b"/>
-                                        <constraint firstItem="W3e-M9-7fm" firstAttribute="leading" secondItem="s2V-NO-sms" secondAttribute="leading" constant="3" id="gWf-gC-3Tu"/>
-                                        <constraint firstItem="W3e-M9-7fm" firstAttribute="top" secondItem="s2V-NO-sms" secondAttribute="top" constant="3" id="hZH-FG-tRO"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1309,17 +1309,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="luu-S2-8R7">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hlh-Qr-RXC">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="ETH" id="FL6-pZ-8nF"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ETH" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="k2K-aQ-tNc">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset3ClickedAction:" target="aKY-JE-DW7" id="ru7-uN-WBf"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="luu-S2-8R7" firstAttribute="centerY" secondItem="RHf-8i-mPE" secondAttribute="centerY" id="4vA-au-zcF"/>
-                                        <constraint firstItem="luu-S2-8R7" firstAttribute="centerX" secondItem="RHf-8i-mPE" secondAttribute="centerX" id="GFu-BO-q72"/>
-                                        <constraint firstItem="luu-S2-8R7" firstAttribute="top" secondItem="RHf-8i-mPE" secondAttribute="top" constant="3" id="LmA-OE-lbw"/>
-                                        <constraint firstItem="luu-S2-8R7" firstAttribute="leading" secondItem="RHf-8i-mPE" secondAttribute="leading" constant="3" id="NQH-3r-bEv"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1341,17 +1341,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bMd-He-PNV">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPQ-gp-UYV">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XMR" id="TkY-aD-sET"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="XMR" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="8aO-Gf-kyj">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset4ClickedAction:" target="aKY-JE-DW7" id="csb-ug-4CJ"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="bMd-He-PNV" firstAttribute="centerY" secondItem="H5y-O2-7gn" secondAttribute="centerY" id="0fR-ml-CFZ"/>
-                                        <constraint firstItem="bMd-He-PNV" firstAttribute="leading" secondItem="H5y-O2-7gn" secondAttribute="leading" constant="3" id="3hN-sL-Svm"/>
-                                        <constraint firstItem="bMd-He-PNV" firstAttribute="top" secondItem="H5y-O2-7gn" secondAttribute="top" constant="3" id="dFh-YZ-zhB"/>
-                                        <constraint firstItem="bMd-He-PNV" firstAttribute="centerX" secondItem="H5y-O2-7gn" secondAttribute="centerX" id="oRz-cR-E49"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1362,17 +1362,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Za-ze-VaI">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Ye-Am-6So">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="LTC" id="Pch-5H-WKD"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="LTC" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="iXS-DR-NdY">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset5ClickedAction:" target="aKY-JE-DW7" id="vV2-gM-MuC"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="1Za-ze-VaI" firstAttribute="centerY" secondItem="8Xp-ih-isE" secondAttribute="centerY" id="G7N-f1-zpj"/>
-                                        <constraint firstItem="1Za-ze-VaI" firstAttribute="leading" secondItem="8Xp-ih-isE" secondAttribute="leading" constant="3" id="QoF-ME-hyK"/>
-                                        <constraint firstItem="1Za-ze-VaI" firstAttribute="top" secondItem="8Xp-ih-isE" secondAttribute="top" constant="3" id="UiR-B2-RaR"/>
-                                        <constraint firstItem="1Za-ze-VaI" firstAttribute="centerX" secondItem="8Xp-ih-isE" secondAttribute="centerX" id="nWw-W8-lF1"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1433,44 +1433,23 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="59g-4h-RsL">
-                                <rect key="frame" x="637" y="301" width="48" height="48"/>
-                                <view key="contentView" id="t77-lX-hxb">
-                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-s2-ANT">
-                                            <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DASH" id="cTZ-5G-8PJ"/>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="i2u-s2-ANT" firstAttribute="leading" secondItem="t77-lX-hxb" secondAttribute="leading" constant="3" id="8LR-5z-DcO"/>
-                                        <constraint firstItem="i2u-s2-ANT" firstAttribute="top" secondItem="t77-lX-hxb" secondAttribute="top" constant="3" id="JQ3-ew-n4k"/>
-                                        <constraint firstItem="i2u-s2-ANT" firstAttribute="centerX" secondItem="t77-lX-hxb" secondAttribute="centerX" id="q9O-qL-Rkd"/>
-                                        <constraint firstItem="i2u-s2-ANT" firstAttribute="centerY" secondItem="t77-lX-hxb" secondAttribute="centerY" id="the-ZN-GRh"/>
-                                    </constraints>
-                                </view>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                            </box>
                             <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="vcV-el-TNs">
                                 <rect key="frame" x="637" y="241" width="48" height="48"/>
                                 <view key="contentView" id="jTb-BC-SfA">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JZ6-UC-Q6q">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CfJ-If-fQS">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="DCR" id="tQ1-dq-t8V"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="DCR" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="q73-LZ-dUb">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset7ClickedAction:" target="aKY-JE-DW7" id="hiq-sD-QSf"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="JZ6-UC-Q6q" firstAttribute="leading" secondItem="jTb-BC-SfA" secondAttribute="leading" constant="3" id="ImI-Gk-3EV"/>
-                                        <constraint firstItem="JZ6-UC-Q6q" firstAttribute="centerX" secondItem="jTb-BC-SfA" secondAttribute="centerX" id="NrI-8u-La0"/>
-                                        <constraint firstItem="JZ6-UC-Q6q" firstAttribute="top" secondItem="jTb-BC-SfA" secondAttribute="top" constant="3" id="jvy-Vg-clq"/>
-                                        <constraint firstItem="JZ6-UC-Q6q" firstAttribute="centerY" secondItem="jTb-BC-SfA" secondAttribute="centerY" id="lce-xO-es6"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1481,17 +1460,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="okq-zu-YZZ">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoX-Ab-xuX">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XRP" id="tJO-AL-ptg"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="XRP" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="2om-71-eDr">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset8ClickedAction:" target="aKY-JE-DW7" id="uRh-Ow-Ttx"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="okq-zu-YZZ" firstAttribute="leading" secondItem="ggy-Pl-3fz" secondAttribute="leading" constant="3" id="EFH-JN-2os"/>
-                                        <constraint firstItem="okq-zu-YZZ" firstAttribute="centerX" secondItem="ggy-Pl-3fz" secondAttribute="centerX" id="F5k-Xf-DqO"/>
-                                        <constraint firstItem="okq-zu-YZZ" firstAttribute="centerY" secondItem="ggy-Pl-3fz" secondAttribute="centerY" id="Wc1-v0-Jts"/>
-                                        <constraint firstItem="okq-zu-YZZ" firstAttribute="top" secondItem="ggy-Pl-3fz" secondAttribute="top" constant="3" id="d4I-gI-YU1"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1502,17 +1481,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yWe-se-ea2">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5o-dY-p60">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="STRAT" id="KcX-Q8-2S1"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="STRAT" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="bBt-q9-12J">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset9ClickedAction:" target="aKY-JE-DW7" id="0mz-Yp-dRu"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="yWe-se-ea2" firstAttribute="top" secondItem="Mnp-VZ-j2T" secondAttribute="top" constant="3" id="9gn-C4-MAt"/>
-                                        <constraint firstItem="yWe-se-ea2" firstAttribute="centerY" secondItem="Mnp-VZ-j2T" secondAttribute="centerY" id="DsT-ny-KqM"/>
-                                        <constraint firstItem="yWe-se-ea2" firstAttribute="leading" secondItem="Mnp-VZ-j2T" secondAttribute="leading" constant="3" id="hN3-jd-si3"/>
-                                        <constraint firstItem="yWe-se-ea2" firstAttribute="centerX" secondItem="Mnp-VZ-j2T" secondAttribute="centerX" id="j8t-xZ-YKx"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1523,17 +1502,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rUe-TR-kKe">
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jwe-gh-KZj">
                                             <rect key="frame" x="3" y="3" width="42" height="42"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="XEM" id="vs5-cG-EiY"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="XEM" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="SPO-rh-k5z">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset10ClickedAction:" target="aKY-JE-DW7" id="tTX-qV-aXI"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="rUe-TR-kKe" firstAttribute="centerX" secondItem="Pku-Xu-E3K" secondAttribute="centerX" id="RwZ-Un-I2x"/>
-                                        <constraint firstItem="rUe-TR-kKe" firstAttribute="leading" secondItem="Pku-Xu-E3K" secondAttribute="leading" constant="3" id="pm1-6k-1NE"/>
-                                        <constraint firstItem="rUe-TR-kKe" firstAttribute="centerY" secondItem="Pku-Xu-E3K" secondAttribute="centerY" id="qJ1-YN-wXX"/>
-                                        <constraint firstItem="rUe-TR-kKe" firstAttribute="top" secondItem="Pku-Xu-E3K" secondAttribute="top" constant="3" id="zWy-c4-h9f"/>
-                                    </constraints>
                                 </view>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1633,6 +1612,34 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <box boxType="custom" borderType="none" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="59g-4h-RsL">
+                                <rect key="frame" x="637" y="301" width="48" height="48"/>
+                                <view key="contentView" id="t77-lX-hxb">
+                                    <rect key="frame" x="0.0" y="0.0" width="48" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSb-0J-cIW">
+                                            <rect key="frame" x="3" y="3" width="42" height="2"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="QGg-WF-b9A">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Lr-8f-L9a">
+                                            <rect key="frame" x="3" y="3" width="42" height="42"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="DASH" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="FlH-I5-Mvi">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="asset6ClickedAction:" target="aKY-JE-DW7" id="byd-mv-X8p"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
                         </subviews>
                         <constraints>
                             <constraint firstItem="vVx-1t-URd" firstAttribute="top" secondItem="u5r-VG-KIJ" secondAttribute="bottom" constant="12" id="06t-hm-czC"/>
@@ -1715,25 +1722,25 @@
                     </view>
                     <connections>
                         <outlet property="asset10Field" destination="PsG-dv-QDi" id="CCe-AV-T3B"/>
-                        <outlet property="asset10ImageView" destination="rUe-TR-kKe" id="PIC-eT-7nA"/>
+                        <outlet property="asset10ImageButton" destination="Jwe-gh-KZj" id="Job-Sa-ufa"/>
                         <outlet property="asset1Field" destination="Exz-54-M6E" id="921-le-u4S"/>
-                        <outlet property="asset1ImageView" destination="C1h-OK-Wqu" id="aFI-4D-1Uu"/>
+                        <outlet property="asset1ImageButton" destination="CUq-60-8Fu" id="JT0-Gw-URq"/>
                         <outlet property="asset2Field" destination="u5r-VG-KIJ" id="GP5-LI-yFF"/>
-                        <outlet property="asset2ImageView" destination="W3e-M9-7fm" id="CdD-hs-Nlz"/>
+                        <outlet property="asset2ImageButton" destination="cKk-zu-2T2" id="3Wk-WX-813"/>
                         <outlet property="asset3Field" destination="vVx-1t-URd" id="i23-tL-owW"/>
-                        <outlet property="asset3ImageView" destination="luu-S2-8R7" id="xJO-ss-HwS"/>
+                        <outlet property="asset3ImageButton" destination="hlh-Qr-RXC" id="acs-i0-0Fa"/>
                         <outlet property="asset4Field" destination="bB1-5L-d7D" id="oCZ-DE-6HX"/>
-                        <outlet property="asset4ImageView" destination="bMd-He-PNV" id="d5o-ye-nTz"/>
+                        <outlet property="asset4ImageButton" destination="oPQ-gp-UYV" id="l8i-tF-JlW"/>
                         <outlet property="asset5Field" destination="yYF-oR-cOk" id="eCI-Oc-VN3"/>
-                        <outlet property="asset5ImageView" destination="1Za-ze-VaI" id="o3y-Kb-nVS"/>
+                        <outlet property="asset5ImageButton" destination="1Ye-Am-6So" id="TTu-kz-jTp"/>
                         <outlet property="asset6Field" destination="aqF-eP-74d" id="bhk-dr-ZT6"/>
-                        <outlet property="asset6ImageView" destination="i2u-s2-ANT" id="zLi-rs-zOg"/>
+                        <outlet property="asset6ImageButton" destination="8Lr-8f-L9a" id="XI8-Th-NOl"/>
                         <outlet property="asset7Field" destination="nrS-2H-i8b" id="S8R-bX-9e1"/>
-                        <outlet property="asset7ImageView" destination="JZ6-UC-Q6q" id="fxG-Kd-tKV"/>
+                        <outlet property="asset7ImageButton" destination="CfJ-If-fQS" id="Gka-DS-kGE"/>
                         <outlet property="asset8Field" destination="Mmf-9A-X0f" id="XZJ-eX-Fv2"/>
-                        <outlet property="asset8ImageView" destination="okq-zu-YZZ" id="9XM-Ju-4Hx"/>
+                        <outlet property="asset8ImageButton" destination="FoX-Ab-xuX" id="cdd-9c-uIo"/>
                         <outlet property="asset9Field" destination="IJE-uT-ieN" id="ayw-5i-Skc"/>
-                        <outlet property="asset9ImageView" destination="yWe-se-ea2" id="kYc-1B-Dyc"/>
+                        <outlet property="asset9ImageButton" destination="l5o-dY-p60" id="Zb8-gA-Dse"/>
                     </connections>
                 </viewController>
                 <customObject id="LsW-if-Gs2" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
