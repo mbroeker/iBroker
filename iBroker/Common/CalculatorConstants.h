@@ -9,6 +9,19 @@
 #ifndef CalculatorConstants_h
 #define CalculatorConstants_h
 
+// Definition der verfügbaren Börsen
+#define EXCHANGE_BITTREX @"BITTREX_EXCHANGE"
+#define EXCHANGE_POLONIEX @"POLONIEX_EXCHANGE"
+
+#define POLONIEX_ASK @"lowestAsk"
+#define POLONIEX_BID @"highestBid"
+#define POLONIEX_LOW24 @"low24hr"
+#define POLONIEX_HIGH24 @"high24hr"
+#define POLONIEX_QUOTE_VOLUME @"quoteVolume"
+#define POLONIEX_BASE_VOLUME @"baseVolume"
+#define POLONIEX_PERCENT @"percentChange"
+#define POLONIEX_LAST @"last"
+
 // ASSET KEYS
 #define ASSET1 @"BTC"
 #define ASSET2 @"BCC"
@@ -71,4 +84,4 @@
 #define TV_TICKER_PLACEHOLDER @"---"
 #define OPTIONS_MENUBAR @"menubar"
 
-#endif /* Constants_h */
+#endif /* CalculatorConstants_h */
