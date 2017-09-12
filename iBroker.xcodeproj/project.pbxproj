@@ -25,6 +25,14 @@
 		B2232C081F689B6200691859 /* Brokerage+External.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BFF1F689B6100691859 /* Brokerage+External.m */; };
 		B2232C091F689B6200691859 /* Brokerage+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232C011F689B6200691859 /* Brokerage+JSON.m */; };
 		B2232C0A1F689B6200691859 /* Brokerage+Poloniex.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232C031F689B6200691859 /* Brokerage+Poloniex.m */; };
+		B2232C0B1F689CFB00691859 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BEB1F689B0700691859 /* Calculator.m */; };
+		B2232C0C1F689CFB00691859 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD61F689AF700691859 /* Brokerage.m */; };
+		B2232C0D1F689D1900691859 /* Brokerage+Bittrex.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD91F689AF700691859 /* Brokerage+Bittrex.m */; };
+		B2232C0E1F689D1900691859 /* Brokerage+Crypto.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BDB1F689AF700691859 /* Brokerage+Crypto.m */; };
+		B2232C0F1F689D1900691859 /* Brokerage+External.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BDD1F689AF700691859 /* Brokerage+External.m */; };
+		B2232C101F689D1900691859 /* Brokerage+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BDF1F689AF700691859 /* Brokerage+JSON.m */; };
+		B2232C111F689D1900691859 /* Brokerage+Poloniex.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BE11F689AF700691859 /* Brokerage+Poloniex.m */; };
+		B2232C121F689D3400691859 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BEE1F689B0700691859 /* Helper.m */; };
 		B224E8311EC8F4840039A911 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B224E8331EC8F4840039A911 /* Localizable.strings */; };
 		B22F90211ED8BABC007FE910 /* PoloniexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22F90201ED8BABC007FE910 /* PoloniexViewController.m */; };
 		B25106D51EB734A80092D911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106D41EB734A80092D911 /* main.m */; };
@@ -538,6 +546,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2232C121F689D3400691859 /* Helper.m in Sources */,
+				B2232C0D1F689D1900691859 /* Brokerage+Bittrex.m in Sources */,
+				B2232C0E1F689D1900691859 /* Brokerage+Crypto.m in Sources */,
+				B2232C0F1F689D1900691859 /* Brokerage+External.m in Sources */,
+				B2232C101F689D1900691859 /* Brokerage+JSON.m in Sources */,
+				B2232C111F689D1900691859 /* Brokerage+Poloniex.m in Sources */,
+				B2232C0B1F689CFB00691859 /* Calculator.m in Sources */,
+				B2232C0C1F689CFB00691859 /* Brokerage.m in Sources */,
 				B25F4AAC1F675FE7006F6282 /* iBrokerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
