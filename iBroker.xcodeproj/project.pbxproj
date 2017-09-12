@@ -18,6 +18,10 @@
 		B25106E11EB7356F0092D911 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DD1EB7356F0092D911 /* Helper.m */; };
 		B25106E21EB7356F0092D911 /* TabView.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106DF1EB7356F0092D911 /* TabView.m */; };
 		B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A9FD41ECA10050020555E /* ApplicationsViewController.m */; };
+		B25F4AAC1F675FE7006F6282 /* iBrokerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F4AAB1F675FE7006F6282 /* iBrokerTests.m */; };
+		B25F4AB21F676156006F6282 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EE3EF71EC4A7C900D71791 /* Brokerage.m */; };
+		B25F4AB41F676156006F6282 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15F01EB038A900F65E6B /* Helper.m */; };
+		B25F4AB51F676156006F6282 /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F713419AF161FD0FB69C /* Calculator.m */; };
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
@@ -73,6 +77,9 @@
 		B25A9FD31ECA10050020555E /* ApplicationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationsViewController.h; path = preferences/ApplicationsViewController.h; sourceTree = "<group>"; };
 		B25A9FD41ECA10050020555E /* ApplicationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationsViewController.m; path = preferences/ApplicationsViewController.m; sourceTree = "<group>"; };
 		B25A9FD81ECA257F0020555E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
+		B25F4AA91F675FE7006F6282 /* iBrokerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBrokerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B25F4AAB1F675FE7006F6282 /* iBrokerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iBrokerTests.m; sourceTree = "<group>"; };
+		B25F4AAD1F675FE7006F6282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
 		B2CAA3B71ED1E06200C9D4BC /* SaldoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaldoViewController.h; path = preferences/SaldoViewController.h; sourceTree = "<group>"; };
@@ -132,6 +139,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		B25106CF1EB734A80092D911 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B25F4AA61F675FE7006F6282 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -204,6 +218,15 @@
 			path = iBroker/Common;
 			sourceTree = SOURCE_ROOT;
 		};
+		B25F4AAA1F675FE7006F6282 /* iBrokerTests */ = {
+			isa = PBXGroup;
+			children = (
+				B25F4AAB1F675FE7006F6282 /* iBrokerTests.m */,
+				B25F4AAD1F675FE7006F6282 /* Info.plist */,
+			);
+			path = iBrokerTests;
+			sourceTree = "<group>";
+		};
 		B275C33A1EC3F4AF00147099 /* Brokerage */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +244,7 @@
 				B2C1D07E1EB1115300B6186B /* iBroker.help */,
 				B2FA692F1E93F2A300C47199 /* iBroker */,
 				B25106D31EB734A80092D911 /* iBrokerDaemon */,
+				B25F4AAA1F675FE7006F6282 /* iBrokerTests */,
 				B2FA692E1E93F2A300C47199 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -230,6 +254,7 @@
 			children = (
 				B2FA692D1E93F2A300C47199 /* iBroker.app */,
 				B25106D21EB734A80092D911 /* iBrokerDaemon */,
+				B25F4AA91F675FE7006F6282 /* iBrokerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,6 +339,23 @@
 			productReference = B25106D21EB734A80092D911 /* iBrokerDaemon */;
 			productType = "com.apple.product-type.tool";
 		};
+		B25F4AA81F675FE7006F6282 /* iBrokerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B25F4AB01F675FE7006F6282 /* Build configuration list for PBXNativeTarget "iBrokerTests" */;
+			buildPhases = (
+				B25F4AA51F675FE7006F6282 /* Sources */,
+				B25F4AA61F675FE7006F6282 /* Frameworks */,
+				B25F4AA71F675FE7006F6282 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iBrokerTests;
+			productName = iBrokerTests;
+			productReference = B25F4AA91F675FE7006F6282 /* iBrokerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B2FA692C1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2FA69411E93F2A300C47199 /* Build configuration list for PBXNativeTarget "iBroker" */;
@@ -341,6 +383,9 @@
 				ORGANIZATIONNAME = "Markus Bröker";
 				TargetAttributes = {
 					B25106D11EB734A80092D911 = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					B25F4AA81F675FE7006F6282 = {
 						CreatedOnToolsVersion = 7.2.1;
 					};
 					B2FA692C1E93F2A300C47199 = {
@@ -380,11 +425,19 @@
 			targets = (
 				B2FA692C1E93F2A300C47199 /* iBroker */,
 				B25106D11EB734A80092D911 /* iBrokerDaemon */,
+				B25F4AA81F675FE7006F6282 /* iBrokerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B25F4AA71F675FE7006F6282 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B2FA692B1E93F2A300C47199 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +463,17 @@
 				B25106E11EB7356F0092D911 /* Helper.m in Sources */,
 				B25106E21EB7356F0092D911 /* TabView.m in Sources */,
 				B25106E01EB7356F0092D911 /* Calculator.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B25F4AA51F675FE7006F6282 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B25F4AB21F676156006F6282 /* Brokerage.m in Sources */,
+				B25F4AB41F676156006F6282 /* Helper.m in Sources */,
+				B25F4AB51F676156006F6282 /* Calculator.m in Sources */,
+				B25F4AAC1F675FE7006F6282 /* iBrokerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +570,28 @@
 		B25106D71EB734A80092D911 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		B25F4AAE1F675FE7006F6282 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = iBrokerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.4customers.iBrokerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B25F4AAF1F675FE7006F6282 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = iBrokerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = de.4customers.iBrokerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -629,6 +715,15 @@
 			buildConfigurations = (
 				B25106D61EB734A80092D911 /* Debug */,
 				B25106D71EB734A80092D911 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B25F4AB01F675FE7006F6282 /* Build configuration list for PBXNativeTarget "iBrokerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B25F4AAE1F675FE7006F6282 /* Debug */,
+				B25F4AAF1F675FE7006F6282 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
