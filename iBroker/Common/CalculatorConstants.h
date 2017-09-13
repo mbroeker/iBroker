@@ -30,7 +30,7 @@
 #define ASSET5 @"LTC"
 #define ASSET6 @"DCR"
 #define ASSET7 @"STRAT"
-#define ASSET8 @"KMD"
+#define ASSET8 @"GAME"
 #define ASSET9 @"XRP"
 #define ASSET10 @"XEM"
 
@@ -43,7 +43,7 @@
 #define ASSET5_DESC @"Litecoin"
 #define ASSET6_DESC @"Decred"
 #define ASSET7_DESC @"Stratis"
-#define ASSET8_DESC @"Komodo"
+#define ASSET8_DESC @"GameCredits"
 #define ASSET9_DESC @"Ripple"
 #define ASSET10_DESC @"New Eco"
 

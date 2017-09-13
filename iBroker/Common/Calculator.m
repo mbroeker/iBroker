@@ -1168,6 +1168,15 @@
 }
 
 /**
+ * Getter für die DefaultExchange
+ *
+ * @return NSString*
+ */
+- (NSString*)defaultExchange {
+    return defaultExchange;
+}
+
+/**
  * Liefert die aktuellen Fiat-Währungen
  *
  * @return NSString*
