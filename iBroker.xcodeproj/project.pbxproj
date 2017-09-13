@@ -54,6 +54,16 @@
 		B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15F71EB038F900F65E6B /* AppDelegate.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B2232C1B1F68AA1400691859 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2FA69251E93F2A300C47199 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B25106D11EB734A80092D911;
+			remoteInfo = iBrokerDaemon;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		B25106D01EB734A80092D911 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -438,6 +448,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				B2232C1C1F68AA1400691859 /* PBXTargetDependency */,
 			);
 			name = iBroker;
 			productName = iBroker;
@@ -586,6 +597,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2232C1C1F68AA1400691859 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B25106D11EB734A80092D911 /* iBrokerDaemon */;
+			targetProxy = B2232C1B1F68AA1400691859 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B224E8331EC8F4840039A911 /* Localizable.strings */ = {
