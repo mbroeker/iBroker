@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B20AEE251EE54F960015BC17 /* BittrexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20AEE241EE54F960015BC17 /* BittrexViewController.m */; };
+		B218CF541F69BB990092D866 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */; };
 		B2232BE21F689AF700691859 /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD41F689AF700691859 /* Algorithm.m */; };
 		B2232BE31F689AF700691859 /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD61F689AF700691859 /* Brokerage.m */; };
 		B2232BE41F689AF700691859 /* Brokerage+Bittrex.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD91F689AF700691859 /* Brokerage+Bittrex.m */; };
@@ -570,6 +571,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B218CF541F69BB990092D866 /* KeychainWrapper.m in Sources */,
 				B2232C121F689D3400691859 /* Helper.m in Sources */,
 				B2232C0D1F689D1900691859 /* Brokerage+Bittrex.m in Sources */,
 				B2232C0E1F689D1900691859 /* Brokerage+Crypto.m in Sources */,
