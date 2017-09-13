@@ -1,5 +1,5 @@
 //
-//  PoloniexController.m
+//  BittrexViewController.m
 //  iBroker
 //
 //  Created by Markus Bröker on 26.05.17.
@@ -8,6 +8,8 @@
 
 #import "PoloniexViewController.h"
 #import "Calculator.h"
+
+#import "KeychainWrapper.h"
 
 @implementation PoloniexViewController
 
@@ -28,8 +30,10 @@
 - (void)updateView {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    NSDictionary *apiKey = [defaults objectForKey:@"POLO_KEY"];
-    NSString *secret = [defaults objectForKey:@"POLO_SEC"];
+    NSDictionary *keychain = [KeychainWrapper keychain2ApiKeyAndSecret:@"POLONIEX"];
+
+    self.apikeyField.stringValue = (keychain[@"apiKey"] != nil) ? keychain[@"apiKey"][@"Key"] : @"";
+    self.secretField.stringValue = (keychain[@"secret"] != nil) ? keychain[@"secret"] : @"";
 
     NSString *defaultExchange = [defaults objectForKey:KEY_DEFAULT_EXCHANGE];
 
@@ -38,10 +42,7 @@
         self.standardExchangeButton.state = NSOnState;
     }
 
-    self.apikeyField.stringValue = (apiKey != nil) ? apiKey[@"Key"] : @"";
-    self.secretField.stringValue = (secret != nil) ? secret : @"";
-
-    self.legalNoticeLabel.stringValue = [NSString stringWithFormat:NSLocalizedString(@"legal_notice", @"legal_notice"), @"Poloniex"];
+    self.legalNoticeLabel.stringValue = [NSString stringWithFormat:NSLocalizedString(@"legal_notice", @"legal_notice"), @"POLONIEX"];
 }
 
 - (IBAction)standardExchangeAction:(id)sender {
@@ -53,28 +54,14 @@
 
 - (IBAction)saveAction:(id)sender {
 
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    NSMutableDictionary *apiKey = [[NSMutableDictionary alloc] init];
-    NSString *secret = self.secretField.stringValue;
-    apiKey[@"Key"] = self.apikeyField.stringValue;
-
-    [defaults setObject:apiKey forKey:@"POLO_KEY"];
-    [defaults setObject:secret forKey:@"POLO_SEC"];
-
-    [defaults synchronize];
+    NSString *combinedKey = [NSString stringWithFormat:@"%@:%@", self.apikeyField.stringValue, self.secretField.stringValue];
+    [KeychainWrapper createKeychainValue:combinedKey forIdentifier:@"POLONIEX"];
 
     [self updateView];
 }
 
 - (IBAction)keyEraseAction:(id)sender {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    [defaults removeObjectForKey:@"POLO_KEY"];
-    [defaults removeObjectForKey:@"POLO_SEC"];
-
-    [defaults synchronize];
-
+    [KeychainWrapper deleteItemFromKeychainWithIdentifier:@"POLONIEX"];
     [self updateView];
 }
 @end
