@@ -42,6 +42,7 @@
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
+		B2E076CA1F6B5C060050A42C /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E076C91F6B5C060050A42C /* PortfolioViewController.m */; };
 		B2F9FEA11F68F00B00BD668D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */; };
 		B2F9FEAC1F690F7500BD668D /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA41F690F7500BD668D /* Calculator.m */; };
 		B2F9FEAD1F690F7500BD668D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA71F690F7500BD668D /* Helper.m */; };
@@ -162,6 +163,8 @@
 		B2D64BBC1EF20A6100F03CA8 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2D64BBD1EF20A6300F03CA8 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2D64BBE1EF20A6500F03CA8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B2E076C81F6B5C060050A42C /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
+		B2E076C91F6B5C060050A42C /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
 		B2F9FE9F1F68F00B00BD668D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		B2F9FEA31F690F7500BD668D /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
@@ -396,6 +399,8 @@
 		B2FF15E11EB0384300F65E6B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
+				B2E076C81F6B5C060050A42C /* PortfolioViewController.h */,
+				B2E076C91F6B5C060050A42C /* PortfolioViewController.m */,
 				B2FF15E61EB0384300F65E6B /* TabViewController.h */,
 				B2FF15E71EB0384300F65E6B /* TabViewController.m */,
 				B2FF15E81EB0384300F65E6B /* TemplateViewController.h */,
@@ -607,6 +612,7 @@
 				B2232BE61F689AF700691859 /* Brokerage+External.m in Sources */,
 				B2232BF11F689B0700691859 /* Calculator.m in Sources */,
 				B2F9FEA11F68F00B00BD668D /* KeychainWrapper.m in Sources */,
+				B2E076CA1F6B5C060050A42C /* PortfolioViewController.m in Sources */,
 				B2232BE41F689AF700691859 /* Brokerage+Bittrex.m in Sources */,
 				B2232BE21F689AF700691859 /* Algorithm.m in Sources */,
 			);
