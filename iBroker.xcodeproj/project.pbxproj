@@ -43,6 +43,7 @@
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
 		B2E076CA1F6B5C060050A42C /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E076C91F6B5C060050A42C /* PortfolioViewController.m */; };
+		B2E076CC1F6B84720050A42C /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD41F689AF700691859 /* Algorithm.m */; };
 		B2F9FEA11F68F00B00BD668D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */; };
 		B2F9FEAC1F690F7500BD668D /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA41F690F7500BD668D /* Calculator.m */; };
 		B2F9FEAD1F690F7500BD668D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA71F690F7500BD668D /* Helper.m */; };
@@ -576,6 +577,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2E076CC1F6B84720050A42C /* Algorithm.m in Sources */,
 				B218CF541F69BB990092D866 /* KeychainWrapper.m in Sources */,
 				B2232C121F689D3400691859 /* Helper.m in Sources */,
 				B2232C0D1F689D1900691859 /* Brokerage+Bittrex.m in Sources */,
