@@ -38,7 +38,7 @@
     NSString *defaultExchange = [defaults objectForKey:KEY_DEFAULT_EXCHANGE];
 
     self.standardExchangeButton.state = NSOffState;
-    if ([defaultExchange isEqualToString:@"POLONIEX_EXCHANGE"]) {
+    if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) {
         self.standardExchangeButton.state = NSOnState;
     }
 
@@ -47,7 +47,7 @@
 
 - (IBAction)standardExchangeAction:(id)sender {
     Calculator *calculator = [Calculator instance];
-    [calculator defaultExchange:@"POLONIEX_EXCHANGE"];
+    [calculator defaultExchange:EXCHANGE_POLONIEX];
 
     [self updateView];
 }

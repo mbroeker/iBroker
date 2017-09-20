@@ -61,6 +61,7 @@
 
 #define KEY_FIAT_CURRENCIES @"fiatCurrencies"
 #define KEY_DEFAULT_EXCHANGE @"defaultExchange"
+#define KEY_TRADING_WITH_CONFIRMATION @"tradingWithConfirmation"
 
 // CHECKPOINT KEYS
 #define CP_INITIAL_PRICE @"initialPrice"

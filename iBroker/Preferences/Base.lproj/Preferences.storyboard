@@ -18,6 +18,7 @@
                         <tabViewItem id="IvL-R4-6Xs"/>
                         <tabViewItem id="sBG-ya-vlg"/>
                         <tabViewItem id="V35-kF-Mhx"/>
+                        <tabViewItem id="17s-7h-RhV"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="Wr1-30-btf">
                         <rect key="frame" x="0.0" y="0.0" width="524" height="148"/>
@@ -32,10 +33,141 @@
                         <segue destination="aKY-JE-DW7" kind="relationship" relationship="tabItems" id="SIy-pd-phB"/>
                         <segue destination="JDa-DU-yfR" kind="relationship" relationship="tabItems" id="QBQ-AB-A8v"/>
                         <segue destination="oMN-OW-Mnz" kind="relationship" relationship="tabItems" id="YAN-Yf-NMO"/>
+                        <segue destination="GjQ-dR-i1B" kind="relationship" relationship="tabItems" id="wVp-Gu-3X2"/>
                     </connections>
                 </tabViewController>
             </objects>
-            <point key="canvasLocation" x="-141" y="-902"/>
+            <point key="canvasLocation" x="-169" y="-954"/>
+        </scene>
+        <!--Extra-->
+        <scene sceneID="Ued-1a-lbB">
+            <objects>
+                <viewController title="Extra" id="GjQ-dR-i1B" customClass="ExtraViewController" sceneMemberID="viewController">
+                    <view key="view" id="txN-5V-XC6" customClass="TabView">
+                        <rect key="frame" x="0.0" y="0.0" width="705" height="373"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t4Z-ON-Izv">
+                                <rect key="frame" x="-2" y="342" width="709" height="31"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Optionale Einstellungen" placeholderString="" id="d1J-aM-IGP">
+                                    <font key="font" size="20" name="Krungthep"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <box wantsLayer="YES" borderWidth="0.0" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="kSf-cb-0Ra">
+                                <rect key="frame" x="0.0" y="0.0" width="705" height="45"/>
+                                <view key="contentView" id="49b-x1-cFc">
+                                    <rect key="frame" x="0.0" y="0.0" width="705" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QSb-tx-82b">
+                                            <rect key="frame" x="10" y="0.0" width="110" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="106" id="Bs8-kG-wGZ"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="iBroker" id="upD-R4-A6s">
+                                                <font key="font" size="25" name="Krungthep"/>
+                                                <color key="textColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="e9G-vw-FxR">
+                                            <rect key="frame" x="597" y="1" width="103" height="32"/>
+                                            <buttonCell key="cell" type="push" title="Speichern" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="fnq-2u-vhq">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="saveAction:" target="GjQ-dR-i1B" id="jd5-VO-hnT"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="e9G-vw-FxR" secondAttribute="trailing" constant="11" id="ViJ-fv-boU"/>
+                                        <constraint firstItem="QSb-tx-82b" firstAttribute="leading" secondItem="49b-x1-cFc" secondAttribute="leading" constant="12" id="ZTU-ZI-klj"/>
+                                        <constraint firstItem="QSb-tx-82b" firstAttribute="top" secondItem="49b-x1-cFc" secondAttribute="top" constant="5" id="oKd-8b-XMr"/>
+                                        <constraint firstAttribute="bottom" secondItem="QSb-tx-82b" secondAttribute="bottom" id="ufd-4V-DTD"/>
+                                        <constraint firstAttribute="bottom" secondItem="e9G-vw-FxR" secondAttribute="bottom" constant="8" id="wUc-X7-H8U"/>
+                                        <constraint firstItem="e9G-vw-FxR" firstAttribute="top" secondItem="49b-x1-cFc" secondAttribute="top" constant="16" id="z1r-Gh-2Rj"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1wg-gh-hrB">
+                                <rect key="frame" x="20" y="297" width="665" height="18"/>
+                                <levelIndicatorCell key="cell" editable="YES" alignment="left" doubleValue="3" maxValue="25" id="IQj-3d-FDt"/>
+                                <connections>
+                                    <action selector="sliderAction:" target="GjQ-dR-i1B" id="xSS-IS-h8q"/>
+                                </connections>
+                            </levelIndicator>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ywB-gf-Tip">
+                                <rect key="frame" x="20" y="53" width="665" height="238"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="238" id="IWl-oR-zBQ"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="EXTRA_SETTINGS_TEXT" drawsBackground="YES" id="XE7-EX-Zgf">
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="6WT-So-CXl">
+                                <rect key="frame" x="18" y="309" width="509" height="46"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="505" id="tfQ-x8-DF6"/>
+                                </constraints>
+                                <buttonCell key="cell" type="check" title="Aktionen bestätigen" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="aQe-vX-9N2">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HRZ-i3-Tta">
+                                <rect key="frame" x="468" y="321" width="219" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="215" id="63w-kM-QKW"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" placeholderString="PERCENTRATE" id="wji-aO-zsu">
+                                    <font key="font" size="13" name=".HelveticaNeueDeskInterface-Regular"/>
+                                    <color key="textColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="kSf-cb-0Ra" secondAttribute="bottom" id="3rV-dA-ljr"/>
+                            <constraint firstItem="HRZ-i3-Tta" firstAttribute="top" secondItem="txN-5V-XC6" secondAttribute="top" constant="29" id="73M-EN-HSa"/>
+                            <constraint firstItem="1wg-gh-hrB" firstAttribute="top" secondItem="t4Z-ON-Izv" secondAttribute="bottom" constant="27" id="DPr-RZ-JU6"/>
+                            <constraint firstAttribute="trailing" secondItem="HRZ-i3-Tta" secondAttribute="trailing" constant="20" symbolic="YES" id="JVZ-UF-eUo"/>
+                            <constraint firstItem="kSf-cb-0Ra" firstAttribute="leading" secondItem="t4Z-ON-Izv" secondAttribute="leading" id="JWH-fa-d6y"/>
+                            <constraint firstItem="t4Z-ON-Izv" firstAttribute="centerX" secondItem="1wg-gh-hrB" secondAttribute="centerX" id="NCo-4l-fnI"/>
+                            <constraint firstItem="1wg-gh-hrB" firstAttribute="trailing" secondItem="ywB-gf-Tip" secondAttribute="trailing" id="T2l-Yt-CMh"/>
+                            <constraint firstItem="kSf-cb-0Ra" firstAttribute="top" secondItem="ywB-gf-Tip" secondAttribute="bottom" constant="8" symbolic="YES" id="Z0J-Sm-3iW"/>
+                            <constraint firstItem="t4Z-ON-Izv" firstAttribute="leading" secondItem="txN-5V-XC6" secondAttribute="leading" id="ZdH-qz-BUn"/>
+                            <constraint firstItem="1wg-gh-hrB" firstAttribute="top" secondItem="HRZ-i3-Tta" secondAttribute="bottom" constant="6" id="cQn-op-a78"/>
+                            <constraint firstItem="ywB-gf-Tip" firstAttribute="top" secondItem="1wg-gh-hrB" secondAttribute="bottom" constant="8" symbolic="YES" id="cSa-Dg-nMF"/>
+                            <constraint firstItem="6WT-So-CXl" firstAttribute="centerY" secondItem="HRZ-i3-Tta" secondAttribute="centerY" id="gxK-iS-Lmq"/>
+                            <constraint firstItem="6WT-So-CXl" firstAttribute="leading" secondItem="txN-5V-XC6" secondAttribute="leading" constant="20" symbolic="YES" id="gyX-ZO-hbF"/>
+                            <constraint firstItem="kSf-cb-0Ra" firstAttribute="trailing" secondItem="t4Z-ON-Izv" secondAttribute="trailing" id="lwH-28-kaF"/>
+                            <constraint firstItem="1wg-gh-hrB" firstAttribute="trailing" secondItem="HRZ-i3-Tta" secondAttribute="trailing" id="o0Q-9J-TSi"/>
+                            <constraint firstItem="1wg-gh-hrB" firstAttribute="leading" secondItem="6WT-So-CXl" secondAttribute="leading" id="p7G-Xp-8jw"/>
+                            <constraint firstItem="6WT-So-CXl" firstAttribute="top" secondItem="txN-5V-XC6" secondAttribute="top" constant="20" symbolic="YES" id="vsh-ew-nTV"/>
+                            <constraint firstItem="t4Z-ON-Izv" firstAttribute="top" secondItem="txN-5V-XC6" secondAttribute="top" id="yDP-eI-3rs"/>
+                            <constraint firstItem="1wg-gh-hrB" firstAttribute="leading" secondItem="ywB-gf-Tip" secondAttribute="leading" id="yzw-Q8-CVs"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="extraSettingsTextField" destination="ywB-gf-Tip" id="Jex-jd-BhJ"/>
+                        <outlet property="percentRateIndicator" destination="1wg-gh-hrB" id="ccy-9a-jWg"/>
+                        <outlet property="percentRateLabel" destination="HRZ-i3-Tta" id="hrp-UJ-zWm"/>
+                        <outlet property="saveButton" destination="e9G-vw-FxR" id="5dw-jf-abg"/>
+                        <outlet property="tradingWithConfirmationButton" destination="6WT-So-CXl" id="3Wk-xi-qMs"/>
+                    </connections>
+                </viewController>
+                <customObject id="OS5-eK-djO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="551.5" y="-1036.5"/>
         </scene>
         <!--Poloniex-->
         <scene sceneID="Tbw-gn-nle">
@@ -216,7 +348,7 @@
                 </viewController>
                 <customObject id="WfK-xt-0ba" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534.5" y="-923"/>
+            <point key="canvasLocation" x="-1009.5" y="-160"/>
         </scene>
         <!--Adressen-->
         <scene sceneID="Edj-MR-a3A">
