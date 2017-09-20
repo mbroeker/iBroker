@@ -1,4 +1,7 @@
 
+/* Class = "NSButtonCell"; title = "KEY ENTFERNEN"; ObjectID = "32K-r9-DVt"; */
+"32K-r9-DVt.title" = "REMOVE KEY";
+
 /* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "49C-4j-sAM"; */
 "49C-4j-sAM.title" = "Save";
 
@@ -11,44 +14,53 @@
 /* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "GHP-k3-BVj"; */
 "GHP-k3-BVj.title" = "Save";
 
+/* Class = "NSViewController"; title = "Extra"; ObjectID = "GjQ-dR-i1B"; */
+"GjQ-dR-i1B.title" = "Extra";
+
 /* Class = "NSTextFieldCell"; title = "Ihre Konten und Adressen"; ObjectID = "HtI-qx-WwD"; */
 "HtI-qx-WwD.title" = "Your Accounts and Addresses";
 
 /* Class = "NSViewController"; title = "Kurse"; ObjectID = "Txn-YE-STf"; */
 "Txn-YE-STf.title" = "Charts";
 
-/* Class = "NSTextFieldCell"; title = "Ihre initialen Kurse (EUR)"; ObjectID = "Ukn-PJ-ZoR"; */
-"Ukn-PJ-ZoR.title" = "Your initial Charts";
+/* Class = "NSTextFieldCell"; title = "Ihre initialen Kurse"; ObjectID = "Ukn-PJ-ZoR"; */
+"Ukn-PJ-ZoR.title" = "Your initial charts";
 
 /* Class = "NSTextFieldCell"; title = "Ihre Anwendungen"; ObjectID = "WEN-8p-MCk"; */
-"WEN-8p-MCk.title" = "Your Applications";
+"WEN-8p-MCk.title" = "Your applications";
 
 /* Class = "NSViewController"; title = "Anwendungen"; ObjectID = "aKY-JE-DW7"; */
 "aKY-JE-DW7.title" = "Applications";
 
+/* Class = "NSButtonCell"; title = "Aktionen bestätigen"; ObjectID = "aQe-vX-9N2"; */
+"aQe-vX-9N2.title" = "Confirm Actions?";
+
+/* Class = "NSTextFieldCell"; title = "Optionale Einstellungen"; ObjectID = "d1J-aM-IGP"; */
+"d1J-aM-IGP.title" = "Optional Settings";
+
 /* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "fds-XU-PTr"; */
 "fds-XU-PTr.title" = "Save";
 
+/* Class = "NSButtonCell"; title = "Speichern"; ObjectID = "fnq-2u-vhq"; */
+"fnq-2u-vhq.title" = "Save";
+
 /* Class = "NSTextFieldCell"; title = "Ihre Kurse"; ObjectID = "hGP-DD-Z1J"; */
-"hGP-DD-Z1J.title" = "Your Charts";
+"hGP-DD-Z1J.title" = "Your charts";
 
-/* Class = "NSTextFieldCell"; title = "Ihre Kurse"; ObjectID = "oQE-oM-Odg"; */
-"oQE-oM-Odg.title" = "Your Charts";
+/* Class = "NSButtonCell"; title = "KEY ENTFERNEN"; ObjectID = "ibU-TP-Ip6"; */
+"ibU-TP-Ip6.title" = "REMOVE KEY FROM DISK";
 
-/* Class = "NSTextFieldCell"; title = "Aktueller Bestand (EUR)"; ObjectID = "sTj-bR-Idz"; */
-"sTj-bR-Idz.title" = "Current Saldo";
+/* Class = "NSButtonCell"; title = "Bestätigen und Speichern"; ObjectID = "knl-ee-x9q"; */
+"knl-ee-x9q.title" = "I agree and save the key";
+
+/* Class = "NSTextFieldCell"; title = "Aktueller Bestand"; ObjectID = "sTj-bR-Idz"; */
+"sTj-bR-Idz.title" = "Current saldo";
 
 /* Class = "NSTabViewController"; title = "Einstellungen"; ObjectID = "u0k-Ex-xGQ"; */
-"u0k-Ex-xGQ.title" = "Preferences";
-
-/* Class = "NSViewController"; title = "Adressen"; ObjectID = "yX1-xt-20W"; */
-"yX1-xt-20W.title" = "Addresses";
+"u0k-Ex-xGQ.title" = "Settings";
 
 /* Class = "NSButtonCell"; title = "Bestätigen und Speichern"; ObjectID = "uID-7H-x92"; */
 "uID-7H-x92.title" = "I agree and save the key";
 
-/* Class = "NSButtonCell"; title = "KEY LÖSCHEN"; ObjectID = "ibU-TP-Ip6"; */
-"ibU-TP-Ip6.title" = "ERASE KEY FROM DISK";
-
-/* Class = "NSTextFieldCell"; title = "Optional Settings"; ObjectID = "d1J-aM-IGP"; */
-"d1J-aM-IGP.title" = "Optional Settings";
+/* Class = "NSViewController"; title = "Adressen"; ObjectID = "yX1-xt-20W"; */
+"yX1-xt-20W.title" = "Addresses";
