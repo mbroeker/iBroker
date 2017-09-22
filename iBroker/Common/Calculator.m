@@ -539,7 +539,7 @@
  * @param wantedAmount
  */
 - (NSString*)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
-    return [self autoBuy:cAsset amount:wantedAmount withRate:0];
+    return [self autoBuy:cAsset amount:wantedAmount withRate:0.0];
 }
 
 /**
@@ -547,9 +547,9 @@
  *
  * @param cAsset
  * @param wantedAmount
- * @param rate
+ * @param wantedRate
  */
-- (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)rate {
+- (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate {
 
     NSDictionary *ak;
     NSString *sk;
@@ -575,9 +575,9 @@
 
     double btcPrice = [currentRatings[ASSET1] doubleValue];
     double assetPrice = [currentRatings[cAsset] doubleValue];
-    double cRate = rate;
+    double cRate = wantedRate;
 
-    if (rate == 0.0) {
+    if (wantedRate == 0.0) {
        cRate = btcPrice / assetPrice;
     }
 
@@ -647,8 +647,9 @@
  *
  * @param cAsset
  * @param wantedAmount
+ * @param wantedRate
  */
-- (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)rate {
+- (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate {
 
     NSDictionary *ak;
     NSString *sk;
@@ -688,7 +689,7 @@
         return nil;
     }
 
-    double cRate = rate;
+    double cRate = wantedRate;
 
     if (cRate == 0.0) {
         cRate = btcPrice / assetPrice;
