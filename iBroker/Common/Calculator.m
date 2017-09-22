@@ -538,7 +538,18 @@
  * @param cAsset
  * @param wantedAmount
  */
-- (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount {
+- (NSString*)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
+    return [self autoBuy:cAsset amount:wantedAmount withRate:0];
+}
+
+/**
+ * Automatisches Kaufen von Assets
+ *
+ * @param cAsset
+ * @param wantedAmount
+ * @param rate
+ */
+- (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)rate {
 
     NSDictionary *ak;
     NSString *sk;
@@ -564,7 +575,11 @@
 
     double btcPrice = [currentRatings[ASSET1] doubleValue];
     double assetPrice = [currentRatings[cAsset] doubleValue];
-    double cRate = btcPrice / assetPrice;
+    double cRate = rate;
+
+    if (rate == 0.0) {
+       cRate = btcPrice / assetPrice;
+    }
 
     // Bestimme die maximale Anzahl an ASSET1's, die verkauft werden können...
     double amountMax = feeAsFactor * ([self currentSaldo:ASSET1] / cRate);
@@ -624,6 +639,16 @@
  * @param wantedAmount
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount {
+    return [self autoSell:cAsset amount:wantedAmount withRate:0.0];
+}
+
+/**
+ * Automatisches Verkaufen von Assets
+ *
+ * @param cAsset
+ * @param wantedAmount
+ */
+- (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)rate {
 
     NSDictionary *ak;
     NSString *sk;
@@ -663,7 +688,11 @@
         return nil;
     }
 
-    double cRate = btcPrice / assetPrice;
+    double cRate = rate;
+
+    if (cRate == 0.0) {
+        cRate = btcPrice / assetPrice;
+    }
 
     // Sollte einer dieser Beträge negativ sein, wird die Transaktion verhindert
     if (amount > amountMax || amount <= 0 || btcPrice <= 0 || assetPrice <= 0 || cRate <= 0) {

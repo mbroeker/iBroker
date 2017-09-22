@@ -171,6 +171,7 @@
                         <outlet property="usdCNYItem" destination="LLJ-aE-aag" id="OSE-tT-B7Z"/>
                         <outlet property="usdEURItem" destination="k28-GY-y1j" id="2zp-dB-4GN"/>
                         <outlet property="usdGBPItem" destination="WIR-F9-nF3" id="h3F-6v-6U1"/>
+                        <outlet property="usdJPYItem" destination="TT0-CZ-tlH" id="a5m-Il-pX2"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -480,7 +481,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="m8T-Bw-tnd">
-                                            <rect key="frame" x="182" y="2" width="279" height="40"/>
+                                            <rect key="frame" x="179" y="2" width="279" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="275" id="zIf-iT-2Hs"/>
                                             </constraints>
@@ -494,7 +495,7 @@
                                     <constraints>
                                         <constraint firstItem="m8T-Bw-tnd" firstAttribute="centerY" secondItem="djh-fJ-a7e" secondAttribute="centerY" id="467-Gi-kRR"/>
                                         <constraint firstAttribute="trailing" secondItem="Qxy-RG-i6z" secondAttribute="trailing" constant="9" id="59O-8g-kPX"/>
-                                        <constraint firstItem="m8T-Bw-tnd" firstAttribute="leading" secondItem="g6T-5O-fao" secondAttribute="trailing" id="Blx-nt-bpv"/>
+                                        <constraint firstItem="m8T-Bw-tnd" firstAttribute="leading" secondItem="g6T-5O-fao" secondAttribute="trailing" constant="-3" id="Blx-nt-bpv"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="baseline" secondItem="m8T-Bw-tnd" secondAttribute="baseline" id="Jxz-SC-Ddp"/>
                                         <constraint firstItem="g6T-5O-fao" firstAttribute="top" secondItem="m8T-Bw-tnd" secondAttribute="top" id="K3c-pE-LkA"/>
                                         <constraint firstItem="m8T-Bw-tnd" firstAttribute="baseline" secondItem="Qxy-RG-i6z" secondAttribute="baseline" id="fvq-50-wEt"/>
@@ -865,6 +866,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="KIp-5A-BYl" kind="sheet" id="Zkx-7b-kYv"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
                                 <rect key="frame" x="377" y="337" width="120" height="17"/>
@@ -1096,6 +1100,356 @@
                 <customObject id="nvB-9g-wSM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1630" y="245.5"/>
+        </scene>
+        <!--Buy And Sell View Controller-->
+        <scene sceneID="9wz-Ff-P6b">
+            <objects>
+                <viewController id="KIp-5A-BYl" customClass="BuyAndSellViewController" sceneMemberID="viewController">
+                    <view key="view" id="4Ca-XB-EKV">
+                        <rect key="frame" x="0.0" y="0.0" width="616" height="207"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YxA-a8-CdX">
+                                <rect key="frame" x="10" y="157" width="245" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="iVy-4d-WBW"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ooS-1x-kv1">
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="qyL-70-6B7"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="buyAssetAction:" target="KIp-5A-BYl" id="u5Q-5N-zee"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KWn-gT-afB">
+                                <rect key="frame" x="10" y="107" width="245" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="4fx-UW-iax"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Lju-1Z-9ud">
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="qv2-FU-P1F"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="buyAsset1Action:" target="KIp-5A-BYl" id="X26-zg-vdC"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="f8u-1n-3cB">
+                                <rect key="frame" x="10" y="57" width="245" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="42" id="73A-bO-yJT"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="CQ7-0t-huL">
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="A0J-gr-Frc"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="buyAsset1TotalAction:" target="KIp-5A-BYl" id="gSE-ZK-kPF"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KDg-hc-w78">
+                                <rect key="frame" x="10" y="7" width="244" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="244" id="ulB-tQ-243"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" title="KAUFEN" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="WnJ-fq-eGA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="24" name="Krungthep"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buyButtonAction:" target="KIp-5A-BYl" id="Gi3-nQ-18A"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vj8-0H-8nX">
+                                <rect key="frame" x="312" y="157" width="245" height="42"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="yXY-JB-rqB">
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="B0H-5o-Sdb"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="sellAssetAction:" target="KIp-5A-BYl" id="Vuh-EQ-gNM"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KKh-WW-rvb">
+                                <rect key="frame" x="312" y="107" width="245" height="42"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ErP-Er-2zI">
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="HJL-bU-yCL"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="sellAsset1Action:" target="KIp-5A-BYl" id="4N5-Ha-42f"/>
+                                </connections>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hlw-Nk-Ftt">
+                                <rect key="frame" x="312" y="57" width="245" height="42"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="wFP-L6-EFI">
+                                    <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="jKy-Rs-XM8"/>
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="sellAsset1TotalAction:" target="KIp-5A-BYl" id="UCy-Aq-fUc"/>
+                                </connections>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H2n-gQ-Of9">
+                                <rect key="frame" x="312" y="7" width="245" height="42"/>
+                                <buttonCell key="cell" type="square" title="VERKAUFEN" bezelStyle="shadowlessSquare" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="xIy-bc-Q2O">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="24" name="Krungthep"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="sellButtonAction:" target="KIp-5A-BYl" id="uyU-JC-iDw"/>
+                                </connections>
+                            </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="tgo-me-eOR">
+                                <rect key="frame" x="564" y="7" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="wuX-95-hNq"/>
+                                </constraints>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRefreshTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="DJ4-gi-UzZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="dismissActionClicked:" target="KIp-5A-BYl" id="dVk-Ef-Dyi"/>
+                                </connections>
+                            </button>
+                            <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Fsv-Uv-7W9">
+                                <rect key="frame" x="262" y="157" width="42" height="42"/>
+                                <view key="contentView" id="m5V-Pc-WKu">
+                                    <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="mam-J9-Ohm">
+                                            <rect key="frame" x="2" y="2" width="38" height="38"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GAME" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Aob-8z-2wP">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="mam-J9-Ohm" firstAttribute="top" secondItem="m5V-Pc-WKu" secondAttribute="top" id="4jH-vY-29P"/>
+                                        <constraint firstItem="mam-J9-Ohm" firstAttribute="leading" secondItem="m5V-Pc-WKu" secondAttribute="leading" constant="2" id="Toh-SP-3Kj"/>
+                                        <constraint firstAttribute="bottom" secondItem="mam-J9-Ohm" secondAttribute="bottom" constant="2" id="adI-3E-gx4"/>
+                                        <constraint firstAttribute="trailing" secondItem="mam-J9-Ohm" secondAttribute="trailing" id="ice-K5-VjZ"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="ZI3-63-8cW">
+                                <rect key="frame" x="262" y="107" width="42" height="42"/>
+                                <view key="contentView" id="81D-PM-atA">
+                                    <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="wm2-bx-KUv">
+                                            <rect key="frame" x="2" y="2" width="38" height="38"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GAME" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="tRi-ho-iUl">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="wm2-bx-KUv" firstAttribute="leading" secondItem="81D-PM-atA" secondAttribute="leading" constant="2" id="WTd-yk-t66"/>
+                                        <constraint firstAttribute="trailing" secondItem="wm2-bx-KUv" secondAttribute="trailing" id="gc4-tn-QJU"/>
+                                        <constraint firstAttribute="bottom" secondItem="wm2-bx-KUv" secondAttribute="bottom" constant="2" id="gna-vb-IhE"/>
+                                        <constraint firstItem="wm2-bx-KUv" firstAttribute="top" secondItem="81D-PM-atA" secondAttribute="top" id="iG1-Lc-54u"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="dBA-GA-m5g">
+                                <rect key="frame" x="564" y="157" width="42" height="42"/>
+                                <view key="contentView" id="5O5-bF-Fre">
+                                    <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="gf6-cU-w0W">
+                                            <rect key="frame" x="2" y="2" width="38" height="38"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GAME" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="PA2-WC-5Nr">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="gf6-cU-w0W" secondAttribute="bottom" constant="2" id="FYU-Nb-wce"/>
+                                        <constraint firstItem="gf6-cU-w0W" firstAttribute="leading" secondItem="5O5-bF-Fre" secondAttribute="leading" constant="2" id="aiV-Dl-Ctm"/>
+                                        <constraint firstAttribute="trailing" secondItem="gf6-cU-w0W" secondAttribute="trailing" id="oiA-cO-agS"/>
+                                        <constraint firstItem="gf6-cU-w0W" firstAttribute="top" secondItem="5O5-bF-Fre" secondAttribute="top" id="wO0-LT-dU0"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="vNv-3c-7Qm">
+                                <rect key="frame" x="564" y="57" width="42" height="42"/>
+                                <view key="contentView" id="2GB-2b-PtH">
+                                    <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="8j2-pt-VKp">
+                                            <rect key="frame" x="2" y="2" width="38" height="38"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GAME" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="RUh-eA-Atq">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="8j2-pt-VKp" firstAttribute="leading" secondItem="2GB-2b-PtH" secondAttribute="leading" constant="2" id="G7h-OL-qeQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="8j2-pt-VKp" secondAttribute="bottom" constant="2" id="LCS-hO-U6p"/>
+                                        <constraint firstItem="8j2-pt-VKp" firstAttribute="top" secondItem="2GB-2b-PtH" secondAttribute="top" id="LyQ-iC-f6k"/>
+                                        <constraint firstAttribute="trailing" secondItem="8j2-pt-VKp" secondAttribute="trailing" id="wVO-8a-Ur2"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="fkX-uv-92H">
+                                <rect key="frame" x="564" y="107" width="42" height="42"/>
+                                <view key="contentView" id="ZMk-jv-gtJ">
+                                    <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="Yr8-eV-i8o">
+                                            <rect key="frame" x="2" y="2" width="38" height="38"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GAME" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="PcY-gf-mdW">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Yr8-eV-i8o" firstAttribute="leading" secondItem="ZMk-jv-gtJ" secondAttribute="leading" constant="2" id="DVp-hV-NKE"/>
+                                        <constraint firstItem="Yr8-eV-i8o" firstAttribute="top" secondItem="ZMk-jv-gtJ" secondAttribute="top" id="Spi-dv-DLv"/>
+                                        <constraint firstAttribute="trailing" secondItem="Yr8-eV-i8o" secondAttribute="trailing" id="mby-MG-2gO"/>
+                                        <constraint firstAttribute="bottom" secondItem="Yr8-eV-i8o" secondAttribute="bottom" constant="2" id="pXj-0i-SIK"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Jci-DY-h6A">
+                                <rect key="frame" x="262" y="57" width="42" height="42"/>
+                                <view key="contentView" id="bdA-qJ-qI0">
+                                    <rect key="frame" x="1" y="1" width="40" height="40"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="unw-br-u0M">
+                                            <rect key="frame" x="2" y="2" width="38" height="38"/>
+                                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="GAME" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Xj7-dl-zwY">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="unw-br-u0M" secondAttribute="bottom" constant="2" id="7p2-yk-paZ"/>
+                                        <constraint firstItem="unw-br-u0M" firstAttribute="top" secondItem="bdA-qJ-qI0" secondAttribute="top" id="M0E-Te-xNb"/>
+                                        <constraint firstItem="unw-br-u0M" firstAttribute="leading" secondItem="bdA-qJ-qI0" secondAttribute="leading" constant="2" id="hcC-fT-NYz"/>
+                                        <constraint firstAttribute="trailing" secondItem="unw-br-u0M" secondAttribute="trailing" id="ssA-6w-7OR"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="highlightColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="H2n-gQ-Of9" firstAttribute="leading" secondItem="hlw-Nk-Ftt" secondAttribute="leading" id="0rY-tk-hFJ"/>
+                            <constraint firstAttribute="bottom" secondItem="KDg-hc-w78" secondAttribute="bottom" constant="7" id="1Ku-ru-jin"/>
+                            <constraint firstItem="KWn-gT-afB" firstAttribute="top" secondItem="YxA-a8-CdX" secondAttribute="bottom" constant="8" id="2XS-PA-Ha8"/>
+                            <constraint firstItem="fkX-uv-92H" firstAttribute="trailing" secondItem="vNv-3c-7Qm" secondAttribute="trailing" id="3Ov-iB-b1s"/>
+                            <constraint firstItem="KKh-WW-rvb" firstAttribute="bottom" secondItem="fkX-uv-92H" secondAttribute="bottom" id="3R4-ku-PTb"/>
+                            <constraint firstItem="H2n-gQ-Of9" firstAttribute="leading" secondItem="KDg-hc-w78" secondAttribute="trailing" constant="58" id="4Sn-0t-g7l"/>
+                            <constraint firstItem="f8u-1n-3cB" firstAttribute="baseline" secondItem="hlw-Nk-Ftt" secondAttribute="baseline" id="57V-cP-Zy4"/>
+                            <constraint firstItem="ZI3-63-8cW" firstAttribute="bottom" secondItem="KWn-gT-afB" secondAttribute="bottom" id="6Ik-C3-4fG"/>
+                            <constraint firstItem="hlw-Nk-Ftt" firstAttribute="trailing" secondItem="H2n-gQ-Of9" secondAttribute="trailing" id="7dp-Ur-sYs"/>
+                            <constraint firstItem="ZI3-63-8cW" firstAttribute="top" secondItem="KWn-gT-afB" secondAttribute="top" id="8lV-xL-t0t"/>
+                            <constraint firstItem="vj8-0H-8nX" firstAttribute="leading" secondItem="Fsv-Uv-7W9" secondAttribute="trailing" constant="8" symbolic="YES" id="9Kd-KZ-nKE"/>
+                            <constraint firstItem="vNv-3c-7Qm" firstAttribute="leading" secondItem="fkX-uv-92H" secondAttribute="leading" id="9OH-RX-gjH"/>
+                            <constraint firstItem="dBA-GA-m5g" firstAttribute="top" secondItem="vj8-0H-8nX" secondAttribute="top" id="BeN-aB-4lv"/>
+                            <constraint firstItem="dBA-GA-m5g" firstAttribute="trailing" secondItem="fkX-uv-92H" secondAttribute="trailing" id="CgP-EV-0n9"/>
+                            <constraint firstItem="vj8-0H-8nX" firstAttribute="trailing" secondItem="KKh-WW-rvb" secondAttribute="trailing" id="Dga-8W-gFw"/>
+                            <constraint firstItem="hlw-Nk-Ftt" firstAttribute="trailing" secondItem="KKh-WW-rvb" secondAttribute="trailing" id="FKX-Qh-qMR"/>
+                            <constraint firstItem="f8u-1n-3cB" firstAttribute="top" secondItem="KWn-gT-afB" secondAttribute="bottom" constant="8" id="FsB-v4-Jhy"/>
+                            <constraint firstItem="hlw-Nk-Ftt" firstAttribute="leading" secondItem="Jci-DY-h6A" secondAttribute="trailing" constant="8" symbolic="YES" id="Gtf-xc-0yH"/>
+                            <constraint firstItem="tgo-me-eOR" firstAttribute="top" secondItem="H2n-gQ-Of9" secondAttribute="top" id="HGb-85-Cp0"/>
+                            <constraint firstItem="KDg-hc-w78" firstAttribute="centerX" secondItem="f8u-1n-3cB" secondAttribute="centerX" id="HsC-HY-jbd"/>
+                            <constraint firstItem="vj8-0H-8nX" firstAttribute="leading" secondItem="KKh-WW-rvb" secondAttribute="leading" id="KPa-sF-3th"/>
+                            <constraint firstItem="hlw-Nk-Ftt" firstAttribute="top" secondItem="vNv-3c-7Qm" secondAttribute="top" id="N7j-sh-YGl"/>
+                            <constraint firstItem="f8u-1n-3cB" firstAttribute="leading" secondItem="KWn-gT-afB" secondAttribute="leading" id="NAq-KH-2VS"/>
+                            <constraint firstItem="KKh-WW-rvb" firstAttribute="baseline" secondItem="KWn-gT-afB" secondAttribute="baseline" id="Pdg-JQ-7Gx"/>
+                            <constraint firstItem="f8u-1n-3cB" firstAttribute="top" secondItem="Jci-DY-h6A" secondAttribute="top" id="ReN-H0-6EF"/>
+                            <constraint firstItem="ZI3-63-8cW" firstAttribute="top" secondItem="KKh-WW-rvb" secondAttribute="top" id="RmD-HV-yeE"/>
+                            <constraint firstItem="H2n-gQ-Of9" firstAttribute="baseline" secondItem="KDg-hc-w78" secondAttribute="baseline" id="SGH-Dj-Ujz"/>
+                            <constraint firstItem="tgo-me-eOR" firstAttribute="bottom" secondItem="H2n-gQ-Of9" secondAttribute="bottom" id="T5r-io-QyK"/>
+                            <constraint firstItem="vj8-0H-8nX" firstAttribute="baseline" secondItem="YxA-a8-CdX" secondAttribute="baseline" id="U6F-rz-gGZ"/>
+                            <constraint firstItem="KWn-gT-afB" firstAttribute="trailing" secondItem="f8u-1n-3cB" secondAttribute="trailing" id="WMX-KT-as6"/>
+                            <constraint firstItem="hlw-Nk-Ftt" firstAttribute="leading" secondItem="KKh-WW-rvb" secondAttribute="leading" id="Wbm-NN-MmI"/>
+                            <constraint firstItem="YxA-a8-CdX" firstAttribute="top" secondItem="Fsv-Uv-7W9" secondAttribute="top" id="WnK-0Z-oYB"/>
+                            <constraint firstItem="f8u-1n-3cB" firstAttribute="leading" secondItem="KDg-hc-w78" secondAttribute="leading" id="XzE-9A-wBa"/>
+                            <constraint firstItem="dBA-GA-m5g" firstAttribute="leading" secondItem="fkX-uv-92H" secondAttribute="leading" id="Ygs-Vh-DZU"/>
+                            <constraint firstItem="YxA-a8-CdX" firstAttribute="leading" secondItem="KWn-gT-afB" secondAttribute="leading" id="Znn-rR-4Dy"/>
+                            <constraint firstItem="YxA-a8-CdX" firstAttribute="leading" secondItem="4Ca-XB-EKV" secondAttribute="leading" constant="10" id="Zpi-K5-cnd"/>
+                            <constraint firstItem="KDg-hc-w78" firstAttribute="top" secondItem="f8u-1n-3cB" secondAttribute="bottom" constant="8" symbolic="YES" id="all-dn-qWw"/>
+                            <constraint firstItem="ZI3-63-8cW" firstAttribute="leading" secondItem="Fsv-Uv-7W9" secondAttribute="leading" id="au7-7f-Rfz"/>
+                            <constraint firstItem="fkX-uv-92H" firstAttribute="top" secondItem="KKh-WW-rvb" secondAttribute="top" id="bRd-i2-MEF"/>
+                            <constraint firstItem="Jci-DY-h6A" firstAttribute="leading" secondItem="ZI3-63-8cW" secondAttribute="leading" id="cu8-0A-wqY"/>
+                            <constraint firstAttribute="trailing" secondItem="dBA-GA-m5g" secondAttribute="trailing" constant="10" id="d0e-Xj-1Nw"/>
+                            <constraint firstItem="vNv-3c-7Qm" firstAttribute="leading" secondItem="tgo-me-eOR" secondAttribute="leading" id="fJ4-sw-pFO"/>
+                            <constraint firstItem="Fsv-Uv-7W9" firstAttribute="bottom" secondItem="YxA-a8-CdX" secondAttribute="bottom" id="k6i-IA-342"/>
+                            <constraint firstItem="dBA-GA-m5g" firstAttribute="leading" secondItem="vj8-0H-8nX" secondAttribute="trailing" constant="7" id="mVX-bM-XGx"/>
+                            <constraint firstItem="vj8-0H-8nX" firstAttribute="top" secondItem="Fsv-Uv-7W9" secondAttribute="top" id="nXT-O5-44h"/>
+                            <constraint firstItem="vNv-3c-7Qm" firstAttribute="bottom" secondItem="hlw-Nk-Ftt" secondAttribute="bottom" id="o4B-rU-v3H"/>
+                            <constraint firstItem="f8u-1n-3cB" firstAttribute="bottom" secondItem="Jci-DY-h6A" secondAttribute="bottom" id="ocm-QM-SQZ"/>
+                            <constraint firstItem="Fsv-Uv-7W9" firstAttribute="leading" secondItem="YxA-a8-CdX" secondAttribute="trailing" constant="7" id="q1G-Ig-y6g"/>
+                            <constraint firstAttribute="bottom" secondItem="Jci-DY-h6A" secondAttribute="bottom" constant="57" id="qdJ-Wq-LKu"/>
+                            <constraint firstItem="KKh-WW-rvb" firstAttribute="leading" secondItem="ZI3-63-8cW" secondAttribute="trailing" constant="8" symbolic="YES" id="r5X-zP-ZeN"/>
+                            <constraint firstItem="YxA-a8-CdX" firstAttribute="trailing" secondItem="KWn-gT-afB" secondAttribute="trailing" id="sAZ-ua-6lk"/>
+                            <constraint firstItem="KDg-hc-w78" firstAttribute="top" secondItem="H2n-gQ-Of9" secondAttribute="top" id="vcA-JB-BGv"/>
+                            <constraint firstItem="dBA-GA-m5g" firstAttribute="bottom" secondItem="vj8-0H-8nX" secondAttribute="bottom" id="wI8-ch-fit"/>
+                            <constraint firstItem="tgo-me-eOR" firstAttribute="trailing" secondItem="vNv-3c-7Qm" secondAttribute="trailing" id="xKu-vm-Axs"/>
+                            <constraint firstItem="Jci-DY-h6A" firstAttribute="top" secondItem="hlw-Nk-Ftt" secondAttribute="top" id="xfg-4y-1cn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="buyAsset1Image" destination="wm2-bx-KUv" id="lBR-lj-0sc"/>
+                        <outlet property="buyAsset1TotalField" destination="f8u-1n-3cB" id="UpX-D7-2L3"/>
+                        <outlet property="buyAsset1TotalImage" destination="unw-br-u0M" id="zFm-ft-Ig6"/>
+                        <outlet property="buyAssetField" destination="YxA-a8-CdX" id="rWI-W9-bkq"/>
+                        <outlet property="buyAssetImage" destination="mam-J9-Ohm" id="EXN-nb-sL0"/>
+                        <outlet property="buyAssetPriceField" destination="KWn-gT-afB" id="kd3-jR-oCf"/>
+                        <outlet property="buyButton" destination="KDg-hc-w78" id="htx-1d-GiV"/>
+                        <outlet property="dismissButton" destination="tgo-me-eOR" id="ICb-Ea-i2I"/>
+                        <outlet property="sellAsset1Image" destination="Yr8-eV-i8o" id="cVf-dQ-weA"/>
+                        <outlet property="sellAsset1TotalField" destination="hlw-Nk-Ftt" id="2Ho-YI-N7F"/>
+                        <outlet property="sellAsset1TotalImage" destination="8j2-pt-VKp" id="PJG-Mz-xrv"/>
+                        <outlet property="sellAssetField" destination="vj8-0H-8nX" id="aOK-yT-yTL"/>
+                        <outlet property="sellAssetImage" destination="gf6-cU-w0W" id="iFI-1j-MEv"/>
+                        <outlet property="sellAssetPriceField" destination="KKh-WW-rvb" id="2cp-zr-nJK"/>
+                        <outlet property="sellButton" destination="H2n-gQ-Of9" id="F52-4q-3GV"/>
+                    </connections>
+                </viewController>
+                <customObject id="Hkm-C3-0Pd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1630" y="764.5"/>
         </scene>
         <!--Portfolio View Controller-->
         <scene sceneID="cPG-Z8-Jj4">

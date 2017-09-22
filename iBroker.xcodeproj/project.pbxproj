@@ -45,6 +45,7 @@
 		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
 		B2E076CA1F6B5C060050A42C /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E076C91F6B5C060050A42C /* PortfolioViewController.m */; };
 		B2E076CC1F6B84720050A42C /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD41F689AF700691859 /* Algorithm.m */; };
+		B2E23D201F74FF85001E135B /* BuyAndSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */; };
 		B2F9FEA11F68F00B00BD668D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */; };
 		B2F9FEAC1F690F7500BD668D /* Calculator.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA41F690F7500BD668D /* Calculator.m */; };
 		B2F9FEAD1F690F7500BD668D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA71F690F7500BD668D /* Helper.m */; };
@@ -169,6 +170,8 @@
 		B2D64BBE1EF20A6500F03CA8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2E076C81F6B5C060050A42C /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
 		B2E076C91F6B5C060050A42C /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
+		B2E23D1E1F74FF85001E135B /* BuyAndSellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyAndSellViewController.h; sourceTree = "<group>"; };
+		B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyAndSellViewController.m; sourceTree = "<group>"; };
 		B2F9FE9F1F68F00B00BD668D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
 		B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainWrapper.m; sourceTree = "<group>"; };
 		B2F9FEA31F690F7500BD668D /* Calculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Calculator.h; sourceTree = "<group>"; };
@@ -338,6 +341,15 @@
 			path = iBrokerTests;
 			sourceTree = "<group>";
 		};
+		B2E23D0B1F74F3F6001E135B /* BuyAndSell */ = {
+			isa = PBXGroup;
+			children = (
+				B2E23D1E1F74FF85001E135B /* BuyAndSellViewController.h */,
+				B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */,
+			);
+			path = BuyAndSell;
+			sourceTree = "<group>";
+		};
 		B2F9FEA21F690F7500BD668D /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,6 +391,7 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
+				B2E23D0B1F74F3F6001E135B /* BuyAndSell */,
 				B2232BE91F689B0700691859 /* Common */,
 				B2232BD21F689AF700691859 /* Brokerage */,
 				B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */,
@@ -607,6 +620,7 @@
 				B2232BE71F689AF700691859 /* Brokerage+JSON.m in Sources */,
 				B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */,
 				B2232BF31F689B0700691859 /* TabView.m in Sources */,
+				B2E23D201F74FF85001E135B /* BuyAndSellViewController.m in Sources */,
 				B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */,
 				B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */,
 				B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */,

@@ -1152,7 +1152,7 @@ typedef struct DASHBOARD_VARS {
         self.rateOutputLabel.stringValue = @"";
 
         // Aktualisiere den Placeholder
-        self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:8]];
+        self.rateOutputLabel.placeholderString = [Helper double2German:result min:4 max:8];
 
         // und fertig
         return;

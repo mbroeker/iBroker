@@ -52,3 +52,5 @@ extra_settings_text = "
   automatisierten Handeln einstellen und das Bestätigen
   aktivieren oder deaktivieren.";
 
+buy = "KAUFEN";
+sell = "VERKAUFEN";
