@@ -40,6 +40,8 @@
 
 /**
  * Der öffentliche Konstruktor mit Vorbelegung EUR/USD
+ *
+ * @return id
  */
 + (id)instance {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -56,6 +58,9 @@
 
 /**
  * Der öffentliche Konstruktor als statisches Singleton mit wählbaren Fiat-Währungen
+ *
+ * @param currencies
+ * @return id
  */
 + (id)instance:(NSArray *)currencies {
     static Calculator *calculator = nil;
@@ -70,6 +75,8 @@
 
 /**
  * Der Standard Konstruktor mit Vorbelegung EUR/USD
+ *
+ * @return id
  */
 - (id)init {
     return [self initWithFiatCurrencies:@[EUR, USD]];
@@ -78,6 +85,8 @@
 /**
  * Der private Konstruktor der Klasse, der deswegen nicht in Calculator.h gelistet wird.
  *
+ * @param currencies
+ * @return id
  */
 - (id)initWithFiatCurrencies:(NSArray *)currencies {
 
@@ -371,6 +380,7 @@
  * Berechne den BTC-Preis
  *
  * @param asset
+ * @return double
  */
 - (double)btcPriceForAsset:(NSString *)asset {
     double btcRating = [currentRatings[ASSET1] doubleValue];
@@ -385,6 +395,7 @@
  *
  * @param asset
  * @param baseAsset
+ * @return double
  */
 - (double)factorForAsset:(NSString *)asset inRelationTo:(NSString *)baseAsset {
     return [self btcPriceForAsset:baseAsset] / [self btcPriceForAsset:asset];
@@ -394,6 +405,7 @@
  * Berechne den Fiat-Preis
  *
  * @param asset
+ * @return double
  */
 - (double)fiatPriceForAsset:(NSString *)asset {
     return (1 / [self btcPriceForAsset:asset]);
@@ -402,7 +414,7 @@
 /**
  * Liefert die aktuellen Veränderungen in Prozent
  *
- * @return NSDictionary
+ * @return NSDictionary*
  */
 - (NSDictionary *)checkpointChanges {
     NSMutableDictionary *checkpointChanges = [[NSMutableDictionary alloc] init];
@@ -480,6 +492,8 @@
 
 /**
  * Berechnet die realen Preise anhand des Handelsvolumens auf Poloniex
+ *
+ * @return NSDictionary*
  */
 - (NSDictionary *)realPrices {
     NSMutableDictionary *volumes = [[NSMutableDictionary alloc] init];
@@ -520,6 +534,8 @@
 
 /**
  * Simple Changes
+ *
+ * @return NSDictionary*
  */
 - (NSDictionary *)realChanges {
     NSDictionary *realPrices = [self realPrices];
@@ -537,8 +553,9 @@
  *
  * @param cAsset
  * @param wantedAmount
+ * @return NSString*
  */
-- (NSString*)autoBuy:(NSString*)cAsset amount:(double)wantedAmount {
+- (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount {
     return [self autoBuy:cAsset amount:wantedAmount withRate:0.0];
 }
 
@@ -548,6 +565,7 @@
  * @param cAsset
  * @param wantedAmount
  * @param wantedRate
+ * @return NSString*
  */
 - (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate {
 
@@ -577,8 +595,8 @@
     double assetPrice = [currentRatings[cAsset] doubleValue];
     double cRate = wantedRate;
 
-    if (wantedRate == 0.0) {
-       cRate = btcPrice / assetPrice;
+    if (cRate == 0.0) {
+        cRate = btcPrice / assetPrice;
     }
 
     // Bestimme die maximale Anzahl an ASSET1's, die verkauft werden können...
@@ -637,6 +655,7 @@
  *
  * @param cAsset
  * @param wantedAmount
+ * @return NSString*
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount {
     return [self autoSell:cAsset amount:wantedAmount withRate:0.0];
@@ -648,6 +667,7 @@
  * @param cAsset
  * @param wantedAmount
  * @param wantedRate
+ * @return NSString*
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate {
 
@@ -822,9 +842,9 @@
 /**
  * Verkaufe Assets mit einer Investor-Rate von "rate"% oder mehr...
  *
- * @param rate
+ * @param wantedRate
  */
-- (void)sellByInvestors:(double)rate {
+- (void)sellByInvestors:(double)wantedRate {
     NSDictionary *currencyUnits = [self realChanges];
 
     NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
@@ -839,7 +859,7 @@
         if (price < 0.0001) return;
 
         // Verkaufe auf Grundlage der aktuellen Investoren-Rate
-        if (investorsRate < rate) {
+        if (investorsRate < wantedRate) {
             [self autoSellAll:lowestKey];
         }
     }
@@ -849,8 +869,9 @@
  * Kaufe Altcoins, deren Exchange-Rate um "wantedPercent" Prozent gestiegen ist...
  *
  * @param wantedPercent
+ * @param wantedRate
  */
-- (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double)rate {
+- (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double)wantedRate {
     double balance = [self currentSaldo:ASSET1];
     NSDictionary *realChanges = [self realChanges];
 
@@ -876,7 +897,7 @@
         }
 
         // Trade only with a higher Price/Volume Ratio
-        if (rate > realChange) {
+        if (wantedRate > realChange) {
             continue;
         }
 
@@ -889,9 +910,9 @@
 /**
  * Kaufe Assets mit einer Investor-Rate von "rate"% oder mehr...
  *
- * @param rate
+ * @param wantedRate
  */
-- (void)buyByInvestors:(double)rate {
+- (void)buyByInvestors:(double)wantedRate {
     NSDictionary *currencyUnits = [self realChanges];
 
     NSNumber *highest = [[currencyUnits allValues] valueForKeyPath:@"@max.self"];
@@ -901,7 +922,7 @@
         double investorsRate = [currencyUnits[highestKey] doubleValue];
 
         // Kaufe auf Grundlage der aktuellen Investoren-Rate
-        if (investorsRate > rate) {
+        if (investorsRate > wantedRate) {
             [self autoBuyAll:highestKey];
         }
     }
@@ -938,10 +959,12 @@
 }
 
 /**
- * @ Aktualsiert den Bestand (synchronisiert und thread-safe)
+ * Aktualsiert den Bestand (synchronisiert und thread-safe)
  *
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
+ *
+ * @param synchronized
  */
 - (void)updateBalances:(BOOL)synchronized {
 
@@ -960,7 +983,7 @@
 }
 
 /**
- * @ Aktualsiert den Bestand mit dem Poloniex-Key
+ * Aktualsiert den Bestand mit dem Poloniex-Key
  *
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
@@ -971,14 +994,12 @@
     NSString *sk = nil;
 
     if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) {
-        // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
         NSDictionary *apiKey = [KeychainWrapper keychain2ApiKeyAndSecret:@"POLONIEX"];
         ak = apiKey[@"apiKey"];
         sk = apiKey[@"secret"];
     }
 
     if ([defaultExchange isEqualToString:EXCHANGE_BITTREX]) {
-        // @TODO Vielleicht sollten diese Zugangsdaten noch verschlüsselt werden...
         NSDictionary *apiKey = [KeychainWrapper keychain2ApiKeyAndSecret:@"BITTREX"];
         ak = apiKey[@"apiKey"];
         sk = apiKey[@"secret"];
@@ -1008,6 +1029,8 @@
 
 /**
  * synchronisierter Block, der garantiert, dass es nur ein Update gibt
+ *
+ * @param synchronized
  */
 - (void)updateRatings:(BOOL)synchronized {
 
@@ -1207,14 +1230,14 @@
  *
  * @return NSString*
  */
-- (NSString*)defaultExchange {
+- (NSString *)defaultExchange {
     return defaultExchange;
 }
 
 /**
  * Liefert die aktuellen Fiat-Währungen
  *
- * @return NSString*
+ * @return NSArray*
  */
 - (NSArray *)fiatCurrencies {
     return fiatCurrencies;
@@ -1256,10 +1279,20 @@
     return [currentRatings mutableCopy];
 }
 
+/**
+ * Getter für den Ticker
+ *
+ * @return NSMutableDictionary*
+ */
 - (NSMutableDictionary *)ticker {
     return [ticker mutableCopy];
 }
 
+/**
+ * Getter für die tickerKeys
+ *
+ * @return NSDictionary*
+ */
 - (NSDictionary *)tickerKeys {
     return tickerKeys;
 }
