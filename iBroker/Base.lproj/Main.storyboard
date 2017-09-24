@@ -1116,7 +1116,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ooS-1x-kv1">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="qyL-70-6B7"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1131,7 +1131,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Lju-1Z-9ud">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="qv2-FU-P1F"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1146,7 +1146,7 @@
                                 </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="CQ7-0t-huL">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="A0J-gr-Frc"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1171,7 +1171,7 @@
                                 <rect key="frame" x="312" y="157" width="245" height="42"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="yXY-JB-rqB">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="B0H-5o-Sdb"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1183,7 +1183,7 @@
                                 <rect key="frame" x="312" y="107" width="245" height="42"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ErP-Er-2zI">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="HJL-bU-yCL"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1195,7 +1195,7 @@
                                 <rect key="frame" x="312" y="57" width="245" height="42"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="wFP-L6-EFI">
                                     <numberFormatter key="formatter" formatterBehavior="custom10_4" numberStyle="decimal" lenient="YES" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="8" maximumFractionDigits="8" id="jKy-Rs-XM8"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" size="24" name=".HelveticaNeueDeskInterface-Regular"/>
                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
