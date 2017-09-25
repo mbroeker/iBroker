@@ -71,34 +71,34 @@
     // und dann den einzelnen selektieren
     if ([fiatCurrencies[0] isEqualToString:EUR] &&
         [fiatCurrencies[1] isEqualToString:USD]) {
-            self.eurUSDItem.state = NSOnState;
+        self.eurUSDItem.state = NSOnState;
     }
 
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:EUR]) {
-            self.usdEURItem.state = NSOnState;
+        self.usdEURItem.state = NSOnState;
     }
 
     // und dann den einzelnen selektieren
     if ([fiatCurrencies[0] isEqualToString:EUR] &&
         [fiatCurrencies[1] isEqualToString:GBP]) {
-            self.eurGBPItem.state = NSOnState;
+        self.eurGBPItem.state = NSOnState;
     }
 
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:GBP]) {
-            self.usdGBPItem.state = NSOnState;
+        self.usdGBPItem.state = NSOnState;
     }
 
     // und dann den einzelnen selektieren
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:CNY]) {
-            self.usdCNYItem.state = NSOnState;
+        self.usdCNYItem.state = NSOnState;
     }
 
     if ([fiatCurrencies[0] isEqualToString:USD] &&
         [fiatCurrencies[1] isEqualToString:JPY]) {
-            self.usdJPYItem.state = NSOnState;
+        self.usdJPYItem.state = NSOnState;
     }
 }
 

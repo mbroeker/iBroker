@@ -710,7 +710,7 @@ typedef struct DASHBOARD_VARS {
  */
 - (void)updateOverview {
 
-    // Dynamisches Setzen des Titels
+    // Dynamisches Setzen der Programmüberschrift
     [self iBrokerOnExchange];
 
     // Aktualisiere die URL für den HOME-Button
@@ -762,7 +762,7 @@ typedef struct DASHBOARD_VARS {
         double diffInEuro = ((currentPrice / initialPrice) * balanceInEUR) - balanceInEUR;
         double diffInPercent = (amount >= 0) ? [checkpoint[CP_PERCENT] doubleValue] : 0;
 
-        #ifdef DEBUG
+#ifdef DEBUG
         NSLog(@"%5s %20s | %20s | %14s | %14s | %14s | %12s | %20s | %12s |\n",
             [asset UTF8String],
             [[Helper double2German:amount min:8 max:8] UTF8String],
@@ -774,7 +774,7 @@ typedef struct DASHBOARD_VARS {
             [[Helper double2German:diffInEuro min:2 max:2] UTF8String],
             [[Helper double2GermanPercent:diffInPercent fractions:2] UTF8String]
         );
-        #endif
+#endif
 
         loop_vars.shares += share;
         loop_vars.coinchange.diffsInEuro += diffInEuro;
@@ -814,7 +814,7 @@ typedef struct DASHBOARD_VARS {
     self.cryptoUnits.doubleValue = [calculator calculate:fiatCurrencies[1]];
 
     self.rateInputLabel.placeholderString = @"1";
-    self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:1.0f / [currentRatings[fiatCurrencies[1]] doubleValue] min:2 max:4]];
+    self.rateOutputLabel.placeholderString = [Helper double2German:1.0f / [currentRatings[fiatCurrencies[1]] doubleValue] min:2 max:4];
 
     // Chart Leiste 1
     self.currency1Field.stringValue = [NSString stringWithFormat:@"%@ %@", [Helper double2German:1 / [currentRatings[ASSET1] doubleValue] min:2 max:4], fiatCurrencySymbol];
@@ -843,7 +843,7 @@ typedef struct DASHBOARD_VARS {
  */
 - (void)updateTemplateView:(NSString *)label {
 
-    // Dynamisches Setzen des Titels
+    // Dynamisches Setzen der Programmüberschrift
     [self iBrokerOnExchange];
 
     // Es sind mehrere Buttons, die so synchronisiert gehalten werden...
@@ -928,7 +928,7 @@ typedef struct DASHBOARD_VARS {
     double rate = assets / assetRating;
     self.rateInputLabel.placeholderString = [Helper double2German:assets min:0 max:0];
     self.rateInputCurrencyLabel.stringValue = asset;
-    self.rateOutputLabel.placeholderString = [NSString stringWithFormat:@"%@", [Helper double2German:rate min:2 max:4]];
+    self.rateOutputLabel.placeholderString = [Helper double2German:rate min:2 max:4];
 
     if (percent < 0.0) {
         self.percentLabel.textColor = defaultLooseColor;
@@ -1166,7 +1166,7 @@ typedef struct DASHBOARD_VARS {
         return;
 
     } else {
-        self.rateOutputLabel.stringValue = [NSString stringWithFormat:@"%@", [Helper double2German:result min:4 max:8]];
+        self.rateOutputLabel.stringValue = [Helper double2German:result min:4 max:8];
     }
 
     // EUR / USD - das kann nicht direkt gehandelt werden
