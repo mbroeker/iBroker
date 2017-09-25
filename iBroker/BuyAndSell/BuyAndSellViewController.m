@@ -21,14 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.buyButton.title = NSLocalizedString(@"buy", "Kaufen");
+    self.sellButton.title = NSLocalizedString(@"sell", "Verkaufen");
+
     NSTabViewController *controller = (NSTabViewController*)[[[NSApplication sharedApplication] mainWindow] contentViewController];
     NSUInteger pos = controller.selectedTabViewItemIndex;
     NSTabViewItem *item = controller.tabViewItems[pos];
 
     tabLabel = item.label;
-
-    self.buyButton.title = NSLocalizedString(@"buy", "Kaufen");
-    self.sellButton.title = NSLocalizedString(@"sell", "Verkaufen");
 
     calculator = [Calculator instance];
 
