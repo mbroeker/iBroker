@@ -118,8 +118,8 @@
 
         if (saldoUrls == nil) {
             saldoUrls = [@{
-                DASHBOARD: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-LTC", ASSET1],
-                ASSET1_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET1.lowercaseString],
+                DASHBOARD: [NSString stringWithFormat:@"https://coinmarketcap.com/gainers-losers/"],
+                ASSET1_DESC: [NSString stringWithFormat:@"https://coinmarketcap.com/exchanges/"],
                 ASSET2_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET2.lowercaseString],
                 ASSET3_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET3.lowercaseString],
                 ASSET4_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET4.lowercaseString],
@@ -181,13 +181,13 @@
     BOOL mustUpdate = false;
 
     if (!saldoUrls[DASHBOARD]) {
-        saldoUrls[DASHBOARD] = @"";
+        saldoUrls[DASHBOARD] = @"https://coinmarketcap.com/gainers-losers/";
 
         mustUpdate = true;
     }
 
     if (!saldoUrls[ASSET1_DESC]) {
-        saldoUrls[ASSET1_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET1.lowercaseString];
+        saldoUrls[ASSET1_DESC] = @"https://coinmarketcap.com/exchanges/";
 
         currentSaldo[ASSET1] = @0.0;
         initialRatings[ASSET1] = @0.0;
@@ -296,7 +296,7 @@
             }
         }
 
-        // Zurückspielen nicht vergessen :)
+        // Zurückspielen nicht vergessen
         currentSaldo = tempCurrentSaldo;
         initialRatings = tempInitialRatings;
 
@@ -657,7 +657,7 @@
     NSDictionary *order = [Brokerage buy:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount onExchange:defaultExchange];
 
     if (order[@"orderNumber"]) {
-        [self updateCheckpointForAsset:cAsset withBTCUpdate:true andRate:wantedRate];
+        [self updateCheckpointForAsset:cAsset withBTCUpdate:true andRate:cRate];
 
         return order[@"orderNumber"];
     }
@@ -752,7 +752,7 @@
     NSDictionary *order = [Brokerage sell:ak withSecret:sk currencyPair:cPair rate:cRate amount:amount onExchange:defaultExchange];
 
     if (order[@"orderNumber"]) {
-        [self updateCheckpointForAsset:cAsset withBTCUpdate:false andRate:wantedRate];
+        [self updateCheckpointForAsset:cAsset withBTCUpdate:false andRate:cRate];
 
         return order[@"orderNumber"];
     }
