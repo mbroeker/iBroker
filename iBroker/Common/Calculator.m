@@ -855,11 +855,11 @@
 }
 
 /**
- * Verkaufe Assets mit einer Investor-Rate von "rate"% oder mehr...
+ * Verkaufe Assets mit einer Investor-Rate von "wantedPercent"% oder mehr...
  *
- * @param wantedRate
+ * @param wantedPercent
  */
-- (void)sellByInvestors:(double)wantedRate {
+- (void)sellByInvestors:(double)wantedPercent {
     NSDictionary *currencyUnits = [self realChanges];
 
     NSNumber *lowest = [[currencyUnits allValues] valueForKeyPath:@"@min.self"];
@@ -874,7 +874,7 @@
         if (price < 0.0001) { return; }
 
         // Verkaufe auf Grundlage der aktuellen Investoren-Rate
-        if (investorsRate < wantedRate) {
+        if (investorsRate < wantedPercent) {
             [self autoSellAll:lowestKey];
         }
     }
