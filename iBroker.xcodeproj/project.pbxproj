@@ -38,6 +38,9 @@
 		B2232C111F689D1900691859 /* Brokerage+Poloniex.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BE11F689AF700691859 /* Brokerage+Poloniex.m */; };
 		B2232C121F689D3400691859 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BEE1F689B0700691859 /* Helper.m */; };
 		B224E8311EC8F4840039A911 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B224E8331EC8F4840039A911 /* Localizable.strings */; };
+		B22EB8D31F7ADDDF002BC3FF /* Statistics.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B22EB8D21F7ADDDF002BC3FF /* Statistics.storyboard */; };
+		B22EB8D61F7ADF77002BC3FF /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22EB8D51F7ADF77002BC3FF /* StatisticsViewController.m */; };
+		B22EB8D91F7AE671002BC3FF /* OrderData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22EB8D81F7AE671002BC3FF /* OrderData.m */; };
 		B22F90211ED8BABC007FE910 /* PoloniexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22F90201ED8BABC007FE910 /* PoloniexViewController.m */; };
 		B25106D51EB734A80092D911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106D41EB734A80092D911 /* main.m */; };
 		B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A9FD41ECA10050020555E /* ApplicationsViewController.m */; };
@@ -132,6 +135,11 @@
 		B224E8251EC8E8F30039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		B224E8321EC8F4840039A911 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B224E8341EC8F48A0039A911 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B22EB8D21F7ADDDF002BC3FF /* Statistics.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Statistics.storyboard; sourceTree = "<group>"; };
+		B22EB8D41F7ADF77002BC3FF /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		B22EB8D51F7ADF77002BC3FF /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		B22EB8D71F7AE671002BC3FF /* OrderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderData.h; sourceTree = "<group>"; };
+		B22EB8D81F7AE671002BC3FF /* OrderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderData.m; sourceTree = "<group>"; };
 		B22F901F1ED8BABC007FE910 /* PoloniexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PoloniexViewController.h; path = preferences/PoloniexViewController.h; sourceTree = "<group>"; };
 		B22F90201ED8BABC007FE910 /* PoloniexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PoloniexViewController.m; path = preferences/PoloniexViewController.m; sourceTree = "<group>"; };
 		B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = iBroker.entitlements; sourceTree = "<group>"; };
@@ -308,6 +316,18 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		B22EB8CD1F7ADC10002BC3FF /* Statistics */ = {
+			isa = PBXGroup;
+			children = (
+				B22EB8D21F7ADDDF002BC3FF /* Statistics.storyboard */,
+				B22EB8D41F7ADF77002BC3FF /* StatisticsViewController.h */,
+				B22EB8D51F7ADF77002BC3FF /* StatisticsViewController.m */,
+				B22EB8D71F7AE671002BC3FF /* OrderData.h */,
+				B22EB8D81F7AE671002BC3FF /* OrderData.m */,
+			);
+			path = Statistics;
+			sourceTree = "<group>";
+		};
 		B247B6771EB02B9D002D4FCB /* Preferences */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,16 +421,17 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
+				B2FF15F51EB038F900F65E6B /* AppDelegate */,
+				B2FA69391E93F2A300C47199 /* Assets.xcassets */,
+				B2232BD21F689AF700691859 /* Brokerage */,
 				B2E23D0B1F74F3F6001E135B /* BuyAndSell */,
 				B2232BE91F689B0700691859 /* Common */,
-				B2232BD21F689AF700691859 /* Brokerage */,
-				B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */,
-				B2FF15F51EB038F900F65E6B /* AppDelegate */,
 				B2FF15E11EB0384300F65E6B /* Dashboard */,
-				B247B6771EB02B9D002D4FCB /* Preferences */,
-				B2FA69391E93F2A300C47199 /* Assets.xcassets */,
-				B2FA693B1E93F2A300C47199 /* Main.storyboard */,
+				B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */,
 				B2FA693E1E93F2A300C47199 /* Info.plist */,
+				B2FA693B1E93F2A300C47199 /* Main.storyboard */,
+				B247B6771EB02B9D002D4FCB /* Preferences */,
+				B22EB8CD1F7ADC10002BC3FF /* Statistics */,
 				B2FA69331E93F2A300C47199 /* Supporting Files */,
 			);
 			path = iBroker;
@@ -519,7 +540,6 @@
 					};
 					B2FA692C1E93F2A300C47199 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = NS52DCTHFQ;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -575,6 +595,7 @@
 				B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */,
 				B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */,
 				B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */,
+				B22EB8D31F7ADDDF002BC3FF /* Statistics.storyboard in Resources */,
 				B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,6 +647,8 @@
 				B2FF15EC1EB0384300F65E6B /* TabViewController.m in Sources */,
 				B22F90211ED8BABC007FE910 /* PoloniexViewController.m in Sources */,
 				B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */,
+				B22EB8D61F7ADF77002BC3FF /* StatisticsViewController.m in Sources */,
+				B22EB8D91F7AE671002BC3FF /* OrderData.m in Sources */,
 				B20AEE251EE54F960015BC17 /* BittrexViewController.m in Sources */,
 				B2232BE71F689AF700691859 /* Brokerage+JSON.m in Sources */,
 				B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */,
