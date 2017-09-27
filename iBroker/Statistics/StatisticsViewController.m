@@ -23,7 +23,7 @@
     self.ordersTableView.dataSource = self;
 
     [self.ordersTableView setDoubleAction:@selector(doubleClick:)];
-    [self updateTableData];
+    [self updateTableData:false];
 }
 
 /**
@@ -45,7 +45,7 @@
             [self.dataRows removeAllObjects];
             [self.ordersTableView reloadData];
 
-            [self updateTableData];
+            [self updateTableData:true];
         }
     }
 }
@@ -53,7 +53,13 @@
 /**
  *
  */
-- (void)updateTableData {
+- (void)updateTableData:(BOOL)withDelay {
+
+    if (withDelay) {
+        // Warte einfach eine halbe Sekunde
+        [NSThread sleepForTimeInterval:0.5];
+    }
+
     NSArray *data = [OrderData fetchOrderData];
 
     if (self.dataRows == nil) {
@@ -62,11 +68,11 @@
         [self.dataRows setArray:data];
     }
 
+    [self.ordersTableView beginUpdates];
     for (long i = 0; i < data.count; i++) {
-        [self.ordersTableView beginUpdates];
         [self.ordersTableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:i] withAnimation:NSTableViewAnimationEffectFade];
-        [self.ordersTableView endUpdates];
     }
+    [self.ordersTableView endUpdates];
 
     [self.ordersTableView reloadData];
 }
