@@ -44,10 +44,10 @@
         if ([data cancelOrder]) {
             [self.dataRows removeAllObjects];
             [self.ordersTableView reloadData];
-
-            [self updateTableData:true];
         }
     }
+
+    [self updateTableData:true];
 }
 
 /**

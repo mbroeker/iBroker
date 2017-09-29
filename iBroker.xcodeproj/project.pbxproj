@@ -45,6 +45,8 @@
 		B25106D51EB734A80092D911 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B25106D41EB734A80092D911 /* main.m */; };
 		B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B25A9FD41ECA10050020555E /* ApplicationsViewController.m */; };
 		B25F4AAC1F675FE7006F6282 /* iBrokerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B25F4AAB1F675FE7006F6282 /* iBrokerTests.m */; };
+		B2B331A31F7DDC7A00BD64AC /* Portfolio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B331A21F7DDC7A00BD64AC /* Portfolio.storyboard */; };
+		B2B331A51F7DDC8B00BD64AC /* BuyAndSell.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B331A41F7DDC8B00BD64AC /* BuyAndSell.storyboard */; };
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
@@ -151,6 +153,8 @@
 		B25F4AA91F675FE7006F6282 /* iBrokerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iBrokerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B25F4AAB1F675FE7006F6282 /* iBrokerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iBrokerTests.m; sourceTree = "<group>"; };
 		B25F4AAD1F675FE7006F6282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B2B331A21F7DDC7A00BD64AC /* Portfolio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Portfolio.storyboard; sourceTree = "<group>"; };
+		B2B331A41F7DDC8B00BD64AC /* BuyAndSell.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BuyAndSell.storyboard; sourceTree = "<group>"; };
 		B2B92BEF1EB05F3500278E7D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Preferences.storyboard; sourceTree = "<group>"; };
 		B2C1D07E1EB1115300B6186B /* iBroker.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = iBroker.help; sourceTree = "<group>"; };
 		B2CAA3B71ED1E06200C9D4BC /* SaldoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SaldoViewController.h; path = preferences/SaldoViewController.h; sourceTree = "<group>"; };
@@ -182,8 +186,8 @@
 		B2D64BBC1EF20A6100F03CA8 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2D64BBD1EF20A6300F03CA8 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2D64BBE1EF20A6500F03CA8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2E076C81F6B5C060050A42C /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
-		B2E076C91F6B5C060050A42C /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
+		B2E076C81F6B5C060050A42C /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortfolioViewController.h; path = ../Dashboard/PortfolioViewController.h; sourceTree = "<group>"; };
+		B2E076C91F6B5C060050A42C /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortfolioViewController.m; path = ../Dashboard/PortfolioViewController.m; sourceTree = "<group>"; };
 		B2E23D1E1F74FF85001E135B /* BuyAndSellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyAndSellViewController.h; sourceTree = "<group>"; };
 		B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyAndSellViewController.m; sourceTree = "<group>"; };
 		B2F9FE9F1F68F00B00BD668D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
@@ -369,6 +373,16 @@
 			path = iBrokerTests;
 			sourceTree = "<group>";
 		};
+		B2B331A11F7DDC5C00BD64AC /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				B2E076C81F6B5C060050A42C /* PortfolioViewController.h */,
+				B2E076C91F6B5C060050A42C /* PortfolioViewController.m */,
+				B2B331A21F7DDC7A00BD64AC /* Portfolio.storyboard */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
 		B2E23D0B1F74F3F6001E135B /* BuyAndSell */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,6 +390,7 @@
 				B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */,
 				43D6F982ECFEB894221F9B9F /* RestrictedClickableTextField.m */,
 				43D6FE100C764FCB4A612EC9 /* RestrictedClickableTextField.h */,
+				B2B331A41F7DDC8B00BD64AC /* BuyAndSell.storyboard */,
 			);
 			path = BuyAndSell;
 			sourceTree = "<group>";
@@ -421,6 +436,7 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
+				B2B331A11F7DDC5C00BD64AC /* Portfolio */,
 				B2FF15F51EB038F900F65E6B /* AppDelegate */,
 				B2FA69391E93F2A300C47199 /* Assets.xcassets */,
 				B2232BD21F689AF700691859 /* Brokerage */,
@@ -449,8 +465,6 @@
 		B2FF15E11EB0384300F65E6B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				B2E076C81F6B5C060050A42C /* PortfolioViewController.h */,
-				B2E076C91F6B5C060050A42C /* PortfolioViewController.m */,
 				B2FF15E61EB0384300F65E6B /* TabViewController.h */,
 				B2FF15E71EB0384300F65E6B /* TabViewController.m */,
 				B2FF15E81EB0384300F65E6B /* TemplateViewController.h */,
@@ -594,9 +608,11 @@
 				B224E8311EC8F4840039A911 /* Localizable.strings in Resources */,
 				B2FA693A1E93F2A300C47199 /* Assets.xcassets in Resources */,
 				B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */,
+				B2B331A31F7DDC7A00BD64AC /* Portfolio.storyboard in Resources */,
 				B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */,
 				B22EB8D31F7ADDDF002BC3FF /* Statistics.storyboard in Resources */,
 				B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */,
+				B2B331A51F7DDC8B00BD64AC /* BuyAndSell.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
