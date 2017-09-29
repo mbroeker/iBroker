@@ -5,10 +5,10 @@
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
-        <!--Portfolio View Controller-->
+        <!--Portfolio-->
         <scene sceneID="CaS-R8-Vc3">
             <objects>
-                <viewController id="tRI-3s-xN5" customClass="PortfolioViewController" sceneMemberID="viewController">
+                <viewController title="Portfolio" showSeguePresentationStyle="single" id="tRI-3s-xN5" customClass="PortfolioViewController" sceneMemberID="viewController">
                     <view key="view" id="ATx-xQ-2Th">
                         <rect key="frame" x="0.0" y="0.0" width="582" height="692"/>
                         <autoresizingMask key="autoresizingMask"/>
