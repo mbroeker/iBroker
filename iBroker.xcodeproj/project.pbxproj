@@ -50,7 +50,7 @@
 		B2B92BEE1EB05F3500278E7D /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2B92BF01EB05F3500278E7D /* Preferences.storyboard */; };
 		B2C1D07F1EB1115300B6186B /* iBroker.help in Resources */ = {isa = PBXBuildFile; fileRef = B2C1D07E1EB1115300B6186B /* iBroker.help */; };
 		B2CAA3B91ED1E06200C9D4BC /* SaldoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2CAA3B81ED1E06200C9D4BC /* SaldoViewController.m */; };
-		B2E076CA1F6B5C060050A42C /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E076C91F6B5C060050A42C /* PortfolioViewController.m */; };
+		B2D6AB9F1F82B57F00A608C8 /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2D6AB9E1F82B57F00A608C8 /* PortfolioViewController.m */; };
 		B2E076CC1F6B84720050A42C /* Algorithm.m in Sources */ = {isa = PBXBuildFile; fileRef = B2232BD41F689AF700691859 /* Algorithm.m */; };
 		B2E23D201F74FF85001E135B /* BuyAndSellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */; };
 		B2F9FEA11F68F00B00BD668D /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */; };
@@ -186,8 +186,8 @@
 		B2D64BBC1EF20A6100F03CA8 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2D64BBD1EF20A6300F03CA8 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B2D64BBE1EF20A6500F03CA8 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B2E076C81F6B5C060050A42C /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PortfolioViewController.h; path = ../Dashboard/PortfolioViewController.h; sourceTree = "<group>"; };
-		B2E076C91F6B5C060050A42C /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PortfolioViewController.m; path = ../Dashboard/PortfolioViewController.m; sourceTree = "<group>"; };
+		B2D6AB9D1F82B57F00A608C8 /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
+		B2D6AB9E1F82B57F00A608C8 /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
 		B2E23D1E1F74FF85001E135B /* BuyAndSellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BuyAndSellViewController.h; sourceTree = "<group>"; };
 		B2E23D1F1F74FF85001E135B /* BuyAndSellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BuyAndSellViewController.m; sourceTree = "<group>"; };
 		B2F9FE9F1F68F00B00BD668D /* KeychainWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainWrapper.h; sourceTree = "<group>"; };
@@ -376,8 +376,8 @@
 		B2B331A11F7DDC5C00BD64AC /* Portfolio */ = {
 			isa = PBXGroup;
 			children = (
-				B2E076C81F6B5C060050A42C /* PortfolioViewController.h */,
-				B2E076C91F6B5C060050A42C /* PortfolioViewController.m */,
+				B2D6AB9D1F82B57F00A608C8 /* PortfolioViewController.h */,
+				B2D6AB9E1F82B57F00A608C8 /* PortfolioViewController.m */,
 				B2B331A21F7DDC7A00BD64AC /* Portfolio.storyboard */,
 			);
 			path = Portfolio;
@@ -436,7 +436,6 @@
 		B2FA692F1E93F2A300C47199 /* iBroker */ = {
 			isa = PBXGroup;
 			children = (
-				B2B331A11F7DDC5C00BD64AC /* Portfolio */,
 				B2FF15F51EB038F900F65E6B /* AppDelegate */,
 				B2FA69391E93F2A300C47199 /* Assets.xcassets */,
 				B2232BD21F689AF700691859 /* Brokerage */,
@@ -446,6 +445,7 @@
 				B23FB8AC1EE8B4A700BE3EF4 /* iBroker.entitlements */,
 				B2FA693E1E93F2A300C47199 /* Info.plist */,
 				B2FA693B1E93F2A300C47199 /* Main.storyboard */,
+				B2B331A11F7DDC5C00BD64AC /* Portfolio */,
 				B247B6771EB02B9D002D4FCB /* Preferences */,
 				B22EB8CD1F7ADC10002BC3FF /* Statistics */,
 				B2FA69331E93F2A300C47199 /* Supporting Files */,
@@ -678,12 +678,12 @@
 				B2FF15D01EB034E400F65E6B /* AddressViewController.m in Sources */,
 				B2FA69351E93F2A300C47199 /* main.m in Sources */,
 				B2232BE51F689AF700691859 /* Brokerage+Crypto.m in Sources */,
+				B2D6AB9F1F82B57F00A608C8 /* PortfolioViewController.m in Sources */,
 				B2232BE31F689AF700691859 /* Brokerage.m in Sources */,
 				B2232BE81F689AF700691859 /* Brokerage+Poloniex.m in Sources */,
 				B2232BE61F689AF700691859 /* Brokerage+External.m in Sources */,
 				B2232BF11F689B0700691859 /* Calculator.m in Sources */,
 				B2F9FEA11F68F00B00BD668D /* KeychainWrapper.m in Sources */,
-				B2E076CA1F6B5C060050A42C /* PortfolioViewController.m in Sources */,
 				B2232BE41F689AF700691859 /* Brokerage+Bittrex.m in Sources */,
 				B2232BE21F689AF700691859 /* Algorithm.m in Sources */,
 				43D6F22812C413E85E288CB5 /* ClickableTextField.m in Sources */,
