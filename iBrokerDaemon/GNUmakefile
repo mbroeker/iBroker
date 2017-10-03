@@ -1,7 +1,7 @@
 include $(GNUSTEP_MAKEFILES)/common.make
 
 TOOL_NAME = iBrokerDaemon
-ADDITIONAL_INCLUDE_DIRS += -IBrokerage -ICommon
+ADDITIONAL_INCLUDE_DIRS += -IBrokerage -ICalculator -ICommon
 ADDITIONAL_OBJCFLAGS += -fexceptions -fobjc-nonfragile-abi -fblocks
 ADDITIONAL_LDFLAGS += -lCommonCrypto -lgnustep-gui
 
@@ -18,7 +18,8 @@ iBrokerDaemon_Tool_HEADERS = \
 
 iBrokerDaemon_OBJC_FILES = \
 	main.m \
-	Common/Calculator.m \
+	Calculator/Calculator.m \
+	Calculator/Categories/Calculator+Migration.m \
 	Common/Helper.m \
 	Common/KeychainWrapper.m \
 	Brokerage/Brokerage.m \

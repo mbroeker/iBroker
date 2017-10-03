@@ -45,7 +45,7 @@
 #define ASSET7_DESC @"Stratis"
 #define ASSET8_DESC @"GameCredits"
 #define ASSET9_DESC @"Ripple"
-#define ASSET10_DESC @"New Eco"
+#define ASSET10_DESC @"New Economy"
 
 // FIAT CURRENCY KEYS
 #define EUR @"EUR"

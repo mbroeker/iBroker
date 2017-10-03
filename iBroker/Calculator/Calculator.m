@@ -30,6 +30,7 @@
 
     // Die dynamischen TickerKeys
     NSDictionary *tickerKeys;
+    NSDictionary *tickerKeysDescription;
 
     // Die standardmäßige Börse
     NSString *defaultExchange;
@@ -98,9 +99,18 @@
     if (self = [super init]) {
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        currentSaldo = [[defaults objectForKey:KEY_CURRENT_SALDO] mutableCopy];
 
         fiatCurrencies = currencies;
+
+        defaultExchange = [defaults objectForKey:@"defaultExchange"];
+
+        if (defaultExchange == nil) {
+            defaultExchange = EXCHANGE_BITTREX;
+
+            [defaults setObject:defaultExchange forKey:@"defaultExchange"];
+        }
+
+        currentSaldo = [[defaults objectForKey:KEY_CURRENT_SALDO] mutableCopy];
 
         if (currentSaldo == nil) {
             currentSaldo = [@{
@@ -122,19 +132,36 @@
         saldoUrls = [[defaults objectForKey:KEY_SALDO_URLS] mutableCopy];
 
         if (saldoUrls == nil) {
-            saldoUrls = [@{
-                DASHBOARD: [NSString stringWithFormat:@"https://coinmarketcap.com/gainers-losers/"],
-                ASSET1_DESC: [NSString stringWithFormat:@"https://coinmarketcap.com/exchanges/"],
-                ASSET2_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET2.lowercaseString],
-                ASSET3_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET3.lowercaseString],
-                ASSET4_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET4.lowercaseString],
-                ASSET5_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET5.lowercaseString],
-                ASSET6_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET6.lowercaseString],
-                ASSET7_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET7.lowercaseString],
-                ASSET8_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET8.lowercaseString],
-                ASSET9_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET9.lowercaseString],
-                ASSET10_DESC: [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET10.lowercaseString],
-            } mutableCopy];
+
+            if ([defaultExchange isEqualToString:EXCHANGE_BITTREX]) {
+                saldoUrls = [@{
+                    DASHBOARD: [NSString stringWithFormat:@"https://coinmarketcap.com/gainers-losers/"],
+                    ASSET1_DESC: [NSString stringWithFormat:@"https://coinmarketcap.com/exchanges"],
+                    ASSET2_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET2],
+                    ASSET3_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET3],
+                    ASSET4_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET4],
+                    ASSET5_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET5],
+                    ASSET6_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET6],
+                    ASSET7_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET7],
+                    ASSET8_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET8],
+                    ASSET9_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET9],
+                    ASSET10_DESC: [NSString stringWithFormat:@"https://bittrex.com/Market/Index?MarketName=%@-%@", ASSET1, ASSET10],
+                } mutableCopy];
+            } else {
+                saldoUrls = [@{
+                    DASHBOARD: [NSString stringWithFormat:@"https://coinmarketcap.com/gainers-losers/"],
+                    ASSET1_DESC: [NSString stringWithFormat:@"https://coinmarketcap.com/exchanges"],
+                    ASSET2_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET2.lowercaseString],
+                    ASSET3_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET3.lowercaseString],
+                    ASSET4_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET4.lowercaseString],
+                    ASSET5_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET5.lowercaseString],
+                    ASSET6_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET6.lowercaseString],
+                    ASSET7_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET7.lowercaseString],
+                    ASSET8_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET8.lowercaseString],
+                    ASSET9_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET9.lowercaseString],
+                    ASSET10_DESC: [NSString stringWithFormat:@"https://poloniex.com/exchange#%@_%@", ASSET1.lowercaseString, ASSET10.lowercaseString],
+                } mutableCopy];
+            }
 
             [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
         }
@@ -152,13 +179,18 @@
             ASSET10: [NSString stringWithFormat:@"%@_%@", ASSET1, ASSET10],
         };
 
-        defaultExchange = [defaults objectForKey:@"defaultExchange"];
-
-        if (defaultExchange == nil) {
-            defaultExchange = EXCHANGE_BITTREX;
-
-            [defaults setObject:defaultExchange forKey:@"defaultExchange"];
-        }
+        tickerKeysDescription = @{
+            ASSET1_DESC: ASSET1,
+            ASSET2_DESC: ASSET2,
+            ASSET3_DESC: ASSET3,
+            ASSET4_DESC: ASSET4,
+            ASSET5_DESC: ASSET5,
+            ASSET6_DESC: ASSET6,
+            ASSET7_DESC: ASSET7,
+            ASSET8_DESC: ASSET8,
+            ASSET9_DESC: ASSET9,
+            ASSET10_DESC: ASSET10,
+        };
 
         tradingWithConfirmation = [defaults objectForKey:KEY_TRADING_WITH_CONFIRMATION];
 
@@ -170,161 +202,10 @@
 
         [defaults synchronize];
 
-        // Migration älterer Installationen
-        [self upgradeAssistant];
-
         [self updateRatings:true];
     }
 
     return self;
-}
-
-/**
- * simpler Upgrade Assistent
- */
-- (void)upgradeAssistant {
-    BOOL mustUpdate = false;
-
-    if (!saldoUrls[DASHBOARD]) {
-        saldoUrls[DASHBOARD] = @"https://coinmarketcap.com/gainers-losers/";
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET1_DESC]) {
-        saldoUrls[ASSET1_DESC] = @"https://coinmarketcap.com/exchanges/";
-
-        currentSaldo[ASSET1] = @0.0;
-        initialRatings[ASSET1] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET2_DESC]) {
-        saldoUrls[ASSET2_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET2.lowercaseString];
-
-        currentSaldo[ASSET2] = @0.0;
-        initialRatings[ASSET2] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET3_DESC]) {
-        saldoUrls[ASSET3_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET3.lowercaseString];
-
-        currentSaldo[ASSET3] = @0.0;
-        initialRatings[ASSET3] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET4_DESC]) {
-        saldoUrls[ASSET4_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET4.lowercaseString];
-
-        currentSaldo[ASSET4] = @0.0;
-        initialRatings[ASSET4] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET5_DESC]) {
-        saldoUrls[ASSET5_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET5.lowercaseString];
-
-        currentSaldo[ASSET5] = @0.0;
-        initialRatings[ASSET5] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET6_DESC]) {
-        saldoUrls[ASSET6_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET6.lowercaseString];
-
-        currentSaldo[ASSET6] = @0.0;
-        initialRatings[ASSET6] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET7_DESC]) {
-        saldoUrls[ASSET7_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET7.lowercaseString];
-
-        currentSaldo[ASSET7] = @0.0;
-        initialRatings[ASSET7] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET8_DESC]) {
-        saldoUrls[ASSET8_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET8.lowercaseString];
-
-        currentSaldo[ASSET8] = @0.0;
-        initialRatings[ASSET8] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET9_DESC]) {
-        saldoUrls[ASSET9_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET9.lowercaseString];
-
-        currentSaldo[ASSET9] = @0.0;
-        initialRatings[ASSET9] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (!saldoUrls[ASSET10_DESC]) {
-        saldoUrls[ASSET10_DESC] = [NSString stringWithFormat:@"https://chainz.cryptoid.info/%@/", ASSET10.lowercaseString];
-
-        currentSaldo[ASSET10] = @0.0;
-        initialRatings[ASSET10] = @0.0;
-
-        mustUpdate = true;
-    }
-
-    if (mustUpdate) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-        NSLog(@"Migrating Calculator settings...");
-
-        NSMutableDictionary *tempCurrentSaldo = [currentSaldo mutableCopy];
-        NSMutableDictionary *tempInitialRatings = [initialRatings mutableCopy];
-
-        for (id key in currentSaldo) {
-            if ([tickerKeys objectForKey:key] == nil) {
-                [tempCurrentSaldo removeObjectForKey:key];
-            }
-        }
-
-        for (id key in initialRatings) {
-            if ([tickerKeys objectForKey:key] == nil) {
-                [tempInitialRatings removeObjectForKey:key];
-            }
-        }
-
-        // Zurückspielen nicht vergessen
-        currentSaldo = tempCurrentSaldo;
-        initialRatings = tempInitialRatings;
-
-        [defaults setObject:saldoUrls forKey:KEY_SALDO_URLS];
-        [defaults setObject:tempCurrentSaldo forKey:KEY_CURRENT_SALDO];
-        [defaults setObject:tempInitialRatings forKey:KEY_INITIAL_RATINGS];
-
-        [defaults synchronize];
-    }
-}
-
-/**
- * Statische Reset-Methode zum Abräumen
- *
- */
-+ (void)reset {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    [defaults removeObjectForKey:KEY_SALDO_URLS];
-    [defaults removeObjectForKey:KEY_CURRENT_SALDO];
-    [defaults removeObjectForKey:KEY_INITIAL_RATINGS];
-
-    [defaults synchronize];
 }
 
 /**
@@ -380,7 +261,8 @@
     double currentAssetRating = [currentRatings[asset] doubleValue];
 
     if (initialAssetRating == 0 || currentAssetRating == 0) {
-        return nil;
+        initialAssetRating = 1;
+        currentAssetRating = 1;
     }
 
     double initialPrice = 1.0 / initialAssetRating;
@@ -1229,10 +1111,19 @@
     // Instanzvariable zurück setzen
     keyAndSecret = nil;
 
+    saldoUrls = [[NSMutableDictionary alloc] init];
+    [Calculator migrateSaldoAndRatings];
+
     [defaults setObject:exchange forKey:KEY_DEFAULT_EXCHANGE];
     [defaults synchronize];
 
     defaultExchange = exchange;
+
+    [defaults setObject:[[NSMutableDictionary alloc] init] forKey:KEY_SALDO_URLS];
+    [defaults synchronize];
+
+    [Calculator migrateSaldoAndRatings];
+    saldoUrls = [[defaults objectForKey:KEY_SALDO_URLS] mutableCopy];
 }
 
 /**
@@ -1305,6 +1196,15 @@
  */
 - (NSDictionary *)tickerKeys {
     return tickerKeys;
+}
+
+/**
+ * Getter für die tickerKeysDescription
+ *
+ * @return NSDictionary*
+ */
+- (NSDictionary *)tickerKeysDescription {
+    return tickerKeysDescription;
 }
 
 /**
