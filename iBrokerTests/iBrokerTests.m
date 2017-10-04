@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "../iBroker/Common/Calculator.h"
+#import "../iBroker/Calculator/Calculator.h"
 #import "../iBroker/Common/KeychainWrapper.h"
 #import "../iBroker/Brokerage/Categories/Brokerage+JSON.h"
 #import "../iBroker/Brokerage/Algorithm.h"
