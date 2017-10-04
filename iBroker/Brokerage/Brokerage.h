@@ -7,10 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "Calculator.h"
 
 #define RELEASE_BUILD 1
-
-#import "CalculatorConstants.h"
 
 @interface Brokerage : NSObject
 
