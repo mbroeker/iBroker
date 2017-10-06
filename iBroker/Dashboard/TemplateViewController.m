@@ -352,6 +352,11 @@ typedef struct DASHBOARD_VARS {
         [self resetFiatCurrencies];
     }
 
+    if (item == 0 || item == 1) {
+        self.iBrokerLabel.stringValue = @"";
+        self.infoLabel.stringValue = @"";
+    }
+
     NSString *label = (item == 0) ? DASHBOARD : ASSET_KEY(item);
     [self updateTemplateView:label];
 }
@@ -360,7 +365,7 @@ typedef struct DASHBOARD_VARS {
  * Prevent Nonsense Segues on DASHBOARD
  */
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-   if ([identifier isEqualToString:@"BuyAndSell"]) {
+    if ([identifier isEqualToString:@"BuyAndSell"]) {
         NSString *label = labels[[self.headlineLabel stringValue]];
 
         if ([label isEqualToString:DASHBOARD] || [label isEqualToString:ASSET_DESC(1)]) {
@@ -375,7 +380,7 @@ typedef struct DASHBOARD_VARS {
  *
  */
 - (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
-  if ([segue.identifier isEqualToString:@"BuyAndSell"]) {
+    if ([segue.identifier isEqualToString:@"BuyAndSell"]) {
         NSString *label = labels[[self.headlineLabel stringValue]];
 
         if ([label isEqualToString:DASHBOARD] || [label isEqualToString:ASSET_DESC(1)]) {
@@ -1038,7 +1043,7 @@ typedef struct DASHBOARD_VARS {
  */
 - (IBAction)dashboardAction:(id)sender {
     [self resetFiatCurrencies];
-    [self updateTemplateView:DASHBOARD];
+    [self switchView:sender];
 }
 
 /**
