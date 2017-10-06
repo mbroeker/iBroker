@@ -250,7 +250,7 @@
 + (BOOL)poloniexCancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString*)orderId {
 
     if (apikey == nil || secret == nil) {
-        return false;
+        return NO;
     }
 
     NSString *jsonURL = @"https://poloniex.com/tradingApi";
@@ -270,7 +270,7 @@
 
     if (response[@"error"]) {
         NSLog(@"ERROR: %@", response[@"error"]);
-        return false;
+        return NO;
     }
 
     return [response[@"success"] isEqualToString:@"true"];
