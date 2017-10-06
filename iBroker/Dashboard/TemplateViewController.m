@@ -144,6 +144,21 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
+ *
+ */
+- (void)resetFiatCurrencies {
+    // Exchange Rate FiatCurrencies
+    self.fiatAsset1MenuItem.title = fiatCurrencies[0];
+    self.fiatAsset2MenuItem.title = fiatCurrencies[1];
+
+    // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
+    self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
+
+    // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
+    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
+}
+
+/**
  * Initialisiere alle Datenstrukturen
  */
 - (void)initializeWithDefaults {
@@ -218,11 +233,11 @@ typedef struct DASHBOARD_VARS {
 
     if (applications == nil) {
         applications = [@{
-            ASSET_DESC(1): @"/Applications/Electrum.App",
+            ASSET_DESC(1): @"/Applications/Electrum.app",
             ASSET_DESC(2): @"",
-            ASSET_DESC(3): @"/Applications/Ethereum Wallet.App",
-            ASSET_DESC(4): @"/Applications/monero-wallet-gui.App",
-            ASSET_DESC(5): @"/Applications/Electrum-LTC.App",
+            ASSET_DESC(3): @"/Applications/Ethereum Wallet.app",
+            ASSET_DESC(4): @"/Applications/monero-wallet-gui.app",
+            ASSET_DESC(5): @"/Applications/Electrum-LTC.app",
             ASSET_DESC(6): @"",
             ASSET_DESC(7): @"",
             ASSET_DESC(8): @"",
@@ -324,11 +339,21 @@ typedef struct DASHBOARD_VARS {
     parentWindow.title = [NSString stringWithFormat:@"iBroker on %@", onExchangeText];
 }
 
+/**
+ *
+ * @param sender
+ */
 - (void)switchView:(id)sender {
     NSString *identifier = [sender identifier];
 
     int item = [[identifier componentsSeparatedByString:@"ASSET"][1] intValue];
-    [self updateTemplateView:(item == 0) ? DASHBOARD : ASSET_KEY(item)];
+
+    if (item == 0) {
+        [self resetFiatCurrencies];
+    }
+
+    NSString *label = (item == 0) ? DASHBOARD : ASSET_KEY(item);
+    [self updateTemplateView:label];
 }
 
 /**
@@ -435,16 +460,7 @@ typedef struct DASHBOARD_VARS {
 
     // Initialisieren der Anwendung und der Datenstrukturen
     [self initializeWithDefaults];
-
-    // Exchange Rate FiatCurrencies
-    self.fiatAsset1MenuItem.title = fiatCurrencies[0];
-    self.fiatAsset2MenuItem.title = fiatCurrencies[1];
-
-    // Setze das Label des Eingabefeldes für den Taschenrechner auf Fiat-Währung 2 = USD
-    self.rateInputCurrencyLabel.stringValue = fiatCurrencies[1];
-
-    // Setze das selektierte Element des Taschenrechners auf Fiat Währung 1 = EUR
-    [self.exchangeSelection selectItemWithTitle:fiatCurrencies[0]];
+    [self resetFiatCurrencies];
 
     [self updateAssistant];
 
@@ -1021,7 +1037,8 @@ typedef struct DASHBOARD_VARS {
  * Action-Handler für das headlineLabel
  */
 - (IBAction)dashboardAction:(id)sender {
-    [self switchView:sender];
+    [self resetFiatCurrencies];
+    [self updateTemplateView:DASHBOARD];
 }
 
 /**
