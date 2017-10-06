@@ -66,7 +66,6 @@
 		B2FA693D1E93F2A300C47199 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2FA693B1E93F2A300C47199 /* Main.storyboard */; };
 		B2FF15D01EB034E400F65E6B /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15CF1EB034E400F65E6B /* AddressViewController.m */; };
 		B2FF15D31EB034FF00F65E6B /* RatingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */; };
-		B2FF15EC1EB0384300F65E6B /* TabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15E71EB0384300F65E6B /* TabViewController.m */; };
 		B2FF15ED1EB0384300F65E6B /* TemplateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15E91EB0384300F65E6B /* TemplateViewController.m */; };
 		B2FF15F81EB038F900F65E6B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FF15F71EB038F900F65E6B /* AppDelegate.m */; };
 /* End PBXBuildFile section */
@@ -217,8 +216,6 @@
 		B2FF15CF1EB034E400F65E6B /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressViewController.m; path = preferences/AddressViewController.m; sourceTree = "<group>"; };
 		B2FF15D11EB034FF00F65E6B /* RatingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RatingsViewController.h; path = preferences/RatingsViewController.h; sourceTree = "<group>"; };
 		B2FF15D21EB034FF00F65E6B /* RatingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RatingsViewController.m; path = preferences/RatingsViewController.m; sourceTree = "<group>"; };
-		B2FF15E61EB0384300F65E6B /* TabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabViewController.h; sourceTree = "<group>"; };
-		B2FF15E71EB0384300F65E6B /* TabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabViewController.m; sourceTree = "<group>"; };
 		B2FF15E81EB0384300F65E6B /* TemplateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TemplateViewController.h; sourceTree = "<group>"; };
 		B2FF15E91EB0384300F65E6B /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TemplateViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B2FF15F61EB038F900F65E6B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -509,8 +506,6 @@
 		B2FF15E11EB0384300F65E6B /* Dashboard */ = {
 			isa = PBXGroup;
 			children = (
-				B2FF15E61EB0384300F65E6B /* TabViewController.h */,
-				B2FF15E71EB0384300F65E6B /* TabViewController.m */,
 				B2FF15E81EB0384300F65E6B /* TemplateViewController.h */,
 				B2FF15E91EB0384300F65E6B /* TemplateViewController.m */,
 			);
@@ -706,7 +701,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2FF15EC1EB0384300F65E6B /* TabViewController.m in Sources */,
 				B2C2DAFC1F83DB38009EC1DC /* Calculator+Migration.m in Sources */,
 				B22F90211ED8BABC007FE910 /* PoloniexViewController.m in Sources */,
 				B25A9FD51ECA10050020555E /* ApplicationsViewController.m in Sources */,
