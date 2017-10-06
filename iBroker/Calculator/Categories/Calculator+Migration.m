@@ -158,6 +158,7 @@
     [defaults removeObjectForKey:KEY_CURRENT_SALDO];
     [defaults removeObjectForKey:KEY_INITIAL_RATINGS];
     [defaults removeObjectForKey:KEY_CURRENT_ASSETS];
+    [defaults removeObjectForKey:TV_APPLICATIONS];
 
     [defaults synchronize];
 }
