@@ -67,7 +67,7 @@
  * @param exchange
  * @return
  */
-+ (BOOL)cancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString*)orderId onExchange:(NSString *)exchange;
++ (BOOL)cancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString *)orderId onExchange:(NSString *)exchange;
 
 @end
 

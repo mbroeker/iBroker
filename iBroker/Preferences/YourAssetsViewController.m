@@ -11,6 +11,9 @@
 
 @implementation YourAssetsViewController
 
+/**
+ *
+ */
 - (void)viewDidLoad {
     // Properties List
     self.asset1Field.placeholderString = ASSET_KEY(1);
@@ -131,15 +134,16 @@
     }
 
     // Gepeicherte Daten neu einlesen...
-    [self updateView];    
+    [self updateView];
 }
 
 /**
  * pictureForKey
  *
  * @param key
+ * @return NSString*
  */
-- (NSString *)pictureForKey:(NSString*)key {
+- (NSString *)pictureForKey:(NSString *)key {
     NSDictionary *images = @{
         @"ADA": @"Cardano",
         @"ADX": @"AD Token",

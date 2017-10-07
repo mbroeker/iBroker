@@ -32,7 +32,7 @@
 - (IBAction)doubleClick:(id)sender {
     NSInteger row = self.ordersTableView.selectedRow;
 
-    if (row == -1) return;
+    if (row == -1) { return; }
 
     OrderData *data = self.dataRows[row];
 
@@ -49,8 +49,9 @@
 
 /**
  *
+ * @param data
  */
-- (void)updateTableData:(NSArray*)data {
+- (void)updateTableData:(NSArray *)data {
     if (self.dataRows == nil) {
         self.dataRows = [[NSMutableArray alloc] initWithArray:data];
     } else {
