@@ -9,6 +9,13 @@
 #ifndef CalculatorConstants_h
 #define CalculatorConstants_h
 
+#ifdef DEBUG
+    #define NSDebug(FORMAT, ...) fprintf(stderr,"%s\n", [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String]);
+    #define NSLog(...)
+#else
+    #define NSDebug(...)
+#endif
+
 #define ASSET_KEY(row) [Calculator assetString:row withIndex:0]
 #define ASSET_DESC(row) [Calculator assetString:row withIndex:1]
 

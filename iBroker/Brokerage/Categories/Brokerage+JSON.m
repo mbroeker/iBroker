@@ -42,10 +42,7 @@
  * @return NSDictionary*
  */
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL withPayload:(NSDictionary *)payload andHeader:(NSDictionary *)header {
-
-    if (![Brokerage isInternetConnection]) {
-        return nil;
-    }
+    NSDebug(@"Brokerage::jsonRequest:%@ withPayload:... andHeader:...", jsonURL);
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
 
@@ -95,6 +92,8 @@
  * @param string
  */
 + (NSString *)urlStringEncode:(NSString *)string {
+    NSDebug(@"Brokerage::urlStringEncode:%@", string);
+
     return [string stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
 }
 
@@ -105,6 +104,8 @@
  * @return NSString*
  */
 + (NSString *)urlEncode:(NSDictionary *)payload {
+    NSDebug(@"Brokerage::urlEncode:%@", payload);
+
     NSMutableString *str = [@"" mutableCopy];
 
     for (id key in payload) {
@@ -124,6 +125,8 @@
  * @return BOOL
  */
 + (BOOL)isInternetConnection {
+    NSDebug(@"Brokerage::isInternetConnection");
+
     BOOL returnValue = NO;
 
     struct sockaddr zeroAddress;

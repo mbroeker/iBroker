@@ -7,5 +7,7 @@ iBroker.xcodeproj/xcuserdata/
 iBroker.xcodeproj/project.xcworkspace/xcuserdata/
 iBroker.xcworkspace/xcuserdata/
 
+iBrokerDaemon/obj
+iBrokerDaemon/*.app
 docs/
 Pods/

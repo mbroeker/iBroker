@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		43D6F0BD2E3F75D3BF6A759C /* RestrictedClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F982ECFEB894221F9B9F /* RestrictedClickableTextField.m */; };
 		43D6F22812C413E85E288CB5 /* ClickableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 43D6F1E75B23792EA0DAFF19 /* ClickableTextField.m */; };
+		7F19B861DEADD8E2F33C6FDB /* libPods-iBroker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE10ABE698A79F27AD85253A /* libPods-iBroker.a */; };
 		B20634D71F71FA0B00BABAD0 /* ExtraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20634D61F71FA0B00BABAD0 /* ExtraViewController.m */; };
 		B20AEE251EE54F960015BC17 /* BittrexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20AEE241EE54F960015BC17 /* BittrexViewController.m */; };
 		B218CF541F69BB990092D866 /* KeychainWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F9FEA01F68F00B00BD668D /* KeychainWrapper.m */; };
@@ -94,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1C2A10674D6BCD27636D0FAA /* Pods-iBroker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBroker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-iBroker/Pods-iBroker.debug.xcconfig"; sourceTree = "<group>"; };
+		3DCB45FD23B3B8AA414B80C3 /* Pods-iBroker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iBroker.release.xcconfig"; path = "Pods/Target Support Files/Pods-iBroker/Pods-iBroker.release.xcconfig"; sourceTree = "<group>"; };
 		43D6F1E75B23792EA0DAFF19 /* ClickableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClickableTextField.m; sourceTree = "<group>"; };
 		43D6F8C582D801113D6560B8 /* ClickableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClickableTextField.h; sourceTree = "<group>"; };
 		43D6F982ECFEB894221F9B9F /* RestrictedClickableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RestrictedClickableTextField.m; sourceTree = "<group>"; };
@@ -223,6 +226,7 @@
 		B2FF15E91EB0384300F65E6B /* TemplateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TemplateViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		B2FF15F61EB038F900F65E6B /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B2FF15F71EB038F900F65E6B /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BE10ABE698A79F27AD85253A /* libPods-iBroker.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-iBroker.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,12 +248,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F19B861DEADD8E2F33C6FDB /* libPods-iBroker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A700FCDFDBA5A5E6D9F94D1D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1C2A10674D6BCD27636D0FAA /* Pods-iBroker.debug.xcconfig */,
+				3DCB45FD23B3B8AA414B80C3 /* Pods-iBroker.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B2232BD21F689AF700691859 /* Brokerage */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,6 +479,8 @@
 				B25106D31EB734A80092D911 /* iBrokerDaemon */,
 				B25F4AAA1F675FE7006F6282 /* iBrokerTests */,
 				B2FA692E1E93F2A300C47199 /* Products */,
+				A700FCDFDBA5A5E6D9F94D1D /* Pods */,
+				F1971220FAA5ADF2EF692E1C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -526,6 +542,14 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		F1971220FAA5ADF2EF692E1C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE10ABE698A79F27AD85253A /* libPods-iBroker.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -567,9 +591,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B2FA69411E93F2A300C47199 /* Build configuration list for PBXNativeTarget "iBroker" */;
 			buildPhases = (
+				8729ED7AF7985BC41140BE3F /* [CP] Check Pods Manifest.lock */,
 				B2FA69291E93F2A300C47199 /* Sources */,
 				B2FA692A1E93F2A300C47199 /* Frameworks */,
 				B2FA692B1E93F2A300C47199 /* Resources */,
+				7247A7ADCE29AD0FBD1D109D /* [CP] Embed Pods Frameworks */,
+				4FAC13CF73E36D3C6DFE55B7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -661,6 +688,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4FAC13CF73E36D3C6DFE55B7 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iBroker/Pods-iBroker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7247A7ADCE29AD0FBD1D109D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-iBroker/Pods-iBroker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8729ED7AF7985BC41140BE3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iBroker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B25106CE1EB734A80092D911 /* Sources */ = {
@@ -924,6 +1002,7 @@
 		};
 		B2FA69421E93F2A300C47199 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C2A10674D6BCD27636D0FAA /* Pods-iBroker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iBroker/iBroker.entitlements;
@@ -940,6 +1019,7 @@
 		};
 		B2FA69431E93F2A300C47199 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DCB45FD23B3B8AA414B80C3 /* Pods-iBroker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iBroker/iBroker.entitlements;
