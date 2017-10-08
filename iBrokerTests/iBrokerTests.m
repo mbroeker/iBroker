@@ -85,7 +85,7 @@
     NSDictionary *result = [Brokerage poloniexTicker:@[EUR, USD]];
     NSArray *tickerKeys = [self.calculator.tickerKeys allValues];
 
-    NSLog(@"TESTING ALL KEYS ON POLONIEX");
+    NSDebug(@"TESTING ALL KEYS ON POLONIEX");
     for (id key in tickerKeys) {
         if ([key isEqualToString:[NSString stringWithFormat:@"%@_%@", ASSET_KEY(1), EUR]]) {
             continue;
@@ -103,7 +103,7 @@
     NSDictionary *result = [Brokerage bittrexTicker:@[EUR, USD] forAssets:[self.calculator.tickerKeys allKeys]];
     NSArray *tickerKeys = [self.calculator.tickerKeys allValues];
 
-    NSLog(@"TESTING ALL KEYS ON BITTREX");
+    NSDebug(@"TESTING ALL KEYS ON BITTREX");
     for (id key in tickerKeys) {
         if ([key isEqualToString:[NSString stringWithFormat:@"%@_%@", ASSET_KEY(1), EUR]]) {
             continue;
@@ -145,7 +145,7 @@
     NSString *key = [KeychainWrapper keychainStringFromMatchingIdentifier:@"QUANDL"];
 
     if (key == nil) {
-        NSLog(@"YOU NEED A VALID API KEY ON QUANDL FOR THIS TEST");
+        NSDebug(@"YOU NEED A VALID API KEY ON QUANDL FOR THIS TEST");
         return;
     }
 
@@ -157,7 +157,7 @@
             double diffInBTC = ([historicalData[key][@"high"] doubleValue] - [historicalData[key][@"low"] doubleValue]);
             double diffInPercent = 100 * (diffInBTC / [historicalData[key][@"low"] doubleValue]);
 
-            NSLog(@"POSSIBLE MARGIN YESTERDAY: %@ /%4s %6.02f %%",
+            NSDebug(@"POSSIBLE MARGIN YESTERDAY: %@ /%4s %6.02f %%",
                 ASSET_KEY(1),
                 [asset UTF8String],
                 diffInPercent
@@ -191,7 +191,7 @@
 - (void)testNearest {
     double value = 0.12345678;
 
-    NSLog(@"ROUNDING %.8f INTERNALY TO %.4f", value, value);
+    NSDebug(@"ROUNDING %.8f INTERNALY TO %.4f", value, value);
 
     double nearest = [Algorithm nearest:value withAccuracy:4];
     XCTAssert(nearest == 0.1235, @"Assumpion failed %f", nearest);
