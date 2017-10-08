@@ -323,8 +323,8 @@
     double currentPrice = 1.0 / currentAssetRating;
 
     // Das darf einfach nicht passieren
-    BOOL zeroOrInfinity = !((currentPrice == 0.0) || isinf(currentPrice));
-    assert(zeroOrInfinity);
+    BOOL zeroOrInfinity = ((currentPrice == 0.0) || isinf(currentPrice));
+    assert(!zeroOrInfinity);
 
     double percent = 100.0 * (1 - (initialPrice / currentPrice));
 
@@ -420,7 +420,7 @@
 
     for (id key in ratings) {
         double v = [ratings[key] doubleValue];
-        BOOL zerofOrInfinity = !((v == 0) || isinf(v));
+        BOOL zerofOrInfinity = ((v == 0) || isinf(v));
         if (zerofOrInfinity) {
             NSDebug(@"ERROR IN CALCULATOR: VALUE FOR %@ OUT OF RANGE", key);
             return 0;
