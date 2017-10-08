@@ -21,6 +21,10 @@
  */
 + (NSDictionary *)poloniexTicker:(NSArray *)fiatCurrencies {
     NSString *jsonURL = @"https://poloniex.com/public?command=returnTicker";
+    
+    if (![Brokerage isInternetConnection]) {
+        return nil;
+    }
 
     NSMutableDictionary *ticker = [[Brokerage jsonRequest:jsonURL] mutableCopy];
 

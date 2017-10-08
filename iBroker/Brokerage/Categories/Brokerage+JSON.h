@@ -48,4 +48,11 @@
  */
 + (NSString *)urlEncode:(NSDictionary *)payload;
 
+/**
+ * Check for valid internet connection
+ *
+ * @return BOOL
+ */
++ (BOOL)isInternetConnection;
+
 @end
