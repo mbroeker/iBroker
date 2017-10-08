@@ -455,6 +455,7 @@
                             <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="Qtu-xX-OW2">
                                 <rect key="frame" x="255" y="64" width="80" height="22"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="v0G-VH-OZX"/>
                                     <constraint firstAttribute="width" constant="80" id="xnY-MU-FRx"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="bevel" title="EUR" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" selectedItem="V0C-0w-ftI" id="5aw-EO-k6d">
@@ -707,17 +708,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button translatesAutoresizingMaskIntoConstraints="NO" id="0dk-gD-aHF">
-                                <rect key="frame" x="341" y="66" width="180" height="18"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="14" id="85X-5h-AIn"/>
-                                    <constraint firstAttribute="width" constant="176" id="SwZ-qk-gVh"/>
-                                </constraints>
-                                <buttonCell key="cell" type="check" title="Instant Trading" bezelStyle="regularSquare" imagePosition="left" inset="2" id="O7G-e9-1bH">
-                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                            </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="obE-h9-MjG">
                                 <rect key="frame" x="379" y="337" width="121" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="ASSET_KEY(9)" id="boE-Qp-w9B">
@@ -914,7 +904,6 @@
                             <constraint firstItem="F2G-3h-NaD" firstAttribute="top" secondItem="VrK-PC-fjo" secondAttribute="bottom" constant="12" id="D4f-Xc-6QC"/>
                             <constraint firstItem="b4D-Lk-UKa" firstAttribute="centerX" secondItem="obE-h9-MjG" secondAttribute="centerX" id="EI9-y5-mxd"/>
                             <constraint firstItem="bgz-bJ-5nT" firstAttribute="trailing" secondItem="Eux-yU-TCb" secondAttribute="trailing" id="ETm-ow-gqb"/>
-                            <constraint firstItem="Qtu-xX-OW2" firstAttribute="baseline" secondItem="0dk-gD-aHF" secondAttribute="baseline" id="EUl-yf-lL0"/>
                             <constraint firstAttribute="bottom" secondItem="FBW-b0-6St" secondAttribute="bottom" id="FOv-Cf-jSd"/>
                             <constraint firstItem="3Og-Gw-jnu" firstAttribute="leading" secondItem="1HY-1I-kja" secondAttribute="leading" constant="18" id="Fd5-JS-yQF"/>
                             <constraint firstItem="1cY-Am-VQE" firstAttribute="leading" secondItem="obE-h9-MjG" secondAttribute="trailing" constant="4" id="FyZ-00-75n"/>
@@ -928,7 +917,6 @@
                             <constraint firstAttribute="trailing" secondItem="koF-TO-Zbe" secondAttribute="trailing" constant="20" id="JFg-aJ-fna"/>
                             <constraint firstItem="DEQ-kb-9Dj" firstAttribute="baseline" secondItem="iKO-oi-Jc4" secondAttribute="baseline" id="JKz-8T-ZBQ"/>
                             <constraint firstAttribute="trailing" secondItem="DEQ-kb-9Dj" secondAttribute="trailing" constant="20" id="JTG-RC-O1E"/>
-                            <constraint firstItem="0dk-gD-aHF" firstAttribute="leading" secondItem="Qtu-xX-OW2" secondAttribute="trailing" constant="8" symbolic="YES" id="Jia-4S-cJ8"/>
                             <constraint firstItem="OGh-CP-Qjo" firstAttribute="leading" secondItem="b4D-Lk-UKa" secondAttribute="leading" id="LSF-09-EZe"/>
                             <constraint firstItem="koF-TO-Zbe" firstAttribute="centerX" secondItem="52m-od-dE4" secondAttribute="centerX" constant="3" id="LlG-gC-abx"/>
                             <constraint firstItem="jAU-Gu-xj9" firstAttribute="leading" secondItem="F2G-3h-NaD" secondAttribute="trailing" constant="4" id="Ma0-gh-19A"/>
@@ -984,7 +972,6 @@
                             <constraint firstItem="Yoy-Yz-7tv" firstAttribute="trailing" secondItem="aIM-JT-ogg" secondAttribute="trailing" id="kv6-aD-eoe"/>
                             <constraint firstItem="3Og-Gw-jnu" firstAttribute="baseline" secondItem="SGE-B4-wyW" secondAttribute="baseline" id="lPf-Uu-KuC"/>
                             <constraint firstItem="52m-od-dE4" firstAttribute="baseline" secondItem="cqL-ye-zmb" secondAttribute="baseline" id="lwC-fA-Uyc"/>
-                            <constraint firstItem="Qtu-xX-OW2" firstAttribute="centerY" secondItem="0dk-gD-aHF" secondAttribute="centerY" id="lxx-LV-k7A"/>
                             <constraint firstItem="byo-Q7-Pc5" firstAttribute="bottom" secondItem="hD5-1w-bmW" secondAttribute="bottom" id="mlm-8e-LYc"/>
                             <constraint firstItem="fHN-ah-ZxK" firstAttribute="baseline" secondItem="hjC-a5-QlD" secondAttribute="baseline" id="nUU-Hp-l1o"/>
                             <constraint firstItem="F2G-3h-NaD" firstAttribute="trailing" secondItem="7ho-z0-6QQ" secondAttribute="trailing" id="nh2-wh-jXW"/>
@@ -1065,7 +1052,6 @@
                         <outlet property="iBrokerLabel" destination="g6T-5O-fao" id="YeY-vv-d7l"/>
                         <outlet property="infoButton" destination="36w-6A-NbZ" id="crK-Xi-naI"/>
                         <outlet property="infoLabel" destination="m8T-Bw-tnd" id="Em2-ZB-Jkz"/>
-                        <outlet property="instantTrading" destination="0dk-gD-aHF" id="gij-fy-5c3"/>
                         <outlet property="lastField" destination="F2G-3h-NaD" id="JYM-CM-rzy"/>
                         <outlet property="lastLabel" destination="3Og-Gw-jnu" id="tkI-7e-MJL"/>
                         <outlet property="leftButton" destination="Yti-eZ-CdL" id="OBw-L5-E9U"/>
