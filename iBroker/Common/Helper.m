@@ -79,11 +79,10 @@
 }
 
 /**
- * Anzeige eines modalen Dialogs
+ * Anzeige einer Nachricht im Notification Center
  *
  * @param message
  * @param info
- * @return NSModalResponse*
  *
  */
 + (void)notificationText:(NSString *)message info:(NSString *)info {
