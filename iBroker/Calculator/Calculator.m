@@ -41,6 +41,17 @@
 }
 
 /**
+ * Check for inf, nan or zero
+ *
+ * @param value
+ */
++ (BOOL)zeroNanOrInfinity:(double)value {
+    BOOL zeroNanOrInfinity = ((value == 0.0) || isinf(value) || isnan(value));
+
+    return zeroNanOrInfinity;
+}
+
+/**
  *
  * @return
  */
@@ -322,9 +333,10 @@
     double initialPrice = 1.0 / initialAssetRating;
     double currentPrice = 1.0 / currentAssetRating;
 
+#ifdef DEBUG
     // Das darf einfach nicht passieren
-    BOOL zeroOrInfinity = ((currentPrice == 0.0) || isinf(currentPrice));
-    assert(!zeroOrInfinity);
+    assert(![Calculator zeroNanOrInfinity:currentPrice]);
+#endif
 
     double percent = 100.0 * (1 - (initialPrice / currentPrice));
 
@@ -419,8 +431,7 @@
     NSDebug(@"Calculator::calculateWithRatings:%@ currency:%@", ratings, currency);
 
     for (id key in ratings) {
-        double v = [ratings[key] doubleValue];
-        BOOL zerofOrInfinity = ((v == 0) || isinf(v));
+        BOOL zerofOrInfinity = [Calculator zeroNanOrInfinity:[ratings[key] doubleValue]];
         if (zerofOrInfinity) {
             NSDebug(@"ERROR IN CALCULATOR: VALUE FOR %@ OUT OF RANGE", key);
             return 0;
