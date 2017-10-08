@@ -8,13 +8,19 @@
 
 #import "YourAssetsViewController.h"
 #import "Calculator.h"
+#import "Helper.h"
 
-@implementation YourAssetsViewController
+@implementation YourAssetsViewController {
+    Calculator *calculator;
+}
 
 /**
  *
  */
 - (void)viewDidLoad {
+    // aktuelles Calc-Handle besorgen
+    calculator = [Calculator instance];
+
     // Properties List
     self.asset1Field.placeholderString = ASSET_KEY(1);
     self.asset2Field.placeholderString = ASSET_KEY(2);
@@ -144,14 +150,10 @@
  * @return NSString*
  */
 - (NSString *)pictureForKey:(NSString *)key {
+
     NSDictionary *images = @{
-        @"ADA": @"Cardano",
-        @"ADX": @"AD Token",
-        @"ARK": @"Ark Byte",
-        @"BAT": @"Basic Attention",
         @"BCC": @"BC Cash",
         @"BTCD": @"Bitcoin Dark",
-        @"BCH": @"BC Cash",
         @"BTC": @"Bitcoin",
         @"BTS": @"BitShares",
         @"DASH": @"Digital Cash",
@@ -159,42 +161,68 @@
         @"DGB": @"DigiBytes",
         @"DOGE": @"Dogecoin",
         @"EMC2": @"Einsteinium",
-        @"ERC": @"Europe Coin",
         @"ETC": @"Ethereum Classic",
         @"ETH": @"Ethereum",
         @"GAME": @"GameCredits",
-        @"GME": @"GME",
-        @"IOP": @"Internet of People",
-        @"KMD": @"Komodo",
         @"LSK": @"Lisk",
         @"LTC": @"Litecoin",
         @"MAID": @"SafeMaid",
+        @"OMG": @"Omise GO",
+        @"SC": @"Siacoin",
+        @"STEEM": @"Steem",
+        @"STRAT": @"Stratis",
+        @"SYS": @"Syscoin",
+        @"XEM": @"New Economy",
+        @"XMR": @"Monero",
+        @"XRP": @"Ripple",
+        @"ZEC": @"ZCash",
+    };
+
+    NSDictionary *bittrexImages = @{
+        @"ADA": @"Cardano",
+        @"ADX": @"AD Token",
+        @"ARK": @"Ark Byte",
+        @"BAT": @"Basic Attention",
+        @"ERC": @"Europe Coin",
+        @"IOP": @"Internet of People",
+        @"KMD": @"Komodo",
         @"MCO": @"Monaco",
         @"NEO": @"NEO",
         @"OK": @"OK",
-        @"OMG": @"Omise GO",
         @"PAY": @"Pay Token",
         @"PTC": @"Pesetacoin",
         @"QTUM": @"Qtum",
         @"RDD": @"Red Coin",
         @"RISE": @"Rise",
-        @"SC": @"Siacoin",
-        @"STEEM": @"Steem",
-        @"STR": @"Stellar Lumens",
-        @"STRAT": @"Stratis",
-        @"SYS": @"Syscoin",
-        @"XEM": @"New Economy",
         @"XLM": @"Lumen",
-        @"XMR": @"Monero",
-        @"XRP": @"Ripple",
         @"XVG": @"The Verge",
-        @"ZEC": @"ZCash",
     };
 
-    // We are dealing with NSUSerDefaults: It must be a valid string
-    if (!images[key]) { return @""; }
+    NSDictionary *poloniexImages = @{
+        @"BCH": @"BC Cash",
+        @"STR": @"Stellar Lumens",
+    };
 
-    return images[key];
+    NSString *image = images[key];
+
+    if (!image) {
+        if ([[calculator defaultExchange] isEqualToString:EXCHANGE_BITTREX]) {
+            image = bittrexImages[key];
+        } else {
+            image = poloniexImages[key];
+        }
+    }
+
+    // We are dealing with NSUSerDefaults: It must be a valid string
+    if (!image) {
+        NSString *exchange = [calculator.defaultExchange isEqualToString:EXCHANGE_BITTREX] ? @"Bittrex" : @"Poloniex";
+        NSString *iText = [NSString stringWithFormat:@"Unsupported Market %@ on %@", key, exchange];
+        [Helper notificationText:@"UNSUPPORTED MARKET" info:iText];
+
+        return @"";
+    }
+
+    return image;
 }
 
 @end
