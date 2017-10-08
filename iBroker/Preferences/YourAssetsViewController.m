@@ -102,16 +102,16 @@
 
     NSArray *currentAssets = @[
         @[DASHBOARD, DASHBOARD],
-        @[self.asset1Field.stringValue, [self pictureForKey:self.asset1Field.stringValue]],
-        @[self.asset2Field.stringValue, [self pictureForKey:self.asset2Field.stringValue]],
-        @[self.asset3Field.stringValue, [self pictureForKey:self.asset3Field.stringValue]],
-        @[self.asset4Field.stringValue, [self pictureForKey:self.asset4Field.stringValue]],
-        @[self.asset5Field.stringValue, [self pictureForKey:self.asset5Field.stringValue]],
-        @[self.asset6Field.stringValue, [self pictureForKey:self.asset6Field.stringValue]],
-        @[self.asset7Field.stringValue, [self pictureForKey:self.asset7Field.stringValue]],
-        @[self.asset8Field.stringValue, [self pictureForKey:self.asset8Field.stringValue]],
-        @[self.asset9Field.stringValue, [self pictureForKey:self.asset9Field.stringValue]],
-        @[self.asset10Field.stringValue, [self pictureForKey:self.asset10Field.stringValue]],
+        @[self.asset1Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset1Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset2Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset2Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset3Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset3Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset4Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset4Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset5Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset5Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset6Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset6Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset7Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset7Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset8Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset8Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset9Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset9Field.stringValue.uppercaseString.uppercaseString]],
+        @[self.asset10Field.stringValue.uppercaseString.uppercaseString, [self pictureForKey:self.asset10Field.stringValue.uppercaseString.uppercaseString]],
     ];
 
     BOOL insertable = YES;
@@ -166,7 +166,6 @@
         @"GME": @"GME",
         @"IOP": @"Internet of People",
         @"KMD": @"Komodo",
-        @"LDOGE": @"Light Doge",
         @"LSK": @"Lisk",
         @"LTC": @"Litecoin",
         @"MAID": @"SafeMaid",
