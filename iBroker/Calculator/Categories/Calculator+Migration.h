@@ -31,11 +31,12 @@
  * Migration of Preferences
  *
  * REMOVAL OF
- *      KEY_SALDO_URLS
- *      KEY_CURRENT_SALDO
- *      KEY_INITIAL_RATINGS
  *      KEY_CURRENT_ASSETS
- *      TV_APPLICATIONS
+ *      KEY_CURRENT_SALDO
+ *      KEY_DEFAULT_EXCHANGE
+ *      KEY_FIAT_CURRENCIES
+ *      KEY_INITIAL_RATINGS
+ *      KEY_SALDO_URLS
  */
 + (void)reset;
 
