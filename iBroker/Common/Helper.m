@@ -79,6 +79,25 @@
 }
 
 /**
+ * Anzeige eines modalen Dialogs
+ *
+ * @param message
+ * @param info
+ * @return NSModalResponse*
+ *
+ */
++ (void)notificationText:(NSString *)message info:(NSString *)info {
+
+    NSUserNotification *msg = [[NSUserNotification alloc] init];
+
+    msg.title = message;
+    msg.informativeText = info;
+    msg.soundName = NSUserNotificationDefaultSoundName;
+
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:msg];
+}
+
+/**
  * Restart App
  *
  * @param seconds
