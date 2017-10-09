@@ -69,7 +69,7 @@
         assets = @[
             @[DASHBOARD, DASHBOARD],
             @[@"BTC", @"Bitcoin"],
-            @[@"BCC", @"BC Cash"],
+            @[@"DASH", @"Digital Cash"],
             @[@"ETH", @"Ethereum"],
             @[@"XMR", @"Monero"],
             @[@"LTC", @"Litcoin"],
@@ -332,6 +332,7 @@
 
     if (initialAssetRating == 0.0) {
         initialAssetRating = currentAssetRating;
+        [self updateCheckpointForAsset:asset withBTCUpdate:false andRate:[self btcPriceForAsset:asset]];
     }
 
     double initialPrice = 1.0 / initialAssetRating;
@@ -435,8 +436,7 @@
     NSDebug(@"Calculator::calculateWithRatings:%@ currency:%@", ratings, currency);
 
     for (id key in ratings) {
-        BOOL zerofOrInfinity = [Calculator zeroNanOrInfinity:[ratings[key] doubleValue]];
-        if (zerofOrInfinity) {
+        if ([Calculator zeroNanOrInfinity:[ratings[key] doubleValue]]) {
             NSDebug(@"ERROR IN CALCULATOR: VALUE FOR %@ OUT OF RANGE", key);
             return 0;
         }
@@ -476,7 +476,7 @@
 }
 
 /**
- * Berechnet die realen Preise anhand des Handelsvolumens auf Poloniex
+ * Berechnet die realen Preise anhand des Handelsvolumens auf DEFAULT_EXCHANGE
  *
  * @return NSDictionary*
  */
@@ -990,7 +990,7 @@
 }
 
 /**
- * Aktualsiert den Bestand mit dem Poloniex-Key
+ * Aktualisert den Bestand mit dem API-KEY
  *
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
@@ -1018,8 +1018,8 @@
 
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
     for (id key in currentSaldo) {
-        double sum = [[currentBalance[key] objectForKey:@"available"] doubleValue];
-        if (!self.automatedTrading) { sum += [[currentBalance[key] objectForKey:@"onOrders"] doubleValue]; }
+        double sum = [[currentBalance[key] objectForKey:POLONIEX_AVAILABLE] doubleValue];
+        //if (!self.automatedTrading) { sum += [[currentBalance[key] objectForKey:POLONIEX_ONORDERS] doubleValue]; }
 
         dictionary[key] = @(sum);
     }

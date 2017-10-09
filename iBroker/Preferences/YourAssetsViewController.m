@@ -188,7 +188,6 @@
 - (NSString *)pictureForKey:(NSString *)key {
 
     NSDictionary *images = @{
-        @"BCC": @"BC Cash",
         @"BTCD": @"Bitcoin Dark",
         @"BTC": @"Bitcoin",
         @"BTS": @"BitShares",
@@ -219,6 +218,7 @@
         @"ADX": @"AD Token",
         @"ARK": @"Ark Byte",
         @"BAT": @"Basic Attention",
+        @"BCC": @"Bitcoin Cash",
         @"ERC": @"Europe Coin",
         @"IOP": @"Internet of People",
         @"KMD": @"Komodo",
