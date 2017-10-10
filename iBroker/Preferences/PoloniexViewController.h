@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+/**
+ * Settings for Poloniex
+ *
+ * @author      Markus Bröker<broeker.markus@googlemail.com>
+ * @copyright   Copyright (C) 2017 4customers UG
+ */
 @interface PoloniexViewController : NSViewController
 
 @property(strong) IBOutlet NSTextField *apikeyField;

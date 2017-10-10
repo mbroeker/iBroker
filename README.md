@@ -6,6 +6,7 @@ A Portfolio Manager for Poloniex/Bittrex with Bitcoin as its main currency
 
 * Livedata from Bittrex or Poloniex
 * Calculator for Crypto-Currencies
+* Inline Trading Support
 * Update Interval 30s
 * Checkpoint Management
 * Accuracy of 4-8 Digits
