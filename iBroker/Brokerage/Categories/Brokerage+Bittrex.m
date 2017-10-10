@@ -16,8 +16,8 @@
 /**
  * Besorge den Ticker von Bittrex
  *
- * @param fiatCurrencies
- * @param assetsArray
+ * @param fiatCurrencies NSArray*
+ * @param assetsArray NSArray*
  * @return NSDictionary*
  */
 + (NSDictionary *)bittrexTicker:(NSArray *)fiatCurrencies forAssets:(NSArray *)assetsArray {
@@ -91,9 +91,9 @@
 /**
  * Request the balance from Bittrex via API-Key
  *
- * @param apikey
- * @param secret
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)bittrexBalance:(NSDictionary *)apikey withSecret:(NSString *)secret {
 
@@ -145,12 +145,12 @@
 /**
  * BUY via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @return NSDictionary*
  */
 + (NSDictionary *)bittrexBuy:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount {
 
@@ -195,12 +195,12 @@
 /**
  * SELL via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @return NSDictionary*
  */
 + (NSDictionary *)bittrexSell:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount {
 
@@ -245,9 +245,9 @@
 /**
  * Get Open Orders from Bittrex via API-KEY
  *
- * @param apikey
- * @param secret
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSArray*
  */
 + (NSArray *)bittrexOpenOrders:(NSDictionary *)apikey withSecret:(NSString *)secret {
 
@@ -295,10 +295,10 @@
 
 /**
  *
- * @param apikey
- * @param secret
- * @param orderId
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param orderId NSString*
+ * @return BOOL
  */
 + (BOOL)bittrexCancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString *)orderId {
 

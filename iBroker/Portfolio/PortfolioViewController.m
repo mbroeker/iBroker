@@ -139,7 +139,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset1ClickedAction:(id)sender {
     if ([Helper messageText:NSLocalizedString(@"all_charts", @"") info:NSLocalizedString(@"wanna_update_current_saldo", @"")] == NSAlertFirstButtonReturn) {
@@ -151,7 +151,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset2ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -159,7 +159,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset3ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -167,7 +167,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset4ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -175,7 +175,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset5ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -183,7 +183,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset6ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -191,7 +191,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset7ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -199,7 +199,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset8ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -207,7 +207,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset9ClickedAction:(id)sender {
     [self updatePortfolioView];
@@ -215,7 +215,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset10ClickedAction:(id)sender {
     [self updatePortfolioView];

@@ -113,7 +113,7 @@
 /**
  * Speichern des aktuellen Ratings per Klick
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)saveAction:(id)sender {
     // Aktualisierte Ratings besorgen

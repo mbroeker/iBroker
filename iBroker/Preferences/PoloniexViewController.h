@@ -27,19 +27,19 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)keyEraseAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)saveAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)standardExchangeAction:(id)sender;
 @end

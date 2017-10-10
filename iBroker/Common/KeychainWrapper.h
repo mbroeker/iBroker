@@ -21,44 +21,44 @@
 
 /**
  *
- * @param identifier
- * @return
+ * @param identifier NSString*
+ * @return NSData*
  */
 + (NSData *)searchKeychainCopyMatchingIdentifier:(NSString *)identifier;
 
 /**
  *
- * @param identifier
- * @return
+ * @param identifier NSString*
+ * @return NSString*
  */
 + (NSString *)keychainStringFromMatchingIdentifier:(NSString *)identifier;
 
 /**
  *
- * @param value
- * @param identifier
- * @return
+ * @param value NSString*
+ * @param identifier NSString*
+ * @return BOOL
  */
 + (BOOL)createKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier;
 
 /**
  *
- * @param value
- * @param identifier
- * @return
+ * @param value NSString*
+ * @param identifier NSString*
+ * @return BOOL
  */
 + (BOOL)updateKeychainValue:(NSString *)value forIdentifier:(NSString *)identifier;
 
 /**
  *
- * @param identifier
+ * @param identifier NSString*
  */
 + (void)deleteItemFromKeychainWithIdentifier:(NSString *)identifier;
 
 /**
  *
- * @param identifier
- * @return
+ * @param identifier NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)keychain2ApiKeyAndSecret:(NSString *)identifier;
 

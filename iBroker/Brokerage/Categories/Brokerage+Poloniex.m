@@ -16,7 +16,7 @@
 /**
  * Besorge den Ticker von Poloniex
  *
- * @param fiatCurrencies
+ * @param fiatCurrencies NSArray*
  * @return NSDictionary*
  */
 + (NSDictionary *)poloniexTicker:(NSArray *)fiatCurrencies {
@@ -54,9 +54,9 @@
 /**
  * Request the balance from poloniex via API-Key
  *
- * @param apikey
- * @param secret
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexBalance:(NSDictionary *)apikey withSecret:(NSString *)secret {
 
@@ -90,12 +90,12 @@
 /**
  * BUY via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexBuy:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount {
 
@@ -124,12 +124,12 @@
 /**
  * SELL via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexSell:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount {
 
@@ -158,9 +158,9 @@
 /**
  * Get Open Orders from Poloniex via API-KEY
  *
- * @param apikey
- * @param secret
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSArray*
  */
 + (NSArray *)poloniexOpenOrders:(NSDictionary *)apikey withSecret:(NSString *)secret {
 
@@ -218,10 +218,10 @@
 
 /**
  *
- * @param apikey
- * @param secret
- * @param orderId
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param orderId NSString*
+ * @return BOOL
  */
 + (BOOL)poloniexCancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString *)orderId {
 

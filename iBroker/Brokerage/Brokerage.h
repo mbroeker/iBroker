@@ -20,9 +20,9 @@
 /**
  * Retrieve the current balance from the crypto exchange of choice
  *
- * @param apikey
- * @param secret
- * @param exchange
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param exchange NSString*
  * @return NSDictionary*
  */
 + (NSDictionary *)balance:(NSDictionary *)apikey withSecret:(NSString *)secret forExchange:(NSString *)exchange;
@@ -30,12 +30,12 @@
 /**
  * Buy an ASSET with the MASTER-ASSET (BTC) via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * @param exchange
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @param exchange NSString*
  * @return NSDictionary*
  */
 + (NSDictionary *)buy:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString *)exchange;
@@ -43,12 +43,12 @@
 /**
  * Sell an ASSET back into the MASTER-ASSET (BTC) via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * @param exchange
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @param exchange NSString*
  * @return NSDictionary*
  */
 + (NSDictionary *)sell:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString *)exchange;
@@ -56,20 +56,20 @@
 /**
  * Get Open Orders from the given exchange via API-KEY
  *
- * @param apikey
- * @param secret
- * @param exchange
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param exchange NSString*
+ * @return NSArray*
  */
 + (NSArray *)openOrders:(NSDictionary *)apikey withSecret:(NSString *)secret onExchange:(NSString *)exchange;
 
 /**
  * Cancel Order from the given exchange via API-KEY
  *
- * @param apikey
- * @param secret
- * @param exchange
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param exchange NSString*
+ * @return BOOL
  */
 + (BOOL)cancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString *)orderId onExchange:(NSString *)exchange;
 

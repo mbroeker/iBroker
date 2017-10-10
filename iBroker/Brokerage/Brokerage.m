@@ -14,9 +14,9 @@
 /**
  * Request the balance via API-Key
  *
- * @param apikey
- * @param secret
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)balance:(NSDictionary *)apikey withSecret:(NSString *)secret forExchange:(NSString *)exchange {
     NSDebug(@"Brokerage::balance");
@@ -39,13 +39,13 @@
 /**
  * BUY via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * @param exchange
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @param exchange NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)buy:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString *)exchange {
     NSDebug(@"Brokerage::buy");
@@ -64,13 +64,13 @@
 /**
  * SELL via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * @param exchange
- * returns NSDictionary*
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @param exchange NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)sell:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount onExchange:(NSString *)exchange {
     NSDebug(@"Brokerage::sell");
@@ -89,10 +89,10 @@
 /**
  * Get Open Orders from the given exchange via API-KEY
  *
- * @param apikey
- * @param secret
- * @param exchange
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param exchange NSString*
+ * @return NSArray*
  */
 + (NSArray *)openOrders:(NSDictionary *)apikey withSecret:(NSString *)secret onExchange:(NSString *)exchange {
     NSDebug(@"Brokerage::openOrders");
@@ -110,11 +110,11 @@
 
 /**
  *
- * @param apikey
- * @param secret
- * @param orderId
- * @param exchange
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param orderId NSString*
+ * @param exchange NSString*
+ * @return BOOL
  */
 + (BOOL)cancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString *)orderId onExchange:(NSString *)exchange {
     NSDebug(@"Brokerage::cancelOrder");

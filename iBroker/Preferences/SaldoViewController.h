@@ -42,7 +42,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)saveAction:(id)sender;
 

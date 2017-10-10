@@ -13,9 +13,9 @@
 /**
  * Umwandlung von double Werten in das Format des jeweiligen Landes(Deutschland)
  *
- * @param value
- * @param min
- * @param max
+ * @param value double
+ * @param min NSUInteger
+ * @param max NSUInteger
  * @return NSString*
  */
 + (NSString *)double2German:(double)value min:(NSUInteger)min max:(NSUInteger)max {
@@ -32,8 +32,8 @@
 /**
  * Umwandlung von double Werten in das Prozent-Format des jeweiligen Landes(Deutschland)
  *
- * @param value
- * @param fractions
+ * @param value double
+ * @param fractions NSUInteger
  * @return NSString*
  */
 + (NSString *)double2GermanPercent:(double)value fractions:(NSUInteger)fractions {
@@ -58,8 +58,8 @@
 /**
  * Anzeige eines modalen Dialogs
  *
- * @param message
- * @param info
+ * @param message NSString*
+ * @param info NSString*
  * @return NSModalResponse*
  *
  */
@@ -81,8 +81,8 @@
 /**
  * Anzeige einer Nachricht im Notification Center
  *
- * @param message
- * @param info
+ * @param message NSString*
+ * @param info NSString*
  *
  */
 + (void)notificationText:(NSString *)message info:(NSString *)info {
@@ -99,7 +99,7 @@
 /**
  * Restart App
  *
- * @param seconds
+ * @param seconds float
  */
 + (void)relaunchAfterDelay:(float)seconds {
     NSTask *task = [[NSTask alloc] init];

@@ -46,9 +46,9 @@
 /**
  * Retrieve historical data from quandl
  *
- * @param key
- * @param asset
- * @param baseAsset
+ * @param key NSString*
+ * @param asset NSString*
+ * @param baseAsset NSString*
  * @return NSDictionary*
  */
 - (NSDictionary *)historicalData:(NSString *)key forAsset:(NSString *)asset withBaseAsset:(NSString *)baseAsset {

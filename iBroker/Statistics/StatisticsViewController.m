@@ -27,7 +27,7 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)doubleClick:(id)sender {
     NSInteger row = self.ordersTableView.selectedRow;
@@ -49,7 +49,7 @@
 
 /**
  *
- * @param data
+ * @param data NSArray*
  */
 - (void)updateTableData:(NSArray *)data {
     if (self.dataRows == nil) {
@@ -92,8 +92,8 @@
 
 /**
  *
- * @param tableView
- * @return
+ * @param tableView NSTableView*
+ * @return NSInteger
  */
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
     return self.dataRows.count;
@@ -101,10 +101,10 @@
 
 /**
  *
- * @param tableView
- * @param tableColumn
- * @param row
- * @return
+ * @param tableView NSTableView*
+ * @param tableColumn NSTableColumn
+ * @param row NSInteger
+ * @return id
  */
 - (id)tableView:(NSTableView *)tableView objectValueForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
 
@@ -147,7 +147,7 @@
 /**
  * close the dialog
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)dismissActionClicked:(id)sender {
     NSWindow *window = self.view.window;

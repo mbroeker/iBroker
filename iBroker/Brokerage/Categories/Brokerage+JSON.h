@@ -18,39 +18,39 @@
 
 /**
  *
- * @param jsonURL
- * @return
+ * @param jsonURL NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL;
 
 /**
  *
- * @param jsonURL
- * @param payload
- * @return
+ * @param jsonURL NSString*
+ * @param payload NSDictionary*
+ * @return NSDictionary*
  */
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL withPayload:(NSDictionary *)payload;
 
 /**
  *
- * @param jsonURL
- * @param payload
- * @param header
- * @return
+ * @param jsonURL NSString*
+ * @param payload NSDictionary*
+ * @param header NSDictionary*
+ * @return NSDictionary*
  */
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL withPayload:(NSDictionary *)payload andHeader:(NSDictionary *)header;
 
 /**
  *
- * @param string
- * @return
+ * @param string NSString*
+ * @return NSDictionary*
  */
 + (NSString *)urlStringEncode:(NSString *)string;
 
 /**
  *
- * @param payload
- * @return
+ * @param payload NSDictionary*
+ * @return NSString*
  */
 + (NSString *)urlEncode:(NSDictionary *)payload;
 

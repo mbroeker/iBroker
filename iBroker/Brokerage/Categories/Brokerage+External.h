@@ -18,15 +18,15 @@
 
 /**
  *
- * @param fiatCurrencies
- * @return
+ * @param fiatCurrencies NSArray*
+ * @return NSNumber*
  */
 + (NSNumber *)fiatExchangeRate:(NSArray *)fiatCurrencies;
 
 /**
  *
- * @param asset
- * @return
+ * @param asset NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)bitstampAsset1Ticker:(NSString *)asset;
 

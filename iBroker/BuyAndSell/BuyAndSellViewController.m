@@ -62,7 +62,7 @@
 /**
  * close the dialog
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)dismissActionClicked:(id)sender {
     NSWindow *window = self.view.window;
@@ -72,7 +72,7 @@
 /**
  * Buy the crypto with user supplied conditions
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyButtonAction:(id)sender {
     double amount = self.buyAssetField.doubleValue;
@@ -84,7 +84,7 @@
 /**
  * Sell the crypto with user supplied conditions
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellButtonAction:(id)sender {
     double amount = self.sellAssetField.doubleValue;
@@ -99,7 +99,7 @@
 /**
  * Update the view after input change
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyAssetAction:(id)sender {
     [self updateBuyAndSellView];
@@ -108,7 +108,7 @@
 /**
  * Update the view after input change
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyAsset1Action:(id)sender {
     [self updateBuyAndSellView];
@@ -117,7 +117,7 @@
 /**
  * Update the view after input change
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyAsset1TotalAction:(id)sender {
     [self updateBuyAndSellView];
@@ -130,7 +130,7 @@
 /**
  * Update the view after input change
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellAssetAction:(id)sender {
     [self updateBuyAndSellView];
@@ -139,7 +139,7 @@
 /**
  * Update the view after input change
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellAsset1Action:(id)sender {
     [self updateBuyAndSellView];
@@ -148,7 +148,7 @@
 /**
  * Update the view after input change
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellAsset1TotalAction:(id)sender {
     [self updateBuyAndSellView];

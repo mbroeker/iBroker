@@ -14,7 +14,7 @@
 /**
  * Besorge den Umrechnungsfaktor EUR/USD
  * 
- * @param fiatCurrencies
+ * @param fiatCurrencies NSArray*
  * @return NSNumber*
  */
 + (NSNumber *)fiatExchangeRate:(NSArray *)fiatCurrencies {
@@ -37,7 +37,7 @@
 /**
  * Besorge den fehlenden BTC-Ticker von bitstamp und fake diesen ins Poloniex-Format
  *
- * @param asset
+ * @param asset NSString*
  * @return NSDictionary*
  */
 + (NSDictionary *)bitstampAsset1Ticker:(NSString *)asset {

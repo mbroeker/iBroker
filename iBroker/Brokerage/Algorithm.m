@@ -13,8 +13,8 @@
 /**
  * Datenstruktur für den Gaußschen Algorithmus
  *
- * @param equations
- * @param data
+ * @param equations int
+ * @param data NSArray*
  */
 + (double **)gaussAlloc:(int)equations withData:(NSArray *)data {
 
@@ -34,7 +34,8 @@
 /**
  * Dealloc der Datenstruktur für den Gaußschen Algorithmus
  *
- * @param matrix
+ * @param matrix double**
+ * @param equations int
  */
 + (void)gaussDealloc:(double **)matrix withEquations:(int)equations {
     for (int i = 0; i < equations; i++) {
@@ -51,8 +52,8 @@
 /**
  * Cocoa/Gauß Bridge
  *
- * @param matrix
- * @param equations
+ * @param matrix double**
+ * @param equations int
  *
  * @return NSArray*
  */
@@ -75,7 +76,7 @@
 /**
  * Cocoa Version
  *
- * @param data
+ * @param data NSArray*
  *
  * @return NSArray*
  */
@@ -94,8 +95,8 @@
 /**
  * Löst ein linerares Gleichungssystem nxn auf
  *
- * @param matrix
- * @param equations
+ * @param matrix double**
+ * @param equations int
  */
 + (void)gaussAlgorithm:(double **)A withEquations:(int)equations {
 
@@ -178,8 +179,8 @@
 /**
  * Rounding Method for nearest and cleanest result
  *
- * @param value
- * @param accuracy
+ * @param value double
+ * @param accuracy double
  * @return double
  */
 + (double)nearest:(double)value withAccuracy:(double)accuracy {

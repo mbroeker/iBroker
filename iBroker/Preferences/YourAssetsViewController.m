@@ -100,7 +100,7 @@
 
 /**
  *
- * @param currentAssets
+ * @param currentAssets NSArray*
  */
 - (void)migrateRatings:(NSArray *)currentAssets {
     NSArray *fiatCurrencies = [calculator fiatCurrencies];
@@ -136,7 +136,7 @@
 /**
  * Speichern der Adressen des Nutzers
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)saveAction:(id)sender {
 
@@ -182,7 +182,7 @@
 /**
  * pictureForKey
  *
- * @param key
+ * @param key NSString*
  * @return NSString*
  */
 - (NSString *)pictureForKey:(NSString *)key {

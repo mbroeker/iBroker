@@ -18,16 +18,16 @@
 
 /**
  *
- * @param plainText
- * @param secret
- * @return
+ * @param plainText NSString*
+ * @param secret NSString*
+ * @return NSString*
  */
 + (NSString *)hmac:(NSString *)plainText withSecret:(NSString *)secret;
 
 /**
  *
- * @param input
- * @return
+ * @param input NSString*
+ * @return NSString*
  */
 + (NSString *)sha512:(NSString *)input;
 

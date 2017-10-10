@@ -19,59 +19,59 @@
 /**
  * Retrieve the Ticker from Poloniex
  *
- * @param fiatCurrencies
- * @return
+ * @param fiatCurrencies NSArray*
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexTicker:(NSArray *)fiatCurrencies;
 
 /**
  * Retrieve the balance from Poloniex via API-KEY
  *
- * @param apikey
- * @param secret
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexBalance:(NSDictionary *)apikey withSecret:(NSString *)secret;
 
 /**
  * Buy an ASSET with the MASTER ASSET (BTC) via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexBuy:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount;
 
 /**
  * Sell an ASSET back into the master ASSET (BTC) via API-KEY
  *
- * @param apikey
- * @param secret
- * @param currencyPair
- * @param rate
- * @param amount
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param currencyPair NSSstring*
+ * @param rate double
+ * @param amount double
+ * @return NSDictionary*
  */
 + (NSDictionary *)poloniexSell:(NSDictionary *)apikey withSecret:(NSString *)secret currencyPair:(NSString *)currencyPair rate:(double)rate amount:(double)amount;
 
 /**
  * Get Open Orders from Poloniex via API-KEY
  *
- * @param apikey
- * @param secret
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @return NSArray*
  */
 + (NSArray *)poloniexOpenOrders:(NSDictionary *)apikey withSecret:(NSString *)secret;
 
 /**
  *
- * @param apikey
- * @param secret
- * @param orderId
- * @return
+ * @param apikey NSDictionary*
+ * @param secret NSString*
+ * @param orderId NSString*
+ * @return BOOL
  */
 + (BOOL)poloniexCancelOrder:(NSDictionary *)apikey withSecret:(NSString *)secret orderId:(NSString *)orderId;
 

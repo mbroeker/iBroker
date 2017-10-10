@@ -13,6 +13,7 @@
 
 /**
  *
+ * @return NSArray*
  */
 + (NSArray *)fetchOrderData {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -38,8 +39,8 @@
 
 /**
  *
- * @param data
- * @return
+ * @param data NSArray*
+ * @return id
  */
 - (id)initWithArray:(NSArray *)data {
     if (self = [super init]) {
@@ -55,7 +56,7 @@
 
 /**
  *
- * @return
+ * @return BOOL
  */
 - (BOOL)cancelOrder {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

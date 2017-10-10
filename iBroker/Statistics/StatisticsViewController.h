@@ -24,13 +24,13 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)doubleClick:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)dismissActionClicked:(id)sender;
 

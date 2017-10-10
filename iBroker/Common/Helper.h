@@ -20,9 +20,9 @@
 /**
  * Returns a Localized doubleValue as String
  *
- * @param value
- * @param min
- * @param max
+ * @param value double
+ * @param min NSUInteger
+ * @param max NSUInteger
  * @return NSString*
  */
 + (NSString *)double2German:(double)value min:(NSUInteger)min max:(NSUInteger)max;
@@ -30,8 +30,8 @@
 /**
  * Returns a Localized doubleValue as String formatted as percent
  *
- * @param value
- * @param fractions
+ * @param value double
+ * @param fractions NSUInteger
  * @return NSString*
  */
 + (NSString *)double2GermanPercent:(double)value fractions:(NSUInteger)fractions;
@@ -39,8 +39,8 @@
 /**
  * Opens a modal dialog and prompts for input
  *
- * @param message
- * @param info
+ * @param message NSString*
+ * @param info NSString*
  * @return NSModalResponse
  */
 + (NSModalResponse)messageText:(NSString *)message info:(NSString *)info;
@@ -48,15 +48,15 @@
 /**
  * Show Message in Notification Center
  *
- * @param message
- * @param info
+ * @param message NSString*
+ * @param info NSString*
  */
 + (void)notificationText:(NSString *)message info:(NSString *)info;
 
 /**
  * Restart the Application after "seconds"s
  *
- * @param seconds
+ * @param seconds double
  */
 + (void)relaunchAfterDelay:(float)seconds;
 

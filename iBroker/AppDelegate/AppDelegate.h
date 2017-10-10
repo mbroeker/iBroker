@@ -27,56 +27,56 @@
 /**
  * EUR / USD
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiateurUSDAction:(id)sender;
 
 /**
  * USD / EUR
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdEURAction:(id)sender;
 
 /**
  * EUR / GBP
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiateurGBPAction:(id)sender;
 
 /**
  * USD / GBP
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdGBPAction:(id)sender;
 
 /**
  * USD / CNY
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdCNYAction:(id)sender;
 
 /**
  * USD / JPY
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdJPYAction:(id)sender;
 
 /**
  * Menubar ON/OFF
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)toggleMenuBar:(id)sender;
 
 /**
 * Reset the entire application data
 *
-* @param sender
+* @param sender id
 */
 - (IBAction)applicationReset:(id)sender;
 

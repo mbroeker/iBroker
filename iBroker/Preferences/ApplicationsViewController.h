@@ -43,67 +43,67 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset1ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset2ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset3ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset4ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset5ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset6ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset7ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset8ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset9ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)asset10ClickedAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)saveAction:(id)sender;
 

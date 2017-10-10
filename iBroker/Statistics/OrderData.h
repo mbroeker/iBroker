@@ -23,20 +23,20 @@
 
 /**
  *
- * @param data
- * @return
+ * @param data NSArray*
+ * @return id
  */
 - (id)initWithArray:(NSArray *)data;
 
 /**
  *
- * @return
+ * @return NSArray*
  */
 + (NSArray *)fetchOrderData;
 
 /**
  *
- * @return
+ * @return BOOL
  */
 - (BOOL)cancelOrder;
 

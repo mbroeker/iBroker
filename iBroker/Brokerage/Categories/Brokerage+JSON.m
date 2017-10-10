@@ -14,7 +14,7 @@
 /**
  * Allgemeiner jsonRequest Handler
  *
- * @param jsonURL
+ * @param jsonURL NSString*
  * @return NSDictionary*
  */
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL {
@@ -24,8 +24,8 @@
 /**
  * Allgemeiner jsonRequest Handler mit Payload
  *
- * @param jsonURL
- * @param payload
+ * @param jsonURL NSString*
+ * @param payload NSDictionary*
  * @return NSDictionary*
  */
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL withPayload:(NSDictionary *)payload {
@@ -35,9 +35,9 @@
 /**
  * Allgemeiner jsonRequest Handler mit Payload und Header
  *
- * @param jsonURL
- * @param payload
- * @param header
+ * @param jsonURL NSString*
+ * @param payload NSDictionary*
+ * @param header NSDictionary*
  *
  * @return NSDictionary*
  */
@@ -88,7 +88,7 @@
 /**
  * Simpler Text Encoder
  *
- * @param string
+ * @param string NSString*
  */
 + (NSString *)urlStringEncode:(NSString *)string {
     NSDebug(@"Brokerage::urlStringEncode:%@", string);
@@ -99,7 +99,7 @@
 /**
  * Simpler URL-Encoder
  *
- * @param payload
+ * @param payload NSDictionary*
  * @return NSString*
  */
 + (NSString *)urlEncode:(NSDictionary *)payload {

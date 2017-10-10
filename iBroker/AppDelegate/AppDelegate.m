@@ -44,7 +44,7 @@
  *
  * Es ist eine Konvention aus vergangenen Zeiten, MAC-Apps offen gehalten zu lassen
  *
- * @param sender
+ * @param sender id
  */
 - (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
     return YES;
@@ -113,7 +113,7 @@
 /**
  * EUR / USD
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiateurUSDAction:(id)sender {
     NSDebug(@"AppDelegate::fiateurUSDAction");
@@ -129,7 +129,7 @@
 /**
  * USD / EUR
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdEURAction:(id)sender {
     NSDebug(@"AppDelegate::fiatusdEURAction");
@@ -146,7 +146,7 @@
 /**
  * EUR / GBP
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiateurGBPAction:(id)sender {
     NSDebug(@"AppDelegate::fiateurGBPAction");
@@ -162,7 +162,7 @@
 /**
  * USD / GBP
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdGBPAction:(id)sender {
     NSDebug(@"AppDelegate::fiatusdGBPAction");
@@ -178,7 +178,7 @@
 /**
  * USD / CNY
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdCNYAction:(id)sender {
     NSDebug(@"AppDelegate::fiatusdCNYAction");
@@ -194,7 +194,7 @@
 /**
  * USD / JPY
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)fiatusdJPYAction:(id)sender {
     NSDebug(@"AppDelegate::fiatusdJPYAction");
@@ -210,7 +210,7 @@
 /**
  * Schaltet die Menübar an/aus
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)toggleMenuBar:(id)sender {
     NSDebug(@"AppDelegate::toggleMenuBar");
@@ -229,7 +229,7 @@
 /**
 * Lösche alle Schlüssel
 *
-* @param sender
+* @param sender id
 */
 - (IBAction)applicationReset:(id)sender {
     NSDebug(@"AppDelegate::applicationReset");

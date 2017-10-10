@@ -25,7 +25,7 @@ typedef struct CONFIG {
 /**
  * Warte timeout Sekunden
  *
- * @param timeout
+ * @param timeout NSTimeInterval
  */
 void safeSleep(NSTimeInterval timeout) {
     [NSThread sleepForTimeInterval:timeout];
@@ -34,9 +34,9 @@ void safeSleep(NSTimeInterval timeout) {
 /**
  * Hilfsfunktion zum Zusammenbauen der Headline
  *
- * @param checkpoint
- * @param asset
- * @return
+ * @param checkpoint NSDictionary*
+ * @param asset NSString*
+ * @return const char*
  */
 const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
     NSString *format = @"1 %@ : %.2f EUR : %.2f EUR : %.2f%%";
@@ -55,11 +55,11 @@ const char *makeHeadlineString(NSDictionary *checkpoint, NSString *asset) {
 /**
  * Hilfsfunktion zum Zusammenbauen der Zeile
  *
- * @param checkpoint
- * @param asset
- * @param currentRatings
- * @param btcPercent
- * @return
+ * @param checkpoint NSDictionary*
+ * @param asset NSString*
+ * @param currentRatings NSDictionary*
+ * @param asset1Percent double
+ * @return const char*
  */
 const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *currentRatings, double asset1Percent) {
     double effectivePercent = [checkpoint[CP_PERCENT] doubleValue];
@@ -82,7 +82,7 @@ const char *makeString(NSDictionary *checkpoint, NSString *asset, NSDictionary *
 /**
  * Die Hauptroutine dieses Daemons
  *
- * @param config
+ * @param config CONFIG
  */
 void brokerRun(CONFIG config) {
 
@@ -126,7 +126,7 @@ void brokerRun(CONFIG config) {
 /**
  * Kompakte Übersicht der Funktionen des Daemons
  *
- * @param name
+ * @param name const char*
  */
 void usage(const char *name) {
     printf("Anzeige der Gewinne und Verluste beim Handeln mit Alt-Coins\n\n");
@@ -167,8 +167,9 @@ void usage(const char *name) {
 /**
  * Simpler Command-Line-Parser ohne getopt
  *
- * @param argc
- * @param argv
+ * @param argc int
+ * @param argv const char **
+ * @param config CONFIG*
  */
 void parseOptions(int argc, const char **argv, CONFIG *config) {
 
@@ -307,9 +308,9 @@ void parseOptions(int argc, const char **argv, CONFIG *config) {
 /**
  * Hauptroutine des kleinen, handlichen Daemons
  *
- * @param argc
- * @param argv
- * @return
+ * @param argc int
+ * @param argv const char**
+ * @return int
  */
 int main(int argc, const char *argv[]) {
     @autoreleasepool {

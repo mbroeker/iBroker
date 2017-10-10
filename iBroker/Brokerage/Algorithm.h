@@ -18,23 +18,23 @@
 
 /**
  *
- * @param matrix
- * @return
+ * @param matrix NSArray*
+ * @return NSDictionary*
  */
 + (NSArray *)gaussAlgorithm:(NSArray *)matrix;
 
 /**
  *
- * @param A
- * @param equations
+ * @param A double**
+ * @param equations int
  */
 + (void)gaussAlgorithm:(double **)A withEquations:(int)equations;
 
 /**
  *
- * @param value
- * @param accuracy
- * @return
+ * @param value double
+ * @param accuracy double
+ * @return double
  */
 + (double)nearest:(double)value withAccuracy:(double)accuracy;
 

@@ -39,55 +39,55 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)dismissActionClicked:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyButtonAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellButtonAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyAssetAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyAsset1Action:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)buyAsset1TotalAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellAssetAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellAsset1Action:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)sellAsset1TotalAction:(id)sender;
 

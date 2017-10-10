@@ -43,7 +43,7 @@
 /**
  * Check for inf, nan or zero
  *
- * @param value
+ * @param value BOOL
  */
 + (BOOL)zeroNanOrInfinity:(double)value {
     BOOL zeroNanOrInfinity = ((value == 0.0) || isinf(value) || isnan(value));
@@ -53,7 +53,7 @@
 
 /**
  *
- * @return
+ * @return NSArray*
  */
 + (NSArray *)initialAssets {
     NSDebug(@"Calculator::initialAssets");
@@ -89,8 +89,8 @@
 
 /**
  *
- * @param row
- * @param index
+ * @param row unsigned int
+ * @param index unsigned int
  * @return NSString*
  */
 + (NSString *)assetString:(unsigned int)row withIndex:(unsigned)index {
@@ -124,7 +124,7 @@
 /**
  * Der öffentliche Konstruktor als statisches Singleton mit wählbaren Fiat-Währungen
  *
- * @param currencies
+ * @param currencies NSArray*
  * @return id
  */
 + (id)instance:(NSArray *)currencies {
@@ -154,7 +154,7 @@
 /**
  * Der private Konstruktor der Klasse, der deswegen nicht in Calculator.h gelistet wird.
  *
- * @param currencies
+ * @param currencies NSArray*
  * @return id
  */
 - (id)initWithFiatCurrencies:(NSArray *)currencies {
@@ -275,8 +275,8 @@
 /**
  * Aktualisiere die Kurse der jeweiligen Währung
  *
- * @param asset
- * @param btcUpdate
+ * @param asset NSString*
+ * @param btcUpdate BOOL
  */
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL)btcUpdate {
     NSDebug(@"Calculator::updateCheckpointForAsset:%@ withBTCUpdate:%d", asset, btcUpdate);
@@ -287,8 +287,8 @@
 /**
  * Aktualisiere die Kurse der jeweiligen Währung
  *
- * @param asset
- * @param btcUpdate
+ * @param asset NSString*
+ * @param btcUpdate BOOL
  */
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL)btcUpdate andRate:(double)wantedRate {
     NSDebug(@"Calculator::updateCheckpointForAsset:%@ withBTCUpdate:%d andRate:%.8f", asset, btcUpdate, wantedRate);
@@ -321,7 +321,7 @@
 /**
  * Liefert NSDictionary mit den Schlüsseln "initialPrice", "currentPrice", "percent"
  *
- * @param asset
+ * @param asset NSString*
  * @return NSDictionary*
  */
 - (NSDictionary *)checkpointForAsset:(NSString *)asset {
@@ -355,7 +355,7 @@
 /**
  * Berechne den BTC-Preis
  *
- * @param asset
+ * @param asset NSString*
  * @return double
  */
 - (double)btcPriceForAsset:(NSString *)asset {
@@ -371,7 +371,7 @@
 /**
  * Berechne den Umrechnungsfaktor
  *
- * @param asset
+ * @param asset NSString*
  * @param baseAsset
  * @return double
  */
@@ -384,7 +384,7 @@
 /**
  * Berechne den Fiat-Preis
  *
- * @param asset
+ * @param asset NSString*
  * @return double
  */
 - (double)fiatPriceForAsset:(NSString *)asset {
@@ -540,8 +540,8 @@
 /**
  * Automatisches Kaufen von Assets
  *
- * @param cAsset
- * @param wantedAmount
+ * @param cAsset NSString*
+ * @param wantedAmount double
  * @return NSString*
  */
 - (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount {
@@ -553,9 +553,9 @@
 /**
  * Automatisches Kaufen von Assets
  *
- * @param cAsset
- * @param wantedAmount
- * @param wantedRate
+ * @param cAsset NSString*
+ * @param wantedAmount double
+ * @param wantedRate double
  * @return NSString*
  */
 - (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate {
@@ -642,8 +642,8 @@
 /**
  * Automatisches Verkaufen von Assets
  *
- * @param cAsset
- * @param wantedAmount
+ * @param cAsset NSString*
+ * @param wantedAmount double
  * @return NSString*
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount {
@@ -655,9 +655,9 @@
 /**
  * Automatisches Verkaufen von Assets
  *
- * @param cAsset
- * @param wantedAmount
- * @param wantedRate
+ * @param cAsset NSString*
+ * @param wantedAmount double
+ * @param wantedRate double
  * @return NSString*
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate {
@@ -737,7 +737,7 @@
 /**
  * Automatisches Kaufen...
  *
- * @param cAsset
+ * @param cAsset NSString*
  */
 - (void)autoBuyAll:(NSString *)cAsset {
     NSDebug(@"Calculator::autoBuyAll:%@", cAsset);
@@ -760,7 +760,7 @@
 /**
  * Automatisches Verkaufen...
  *
- * @param cAsset
+ * @param cAsset NSString*
  */
 - (void)autoSellAll:(NSString *)cAsset {
     NSDebug(@"Calculator::autoSellAll:%@", cAsset);
@@ -775,7 +775,7 @@
 /**
  * Verkaufe Altcoins, die im Wert um "wantedEuros" gestiegen ist
  *
- * @param wantedEuros
+ * @param wantedEuros double
  */
 - (void)sellWithProfitInEuro:(double)wantedEuros {
     NSDebug(@"Calculator::sellWithProfitInEuro:%.4f", wantedEuros);
@@ -804,7 +804,7 @@
 /**
  * Verkaufe Altcoins mit mindestens 1 Euro im Bestand, deren Exchange-Rate um "wantedPercent" Prozent gestiegen ist...
  *
- * @param wantedPercent
+ * @param wantedPercent double
  */
 - (void)sellWithProfitInPercent:(double)wantedPercent {
     NSDebug(@"Calculator::sellWithProfitInPercent:%.4f %%", wantedPercent);
@@ -838,7 +838,7 @@
 /**
  * Verkaufe Assets mit einer Investor-Rate von "wantedPercent"% oder mehr...
  *
- * @param wantedPercent
+ * @param wantedPercent double
  */
 - (void)sellByInvestors:(double)wantedPercent {
     NSDebug(@"Calculator::sellByInvestors:%.4f %%", wantedPercent);
@@ -866,8 +866,8 @@
 /**
  * Kaufe Altcoins, deren Exchange-Rate um "wantedPercent" Prozent gestiegen ist...
  *
- * @param wantedPercent
- * @param wantedRate
+ * @param wantedPercent double
+ * @param wantedRate double
  */
 - (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double)wantedRate {
     NSDebug(@"Calculator::buyWithProfitInPercent:%.4f %% andRate:%.8f", wantedPercent, wantedRate);
@@ -910,7 +910,7 @@
 /**
  * Kaufe Assets mit einer Investor-Rate von "rate"% oder mehr...
  *
- * @param wantedRate
+ * @param wantedRate double
  */
 - (void)buyByInvestors:(double)wantedRate {
     NSDebug(@"Calculator::buyByInvestors:%.4f %%", wantedRate);
@@ -970,7 +970,7 @@
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
  *
- * @param synchronized
+ * @param synchronized BOOL
  */
 - (void)updateBalances:(BOOL)synchronized {
     NSDebug(@"Calculator::updateBalances:%d", synchronized);
@@ -1030,7 +1030,7 @@
 /**
  * synchronisierter Block, der garantiert, dass es nur ein Update gibt
  *
- * @param synchronized
+ * @param synchronized BOOL
  */
 - (void)updateRatings:(BOOL)synchronized {
     NSDebug(@"Calculator::updateRatings");
@@ -1118,7 +1118,7 @@
 /**
  * Liefert den aktuellen Saldo der jeweiligen Crypto-Währung
  *
- * @param asset
+ * @param asset NSString*
  * @return double
  */
 - (double)currentSaldo:(NSString *)asset {
@@ -1130,7 +1130,7 @@
 /**
  * Liefert die aktuelle URL für das angegebene Label/Tab
  *
- * @param label
+ * @param label NSString*
  * @return NSString*
  */
 - (NSString *)saldoUrlForLabel:(NSString *)label {
@@ -1142,8 +1142,8 @@
 /**
  * Aktualisiert den aktuellen Saldo für die CryptoWährung "asset" mit dem Wert "saldo"
  *
- * @param asset
- * @param saldo
+ * @param asset NSString*
+ * @param saldo double
  */
 - (void)currentSaldo:(NSString *)asset withDouble:(double)saldo {
     NSDebug(@"Calculator::currentSaldo:%@ withDouble:%8f", asset, saldo);
@@ -1156,7 +1156,7 @@
 /**
  * Ersetzt die aktuellen Saldi mit den Werten aus dem Dictionary
  *
- * @param dictionary
+ * @param dictionary NSDictionary*
  */
 - (void)currentSaldoForDictionary:(NSMutableDictionary *)dictionary {
     NSDebug(@"Calculator::currentSaldoForDictionary:%@", dictionary);
@@ -1181,7 +1181,7 @@
 /**
  * Ersetzt die aktuellen saldoUrls mit den Werten aus dem Dictionary
  *
- * @param dictionary
+ * @param dictionary NSDictionary*
  */
 - (void)saldoUrlsForDictionary:(NSMutableDictionary *)dictionary {
     NSDebug(@"Calculator::saldoUrlsForDictionary:%@", dictionary);
@@ -1206,7 +1206,7 @@
 /**
  * Ersetzt die aktuellen initialRatings mit den Werten aus dem Dictionary
  *
- * @param dictionary
+ * @param dictionary NSDictionary*
  */
 - (void)initialRatingsWithDictionary:(NSMutableDictionary *)dictionary {
     NSDebug(@"Calculator::initialRatingsWithDictionary:%@", dictionary);
@@ -1231,7 +1231,7 @@
 /**
  * Aktualisieren der Standardbörse ermöglichen
  *
- * @param exchange
+ * @param exchange NSString*
  */
 - (void)defaultExchange:(NSString *)exchange {
     NSDebug(@"Calculator::defaultExchange:%@", exchange);

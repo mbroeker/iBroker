@@ -109,85 +109,85 @@
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)dashboardAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)homeAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)leftAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)rightAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)walletAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)automatedTradingAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)homepageAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)infoAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)cryptoAction:(id)sender;
 
 /**
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)rateInputAction:(id)sender;
 
 /**
  *
- * @return
+ * @return NSDictionary*
  */
 - (NSDictionary *)applications;
 
 /**
  *
- * @return
+ * @return NSDictionary*
  */
 - (NSDictionary *)traders;
 
 /**
  *
- * @return
+ * @return NSDictionary*
  */
 - (NSDictionary *)images;
 
 /**
  *
- * @return
+ * @return NSString*
  */
 - (NSString *)homeURL;
 
@@ -198,13 +198,13 @@
 
 /**
  *
- * @param label
+ * @param label NSString*
  */
 - (void)updateTemplateView:(NSString *)label;
 
 /**
  *
- * @param withTrading
+ * @param withTrading BOOL
  */
 - (void)updateCurrentView:(BOOL)withTrading;
 

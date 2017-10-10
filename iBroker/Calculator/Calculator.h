@@ -20,8 +20,8 @@
 
 /**
  *
- * @param row
- * @param index
+ * @param row unsigned int
+ * @param index unsigned int
  * @return NSString*
  */
 + (NSString *)assetString:(unsigned int)row withIndex:(unsigned int)index;
@@ -36,7 +36,7 @@
 /**
  * Static Constructor implemented as singleton
  *
- * @param currencies
+ * @param currencies NSArray*
  * @return id
  */
 + (id)instance:(NSArray *)currencies;
@@ -49,36 +49,36 @@
 /**
  * SELL the current amount of ASSETs back into the MASTER-ASSET (BTC) IF the PROFIT is higher than "wantedEuros"
  *
- * @param wantedEuros
+ * @param wantedEuros double
  */
 - (void)sellWithProfitInEuro:(double)wantedEuros;
 
 /**
  * SELL the current amount of ASSETs back into the MASTER-ASSET (BTC) IF the EXCHANGE-RATE is higher than "wantedPercent"
  *
- * @param wantedPercent
+ * @param wantedPercent double
  */
 - (void)sellWithProfitInPercent:(double)wantedPercent;
 
 /**
  * SELL the current amount of ASSET's back into the MASTER-ASSET (BTC) IF the INVESTMENT-RATE is higher than "wantedPercent"
  *
- * @param wantedPercent
+ * @param wantedPercent double
  */
 - (void)sellByInvestors:(double)wantedPercent;
 
 /**
  * BUY with the current amount of MASTER-ASSET (BTC) ANY ASSET WITH an EXCHANGE-RATE of "wantedPercent" and an INVESTMENT-RATE greater than "wantedRate"
  *
- * @param wantedPercent
- * @param wantedRate
+ * @param wantedPercent double
+ * @param wantedRate double
  */
 - (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double)wantedRate;
 
 /**
  * BUY with the current amount of MASTER-ASSET (BTC) ANY ASSET WITH an investmentRate greater than "wantedRate"
  *
- * @param wantedRate
+ * @param wantedRate double
  */
 - (void)buyByInvestors:(double)wantedRate;
 
@@ -97,9 +97,9 @@
 /**
  * BUY a specific ASSET with given parameters and rate and return the orderNumber
  *
- * @param cAsset
- * @param wantedAmount
- * @param wantedRate
+ * @param cAsset NSString*
+ * @param wantedAmount double
+ * @param wantedRate double
  * @return NSString*
  */
 - (NSString *)autoBuy:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate;
@@ -107,8 +107,8 @@
 /**
  * SELL a specific ASSET with the given parameters and return the orderNumber
  *
- * @param cAsset
- * @param wantedAmount
+ * @param cAsset NSString*
+ * @param wantedAmount double
  * @return NSString*
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount;
@@ -116,9 +116,9 @@
 /**
  * SELL a specific ASSET with the given parameters and "wantedRate" and return the orderNumber
  *
- * @param cAsset
- * @param wantedAmount
- * @param wantedRate
+ * @param cAsset NSString*
+ * @param wantedAmount double
+ * @param wantedRate double
  * @return NSString*
  */
 - (NSString *)autoSell:(NSString *)cAsset amount:(double)wantedAmount withRate:(double)wantedRate;
@@ -126,28 +126,28 @@
 /**
  * BUY the given ASSET with the current amount of MASTER ASSET (BTC) to the current conditions
  *
- * @param cAsset
+ * @param cAsset NSString*
  */
 - (void)autoBuyAll:(NSString *)cAsset;
 
 /**
  * SELL the current amount of ASSET to the current conditions back into the MASTER-ASSET (BTC)
  *
- * @param cAsset
+ * @param cAsset NSString*
  */
 - (void)autoSellAll:(NSString *)cAsset;
 
 /**
  * Updates the balances automatically via API-KEY
  *
- * @param synchronized
+ * @param synchronized BOOL
  */
 - (void)updateBalances:(BOOL)synchronized;
 
 /**
  * Sums up the current balances of all cryptos in Fiat-Money (EUR, USD, GBP, JPY, CNY)
  *
- * @param currency
+ * @param currency NSString*
  * @return double
  */
 - (double)calculate:(NSString *)currency;
@@ -156,7 +156,7 @@
  * Sums up the current balances of all cryptos in Fiat-Money (EUR, USD, GBP, JPY, CNY) with specific ratings
  *
  * @param ratings
- * @param currency
+ * @param currency NSString*
  * @return double
  */
 - (double)calculateWithRatings:(NSDictionary *)ratings currency:(NSString *)currency;
@@ -171,72 +171,72 @@
 /**
  * Calculate the BTC Price for the given ASSET
  *
- * @param asset
- * @return
+ * @param asset NSString*
+ * @return double
  */
 - (double)btcPriceForAsset:(NSString *)asset;
 
 /**
  * Calculate the FIAT Price for the given ASSET with current settings(EUR, USD, GBP, CNY, JPY)
  *
- * @param asset
- * @return
+ * @param asset NSString*
+ * @return double
  */
 - (double)fiatPriceForAsset:(NSString *)asset;
 
 /**
  * Calculate the current exchange factor for the given ASSET in relation to another asset
  *
- * @param asset
- * @param baseAsset
- * @return
+ * @param asset NSString*
+ * @param baseAsset NSString*
+ * @return double
  */
 - (double)factorForAsset:(NSString *)asset inRelationTo:(NSString *)baseAsset;
 
 /**
  * Update the internal ticker
  *
- * @param synchronized
+ * @param synchronized BOOL
  */
 - (void)updateRatings:(BOOL)synchronized;
 
 /**
  * SET the current Checkpoint for the given ASSET or all ASSETS(DASHBOARD)
  *
- * @param asset
- * @param btcUpdate
+ * @param asset NSString*
+ * @param btcUpdate BOOL BOOL
  */
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL)btcUpdate;
 
 /**
  * SET a new Checkpoint for the given ASSET and a specific rate in MASTER-ASSET (BTC)
  *
- * @param asset
- * @param btcUpdate
- * @param wantedRate
+ * @param asset NSString*
+ * @param btcUpdate BOOL BOOL
+ * @param wantedRate double
  */
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL)btcUpdate andRate:(double)wantedRate;
 
 /**
  * Get the current amount of an specific ASSET
  *
- * @param asset
- * @return
+ * @param asset NSString*
+ * @return double
  */
 - (double)currentSaldo:(NSString *)asset;
 
 /**
  * SET the current amount of an ASSET to "saldo"
  *
- * @param asset
- * @param saldo
+ * @param asset NSString*
+ * @param saldo double
  */
 - (void)currentSaldo:(NSString *)asset withDouble:(double)saldo;
 
 /**
  * GETTER for an specific ASSET
  *
- * @param label
+ * @param label NSString*
  * @return NSString*
  */
 - (NSString *)saldoUrlForLabel:(NSString *)label;
@@ -244,7 +244,7 @@
 /**
  * GET the current CHECKPOINT for an specific ASSET
  *
- * @param asset
+ * @param asset NSString*
  * @return NSDictionary*
  */
 - (NSDictionary *)checkpointForAsset:(NSString *)asset;
@@ -280,14 +280,14 @@
 /**
  * Get the current used exchange
  *
- * @return
+ * @return NSString*
  */
 - (NSString *)defaultExchange;
 
 /**
  * SET the exchange to use for further operations
  *
- * @param exchange
+ * @param exchange NSString*
  */
 - (void)defaultExchange:(NSString *)exchange;
 

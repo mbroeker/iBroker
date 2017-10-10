@@ -71,7 +71,7 @@
 /**
  * Speichern der Adressen des Nutzers
  *
- * @param sender
+ * @param sender id
  */
 - (IBAction)saveAction:(id)sender {
     // aktualisierten Saldo besorgen
