@@ -72,7 +72,7 @@
             @[@"DASH", @"Digital Cash"],
             @[@"ETH", @"Ethereum"],
             @[@"XMR", @"Monero"],
-            @[@"LTC", @"Litcoin"],
+            @[@"LTC", @"Litecoin"],
             @[@"DCR", @"Decred"],
             @[@"STRAT", @"Stratis"],
             @[@"GAME", @"GameCredits"],
