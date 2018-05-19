@@ -870,7 +870,7 @@
  * @param wantedRate double
  */
 - (void)buyWithProfitInPercent:(double)wantedPercent andInvestmentRate:(double)wantedRate {
-    NSDebug(@"Calculator::buyWithProfitInPercent:%.4f %% andRate:%.8f", wantedPercent, wantedRate);
+    NSDebug(@"Calculator::buyWithProfitInPercent:%.4f %% andInvestmentRate:%.8f", wantedPercent, wantedRate);
 
     double balance = [self currentSaldo:ASSET_KEY(1)];
     NSDictionary *realChanges = [self realChanges];
