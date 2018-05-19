@@ -1,7 +1,7 @@
 include $(GNUSTEP_MAKEFILES)/common.make
 
 TOOL_NAME = iBrokerDaemon
-ADDITIONAL_INCLUDE_DIRS += -IBrokerage -ICalculator -ICommon
+ADDITIONAL_INCLUDE_DIRS += -IBrokerage -IBrokerage/Categories -ICalculator -ICalculator/Categories -ICommon
 ADDITIONAL_OBJCFLAGS += -fexceptions -fobjc-nonfragile-abi -fblocks
 ADDITIONAL_LDFLAGS += -lCommonCrypto -lgnustep-gui
 
