@@ -83,9 +83,7 @@
     }
 
     if (mustUpdate) {
-        #ifdef DEBUG
-        NSLog(@"Migrating Calculator settings...");
-        #endif
+        NSDebug(@"Migrating Calculator settings...");
 
         NSMutableDictionary *tempSaldoURLs = [saldoUrls mutableCopy];
         NSMutableDictionary *tempCurrentSaldo = [currentSaldo mutableCopy];
@@ -139,9 +137,7 @@
     }
 
     if (mustUpdate) {
-        #ifdef DEBUG
-        NSLog(@"Migrating applications...");
-        #endif
+        NSDebug(@"Migrating applications...");
 
         NSMutableDictionary *tempApplications = [applications mutableCopy];
 
