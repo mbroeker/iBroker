@@ -219,7 +219,7 @@
         @"ADX": @"AD Token",
         @"ARK": @"Ark Byte",
         @"BAT": @"Basic Attention",
-        @"BCC": @"Bitcoin Cash",
+        @"BCH": @"Bitcoin Cash",
         @"ERC": @"Europe Coin",
         @"IOP": @"Internet of People",
         @"KMD": @"Komodo",
@@ -236,7 +236,6 @@
     };
 
     NSDictionary *poloniexImages = @{
-        @"BCH": @"BC Cash",
         @"STR": @"Stellar Lumens",
     };
 
