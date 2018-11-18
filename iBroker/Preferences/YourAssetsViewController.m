@@ -236,7 +236,9 @@
     };
 
     NSDictionary *poloniexImages = @{
-        @"STR": @"Stellar Lumens",
+        @"BCHABC": @"BC CASH(ABC)",
+        @"BCHSV": @"BC CASH(SV)",
+        @"STR": @"Stellar Lumens"
     };
 
     NSString *image = images[key];
