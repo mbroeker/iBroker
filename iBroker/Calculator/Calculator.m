@@ -35,10 +35,10 @@
 
     // Mit oder ohne Abfrage
     NSNumber *tradingWithConfirmation;
-}
 
-// Keychain Entries
-static NSDictionary *keyAndSecret = nil;
+    // Keychain Entries
+    NSDictionary *keyAndSecret;
+}
 
 /**
  * Check for inf, nan or zero
@@ -129,11 +129,21 @@ static NSDictionary *keyAndSecret = nil;
 + (id)instance:(NSArray *)currencies {
     static Calculator *calculator = nil;
 
-    if (calculator == nil) {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
-        });
+    bool useGDC = NO;
+
+    if (useGDC) {
+        if (calculator == nil) {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
+            });
+        }
+    } else {
+        @synchronized (self) {
+            if (calculator == nil) {
+                calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
+            }
+        }
     }
 
     return calculator;
