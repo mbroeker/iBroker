@@ -35,10 +35,10 @@
 
     // Mit oder ohne Abfrage
     NSNumber *tradingWithConfirmation;
-
-    // Keychain Entries
-    NSDictionary *keyAndSecret;
 }
+
+// Keychain Entries
+static NSDictionary *keyAndSecret = nil;
 
 /**
  * Check for inf, nan or zero
@@ -1411,13 +1411,16 @@
 - (NSDictionary *)apiKey {
     NSDebug(@"Calculator::apiKey");
 
-    if (keyAndSecret == nil) {
-        if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) {
-            keyAndSecret = [KeychainWrapper keychain2ApiKeyAndSecret:@"POLONIEX"];
-        }
+    @synchronized (self) {
+        if (keyAndSecret == nil) {
 
-        if ([defaultExchange isEqualToString:EXCHANGE_BITTREX]) {
-            keyAndSecret = [KeychainWrapper keychain2ApiKeyAndSecret:@"BITTREX"];
+            if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) {
+                keyAndSecret = [KeychainWrapper keychain2ApiKeyAndSecret:@"POLONIEX"];
+            }
+
+            if ([defaultExchange isEqualToString:EXCHANGE_BITTREX]) {
+                keyAndSecret = [KeychainWrapper keychain2ApiKeyAndSecret:@"BITTREX"];
+            }
         }
     }
 
