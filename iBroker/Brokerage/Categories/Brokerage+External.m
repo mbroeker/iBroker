@@ -13,7 +13,7 @@
 
 /**
  * Besorge den Umrechnungsfaktor EUR/USD
- * 
+ *
  * @param fiatCurrencies NSArray*
  * @return NSNumber*
  */
