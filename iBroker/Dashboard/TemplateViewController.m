@@ -916,7 +916,7 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
- * Aktualisiere den jeweiligen Tab
+ * Aktualisiere das jeweiligen Tab
  *
  * @param label NSString*
  */

@@ -41,6 +41,19 @@
  *
  * @return NSDictionary*
  */
+
++ (NSURLSession *)commonSession {
+    static NSURLSession *session = nil;
+
+    if (session == nil) {
+        @synchronized (self) {
+            session = [NSURLSession sharedSession];
+        }
+    }
+
+    return session;
+}
+
 + (NSDictionary *)jsonRequest:(NSString *)jsonURL withPayload:(NSDictionary *)payload andHeader:(NSDictionary *)header {
     NSDebug(@"Brokerage::jsonRequest:%@ withPayload:... andHeader:...", jsonURL);
 
@@ -65,7 +78,7 @@
     __block NSMutableDictionary *result;
     __block dispatch_semaphore_t lock = dispatch_semaphore_create(0);
 
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSession *session = [Brokerage commonSession];
     NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *requestReply = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
 
@@ -81,6 +94,7 @@
     }];
 
     [dataTask resume];
+    [session finishTasksAndInvalidate];
 
     // Wait 15 seconds for the request to finish: That's more than enough and better than DISPATCH_TIME_FOREVER
     dispatch_semaphore_wait(lock, dispatch_time(DISPATCH_TIME_NOW, 15 * NSEC_PER_SEC));
