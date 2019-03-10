@@ -43,7 +43,8 @@ static NSDictionary *keyAndSecret = nil;
 /**
  * Check for inf, nan or zero
  *
- * @param value BOOL
+ * @param value double
+ * @return BOOL
  */
 + (BOOL)zeroNanOrInfinity:(double)value {
     BOOL zeroNanOrInfinity = ((value == 0.0) || isinf(value) || isnan(value));
@@ -92,7 +93,7 @@ static NSDictionary *keyAndSecret = nil;
  * @param index unsigned int
  * @return NSString*
  */
-+ (NSString *)assetString:(unsigned int)row withIndex:(unsigned)index {
++ (NSString *)assetString:(unsigned int)row withIndex:(unsigned int)index {
     static NSArray *assets = nil;
 
     if (assets == nil) {
@@ -129,21 +130,11 @@ static NSDictionary *keyAndSecret = nil;
 + (id)instance:(NSArray *)currencies {
     static Calculator *calculator = nil;
 
-    bool useGDC = NO;
-
-    if (useGDC) {
-        if (calculator == nil) {
-            static dispatch_once_t onceToken;
-            dispatch_once(&onceToken, ^{
-                calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
-            });
-        }
-    } else {
-        @synchronized (self) {
-            if (calculator == nil) {
-                calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
-            }
-        }
+    if (calculator == nil) {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            calculator = [[Calculator alloc] initWithFiatCurrencies:currencies];
+        });
     }
 
     return calculator;
@@ -298,6 +289,7 @@ static NSDictionary *keyAndSecret = nil;
  *
  * @param asset NSString*
  * @param btcUpdate BOOL
+ * @param wantedRate double
  */
 - (void)updateCheckpointForAsset:(NSString *)asset withBTCUpdate:(BOOL)btcUpdate andRate:(double)wantedRate {
     NSDebug(@"Calculator::updateCheckpointForAsset:%@ withBTCUpdate:%d andRate:%.8f", asset, btcUpdate, wantedRate);
@@ -381,7 +373,7 @@ static NSDictionary *keyAndSecret = nil;
  * Berechne den Umrechnungsfaktor
  *
  * @param asset NSString*
- * @param baseAsset
+ * @param baseAsset NSString*
  * @return double
  */
 - (double)factorForAsset:(NSString *)asset inRelationTo:(NSString *)baseAsset {
@@ -427,7 +419,7 @@ static NSDictionary *keyAndSecret = nil;
 /**
  * Berechne den Gesamtwert der Geldbörsen in Euro oder Dollar...
  *
- * @param currency
+ * @param currency NSString*
  * @return double
  */
 - (double)calculate:(NSString *)currency {
@@ -437,8 +429,8 @@ static NSDictionary *keyAndSecret = nil;
 /**
  * Berechne den Gesamtwert der Geldbörsen in Euro oder Dollar mit den übergebenen Ratings
  *
- * @param ratings
- * @param currency
+ * @param ratings NSDictionary*
+ * @param currency NSString*
  * @return double
  */
 - (double)calculateWithRatings:(NSDictionary *)ratings currency:(NSString *)currency {
@@ -1021,7 +1013,7 @@ static NSDictionary *keyAndSecret = nil;
 
 
 /**
- * Aktualsiert den Bestand (synchronisiert und thread-safe)
+ * Aktualisiert den Bestand (synchronisiert und thread-safe)
  *
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
@@ -1035,18 +1027,22 @@ static NSDictionary *keyAndSecret = nil;
 
     if (synchronized) {
         dispatch_sync(queue, ^{
-            [self unsynchronizedUpdateBalances];
+            @autoreleasepool {
+                [self unsynchronizedUpdateBalances];
+            }
         });
     } else {
         dispatch_async(queue, ^{
-            [self unsynchronizedUpdateBalances];
+            @autoreleasepool {
+                [self unsynchronizedUpdateBalances];
+            }
         });
     }
 
 }
 
 /**
- * Aktualisert den Bestand mit dem API-KEY
+ * Aktualisiert den Bestand mit dem API-KEY
  *
  * falls automatedTrading an ist, wird nur der handelbare Bestand angezeigt.
  * falls automatedTrading aus ist, wird der handelbare(available) und der investierte(onOrders) Bestand angezeigt.
@@ -1095,11 +1091,15 @@ static NSDictionary *keyAndSecret = nil;
 
     if (synchronized) {
         dispatch_sync(queue, ^{
-            [self unsynchronizedUpdateRatings];
+            @autoreleasepool {
+                [self unsynchronizedUpdateRatings];
+            }
         });
     } else {
         dispatch_async(queue, ^{
-            [self unsynchronizedUpdateRatings];
+            @autoreleasepool {
+                [self unsynchronizedUpdateRatings];
+            }
         });
     }
 
@@ -1212,7 +1212,7 @@ static NSDictionary *keyAndSecret = nil;
 /**
  * Ersetzt die aktuellen Saldi mit den Werten aus dem Dictionary
  *
- * @param dictionary NSDictionary*
+ * @param dictionary NSMutableDictionary*
  */
 - (void)currentSaldoForDictionary:(NSMutableDictionary *)dictionary {
     NSDebug(@"Calculator::currentSaldoForDictionary:%@", dictionary);
@@ -1235,7 +1235,7 @@ static NSDictionary *keyAndSecret = nil;
 /**
  * Ersetzt die aktuellen saldoUrls mit den Werten aus dem Dictionary
  *
- * @param dictionary NSDictionary*
+ * @param dictionary NSMutableDictionary*
  */
 - (void)saldoUrlsForDictionary:(NSMutableDictionary *)dictionary {
     NSDebug(@"Calculator::saldoUrlsForDictionary:%@", dictionary);
@@ -1258,7 +1258,7 @@ static NSDictionary *keyAndSecret = nil;
 /**
  * Ersetzt die aktuellen initialRatings mit den Werten aus dem Dictionary
  *
- * @param dictionary NSDictionary*
+ * @param dictionary NSMutableDictionary*
  */
 - (void)initialRatingsWithDictionary:(NSMutableDictionary *)dictionary {
     NSDebug(@"Calculator::initialRatingsWithDictionary:%@", dictionary);
@@ -1407,13 +1407,14 @@ static NSDictionary *keyAndSecret = nil;
 
 /**
  * Minimieren des Zugriffs auf den Schlüsselbund
+ *
+ * @return NSDictionary*
  */
 - (NSDictionary *)apiKey {
     NSDebug(@"Calculator::apiKey");
 
     @synchronized (self) {
         if (keyAndSecret == nil) {
-
             if ([defaultExchange isEqualToString:EXCHANGE_POLONIEX]) {
                 keyAndSecret = [KeychainWrapper keychain2ApiKeyAndSecret:@"POLONIEX"];
             }

@@ -324,8 +324,8 @@ typedef struct DASHBOARD_VARS {
 /**
  * Setzen der Formatierungsregeln für die Eingabefelder
  *
- * @param fractions
- * @param assetFractions
+ * @param fractions NSUInteger
+ * @param assetFractions NSUInteger
  */
 - (void)stdNumberFormatter:(NSUInteger)fractions forAsset:(NSUInteger)assetFractions {
     NSDebug(@"TemplateViewController::stdNumberFormatter");
@@ -506,10 +506,12 @@ typedef struct DASHBOARD_VARS {
         while (true) {
             [NSThread sleepForTimeInterval:updateInterval];
 
-            [self updateBalanceAndRatings];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self updateCurrentView:YES];
-            });
+            @autoreleasepool {
+                [self updateBalanceAndRatings];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self updateCurrentView:YES];
+                });
+            }
         }
 
     });
@@ -916,7 +918,7 @@ typedef struct DASHBOARD_VARS {
 }
 
 /**
- * Aktualisiere das jeweiligen Tab
+ * Aktualisiere das jeweilige Tab
  *
  * @param label NSString*
  */
@@ -1067,6 +1069,8 @@ typedef struct DASHBOARD_VARS {
 
 /**
  * Action-Handler für das headlineLabel
+ *
+ * @param sender id
  */
 - (IBAction)dashboardAction:(id)sender {
     NSDebug(@"TemplateViewController::dashboardAction");
