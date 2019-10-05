@@ -229,6 +229,7 @@
         @"OK": @"OK",
         @"PAY": @"Pay Token",
         @"PTC": @"Pesetacoin",
+        @"PTON": @"Foresting",
         @"QTUM": @"Qtum",
         @"RDD": @"Red Coin",
         @"RISE": @"Rise",
