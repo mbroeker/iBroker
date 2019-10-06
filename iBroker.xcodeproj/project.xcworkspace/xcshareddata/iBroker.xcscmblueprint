@@ -9,18 +9,12 @@
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "C4D2993B-2597-4B6A-AD8A-966B399A5224",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
-    "8F9938BCE41D4655D0016A2753FC226734459D66" : "PennyStocks\/",
     "E33633BE4F1EE83781D0D8EDB4554FCB96576291" : "iBroker\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "iBroker",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
   "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "iBroker.xcodeproj",
   "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
-    {
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mbroeker\/PennyStocks.git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
-      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "8F9938BCE41D4655D0016A2753FC226734459D66"
-    },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/mbroeker\/iBroker.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
